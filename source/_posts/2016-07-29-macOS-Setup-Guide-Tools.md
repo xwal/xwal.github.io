@@ -7,12 +7,13 @@ categories:
 - Mac
 ---
 
+> 更新日期: 2016-08-05
 > 工欲善其事，必先利其器。—— 工具篇
 
 <!-- more -->
 
 ## 命令行工具
-### Xcode
+### Xcode Command Line Tools
 从 App store 或苹果开发者网站安装 [Xcode](https://developer.apple.com/xcode/) 。  
 
 紧接着，在终端中运行安装 **Xcode Command Line Tools**，执行命令：
@@ -156,6 +157,7 @@ brew cask 安装 launchrocket，来管理通过 brew 安装的 service
 ```
 $ brew cask install launchrocket
 ```
+
 ![Snip20160729_9](http://7xooko.com1.z0.glb.clouddn.com/2016-08-01-Snip20160729_9.png)
 
 ### RVM
@@ -170,7 +172,9 @@ $ rvm install 2.3.0
 $ rvm use 2.3.0
 $ /bin/bash --login
 ```
+
 #### gem
+
 Ruby包管理器
 
 ```
@@ -178,6 +182,83 @@ $ gem install cocoapods
 $ gem install fastlane
 $ gem install octopress
 $ gem install tty
+```
+
+### Python
+
+Python 是一个高层次的结合了解释性、编译性、互动性和面向对象的脚本语言。
+
+通过命令安装：
+
+```
+$ brew install python
+```
+
+通过以上命令搭建 python 环境，该命令会自动安装好 pip 和 setuptools。
+
+#### pip & setuptools
+
+pip 和 setuptools 是 Python 的包管理器。
+
+更新 pip 和 setuptools 包管理器：
+
+```
+  pip install --upgrade pip setuptools
+```
+
+安装程序包：
+
+```
+  pip install <package>
+```
+安装位置：`/usr/local/lib/python2.7/site-packages`
+
+#### 常用 Python 程序包
+
+```
+$ pip install beautifulsoup4 // HTML解析
+$ pip install NetEase-MusicBox // 网易云音乐命令行版
+$ pip install starred	// 利用GitHub上stars项目生成类 awesome 列表的汇总页面。
+```
+
+### Node
+
+> Platform built on the V8 JavaScript runtime to build network applications.
+
+简单的说 Node.js 就是运行在服务端的 JavaScript。
+
+通过命令安装：
+
+```
+$ brew install node
+```
+
+通过以上命令搭建好 node.js 开发环境，同时也会安装 node 的包管理工具 npm。
+
+#### npm
+
+node 的包管理器。
+
+安装 node 程序包有两种方式：
+
+1. 安装在本地工程项目中，只能本地项目使用，安装命令如下：
+
+```
+$ npm install <package> --save
+```
+
+2. 安装为全局程序包，安装命令如下：
+
+```
+$ npm install -g <package>
+```
+
+#### 常用全局 npm 程序包
+
+```
+$ npm install -g hexo-cli	// 静态博客
+$ npm install -g ionic		// Hybird 开发
+$ npm install -g react-native-cli // React Native 开发
 ```
 
 ## GUI工具

@@ -26,8 +26,6 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
-    - google945a3047ebe11b05.html
-    - baidu_verify_QJ33ASIjWB.html
     - resume/*
 
 # Writing
