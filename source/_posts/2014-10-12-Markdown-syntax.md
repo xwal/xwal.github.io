@@ -3,7 +3,7 @@ layout: post
 title: "Markdown语法说明"
 date: 2014-10-12 00:30:35 +0800
 comments: true
-categories: Tutorial
+categories: Guide
 tags: markdown
 ---
 
@@ -776,3 +776,5 @@ Mac 平台
 \*** 如有更好的 Markdown 免费编辑器推荐，请到[这里反馈](https://gitcafe.com/riku/Markdown-Syntax-CN/tickets/1)，谢谢！
 
 来源链接:<http://wowubuntu.com/markdown/>
+
+

@@ -1,7 +1,7 @@
 title: Mac 安装 CocoaPods
 date: 2015-12-23 11:28:51
 tags:
-- Tool
+- Tools
 - CocoaPods
 categories: iOS
 ---
@@ -133,3 +133,5 @@ $ pod setup
 1. <http://code4app.com/article/cocoapods-install-usage>
 2. <http://blog.csdn.net/wzzvictory/article/details/18737437>
 3. <http://blog.csdn.net/wzzvictory/article/details/19178709>
+
+

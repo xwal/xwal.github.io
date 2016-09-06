@@ -3,8 +3,10 @@ layout: post
 title: "XULRunner桌面应用解决方案"
 date: 2014-09-10 19:29:58 +0800
 comments: true
-categories: XUL
-tags: 笔记
+categories: Desktop App
+tags:
+- XULRunner
+- XUL
 ---
 XULRunner 可以通过运用 Web 开发技术构建桌面应用程序。它提供了丰富的 UI 部件集，使用 XUL，可以直接与 HTML 混合使用并可大量使用 JavaScript。  
 ## 基本概念 ##
@@ -19,3 +21,5 @@ XPCOM 本身提供了一套核心的组件和类，用于诸如内存管理，�
 ## 应用程序目录结构 ##
 XULRunner应用、扩展和主题都共享相同的目录结构，并且这样的目录结构某些时候还可以用于像可安装应用扩展那样的独立XULRunner应用。  
 ![](http://i.imgur.com/UOhOL86.png)
+
+

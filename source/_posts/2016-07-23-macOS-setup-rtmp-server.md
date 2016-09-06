@@ -2,8 +2,8 @@ title: macOS 搭建 RTMP 直播服务器
 date: 2016-07-23 12:13:06
 tags:
 - 直播
-categories:
-- 流媒体
+- RTMP
+categories: macOS
 ---
 直播开发流程:
 数据采集→ 数据编码 → 数据传输(流媒体服务器) → 解码数据 → 播放显示  

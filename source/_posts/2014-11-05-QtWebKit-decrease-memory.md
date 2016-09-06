@@ -5,7 +5,7 @@ date: 2014-11-05 22:30:50 +0800
 comments: true
 categories: Qt
 tags:
-- webkit
+- WebKit
 ---
 在QtWebkit的QWebView加载网页的时候，会随着每加载一次网页内存就会增加。为解决这个问题可以通过以下代码解决。  
 ```c++
@@ -52,3 +52,5 @@ QWebSettings::globalSettings()->clearMemoryCaches();
 ## 参考链接
 <http://qt-project.org/forums/viewthread/11105>  
 <http://webkit.sed.hu/content/disabling-cache>
+
+

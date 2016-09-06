@@ -1,7 +1,7 @@
 title: Linux RaspberryPi
 date: 2016-05-28 20:35:13
 tags: RaspberryPi
-categories: Linux
+categories: Unix/Linux
 ---
 ## 安装Node.js
 ```
@@ -13,3 +13,5 @@ sudo apt-get install -y nodejs
 curl -sL https://deb.nodesource.com/setup_6.x | bash -
 apt-get install -y nodejs
 ```
+
+

@@ -1,6 +1,8 @@
 title: 开发平台
 date: 2016-05-27 15:32:40
-tags: Tools
+tags: 
+- Tools
+- 开发平台
 categories: iOS
 ---
 
@@ -68,3 +70,5 @@ categories: iOS
 - 蒲公英 <https://www.pgyer.com>
 - FIR <http://fir.im>
 - TestFlight：苹果自家的内测渠道 <https://developer.apple.com/testflight/>
+
+

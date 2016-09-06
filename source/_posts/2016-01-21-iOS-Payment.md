@@ -5,8 +5,14 @@ tags:
 - 微信支付
 - IAP
 - 应用内支付
+- Apple Pay
 categories: iOS
 ---
+
+**更新日志**
+
+- 2016-05-26 添加 Pay 支付
+- 2016-08-08 更新 Pay 支付流程
 
 iOS支付分为两类，**第三方支付**和**应用内支付（内购）**。
 
@@ -661,10 +667,459 @@ Apple 不会存储或共享客户的实际信用卡和借记卡卡号，因此�
 - 遵循“应用审核准则”的第 29 节中列出的要求。
 - 遵循[《App 审核准则》](https://developer.apple.com/app-store/review/guidelines/#apple-pay)(“App Review Guidelines”)第 29 节中列出的要求。
 
+### 支付流程
+
+#### 配置 Merchant ID（商家ID）
+
+Apple Pay 中的商家 ID 用于标识你能够接受付款。与商家 ID 相关联的公钥与证书用于在支付过程中加密支付信息。要想使用 Apple Pay，你首先需要注册一个商家 ID 并且配置它的证书。
+
+1. 在开发者中心选择[证书、标识符及描述文件](https://developer.apple.com/account/ios/identifiers/merchant/merchantLanding.action)
+2. 在标识符下选择商家 ID，点击右上角的添加按钮(+)。
+	![Snip20160808_3](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_3.png)
+3. 输入描述与和标识符，然后继续，检查设置然后点击注册，点击完成。
+	![Snip20160808_5](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_5.png)
+
+4. 为商家 ID 配置证书，在开发者中心选择[证书、标识符及描述文件](https://developer.apple.com/account/ios/identifiers/merchant/merchantLanding.action)，在标识符下选择商家 ID。从列表中选择商家 ID，点击编辑。
+	![Snip20160808_6](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_6.png)
+	![Snip20160808_8](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_8.png)
+
+5. 点击创建证书， 根据提示生成证书签名请求（CSR），选择你的 CSR，然后点击生成下载证书。
+	![Snip20160808_10](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_10.png)
+	![Snip20160808_11](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_11.png)
+	![Snip20160808_12](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_12.png)
+
+6. 如果你在钥匙串访问 (Keychain Access) 看到警告信息：该证书由一个未知的机构签发或者该证书有一个无效的发行人，请将 [WWDR 中级证书 - G2](https://www.apple.com/certificateauthority/AppleWWDRCAG2.cer) 以及 [Apple 根证书 - G2](https://www.apple.com/certificateauthority/AppleRootCA-G2.cer) 安装到你的钥匙串中。你可以在 <https://www.apple.com/certificateauthority/> 下载到这两个证书。
+	![Snip20160808_13](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_13.png)
+	![Snip20160808_15](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_15.png)
+
+#### 配置 App ID
+
+1. 为应用建立建立一个不带通配符的App ID，并勾选上【Apple Pay】。
+	![Snip20160808_19](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_19.png)
+2. 在App IDs列表中编辑该App ID，进行Apple Pay的关联。
+	![Snip20160808_20](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_20.png)
+	![Snip20160808_21](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_21.png)
+	![Snip20160808_24](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_24.png)
+	![Snip20160808_25](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_25.png)
+3. 用该App ID生成和安装相应的Provisioning Profile文件。
+
+#### 代码实现
+
+##### Xcode工程配置
+
+在 Xcode 的 【capabilities 面板】中为应用启用 【Apple Pay】功能。在 Apple Pay 这一行中点击开启，然后指定该应用使用的商家 ID 即可。
+![Snip20160808_17](http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_17.png)
+
+##### 判断用户是否能够支付
+
+1. 调用`PKPaymentAuthorizationViewController` 的 `canMakePayments` 方法可以判断当前设备是否支持 Apple Pay。
+
+	```
+	// 判断是否支持Apple Pay
+	if ([PKPaymentAuthorizationViewController canMakePayments]) {
+	}
+	```
+
+	如果 `canMakePayments` 返回 NO，则设备不支持 Apple Pay。不要显示 Apple Pay 按扭，你可以选择使用其它的支付方式。
+
+2. 调用 `PKPaymentAuthorizationViewController` 的方法 `canMakePaymentsUsingNetworks:(NSArray<NSString *> *)supportedNetworks` 判断用户是否能使用你支持的支付网络完成付款。  
+
+    `canMakePaymentsUsingNetworks:`方法需要传递一个支持的支付网络数组。支付网络包括以下类型：
+
+	```
+	extern NSString * const PKPaymentNetworkAmex NS_AVAILABLE(NA, 8_0);	// 美国运通卡
+	extern NSString * const PKPaymentNetworkChinaUnionPay NS_AVAILABLE(NA, 9_2);	// 中国银联卡
+	extern NSString * const PKPaymentNetworkDiscover NS_AVAILABLE(NA, 9_0);	// 美国发现卡
+	extern NSString * const PKPaymentNetworkInterac NS_AVAILABLE(NA, 9_2);	// 加拿大Interac银行卡
+	extern NSString * const PKPaymentNetworkMasterCard NS_AVAILABLE(NA, 8_0);	// 万事达卡
+	extern NSString * const PKPaymentNetworkPrivateLabel NS_AVAILABLE(NA, 9_0);	// 信用卡、借记卡
+	extern NSString * const PKPaymentNetworkVisa NS_AVAILABLE(NA, 8_0);	// 维萨卡
+	```
+
+	如果 `canMakePayementsUsingNetworks: `返回 NO，则表示设备支持 Apple Pay，但是用户并没有为任何请求的支付网络添加银行卡。你可以选择显示一个支付设置按扭，引导用户添加银行卡。如果用户点击该按扭，则开始设置新的银行卡流程 (例如，通过调用 openPaymentSetup 方法)。
+
+	```
+	// 引导用户添加银行卡
+	// 判断是否能打开卡包
+	if ([PKPassLibrary isPassLibraryAvailable]) {
+	   PKPassLibrary * pk = [[PKPassLibrary alloc] init];
+	   [pk openPaymentSetup];
+	}
+	```
+
+    ```
+    // 银行卡类型
+    NSArray * supportedNetworks = @[PKPaymentNetworkChinaUnionPay, PKPaymentNetworkPrivateLabel, PKPaymentNetworkInterac];
+
+    // 判断是否支持Apple Pay
+    if ([PKPaymentAuthorizationViewController canMakePayments]) {
+       self.paymentButton = [PKPaymentButton buttonWithType:PKPaymentButtonTypeBuy style:PKPaymentButtonStyleWhiteOutline];
+       [self.paymentButton addTarget:self action:@selector(paymentTapped:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else if ([PKPaymentAuthorizationViewController canMakePaymentsUsingNetworks:supportedNetworks]) {
+       // 添加银行卡
+       self.paymentButton = [[PKPaymentButton alloc] initWithPaymentButtonType:PKPaymentButtonTypeSetUp paymentButtonStyle:PKPaymentButtonStyleWhiteOutline];
+       [self.paymentButton addTarget:self action:@selector(paymentSetupTapped:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
+    if (self.paymentButton != nil) {
+       [self.view addSubview:self.paymentButton];
+       self.paymentButton.center = CGPointMake(200, 100);
+    }
+    ```
+
+    ```
+    - (void)paymentSetupTapped:(PKPaymentButton *) sender {
+       // 判断是否打开卡包
+       if ([PKPassLibrary isPassLibraryAvailable]) {
+           PKPassLibrary * pk = [[PKPassLibrary alloc] init];
+           [pk openPaymentSetup];
+       }
+    }
+    ```
+
+##### 显示支付按钮
+
+使用 `PKPayementButton` 方法在初始化支付请求时创建带商标的 Apple Pay 按扭。
+
+```
++ (instancetype)buttonWithType:(PKPaymentButtonType)buttonType style:(PKPaymentButtonStyle)buttonStyle;
+```
+
+PKPaymentButtonType按钮类型：
+
+```
+PKPaymentButtonTypePlain = 0,  // 显示文字【Pay】
+PKPaymentButtonTypeBuy,		  // 显示文字【Buy with Pay】
+PKPaymentButtonTypeSetUp NS_ENUM_AVAILABLE_IOS(9_0) // 显示文字【Set up Pay】
+```
+
+PKPaymentButtonStyle样式类型：
+
+```
+PKPaymentButtonStyleWhite = 0, // 白底黑字
+PKPaymentButtonStyleWhiteOutline, // 白底黑字，黑色边框
+PKPaymentButtonStyleBlack		  // 黑底白字
+```
+
+
+##### 创建支付请求
+
+支付请求是 PKPayementRequest 类的一个实例。一个支持请求包含用户支付的物品概要清单、可选配送方式列表、用户需提供的配送信息、商家的信息以及支付处理机构。
+
+```
+- (void)paymentTapped:(PKPaymentButton *) sender {
+    // 创建支付请求
+    PKPaymentRequest * paymentRequest = [[PKPaymentRequest alloc] init];
+
+    // 配置商家ID
+    paymentRequest.merchantIdentifier = @"merchant.me.chaosky.applepay";
+
+    // 配置货币代码及国家代码
+    paymentRequest.currencyCode = @"CNY";
+    paymentRequest.countryCode = @"CN";
+
+    // 支持的支付网络，用户能使用类型的银行卡
+    paymentRequest.supportedNetworks = @[PKPaymentNetworkChinaUnionPay, PKPaymentNetworkPrivateLabel];
+
+    // 商家支付能力，商家的支付网络
+    paymentRequest.merchantCapabilities = PKMerchantCapability3DS | PKMerchantCapabilityEMV;
+
+    // 是否显示发票收货地址
+    paymentRequest.requiredBillingAddressFields = PKAddressFieldNone;
+
+    // 是否显示快递地址
+    paymentRequest.requiredShippingAddressFields = PKAddressFieldAll;
+
+
+    // 自定义联系信息
+    PKContact *contact = [[PKContact alloc] init];
+
+    NSPersonNameComponents *name = [[NSPersonNameComponents alloc] init];
+    name.givenName = @"天祥";
+    name.familyName = @"林";
+    contact.name = name;
+
+    CNMutablePostalAddress *address = [[CNMutablePostalAddress alloc] init];
+    address.street = @"天府广场";
+    address.city = @"成都";
+    address.state = @"四川";
+    address.postalCode = @"614100";
+    contact.postalAddress = address;
+
+    contact.emailAddress = @"chaosky.me@gmail.com";
+    contact.phoneNumber = [CNPhoneNumber phoneNumberWithStringValue:@"1234567890"];
+    paymentRequest.shippingContact = contact;
+
+    // 配送方式
+    paymentRequest.shippingMethods = [self shippingMethodsForContact:contact];
+
+    // 默认配送类型
+    paymentRequest.shippingType = PKShippingTypeShipping;
+
+    // 更新邮费
+    self.selectedShippingMethod = paymentRequest.shippingMethods[0];
+    [self updateShippingCost:self.selectedShippingMethod];
+
+    // 支付汇总项
+    paymentRequest.paymentSummaryItems = self.summaryItems;
+
+    // 附加数据
+    paymentRequest.applicationData = [@"buyid=123456" dataUsingEncoding:NSUTF8StringEncoding];
+
+    // 验证用户支付授权
+    PKPaymentAuthorizationViewController * paymentAuthVC = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:paymentRequest];
+    paymentAuthVC.delegate = self;
+
+    [self presentViewController:paymentAuthVC animated:YES completion:nil];
+}
+
+// 更新邮费
+- (void)updateShippingCost:(PKShippingMethod *) shippingMethod {
+    // 支付汇总项
+    // 12.75 小计
+    NSDecimalNumber * subtotalAmount = [NSDecimalNumber decimalNumberWithMantissa:1275 exponent:-2 isNegative:NO];
+    PKPaymentSummaryItem * subtotal = [PKPaymentSummaryItem summaryItemWithLabel:@"小计" amount:subtotalAmount];
+
+    // 2.00 折扣优惠
+    NSDecimalNumber * discountAmount = [NSDecimalNumber decimalNumberWithMantissa:200 exponent:-2 isNegative:YES];
+    PKPaymentSummaryItem * discount = [PKPaymentSummaryItem summaryItemWithLabel:@"折扣" amount:discountAmount];
+
+    // 邮费
+    PKPaymentSummaryItem * shippingCost = [PKPaymentSummaryItem summaryItemWithLabel:@"邮费" amount:shippingMethod.amount];
+
+    // 总计项
+    // 总计
+    NSDecimalNumber *totalAmount = [NSDecimalNumber zero];
+    totalAmount = [totalAmount decimalNumberByAdding:subtotal.amount];
+    totalAmount = [totalAmount decimalNumberByAdding:discount.amount];
+    totalAmount = [totalAmount decimalNumberByAdding:shippingCost.amount];
+    PKPaymentSummaryItem * total = [PKPaymentSummaryItem summaryItemWithLabel:@"千锋互联" amount:totalAmount];
+
+    self.summaryItems = @[subtotal, discount, shippingCost, total];
+}
+
+// 根据用户地址获取配送方式
+- (NSArray *)shippingMethodsForContact:(PKContact *) contact {
+    //配置快递方式
+    NSDecimalNumber * sfAmount = [NSDecimalNumber decimalNumberWithString:@"20.00"];
+    PKShippingMethod * sfShipping = [PKShippingMethod summaryItemWithLabel:@"顺丰" amount:sfAmount];
+    sfShipping.identifier = @"shunfeng";
+    sfShipping.detail = @"24小时内送达";
+
+    NSDecimalNumber * stAmount = [NSDecimalNumber decimalNumberWithString:@"10.00"];
+    PKShippingMethod * stShipping = [PKShippingMethod summaryItemWithLabel:@"申通" amount:stAmount];
+    stShipping.identifier = @"shentong";
+    stShipping.detail = @"3天内送达";
+
+    NSDecimalNumber * tcAmount = [NSDecimalNumber decimalNumberWithString:@"8.00"];
+    PKShippingMethod * tcShipping = [PKShippingMethod summaryItemWithLabel:@"同城快递" amount:tcAmount];
+    tcShipping.identifier = @"tongcheng";
+    tcShipping.detail = @"12小时送达";
+
+    NSArray * shippingMethods = nil;
+    if ([contact.postalAddress.city isEqualToString:@"成都"]) {
+        shippingMethods = [NSArray arrayWithObjects:sfShipping, stShipping, tcShipping, nil];
+    }
+    else {
+        shippingMethods = @[sfShipping, stShipping];
+    }
+
+    return shippingMethods;
+}
+```
+
+PKMerchantCapability枚举类型
+
+```
+//    PKMerchantCapability3DS                                 = 1UL << 0,   // 3DS卡（磁条卡）
+//    PKMerchantCapabilityEMV                                 = 1UL << 1,   // EMV卡（IC卡）
+//    PKMerchantCapabilityCredit NS_ENUM_AVAILABLE_IOS(9_0)   = 1UL << 2,   // 信用卡
+//    PKMerchantCapabilityDebit  NS_ENUM_AVAILABLE_IOS(9_0)   = 1UL << 3    // 借记卡
+```
+
+PKAddressField枚举类型
+
+```
+//    PKAddressFieldNone                              = 0UL,      // 不需要地址
+//    PKAddressFieldPostalAddress                     = 1UL << 0, // 完整街道地址，包括名字、街道、城市、地区/省份、邮编、国家
+//    PKAddressFieldPhone                             = 1UL << 1, // 电话号码
+//    PKAddressFieldEmail                             = 1UL << 2, // 邮箱
+//    PKAddressFieldName NS_ENUM_AVAILABLE_IOS(8_3)   = 1UL << 3, // 名字
+//    PKAddressFieldAll                               = (PKAddressFieldPostalAddress|PKAddressFieldPhone|PKAddressFieldEmail|PKAddressFieldName) // 以上所有都具备
+```
+
+// PKShippingType配送类型
+
+```
+//    PKShippingTypeShipping,   // 第三方配送（默认），如顺丰、申通
+//    PKShippingTypeDelivery,   // 商家自己配送，如京东、披萨、花店、蛋糕店
+//    PKShippingTypeStorePickup, // 上门取货
+//    PKShippingTypeServicePickup // 服务收件，如京东设置的自提点
+```
+
+###### 一系列的支付汇总项
+
+由 `PKPaymentSummaryItem` 类表示支付请求中的不同部分。一个支付请求包括多个支付汇总项，一般包括：小计、折扣、配送费用、税以及总计。如果你没有其它任何额外的费用 (例如，配送或税)，那么支付的总额直接是所有购买商品费用的总和。关于每一项商品的费用的详细信息你需要在应用程序的其它合适位置显示。
+
+每一个汇总项都有标签和金额两个部分。标签是对该项的可读描述。金额对应于所需支付的金额。一个支付请求中的所有金额都使用该请求中指定的支付货币类型。对于折扣和优惠券，其金额被设置为负值。
+
+某些场景下，如果在支付授权的时候还不能获取应当支付的费用(例如，出租车收费)，则使用 `PKPaymentSummaryItemTypePending` 类型做小计项，并将其金额值设置为 0.0。系统随后会设置该项的金额值。
+
+汇总项列表中最后一项是总计项。总计项的金额是其它所有汇总项的金额的和。总计项的显示不同用于其它项。在该项中，你应该使用你的公司名称作为其标签，使用所有其它项的金额之和作为其金额值。最后，使用 paymentSummaryItems 属性将所有汇总项都添加到支付请求中。
+
+> 汇总项使用 NSDecimalNumber 类存储金额，并且金额使用 10 进制数表示。如示例代码演示的一样，可以通过显示地指定小数部分与指数部分创建该类的实例，也可以直接使用字符串的方式指定金额。在财务计算中绝大部分情况下都是使用的 10 进制数进行计算的，例如，计算 5% 的折扣。
+
+###### 配送方式的支付汇总项
+
+为每一个可选的配送方式创建一个 `PKShippingMethod` 实例。与其它支付汇总项一样，配送方式也有一个用户可读的标签，例如标准配送或者可隔天配送，和一个配送金额值。与其它汇总项不同的是，配送方法有一个 detail 属性值，例如，7 月 29 日送达或者 24 小时之内送达等等。该属性值说明不同配送方式之间的区别。
+
+为了在委托方法中区分不同的配送方式，你可以使用 identifier 属性。有些配送方式并不是在所有地区都是可以使用的，或者它们费用会根据配送地址的不同而发生变化。你需要在用户选择配送地址或方法时更新其信息。
+
+###### 指定应用程序支持的支付处理机制
+
+merchantCapabilities 属性值说明应用程序支持的支付处理协议。3DS 协议是须支持的支付处理协议， EMV 是可选的支付处理协议。
+
+```
+// Supports 3DS only
+paymentRequest.merchantCapabilities = PKMerchantCapability3DS;
+
+// Supports both 3DS and EMV
+paymentRequest.merchantCapabilities = PKMerchantCapability3DS | PKMerchantCapabilityEMV;
+```
+
+###### 配送信息和账单信息
+
+requiredBillingAddressFields 属性和 requiredShippingAddressFields 属性可以设置所需的账单信息和配送信息。
+
+```
+paymentRequest.requiredBillingAddressFields = PKAddressFieldEmail;
+paymentRequest.requiredBillingAddressFields = PKAddressFieldEmail | PKAddressFieldPostalAddress;
+```
+
+如果已有最新账单信息以及配送联系信息，你可以直接为支付请求设置这些值。 Apple Pay 会默认使用这些信息。但是，用户仍然可以选择在本次支付中使用其它联系信息。
+
+```
+PKContact *contact = [[PKContact alloc] init];
+
+NSPersonNameComponents *name = [[NSPersonNameComponents alloc] init];
+name.givenName = @"天祥";
+name.familyName = @"林";
+contact.name = name;
+
+CNMutablePostalAddress *address = [[CNMutablePostalAddress alloc] init];
+address.street = @"天府广场";
+address.city = @"成都";
+address.state = @"四川";
+address.postalCode = @"614100";
+contact.postalAddress = address;
+
+contact.emailAddress = @"chaosky.me@gmail.com";
+contact.phoneNumber = [CNPhoneNumber phoneNumberWithStringValue:@"1234567890"];
+paymentRequest.shippingContact = contact;
+```
+
+##### 授权支付
+
+支付授权过程是由支付授权视图控制器与其委托合作完成的。支付授权视图控制器做了两件事：  
+
+- 让用户选择支付请求所需的账单信息与配送信息。
+
+- 让用户授权支付操作。
+
+用户与视图控制器交互时，委托方法会被系统调用，所以在这些方法中你的应用可以更新所要显示的信息。例如在配送地址修改后更新配送价格。在用户授权支付请求后此方法还会被调用一次。
+
+###### 使用委托方法更新配送方式与配送费用
+
+当用户输入配送信息时，授权视图控制器会调用委托的 paymentAuthorizationViewController:didSelectShippingContact:completion: 方法和 paymentAuthorizationViewController:didSelectShippingMethod:completion: 方法。你可以实现这两个方法来更新你的支付请求。
+
+```
+// 用户更改配送地址
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didSelectShippingContact:(PKContact *)contact completion:(void (^)(PKPaymentAuthorizationStatus, NSArray<PKShippingMethod *> * _Nonnull, NSArray<PKPaymentSummaryItem *> * _Nonnull))completion {
+    self.selectedContact = contact;
+
+    NSArray *shippingMethods = [self shippingMethodsForContact:contact];
+    // 重新计算邮费
+    self.selectedShippingMethod = shippingMethods[0];
+    [self updateShippingCost:self.selectedShippingMethod];
+
+    completion(PKPaymentAuthorizationStatusSuccess, shippingMethods, self.summaryItems);
+}
+
+// 用户更改配送方式
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didSelectShippingMethod:(PKShippingMethod *)shippingMethod completion:(void (^)(PKPaymentAuthorizationStatus, NSArray<PKPaymentSummaryItem *> * _Nonnull))completion {
+    self.selectedShippingMethod = shippingMethod;
+    [self updateShippingCost: shippingMethod];
+    completion(PKPaymentAuthorizationStatusSuccess, self.summaryItems);
+}
+```
+
+###### 支付被授权时创建支付令牌
+
+当用户授权一个支付请求时，支付框架的 Apple 服务器与安全模块会协作创建一个支付令牌。你可以在委托方法 `paymentAuthorizationViewController:didAuthorizePayment:completion:` 中将支付信息以及其它你需要处理的信息，例如配送地址和购物车标识符，一起发送至你的服务器。这个过程如下所示：
+
+1. 支付框架将支付请求发送至安全模块。只有安全模块会访问令牌化后的设备相关的支付卡号。
+2. 安全模块将特定卡的支付数据和商家信息一起加密(加密后的数据只有 Apple 可以访问)，然后将加密后的数据发送至支付框架。支付框架再将这些数据发送至 Apple 的服务器。
+3. Apple 服务器使用商家标识证书将这些支付数据重新加密。这些令牌只能由你以及那些与你共享商户标识证书的人读取。随后服务器生成支付令牌再将其发送至设备。
+4. 支付框架调用 paymentAuthorizationViewController:didAuthorizePayment:completion: 方法将令牌发送至你的委托。你在委托方法中再将其发送至你的服务器。
+
+在服务器上的处理操作取决于你是自己处理支付还是使用其它支付平台。不过，在两种情况下服务器都得处理订单再将处理结果返回给设备。在设备上，委托再将处理结果传入完成处理方法中。
+
+```
+// 用户已经授权支付
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion
+{
+    // 将付款信息与其它处理订单的必需信息一起发送至你的服务器。如支付令牌、配送地址、账单地址。
+    // ...
+
+    // 从你的服务器获取支付授权状态，验证支付结果
+    PKPaymentAuthorizationStatus status = PKPaymentAuthorizationStatusSuccess;
+    completion(status);
+}
+```
+
+###### 授权支付完成
+
+支付框架显示完支付事务状态后，授权视图控制器会调用委托的 `aymentAuthorizationViewControllerDidFinish:` 方法。在此方法的实现中，你应该释放授权视图控制器然后再显示与应用相关的支付信息界面。
+
+```
+- (void) paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+```
+
+##### 处理支付
+
+处理一次付款事务一般包括以下几个步骤：
+
+1. 将付款信息与其它处理订单的必需信息一起发送至你的服务器。
+2. 验证付款数据的散列值与签名。
+3. 解密出支付数据。
+4. 将支付数据提交给付款处理网络。
+5. 将订单信息提交至你的订单跟踪系统。
+
+你有两种可选的方式处理付款过程：
+
+1. 利用已有的支付平台来处理付款。
+2. 自己实现付款过程。
+
+一次付款的处理过程通常情况下包括上述的大部分步骤。
+
+访问、验证以及处理付款信息都需要你懂得一些加密领域的知识，比如 SHA-1 哈希、访问和验证 PKCS #7 签名以及如何实现椭圆曲线 Diiffie-Hellman 密钥交换等。如果你没有这些加密的背景知识，我们建议你使用已有支付平台，它们会替你完成这些繁琐的操作。关于 Apple Pay 已支持的第三方支付平台，请参考 <https://developer.apple.com/apple-pay/>。
+
+付款数据是嵌套结构。支付令牌是 PKPaymentToken 类的实例。其 paymentData 属性值是一个 JSON 字典。该 JSON 字典包括用于验证信息有效性头信息以及加密后的付款数据。加密后的支付数据包括付款金额、持卡人姓名以及其它特定支付处理协议的信息。
+
+![付款数据的数据结构](https://developer.apple.com/library/ios/documentation/PassKit/Reference/PaymentTokenJSON/Art/payment_data_structure_2x.png)
+
+更多关于付款数据的数据结构，请参考[支付令牌的格式](https://developer.apple.com/library/ios/documentation/PassKit/Reference/PaymentTokenJSON/PaymentTokenJSON.html#//apple_ref/doc/uid/TP40014929)。
+
+
 ### 参考资料
 
 1. [官方Pay教程](https://developer.apple.com/apple-pay/)
 2. [Apple Pay 中文入门](https://developer.apple.com/apple-pay/get-started/cn/)
+3. [Apple Pay 编程指南](https://developer.apple.com/library/prerelease/content/ApplePay_Guide/index.html#//apple_ref/doc/uid/TP40014764-CH1-SW1)
 
 ##  Pay VS In-App Purchase
 
@@ -674,5 +1129,8 @@ Apple 不会存储或共享客户的实际信用卡和借记卡卡号，因此�
 | 适用范围 | **实体商品**（如食品杂货、服装和电器）和**服务**（如俱乐部会员、酒店预订和活动门票） | **销售虚拟商品**，如适用于您的 App 的优质内容及订阅数字内容；程序内的内容和功能性；程序内货币服务；数码订阅 |
 | 支付处理 |               自己的支付平台处理付款                |                 苹果公司处理付款                 |
 
-## 更新日志
-- 2016-05-26 添加 Pay 支付
+## 代码下载
+
+<https://github.com/chaoskyme/Demo/tree/master/Payment>
+
+

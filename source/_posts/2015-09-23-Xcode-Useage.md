@@ -1,6 +1,7 @@
-title: Xcode使用
+title: Xcode 使用
 date: 2015-09-23 20:52:17
-tags: Tips
+tags: 
+- Tools
 categories: iOS
 ---
 ## Xcode只显示iOS Simulator的identifier，没有显示device version
@@ -80,3 +81,5 @@ $ [Xcode安装路径]/Contents/Developer/usr/bin/simctl install booted [要安�
 ```
 $ /Applications/Xcode.app/Contents/Developer/usr/bin/simctl install booted ~/Desktop/Examine.app
 ```
+
+

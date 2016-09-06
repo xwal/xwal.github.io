@@ -426,4 +426,6 @@ The force of a touch has a high dynamic range, available as a floating point val
 
 ## 蓝牙（BlueTooth）
 
-参考PO主另外一篇文章：<http://chaosky.me/2016/03/18/bluetooth-communication/>
+参考PO主另外一篇文章：<http://chaosky.me/2016/03/18/Bluetooth-Communication/>
+
+

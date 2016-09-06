@@ -22,7 +22,7 @@ Dribbble是在设计师中非常流行的一个分享设计的社区。
 Behance这个社区更为专业，里面的作品完成度都非常高，覆盖的范围也更加广泛。
 ![Snip20160805_3](http://7xooko.com1.z0.glb.clouddn.com/2016-08-05-Snip20160805_3.png)
 
-## [Siiimple]()
+## [Siiimple](http://siiimple.com)
 
 这是一个专门收集极简主义网站设计的网站，筛选的作品都很独特并且具有启发性。
 ![Snip20160805_4](http://7xooko.com1.z0.glb.clouddn.com/2016-08-05-Snip20160805_4.png)

@@ -3,8 +3,10 @@ layout: post
 title: "Ubuntu下sublime text 中文输入"
 date: 2014-08-19 17:39:02 +0800
 comments: true
-categories: Tutorial
-tags: Sublime Text
+categories: Unix/Linux
+tags: 
+- Sublime Text
+- 中文输入
 ---
 
 ## 首先安装fcitx输入法。  
@@ -66,3 +68,5 @@ sudo apt-get install build-essential libgtk2.0-dev
 修改为  
 
     Exec=sh -c "LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text --command new_file"  
+
+

@@ -1,7 +1,9 @@
 title: Mac OS 10.11 Openfire安装
 date: 2015-11-03 23:31:21
-tags: Openfire
-categories: XMPP
+tags: 
+- Openfire
+- XMPP
+categories: macOS
 ---
 
 # Mac OS 10.11 Openfire无法启动问题
@@ -24,3 +26,5 @@ sudo rm -rf /Library/PreferencePanes/Openfire.prefPane
 sudo rm -rf /usr/local/openfire
 sudo rm -rf /Library/LaunchDaemons/org.jivesoftware.openfire.plist
 ```
+
+

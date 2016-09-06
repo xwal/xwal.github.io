@@ -3,8 +3,10 @@ layout: post
 title: "Windows程序免杀的分析"
 date: 2014-09-03 20:11:48 +0800
 comments: true
-categories: VC
-tags: Antivirus
+categories: Visual C++
+tags: 
+- Antivirus
+- Windows
 ---
 最近公司开发的Windows软件总是被360检出病毒，特别恼火。总结了几种方法。  
 
@@ -184,3 +186,5 @@ nop
 jmp 下一个jmp的地址    /在附近随意跳
 jmp 入口
 ```
+
+

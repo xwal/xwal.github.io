@@ -4,7 +4,7 @@ title: "How to become a best programer"
 date: 2014-01-13 21:45:53 +0800
 comments: true
 categories: 读书笔记
-tags: 进步
+tags: 学习
 ---
 **比较有用的进步方式：**  
 
@@ -19,3 +19,5 @@ tags: 进步
 问问题和回答问题都是很好的学习方式。  
 **5、加入一个好团队**  
 最好的进步方式就是跟自己强的人一起做事。
+
+

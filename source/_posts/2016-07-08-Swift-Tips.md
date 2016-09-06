@@ -3,10 +3,12 @@ date: 2016-07-08 11:37:38
 tags:
 - Swift
 - Tips
-categories:
-- iOS
+categories: iOS
 ---
-> 更新日期：2016-07-08
+
+**更新日志**
+
+- 更新日期：2016-07-08
 
 ## 1. Swift 命令行程序接收用户输入
 ```
@@ -47,3 +49,5 @@ var point = Point(x: 10, y: 10)
 print(withUnsafePointer(&point) {UnsafePointer<Point>($0)})
 // 0x0000000115e3f8d8
 ```
+
+

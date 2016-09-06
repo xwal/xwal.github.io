@@ -1,10 +1,9 @@
 title: macOS 开发配置手册——设置篇
 date: 2016-07-29 13:14:54
 tags:
-- setup
-- Tool
-categories:
-- Mac
+- Setup Guide
+- Tools
+categories: macOS
 ---
 
 > 工欲善其事，必先利其器。—— 设置篇
@@ -53,5 +52,34 @@ MacBook的屏幕是一个长方形，如果你将Dock放在下面，那么屏幕
 壁纸下载地址：<http://bbs.feng.com/read-htm-tid-4254274.html>
 Mac 键盘快捷键 官方总览：<https://support.apple.com/zh-cn/HT201236>
 
+### 关闭自动纠正拼写
+
+有些时候在文本输入框中输入文本时，会出现如下情况。一按空格键或者回车键会填写弹出框的文本，很烦人。
+
+![](http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/10/QQ20151025-0-2x.png)
+
+可以通过【关闭自动纠正拼写】解决
+
+![](http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/10/QQ20151024-0-2x.png)
+
+### tree命令中文文件名显示异常
+
+![](http://7xooko.com1.z0.glb.clouddn.com/QQ20160123-0@2x.png)
+
+解决办法：追加`tree -N`参数
+
+### Mac 中滚动截屏
+
+安装腾讯的snip
+
+[官方下载地址](http://www.snip.qq.com)
+
+[详细设置教程](http://jingyan.baidu.com/article/fec4bce2458d03f2618d8b8e.html)
+
+### How to Solve Missing Fonts in Sketch App
+
+All you have to do is enter the following command in Terminal.
+
+`$ curl https://raw.githubusercontent.com/qrpike/Web-Font-Load/master/install.sh | sh`
 
 

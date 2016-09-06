@@ -1,6 +1,8 @@
 title: iOS 密码技术
 date: 2016-06-13 12:27:03
-tags: Cryptography
+tags: 
+- Cryptography
+- 密码技术
 categories: iOS
 ---
 
@@ -702,3 +704,5 @@ CCSymmetricKeyWrap( CCWrappingAlgorithm algorithm,
 ---
 
 - <https://github.com/kelp404/CocoaSecurity>
+
+

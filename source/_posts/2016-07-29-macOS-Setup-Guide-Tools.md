@@ -1,13 +1,15 @@
 title: macOS 开发配置手册——工具篇
 date: 2016-07-29 13:08:28
-tags:
-- setup
-- Tool
-categories:
-- Mac
+tags: 
+- Setup Guide
+- Tools
+categories: macOS
 ---
 
-> 更新日期: 2016-08-05
+**更新日志**
+
+- 2016-08-05 添加node、Python等终端命令
+
 > 工欲善其事，必先利其器。—— 工具篇
 
 <!-- more -->

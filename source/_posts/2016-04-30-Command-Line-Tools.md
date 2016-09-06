@@ -1,7 +1,7 @@
 title: Command Line Tools
 date: 2016-04-30 22:11:50
-tags: Tool
-categories: Linux
+tags: Tools
+categories: Unix/Linux
 ---
 ## 只显示子目录、不显示文件，可以使用下面的命令。
 ```
@@ -29,3 +29,5 @@ $ find -maxdepth 1 -type d
 sudo dscacheutil -flushcache
 sudo killall -HUP mDNSResponder
 ```
+
+

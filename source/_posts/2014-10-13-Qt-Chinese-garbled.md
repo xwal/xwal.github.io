@@ -4,7 +4,8 @@ title: "Qt中文乱码"
 date: 2014-10-13 21:43:42 +0800
 comments: true
 categories: Qt
-tags: QTextCodec
+tags: 
+- 中文乱码
 ---
 ## 解决办法 ##
 ```c++
@@ -38,3 +39,5 @@ QTextCodec::setCodecForCStrings(codec);
 ```
 对于外部字符串编码解码全部采用本地编码。  
 参考链接：<http://blog.csdn.net/brave_heart_lxl/article/details/7186631>
+
+

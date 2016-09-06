@@ -3,7 +3,7 @@ layout: post
 title: "Ubuntu安装配置"
 date: 2014-08-19 21:02:01 +0800
 comments: true
-categories: Tutorial
+categories: Unix/Linux
 tags:
 - Ubuntu
 - 装机
@@ -76,3 +76,5 @@ sudo mv stardict-zh-en /usr/share/stardict/dic
 重新启动stardict，新的词典就会被自动加载了。  
 安装真人语音库：[WyabdcRealPeopleTTS.tar.bz2](http://sourceforge.net/projects/stardict-4/files/WyabdcRealPeopleTTS/WyabdcRealPeopleTTS.tar.bz2/download)
 `sudo tar -xvf WyabdcRealPeopleTTS.tar.bz2 -C /usr/share`
+
+

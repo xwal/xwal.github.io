@@ -1,11 +1,13 @@
 title: iOS完整项目示例仓库
 date: 2016-04-12 14:28:52
 tags:
-- 项目
+- 完整项目
 - Objective-C
 - Swift
 categories: iOS
 ---
+
+**更新日志**
 
 程序员要提高自己的编程能力，有两个捷径：一、多写代码不断做个人项目；二、多看多学习别人的代码，看代码要比写代码难很多倍。
 <!-- more -->
@@ -68,7 +70,7 @@ Coding iOS 客户端源代码。
 
 ### 项目地址
 
-<https://github.com/HarrisHan/LeagueofLegends>
+<https://coding.net/u/chaosky/p/LeagueofLegends/git>
 
 ### 项目简介
 
@@ -377,3 +379,5 @@ A Hacker News reader iOS app written in Swift.
 ### 项目地址
 
 <https://github.com/phpmaple/Stick-Hero-Swift>
+
+
