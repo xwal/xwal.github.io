@@ -808,3 +808,6 @@ MVCPatternDemo，我们的演示类使用 StudentController 来演示 MVC 模式
 2. <http://www.runoob.com/design-pattern/design-pattern-intro.html>
 3. <https://zh.wikipedia.org/wiki/设计模式_(计算机)>
 4. <http://willtea.iteye.com/blog/1704806>
+5. [Design Pattern For iOS Objective-C代码](https://github.com/huang303513/Design-Pattern-For-iOS)
+6. [Design Patterns In Swift 代码](https://github.com/ochococo/Design-Patterns-In-Swift)
+
