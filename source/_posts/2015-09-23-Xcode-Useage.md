@@ -82,4 +82,28 @@ $ [Xcode安装路径]/Contents/Developer/usr/bin/simctl install booted [要安�
 $ /Applications/Xcode.app/Contents/Developer/usr/bin/simctl install booted ~/Desktop/Examine.app
 ```
 
+## 关闭Xcode 8 终端打印一大堆日志
+
+终端中打印的日志格式类似如下：
+
+```
+subsystem: com.apple.UIKit, category: HIDEventFiltered, enable_level: 0, persist_level: 0, default_ttl: 0, info_ttl: 0, debug_ttl: 0, generate_symptoms: 0, enable_oversize: 1, privacy_setting: 2, enable_private_data: 0
+```
+
+### 解决办法
+
+Edit Scheme -> Run -> Arguments，在`Environment Variables`里边添加
+`OS_ACTIVITY_MODE ＝ Disable`
+
+![Snip20160920_4](http://7xooko.com1.z0.glb.clouddn.com/2016-09-20-Snip20160920_4.png)
+![Snip20160920_6](http://7xooko.com1.z0.glb.clouddn.com/2016-09-20-Snip20160920_6.png)
+
+## Xcode 7.x 中使用 Xcode 8 的新字体 SF Mono
+
+从安装有 Xcode 8 的路径 `/Application/Xcode.app/Contents/SharedFrameworks/DVTKit.framework/Versions/A/Resources/Fonts` 下能找到这些字体。
+
+选中所有字体拖拽到 `Font Book.app`（字体册）中，这样在 Xcode 7 中就可以选择了。
+
+我自己将字体压缩了下，可以从这个地址下载： [SF Mono 字体](/assets/SFMonoFont.zip)
+
 
