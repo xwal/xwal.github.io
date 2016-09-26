@@ -1,0 +1,18 @@
+branches:
+  only:
+    - source
+language: node_js
+node_js:
+  - stable
+before_install:
+  - rvm install 2.1.5
+install:
+  - npm install hexo-cli -g
+  - npm install hexo --save
+  - npm install
+script:
+  - ./publish.sh > /dev/null
+after_success:
+env:
+  global:
+    - secure: "RlSD/FxCvvQ8ZUe7U06zEwv4uxujY3/52I+x/owyJyNftGL+FZWTe9jz/626e9LZHycUTfuDm6BDo2H+JxsI/vDxnwgQTZoejp5EBeZ8fismiATWtODbwzXmx7D5FEA88d1gDMdZqDWNalidADslD/Lyw0i/6xjgP4OB31BAZVWC8HES5zOzdMqWmaPWrNFc8mwgh9XAT5X5vJ5NckgYozyCIn13wTXR0bThi/FYX+O4QihY7cZj3B4YJ9RZ8Dqa9OLdCyBc5IPpUjrS3xAuTmMGKxijaMJ7rnv0nxgDaNFb0ZmJYRa1fNcsTnWT/q/152m6qcq0pv4QqpGXQfLugsXksdQqHWb1pKt2+s9bO1pnu0OA9+KP8wnn02bT5LUMu8isMIy3vFU2RY/bRxOvFLmjdvsVkEs0N4zYWjl57ISHNPHmEPtpPRrw1qyf9pJE8qfqg77wFFhv31nnhe0l9irfhlSXOx1jlpZL5m//S3pOqSTVW+6xX9wA9IDh86jo9SKrVSdx1fqoqriZ96LdBZupgYMdYQW4WUf2bihsVxdnn1sJgvXuqzmfVU2FX9ZHRoAViq+06R/PmmT1Cn+pNhnmTZyo+cRzI3bi4p8LiHPviFMZcXxgS3lwF7DXaEjLMVnghPtOKJ9FY4ey8I0YcnSKXQDx0WzBu7rqG+TrNtM="
