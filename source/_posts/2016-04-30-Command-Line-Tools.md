@@ -38,3 +38,14 @@ sudo killall -HUP mDNSResponder
 for i in `ls`; do mv -f $i `echo $i | sed 's/~iphone//g'`; done
 ```
 
+## Git 删除 一个 submodule
+
+
+1. 删除 `.gitmodules` 文件中关联内容；
+2. 执行 `git add .gitmodules`
+3. 删除 `.git/config` 文件中关联内容；
+4. 执行 `git rm --cached path_to_submodule`（不包含尾部斜线）
+5. 执行 `rm -rf .git/modules/path_to_submodule`
+6. 提交 `git commit -m "Removed submodule <name>"`
+7. 删除子模块文件 `rm -rf path_to_submodule`
+
