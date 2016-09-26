@@ -7,8 +7,8 @@ node_js:
 before_install:
 install:
   - npm install hexo-cli -g
-  - npm install hexo --save
   - npm install
+  - npm install hexo --no-optional --save
   - git submodule update --init
 script:
   - ./publish-to-gh-pages.sh
