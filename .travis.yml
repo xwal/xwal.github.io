@@ -5,7 +5,6 @@ language: node_js
 node_js:
   - stable
 before_install:
-  - rvm install 2.1.5
 install:
   - npm install hexo-cli -g
   - npm install hexo --save
