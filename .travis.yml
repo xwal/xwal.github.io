@@ -3,7 +3,7 @@ branches:
     - source
 language: node_js
 node_js:
-  - stable
+  - lts/boron
 before_install:
 install:
   - npm install hexo-cli -g
