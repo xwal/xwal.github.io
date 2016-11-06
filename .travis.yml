@@ -3,13 +3,12 @@ branches:
     - source
 language: node_js
 node_js:
-  - lts/boron
+  - stable
 before_install:
 install:
+  - git submodule update --init
   - npm install hexo-cli -g
   - npm install
-  - npm install hexo --no-optional --save
-  - git submodule update --init
 script:
   - ./publish-to-gh-pages.sh
 after_success:
