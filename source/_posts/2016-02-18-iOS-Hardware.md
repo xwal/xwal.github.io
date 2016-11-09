@@ -1,4 +1,4 @@
-title: iOS 硬件（二维码扫描、传感器、3D-Touch、蓝牙）
+title: iOS 硬件（二维码、传感器、3D-Touch、蓝牙）
 date: 2016-02-18 11:11:12
 tags:
 - QRCode
@@ -6,11 +6,39 @@ tags:
 - 3D Touch
 categories: iOS
 ---
-## 二维码扫描识别
+
+**更新日志**
+* 更新[二维码生成](#二维码生成)
+
+
+## 二维码
+
+### 扫描识别
 
 iOS中实现二维码和条形码扫描，两大开源组件 ZBarSDK 与 ZXing以及AVFoundation。AVFoundation.framework（iOS 7 ）之后才添加了二维码扫描的功能。
 
-### Demo下载：[QRCodeScanner](https://github.com/chaoskyme/Demo/tree/master/QRCodeScanner)
+### 二维码生成
+
+```
+- (UIImage *)qrCodeGenerator:(NSString *)msg size:(CGSize)size {
+    NSData * data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary * params = @{@"inputMessage": data, @"inputCorrectionLevel": @"H"};
+    CIFilter * qrEncoder = [CIFilter filterWithName:@"CIQRCodeGenerator" withInputParameters:params];
+    CIImage * ciImage = qrEncoder.outputImage;
+    UIImage * qrImage = [UIImage imageWithCIImage:ciImage];
+    
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetInterpolationQuality(context, kCGInterpolationNone);
+    [qrImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    qrImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return qrImage;
+}
+```
+
+**Demo下载**：[QRCodeScanner](https://github.com/chaoskyme/Demo/tree/master/QRCodeScanner)
 
 <!--more-->
 ## 传感器

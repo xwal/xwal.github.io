@@ -2,7 +2,9 @@ title: 持续集成
 date: 2016-09-26 23:00:51
 updated: 2016-09-26 23:00:51
 tags:
-categories:
+- TravisCI
+- Jenkins
+categories: CI
 ---
 
 **更新日志**

@@ -2,9 +2,7 @@ title: 单例类
 date: 2016-09-24 20:09:24
 updated: 2016-09-24 20:09:24
 tags:
-- 单例
-- Singteton Class
-- Code
+- Singteton
 categories: iOS
 ---
 
