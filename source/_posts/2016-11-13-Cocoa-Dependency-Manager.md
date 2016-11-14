@@ -52,8 +52,8 @@ Ruby 是一门开发语言，gem 为 Ruby 第三方库管理工具，CocoaPods �
   ```
   $ gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
   $ gem sources -l
-	https://gems.ruby-china.org
-	# 确保只有 gems.ruby-china.org
+  https://gems.ruby-china.org
+  # 确保只有 gems.ruby-china.org
   ```
 
 ### 安装 CocoaPods
@@ -80,33 +80,33 @@ $ pod setup
 
 3. 编辑 Podfile，输入如下类似信息：
 
-   ```
-   $ vim Podfile
+	```
+	$ vim Podfile
 	platform :ios, '8.0'
 	# 屏蔽 CocoaPods 库里面的所有警告
 	inhibit_all_warnings!
-	
+		
 	target 'CocoaPodsDemo' do
 	  # 可以用framework的pod替代静态库
 	  # use_frameworks!
-	
+		
 	  # Pods for CocoaPodsDemo
 	  pod "AFNetworking", "~> 2.5.4"
 	  pod 'SDWebImage'
 	  pod 'KVNProgress'
-	
+		
 	  target 'CocoaPodsDemoTests' do
 	    inherit! :search_paths
 	    # Pods for testing
 	  end
-	
+		
 	  target 'CocoaPodsDemoUITests' do
 	    inherit! :search_paths
 	    # Pods for testing
 	  end
-	
+		
 	end   
-   ```
+	```
    Pod 语法格式为：`pod '第三库名称', '版本号'`，一个依赖项通过pod名和可选的版本号来声明。
    
    ```

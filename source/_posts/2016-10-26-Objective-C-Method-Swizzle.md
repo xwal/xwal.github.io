@@ -13,6 +13,8 @@ Method Swizzle（方法调配、方法混合、方法调和、方法混写） �
 
 通过此方案，可以为那些『完全不知道其具体实现的』黑盒方法增加日志记录功能，这非常有助于程序调试。然而，次做法只在调试程序时有用。很少有人在调试程序之外的场合用上述『Method Swillze』来永久改动某个类的功能。不能仅仅因为Objective-C 语言里有这个特性就一定要用它。若是滥用，反而会令代码变得不易读懂且难于维护。
 
+<!-- more -->
+
 ## 代码实现
 
 <script src="https://gist.github.com/chaoskyme/4758787cda11d473c2abdf3ef5c63d67.js"></script>
