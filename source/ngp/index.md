@@ -22,9 +22,11 @@ comments: true
 
 ## 下载地址
 
-点击链接下载：<https://itunes.apple.com/us/app/guo-jia-de-li-hua-bao/id1178885979?l=zh&ls=1&mt=8>
+### 点击下载：
 
-扫码下载：
+[![国家地理画报 iPhone下载](http://7xooko.com1.z0.glb.clouddn.com/2016-11-22-NGP-iPhone-Download.png)](https://itunes.apple.com/us/app/guo-jia-de-li-hua-bao/id1178885979?l=zh&ls=1&mt=8)
+
+### 扫码下载：
 
 ![1479805380](http://7xooko.com1.z0.glb.clouddn.com/2016-11-22-1479805380.png)
 
