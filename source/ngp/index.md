@@ -8,17 +8,20 @@ comments: true
 国家地理画报总共分为三大块，地理集、画报集和壁纸集。
 
 ## 地理集
-![5.5.1](http://7xooko.com1.z0.glb.clouddn.com/2016-11-22-5.5.1.png)
-![5.5.2](http://7xooko.com1.z0.glb.clouddn.com/2016-11-22-5.5.2.png)
+![ngp-1](http://7xooko.com1.z0.glb.clouddn.com/2016-12-01-ngp-1.png)
+![ngp-2](http://7xooko.com1.z0.glb.clouddn.com/2016-12-01-ngp-2.png)
+
+
 
 ## 画报集
-![5.5.3](http://7xooko.com1.z0.glb.clouddn.com/2016-11-22-5.5.3.png)
+![ngp-3](http://7xooko.com1.z0.glb.clouddn.com/2016-12-01-ngp-3.png)
 
-![5.5.4](http://7xooko.com1.z0.glb.clouddn.com/2016-11-22-5.5.4.png)
+![ngp-4](http://7xooko.com1.z0.glb.clouddn.com/2016-12-01-ngp-4.png)
+
 
 ## 壁纸集
-![5.5.5](http://7xooko.com1.z0.glb.clouddn.com/2016-11-22-5.5.5.png)
-![5.5.6](http://7xooko.com1.z0.glb.clouddn.com/2016-11-22-5.5.6.png)
+![ngp-5](http://7xooko.com1.z0.glb.clouddn.com/2016-12-01-ngp-5.png)
+
 
 ## 下载地址
 
@@ -29,6 +32,32 @@ comments: true
 ### 扫码下载：
 
 ![1479805380](http://7xooko.com1.z0.glb.clouddn.com/2016-11-22-1479805380.png)
+
+## 优惠码
+
+在 App Store 首页最下方点击【兑换】输入以下优惠码可免费下载，若使用请在评论区回复：
+
+* ~~EFLWFPKHRRAH~~
+* RJRH4KJRWNLH
+* JFJ9PNAM4MJY
+* LHFJHJMEFFXX
+* 99MTT7WHHJP9
+* 44A7K996MJTP
+* K9KXT9PEJXY3
+* RAL7RH9R7F4N
+* 9KX4AXE6EARM
+* 3XNR97NHEP7J
+* MNTKL7LX7F9F
+* 66K7H9FFY46Y
+* RXN3HWYWEHRM
+* MMXMN6TMMYFF
+* EYXKF4YMXXK7
+* EXHKKLXA4EAM
+* 36WE9W9M6KTM
+* FRXTHXM6PLJ3
+* HNXTNYKNKJPW
+* R3NJA743N479
+
 
 
 

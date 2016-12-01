@@ -11,4 +11,5 @@ date: 2015-08-29 11:15:25
 * 嗨，我是林天祥（Alex），iOS 开发者，专注移动开发。
 * 热爱开源、分享与交流，欢迎关注我的微博：[@阴山铺林小天](http://weibo.com/iwillcomeback)、我的[Github](https://github.com/chaoskyme)。
 
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="http://music.163.com/outchain/player?type=2&id=27599042&auto=1&height=32"></iframe>
 
