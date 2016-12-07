@@ -1,7 +1,7 @@
 title: 越狱检测
 date: 2016-10-12 11:53:53
 updated: 2016-10-12 11:53:53
-tags: iOS逆向
+tags: Jailbreak
 categories: iOS
 ---
 

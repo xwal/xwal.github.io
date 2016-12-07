@@ -2,15 +2,15 @@ title: 使用Reveal分析别人App的UI布局
 date: 2016-07-27 13:43:53
 tags:
 - Tools
-- Security
 - Reveal
+- Jailbreak
 categories: iOS
 ---
 
 ## 准备工作
 
 ### 越狱iOS设备
-1. 如何越狱可以参考[盘古越狱](http://www.pangu.io)的相关文章，具体详情参见链接：<http://jailbreak.25pp.com/ppjailbreak/?from=25pp_00119>，最新iOS越狱可以支持iOS 9.3.3
+1. 如何越狱可以参考[盘古越狱](http://www.pangu.io)的相关文章，具体详情参见链接：<http://jailbreak.25pp.com/ppjailbreak/?from=25pp_00119>，最新iOS越狱可以支持iOS 9.3.3，也可以看我整理的[非官方的越狱文章](http://chaosky.me/2016/12/07/Jailbreak-Using-Pangu-and-Cydia-Impactor/)。
 2. 在Cydia源中安装OpenSSH、MobileSubstrate等工具，之后的文章会讲到其他工具
 
 ### macOS 本地安装Reveal
