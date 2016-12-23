@@ -1,18 +1,27 @@
 branches:
   only:
-    - source
+  - source
 language: node_js
 node_js:
-  - stable
+- stable
 before_install:
+- openssl aes-256-cbc -K $encrypted_3b2ff833daf4_key -iv $encrypted_3b2ff833daf4_iv
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- sudo cp .travis/ssh_config /etc/ssh/ssh_config
+- sudo chmod 755 /etc/ssh/ssh_config
+- eval "$(ssh-agent -s)"
+- ssh-add ~/.ssh/id_rsa
+- git config --global user.name "chaosky"
+- git config --global user.email "chaosky.me@gmail.com"
 install:
-  - git submodule update --init
-  - npm install hexo-cli -g
-  - npm install
+- git submodule update --init
+- npm install hexo-cli -g
+- npm install
 script:
-  - ./publish-to-gh-pages.sh
+- hexo d -g
 after_success:
 env:
   global:
-    - GitHub_REF: github.com/chaoskyme/chaoskyme.github.io.git
-    - secure: "pcFbXtrw0ySgHgGUzx5oxvwgwCHlwSEK0Xob+kNK0hL3ddC26MUDlDZ6xnI3sWDAMw/xphyR+rt9ltotKYLFbucgJ84HbcYwYo084pzUQO6+8OGIKx3jV9RaB/qNk3lPk0TiNrKuNK/yEMFnSBfxs9eJ7ZMieQ5GqNb1phQ/Hal1ScaLVYqGRak2PsoUuCQsLv3I9gsk/MTwO1Xh+29+pVMx9FqvgdhaN9rc+usILTT2jOrgtkXhDZE+QDTBmQNzVaS0j6ZU5IJdT8ozs1pQVmBuN8clZxdMhne2PQ5z2X9msdbYdFrb81pPKALxEJukINaLzMGje9YpvAuVpNzgyXxvG61k2h09MR4XjsfAbcjqbDxapSwtgeJrbnYwdU/rSWhU41LzVAqBq0EqEG5CAW9W9M4BHhSbOuK0KbZYCsxPoGJebFWWPNS8smtBgVq66Pq6K0RsxKC+KiJYBkPSo22KBdcwLE8s6n4T2m7ok+3vS2vFm+V5obJxPCBvsQolGK8WA5Zp77boePw+E1r1GXhE+2yBzDW2s07S2J2ygaKyGXUSwnuV2ACUyBb8axObUjNn4lZBKULi/9UuMshifca9/INTGQc/E2dxUFBTRI+Paov4XDwXs/X1Ee8S7ksjGkc7AKNiKJ9h0Vy0MLSNYClKiThGWAAOiAiRhV90BRM="
+  - GitHub_REF: github.com/chaoskyme/chaoskyme.github.io.git
+  - secure: pcFbXtrw0ySgHgGUzx5oxvwgwCHlwSEK0Xob+kNK0hL3ddC26MUDlDZ6xnI3sWDAMw/xphyR+rt9ltotKYLFbucgJ84HbcYwYo084pzUQO6+8OGIKx3jV9RaB/qNk3lPk0TiNrKuNK/yEMFnSBfxs9eJ7ZMieQ5GqNb1phQ/Hal1ScaLVYqGRak2PsoUuCQsLv3I9gsk/MTwO1Xh+29+pVMx9FqvgdhaN9rc+usILTT2jOrgtkXhDZE+QDTBmQNzVaS0j6ZU5IJdT8ozs1pQVmBuN8clZxdMhne2PQ5z2X9msdbYdFrb81pPKALxEJukINaLzMGje9YpvAuVpNzgyXxvG61k2h09MR4XjsfAbcjqbDxapSwtgeJrbnYwdU/rSWhU41LzVAqBq0EqEG5CAW9W9M4BHhSbOuK0KbZYCsxPoGJebFWWPNS8smtBgVq66Pq6K0RsxKC+KiJYBkPSo22KBdcwLE8s6n4T2m7ok+3vS2vFm+V5obJxPCBvsQolGK8WA5Zp77boePw+E1r1GXhE+2yBzDW2s07S2J2ygaKyGXUSwnuV2ACUyBb8axObUjNn4lZBKULi/9UuMshifca9/INTGQc/E2dxUFBTRI+Paov4XDwXs/X1Ee8S7ksjGkc7AKNiKJ9h0Vy0MLSNYClKiThGWAAOiAiRhV90BRM=
