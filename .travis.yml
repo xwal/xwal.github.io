@@ -5,6 +5,7 @@ language: node_js
 node_js:
 - stable
 before_install:
+- mdkir ~\/.ssh/
 - openssl aes-256-cbc -K $encrypted_3b2ff833daf4_key -iv $encrypted_3b2ff833daf4_iv
   -in .travis/id_rsa.enc -out ~\/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
