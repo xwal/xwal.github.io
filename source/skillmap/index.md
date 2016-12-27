@@ -7,6 +7,8 @@ date: 2016-08-16 17:16:13
 
 ##  iOS开发工程师必备技能图谱
 
-![](/images/iOS开发工程师必备技能图谱.png)
+![](/assets/iOS开发工程师必备技能图谱.png)
 
-思维导图下载：[iOS开发工程师必备技能图谱.mindnode](/images/iOS开发工程师必备技能图谱.zip)
+思维导图下载：[iOS开发工程师必备技能图谱.mindnode](/assets/iOS开发工程师必备技能图谱.zip)
+
+

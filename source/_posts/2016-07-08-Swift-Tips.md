@@ -1,5 +1,6 @@
 title: Swift Tips
 date: 2016-07-08 11:37:38
+updated: 2016-12-26
 tags:
 - Swift
 - Tips
@@ -49,5 +50,9 @@ var point = Point(x: 10, y: 10)
 print(withUnsafePointer(&point) {UnsafePointer<Point>($0)})
 // 0x0000000115e3f8d8
 ```
+
+## Quick Swift Tips and Tricks
+![Swift Quick Tips](http://7xooko.com1.z0.glb.clouddn.com/2016-12-26-Swift Quick Tips.png)
+
 
 

@@ -2,6 +2,7 @@ title: Xcode 使用
 date: 2015-09-23 20:52:17
 tags: 
 - Tools
+- Xcode
 categories: iOS
 ---
 ## Xcode只显示iOS Simulator的identifier，没有显示device version
@@ -105,5 +106,11 @@ Edit Scheme -> Run -> Arguments，在`Environment Variables`里边添加
 选中所有字体拖拽到 `Font Book.app`（字体册）中，这样在 Xcode 7 中就可以选择了。
 
 我自己将字体压缩了下，可以从这个地址下载： [SF Mono 字体](/assets/SFMonoFont.zip)
+
+## Xcode Tips Tricks
+
+<video src="http://7xooko.com1.z0.glb.clouddn.com/XcodeTipsTricks.mp4" width=600 height=400 controls="controls">
+Your browser does not support the video tag.
+</video>
 
 
