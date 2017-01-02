@@ -1,3 +1,6 @@
 title: {{ title }}
 tags:
+categories:
 ---
+
+
