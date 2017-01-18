@@ -24,6 +24,8 @@ categories: iOS
 11. iPhoneCake Repo <http://cydia.iphonecake.com>
 12. 威锋源 <http://apt.so/>
 13. PP助手源 <http://apt.25pp.com/>
+14. IAPCrazy <http://apt.youyuanapp.com>
+15. 小白源 <http://apt.xbyy.cn>
 
 <!-- more -->
 
@@ -122,4 +124,18 @@ categories: iOS
 * KeyboardVibrate8
 * Harbor
 
+## 开发必备越狱插件
+
+* **Apple File Conduit "2"**: allow full file-system access over USB
+* **AppList**: Allow extensions to read the list of installed apps
+* **Appsync**: Appsync 允许安装AppStore 以外的应用到设备的补丁。
+* **Cydia Substrate**: powerful code insertion platform
+* **Flipboard FLEX Loader**: dynamically loads Flipboard Explorer into apps
+* **IAPCrazy**: 内购神器
+* **iFile**: 文件管理器
+* **tsProtector 8+(iOS 9 & 8)**: protect system from subspicious apps
+* **Cycript**: runtime execution server and disassembler
+* **Reveal Loader**: dynamically loads Reveal into applications
+* **OpenSSH**: secure remote access between machines
+* **MTerminal**: 终端
 

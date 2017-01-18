@@ -46,7 +46,7 @@ if ([UIApplication instancesRespondToSelector:@selector(registerUserNotification
         localNotification.repeatInterval = NSCalendarUnitMinute;//循环次数，NSCalendarUnitMinute一分一次
         localNotification.timeZone = [NSTimeZone defaultTimeZone];//UILocalNotification激发时间是否根据时区改变而改变
         localNotification.applicationIconBadgeNumber += 1;//应用的红色数字
-        localNotification.soundName = UILocalNotificationDefaultSoundName;//声音，可以换成自己的，如：alarm.soundName = @"myMusic.caf"
+        localNotification.soundName = UILocalNotificationDefaultSoundName;//声音，可以换成自己的，如：alarm.soundName = @"myMusic.caf"，自定义的声音文件播放时长必须在 30 秒以内。如果一个自定义的声音文件播放 超过 30 秒的限制，那将会被系统的声音替换
         localNotification.alertBody = @"我是通知内容";//提示信息 弹出提示框
         localNotification.alertAction = @"打开";//解锁按钮文字，就是在锁屏情况下有一个‘滑动来XXX’,这儿的XXX就是这里所设置的alertAction。如果不设置就是@“查看”
         localNotification.hasAction = YES;//是否显示额外的按钮，为no时alertAction的设置不起作用，hasAction默认是YES
@@ -221,3 +221,5 @@ UIApplication *app = [UIApplication sharedApplication];
 [JPush iOS集成指南](http://docs.jpush.io/guideline/ios_guide/)
 
 [iOS SDK 开发教程](http://docs.jpush.io/client/ios_tutorials/)
+
+
