@@ -1,11 +1,15 @@
 title: 使用Reveal分析别人App的UI布局
 date: 2016-07-27 13:43:53
+updated: 2017-02-13
 tags:
 - Tools
 - Reveal
 - Jailbreak
 categories: iOS
 ---
+
+**更新日志**
+1. Reveal 破解版已更新到 Reveal v4 版本，集成框架上有些不同
 
 ## 准备工作
 
@@ -58,6 +62,12 @@ categories: iOS
 3. 在Reveal中调试查看
 	调试时，需要注意越狱设备和Mac需要在同一网路环境中
 	![Snip20160727_10](http://7xooko.com1.z0.glb.clouddn.com/2016-07-27-Snip20160727_10.png)
+	
+## 注意
+
+最新版 Reveal v4 下载地址：<http://xclient.info/s/reveal.html> 
+
+新版本的 Reveal v4 的 `libReveal.dylib` 改名为 `RevealServer.framework` 了，逆向分析的时候手机端只要把 `RevealServer.framework` 目录下的 `RevealServer ` 改名为 `libReveal.dylib` 拷贝到手机上的 `/Library/RHRevealLoader` 目录中即可。
 	
 ## 参考文章
 * <http://wiki.jikexueyuan.com/project/ios-security-defense/reveal.html>

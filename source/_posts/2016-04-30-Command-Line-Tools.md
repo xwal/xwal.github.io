@@ -49,3 +49,17 @@ for i in `ls`; do mv -f $i `echo $i | sed 's/~iphone//g'`; done
 6. 提交 `git commit -m "Removed submodule <name>"`
 7. 删除子模块文件 `rm -rf path_to_submodule`
 
+## Changing remote repository for a git submodule 
+
+You should just be able to edit the **.gitmodules** file to update the URL and then run **git submodule sync** to reflect that change to the superproject and your working copy.
+
+```
+git config --file=.gitmodules submodule.Submod.url https://github.com/username/ABC.git
+git config --file=.gitmodules submodule.Submod.branch Development
+git submodule sync
+git submodule update --init --recursive --remote
+```
+
+参考链接：<http://stackoverflow.com/questions/913701/changing-remote-repository-for-a-git-submodule>
+
+
