@@ -1,0 +1,2899 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="0wsQzlCw_nicXQs7QbZ6n_aTyfoSkbeNQw6xpj3ScWo" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="QJ33ASIjWB" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chaosky's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="嗨，我是林天祥，iOS 开发者，专注移动软件开发。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chaosky's Notes">
+<meta property="og:url" content="http://chaosky.me/page/5/index.html">
+<meta property="og:site_name" content="Chaosky's Notes">
+<meta property="og:description" content="嗨，我是林天祥，iOS 开发者，专注移动软件开发。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chaosky's Notes">
+<meta name="twitter:description" content="嗨，我是林天祥，iOS 开发者，专注移动软件开发。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chaosky.me/page/5/"/>
+
+
+
+
+
+  <title> Chaosky's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=54252577";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chaosky's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">Getting Real。源码之前，了无秘密。</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-workspace">
+          <a href="/workspace" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cubes"></i> <br />
+            
+            工作空间
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skillmap">
+          <a href="/skillmap" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            技能树
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gate">
+          <a href="/gate" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            任意门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'WVe9S1RCHgLaWK_3xm3y','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2016/01/18/iOS-Usage-Website/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/18/iOS-Usage-Website/" itemprop="url">
+                  iOS 开发常用网址
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-18T22:34:51+00:00">
+                2016-01-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/01/18/iOS-Usage-Website/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2016/01/18/iOS-Usage-Website/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2016/01/18/iOS-Usage-Website/" class="leancloud_visitors" data-flag-title="iOS 开发常用网址">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      162
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      1
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="开发社区"><a href="#开发社区" class="headerlink" title="开发社区"></a>开发社区</h2><ol>
+<li><strong>iOS 开源代码库</strong> <a href="http://www.code4app.com/" target="_blank" rel="external">http://www.code4app.com/</a></li>
+<li><strong>苹果开发中文社区</strong> <a href="http://www.cocoachina.com/" target="_blank" rel="external">http://www.cocoachina.com/</a></li>
+<li><strong>Github</strong> <a href="https://github.com" target="_blank" rel="external">https://github.com</a></li>
+<li><strong>ObjC 中国</strong> <a href="http://objccn.io/" target="_blank" rel="external">http://objccn.io/</a></li>
+<li><strong>歪果仁教程：Ray Wenderlich | Tutorials for iPhone / iOS Developers and Gamers</strong> <a href="http://www.raywenderlich.com/" target="_blank" rel="external">http://www.raywenderlich.com/</a></li>
+<li><strong>开发者头条，各类技术干货</strong> <a href="http://toutiao.io" target="_blank" rel="external">http://toutiao.io</a></li>
+</ol>
+<h2 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h2><ol>
+<li><strong>YY作者常用第三方库整理</strong> <a href="http://github.ibireme.com/github/list/ios/" target="_blank" rel="external">http://github.ibireme.com/github/list/ios/</a></li>
+<li><strong>最全开源项目和学习资料</strong> <a href="http://codecloud.net/ios-mac-study-5155.html" target="_blank" rel="external">http://codecloud.net/ios-mac-study-5155.html</a></li>
+<li><strong>常用库整理</strong> <a href="http://www.cocoachina.com/ios/20150713/12503.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20150713/12503.html</a></li>
+<li><strong>歪果仁整理的关于iOS开发技术</strong> <a href="https://github.com/vsouza/awesome-ios" target="_blank" rel="external">https://github.com/vsouza/awesome-ios</a></li>
+<li><strong>iOS开发UI</strong> <a href="https://github.com/cjwirth/awesome-ios-ui" target="_blank" rel="external">https://github.com/cjwirth/awesome-ios-ui</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2015/12/28/i18n-l10n/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/28/i18n-l10n/" itemprop="url">
+                  国际化&本地化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-28T14:03:10+00:00">
+                2015-12-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/12/28/i18n-l10n/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2015/12/28/i18n-l10n/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2015/12/28/i18n-l10n/" class="leancloud_visitors" data-flag-title="国际化&本地化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      559
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      2
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>国际化是指为应用程序提供一个用来支持不同语言的框架的过程，在代码设计上加入能方便的移植到其他国家和地区的特性。<strong>I18n</strong>是Internationalization的简写。</p>
+<p>本地化是使你的应用程序支持特定地区的过程，将具有国际化支持的代码翻译成本国或地区的语言，是本地用户更容易使用。<strong>l10n</strong>是Localization的简写。</p>
+<p>支持多语言，在英语语言环境设置显示相应的英文，在汉语环境下设置显示相应的中文。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/12/28/i18n-l10n/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2015/12/24/SVN-Git/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/24/SVN-Git/" itemprop="url">
+                  SVN&Git
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-24T18:05:48+00:00">
+                2015-12-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/12/24/SVN-Git/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2015/12/24/SVN-Git/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2015/12/24/SVN-Git/" class="leancloud_visitors" data-flag-title="SVN&Git">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      4,457
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      17
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>PS：本文所有<code>$</code>符号之后为在终端中执行的命令。</p>
+<h2 id="版本控制系统"><a href="#版本控制系统" class="headerlink" title="版本控制系统"></a>版本控制系统</h2><h3 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h3><p>版本控制（Version Control）的作用是追踪文件的变化。为什么需要版本控制？简单说，就是当你出错了，可以很容易地回到没出错时的状态。</p>
+<p>你可能已经在不知不觉中，布置了自己的版本控制系统。比如，创建了类似下面这样的文件名：</p>
+<ul>
+<li>论文_0510.doc</li>
+<li>论文_0514.doc</li>
+<li>论文_0521.doc</li>
+<li>论文_修改版.doc</li>
+<li>论文_最终不修改版.doc</li>
+</ul>
+<p>这就是软件中为什么有”Save As”命令的原因。它使得你可以在不破坏源文件的基础上，得到一个类似的新文件。文件的多版本保存是一个常见问题，通常的解决办法是这样的：</p>
+<ul>
+<li>做一个文件备份（比如Document.old.txt）。</li>
+<li>在文件名中加入版本号或日期（比如Document_V1.txt，DocumentMarch2007.txt）。</li>
+<li>在多人编辑的环境下，共享一个文件目录，并且要求每个人编辑完以后，在文件上做出标识。</li>
+</ul>
+<h3 id="什么是版本控制系统（VCS）？"><a href="#什么是版本控制系统（VCS）？" class="headerlink" title="什么是版本控制系统（VCS）？"></a>什么是版本控制系统（VCS）？</h3><p>大型的、频繁修改的、多人编写的软件项目，需要一个版本控制系统（简称VCS，行话叫做”文件数据库”），追踪文件的变化，避免出现混乱。</p>
+<p>一次典型的使用过程是这样的：</p>
+<p> 爱丽丝add一个文件（list.txt）进入repo。然后，她又把这个文件check out，做了一次编辑（在文件中加入milk这个单词）。接着，她将修改后的文件check in，并附有一条checking message（”加入了新的条目”）。第二天早上，鲍勃update了他本地的working set，看到了list.txt的最新修订版，其中包含了单词”milk”。如果他使用changelog或diff，都可以发现前一天爱丽丝加入”milk”这个词。</p>
+<p>网上有许多VCS软件可供选择，并且都有详细的教程或手册，比如SVN、CVS、RCS、Git、Perforce等等。</p>
+<h3 id="版本库"><a href="#版本库" class="headerlink" title="版本库"></a>版本库</h3><p>版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被版本控制系统管理起来，每个文件的修改、删除，都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/12/24/SVN-Git/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2015/11/22/RaspberryPi-install-openfire/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/22/RaspberryPi-install-openfire/" itemprop="url">
+                  树莓派安装Openfire搭建XMPP服务器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-22T16:44:02+00:00">
+                2015-11-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Unix-Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Unix/Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/22/RaspberryPi-install-openfire/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2015/11/22/RaspberryPi-install-openfire/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2015/11/22/RaspberryPi-install-openfire/" class="leancloud_visitors" data-flag-title="树莓派安装Openfire搭建XMPP服务器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      234
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      1
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="树莓派基本配置"><a href="#树莓派基本配置" class="headerlink" title="树莓派基本配置"></a>树莓派基本配置</h3><ol>
+<li><p>树莓派设备安装<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="external">RASPBIAN</a>系统  </p>
+</li>
+<li><p>使用raspi-config进行配置  </p>
+<p>参考<a href="http://blog.csdn.net/xdw1985829/article/details/38816375" target="_blank" rel="external">http://blog.csdn.net/xdw1985829/article/details/38816375</a></p>
+</li>
+<li><p>更新系统到最新<code>sudo apt-get update &amp; sudo apt-get upgrade</code></p>
+</li>
+</ol>
+<h3 id="安装JRE环境"><a href="#安装JRE环境" class="headerlink" title="安装JRE环境"></a>安装JRE环境</h3><p><code>sudo apt-get install openjdk-7-jre</code></p>
+<h3 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h3><p><code>sudo apt-get install mysql-server</code></p>
+<h3 id="安装PHPMyAdmin"><a href="#安装PHPMyAdmin" class="headerlink" title="安装PHPMyAdmin"></a>安装PHPMyAdmin</h3><p><code>sudo apt-get install phpmyadmin</code></p>
+<h3 id="安装Openfire服务"><a href="#安装Openfire服务" class="headerlink" title="安装Openfire服务"></a>安装Openfire服务</h3><p>下载：<code>wget http://download.igniterealtime.org/openfire/openfire_3.10.3_all.deb</code></p>
+<p>安装：<code>sudo dpkg -i openfire_3.10.3_all.deb</code></p>
+<h3 id="打开PHPMyAdmin创建数据库"><a href="#打开PHPMyAdmin创建数据库" class="headerlink" title="打开PHPMyAdmin创建数据库"></a>打开PHPMyAdmin创建数据库</h3><ol>
+<li>创建数据库openfire</li>
+<li>导入数据库文件openfire_mysql.sql，可以在<code>/usr/share/openfire/resources/database</code>目录中，找到每一个对应数据库类型的SQL文件。这个地方我使用的是MySQL。</li>
+</ol>
+<h3 id="启动Openfire并进行初始设置"><a href="#启动Openfire并进行初始设置" class="headerlink" title="启动Openfire并进行初始设置"></a>启动Openfire并进行初始设置</h3><p>通过命令可以对Openfire服务进行启动/停止/重启/强制加载 <code>/etc/init.d/openfire {start|stop|restart|force-reload}</code>   </p>
+<p>通过启动<code>sudo /etc/init.d/openfire start</code>并访问<code>http://[openfire server ip]:9090</code>进行初始设置</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2015/11/03/Openfire-install/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/03/Openfire-install/" itemprop="url">
+                  Mac OS 10.11 Openfire安装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-03T23:31:21+00:00">
+                2015-11-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/macOS/" itemprop="url" rel="index">
+                    <span itemprop="name">macOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/03/Openfire-install/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2015/11/03/Openfire-install/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2015/11/03/Openfire-install/" class="leancloud_visitors" data-flag-title="Mac OS 10.11 Openfire安装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      135
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      1
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Mac-OS-10-11-Openfire无法启动问题"><a href="#Mac-OS-10-11-Openfire无法启动问题" class="headerlink" title="Mac OS 10.11 Openfire无法启动问题"></a>Mac OS 10.11 Openfire无法启动问题</h1><p>安装好<a href="http://www.igniterealtime.org/downloads/#" target="_blank" rel="external">openfire_3_10_2.dmg</a>后，无法通过【系统偏好设置】中的Openfire图标启动服务器。<br>1、JDK版本：1.8.65。经测试需要JDK 1.7版本以上。<br>2、Openfire版本：3.10.2  </p>
+<p>最终解决办法：在终端中执行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo su</div><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/openfire/bin</div><div class="line"><span class="built_in">export</span> JAVA_HOME=`/usr/libexec/java_home`</div><div class="line">sh ./openfire.sh</div></pre></td></tr></table></figure></p>
+<h1 id="卸载Openfire"><a href="#卸载Openfire" class="headerlink" title="卸载Openfire"></a>卸载Openfire</h1><p>只需要在openfire关闭的情况下，执行以下的命令即可：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo rm -rf /Library/PreferencePanes/Openfire.prefPane</div><div class="line">sudo rm -rf /usr/<span class="built_in">local</span>/openfire</div><div class="line">sudo rm -rf /Library/LaunchDaemons/org.jivesoftware.openfire.plist</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2015/09/18/Hacker-Ethic/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/18/Hacker-Ethic/" itemprop="url">
+                  Hacker Ethic
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-09-18T11:31:33+00:00">
+                2015-09-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/09/18/Hacker-Ethic/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2015/09/18/Hacker-Ethic/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2015/09/18/Hacker-Ethic/" class="leancloud_visitors" data-flag-title="Hacker Ethic">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      298
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      1
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="自由软件基金会创始人理查德·斯托尔曼"><a href="#自由软件基金会创始人理查德·斯托尔曼" class="headerlink" title="自由软件基金会创始人理查德·斯托尔曼"></a>自由软件基金会创始人理查德·斯托尔曼</h3><blockquote>
+<p>出于兴趣而解决某个难题，不管它有没有用，这就是黑客。<br>黑客行为必须包含三个特点：好玩、高智商、探索精神。</p>
+</blockquote>
+<h3 id="Hackers-Heroes-of-the-Computer-Revolution"><a href="#Hackers-Heroes-of-the-Computer-Revolution" class="headerlink" title="Hackers: Heroes of the Computer Revolution"></a>Hackers: Heroes of the Computer Revolution</h3><ul>
+<li>(1) Access to computers——and anything that might teach you something about the way the world works——should be unlimited and total. Always yield to the Hands-On Imperative!</li>
+<li>(2) All infomation should be free.</li>
+<li>(3) Mistrust Authority——Promote Decentralization.</li>
+<li>(4) Hackers should be judged by their hacking, not bogus criteria such as degrees, age, race, or position.</li>
+<li>(5) You can create art and beauty on a computer.</li>
+<li>(6) Computers can change your life for the better.</li>
+</ul>
+<h2 id="译文："><a href="#译文：" class="headerlink" title="译文："></a>译文：</h2><h3 id="《黑客：计算机革命的英雄》"><a href="#《黑客：计算机革命的英雄》" class="headerlink" title="《黑客：计算机革命的英雄》"></a>《黑客：计算机革命的英雄》</h3><ul>
+<li>(1) 使用计算机以及所有有助于了解这个世界本质的事物都不应受到任何限制。任何事情都应该亲手尝试。</li>
+<li>(2) 信息应该全部免费。</li>
+<li>(3) 不信任权威，提倡去中心化。</li>
+<li>(4) 判断一名黑客的水平应该看他的技术能力，而不是看他的学历、年龄或地位等其他标准。</li>
+<li>(5) 你可以用计算机创造美和艺术。</li>
+<li>(6) 计算机使生活更美好。</li>
+</ul>
+<p>笔记摘抄自：阮一峰翻译的《黑客与画家》</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2015/09/13/declaration-of-the-library-freedom/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/13/declaration-of-the-library-freedom/" itemprop="url">
+                  図書館の自由に関する宣言
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-09-13T20:39:19+00:00">
+                2015-09-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/09/13/declaration-of-the-library-freedom/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2015/09/13/declaration-of-the-library-freedom/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2015/09/13/declaration-of-the-library-freedom/" class="leancloud_visitors" data-flag-title="図書館の自由に関する宣言">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      132
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      0
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>第１　図書館は資料収集の自由を有する<br>第２　図書館は資料提供の自由を有する<br>第３　図書館は利用者の秘密を守る<br>第４　図書館はすべての検閲に反対する  </p>
+<p>図書館の自由が侵されるとき、われわれは団結して、あくまで自由を守る。  </p>
+<p>译文：<br>第一 图书馆有收集资料的自由<br>第二 图书馆有提供资料的自由<br>第三 图书馆为读者保密<br>第四 图书馆反对一切审查  </p>
+<p>图书馆自由受到侵犯时，我们要团结一致斗争到底，守卫自由。  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2014/11/05/QtWebKit-decrease-memory/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/05/QtWebKit-decrease-memory/" itemprop="url">
+                  降低QtWebkit内存使用量
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-11-05T14:30:50+00:00">
+                2014-11-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Qt/" itemprop="url" rel="index">
+                    <span itemprop="name">Qt</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/11/05/QtWebKit-decrease-memory/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2014/11/05/QtWebKit-decrease-memory/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2014/11/05/QtWebKit-decrease-memory/" class="leancloud_visitors" data-flag-title="降低QtWebkit内存使用量">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      429
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      2
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在QtWebkit的QWebView加载网页的时候，会随着每加载一次网页内存就会增加。为解决这个问题可以通过以下代码解决。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">QWebSettings::globalSettings()-&gt;setAttribute(QWebSettings::AutoLoadImages, <span class="literal">false</span>);</div><div class="line">QWebSettings::globalSettings()-&gt;setMaximumPagesInCache(<span class="number">0</span>);</div><div class="line">QWebSettings::globalSettings()-&gt;setObjectCacheCapacities(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">QWebSettings::globalSettings()-&gt;setOfflineStorageDefaultQuota(<span class="number">0</span>);</div><div class="line">QWebSettings::globalSettings()-&gt;setOfflineWebApplicationCacheQuota(<span class="number">0</span>);</div><div class="line">QWebSettings::globalSettings()-&gt;clearIconDatabase();</div><div class="line">QWebSettings::globalSettings()-&gt;clearMemoryCaches();</div></pre></td></tr></table></figure></p>
+<p>其中<br><code>QWebSettings::globalSettings()-&gt;clearIconDatabase();</code>  <code>QWebSettings::globalSettings()-&gt;clearMemoryCaches();</code><br>可以在下一次加载开始前调用，每次调用后会将上一次加载过的页面内存清空。  </p>
+<h2 id="详细解析"><a href="#详细解析" class="headerlink" title="详细解析"></a>详细解析</h2><ol>
+<li><p><code>void QWebSettings::setMaximumPagesInCache(int pages)</code><br>设置在内存中缓存的最大页数为<code>pages</code>。缓存页可以在浏览历史页面的时候提供更好的用户体验。<br>详细介绍参考：<a href="http://webkit.org/blog/427/webkit-page-cache-i-the-basics/" target="_blank" rel="external">http://webkit.org/blog/427/webkit-page-cache-i-the-basics/</a>  </p>
+</li>
+<li><p><code>void QWebSettings::setObjectCacheCapacities(int cacheMinDeadCapacity, int cacheMaxDead, int totalCapacity)</code><br>指定已死对象的内存容大小。已死包括stylesheets和scripts。<br><code>cacheMinDeadCapacity</code>指定当缓存在压力下，已死对象消耗的最小字节数。<br><code>cacheMaxDead</code> 是当缓存没在压力下，已死对象应该消耗的最大字节数。<br><code>totalCapacity</code> 指定缓存全部消耗的最大字节数。<br>缓存默认是开启的。通过<code>setObjectCacheCapacities(0, 0, 0)</code>来禁用缓存。设置非零来开启。</p>
+</li>
+<li><p><code>void QWebSettings::setOfflineStorageDefaultQuota(qint64 maximumSize)</code><br>设置新的离线存储数据库的默认最大值为<code>maximumSize</code>。</p>
+</li>
+<li><p><code>void QWebSettings::setOfflineWebApplicationCacheQuota(qint64 maximumSize)</code><br>设置离线web应用的缓存最大值为<code>maximumSize</code>。</p>
+</li>
+<li><p><code>void QWebSettings::clearIconDatabase()</code><br>清除图标数据库。</p>
+</li>
+<li><p><code>void QWebSettings::clearMemoryCaches()</code><br>通过JavaScript垃圾回收器和清空比如页面、对象和字体等缓存，尽可能多地释放内存。  </p>
+</li>
+</ol>
+<h2 id="Webkit-Page-Cache机制"><a href="#Webkit-Page-Cache机制" class="headerlink" title="Webkit Page Cache机制"></a>Webkit Page Cache机制</h2><p><a href="https://www.webkit.org/blog/427/webkit-page-cache-i-the-basics/" target="_blank" rel="external">https://www.webkit.org/blog/427/webkit-page-cache-i-the-basics/</a><br><a href="https://trac.webkit.org/wiki/MemoryCache" target="_blank" rel="external">https://trac.webkit.org/wiki/MemoryCache</a>  </p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://qt-project.org/forums/viewthread/11105" target="_blank" rel="external">http://qt-project.org/forums/viewthread/11105</a><br><a href="http://webkit.sed.hu/content/disabling-cache" target="_blank" rel="external">http://webkit.sed.hu/content/disabling-cache</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2014/10/13/Qt-read-ms-word/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/13/Qt-read-ms-word/" itemprop="url">
+                  Qt读取MS-Word文档内容
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T14:09:57+00:00">
+                2014-10-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Qt/" itemprop="url" rel="index">
+                    <span itemprop="name">Qt</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/13/Qt-read-ms-word/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2014/10/13/Qt-read-ms-word/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2014/10/13/Qt-read-ms-word/" class="leancloud_visitors" data-flag-title="Qt读取MS-Word文档内容">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      213
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      1
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Qt读取MS Word/Excel/Powerpoint等主要通过ActiveQt来实现。实际上是调用MS Word的ActiveX APIs。<br>一下代码是读取word中的所有的文本。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function">QAxObject <span class="title">wordApplication</span><span class="params">(<span class="string">"Word.Application"</span>)</span></span>;</div><div class="line">QAxObject *documents = wordApplication.querySubObject(<span class="string">"Documents"</span>);</div><div class="line">QAxObject* document = documents-&gt;querySubObject(<span class="string">"Open(const QString&amp;, bool)"</span>, m_strWordFilePath, <span class="literal">true</span>);</div><div class="line">QAxObject* words  = document-&gt;querySubObject(<span class="string">"Words"</span>);</div><div class="line">QString textResult;</div><div class="line"><span class="keyword">int</span> countWord = words-&gt;dynamicCall(<span class="string">"Count()"</span>).toInt();</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">0</span>; a &lt;= countWord; a++)&#123;</div><div class="line">	textResult.append(words-&gt;querySubObject(<span class="string">"Item(int)"</span>, a)-&gt;dynamicCall(<span class="string">"Text()"</span>).toString());</div><div class="line">&#125;</div><div class="line">wordApplication.dynamicCall(<span class="string">"Quit (void)"</span>);</div></pre></td></tr></table></figure></p>
+<p>详细介绍：<br>Word程序初始化：<code>QAxObject wordApplication(&quot;Word.Application&quot;)</code>也可以通过<code>QAxWidget wordApplication(&quot;Word.Application&quot;)</code>，都是初始化com组件对象。<br>word程序的子对象可以通过<code>QAxBase::querySubObject()</code>来获得。<br>e.g:<code>QAxObject *documents = wordApplication.querySubObject(&quot;Documents&quot;);</code><br>任何涉及到word对象的方法调用都可以通过<code>QAxBase::dynamicCall ()</code>来实现。<br>e.g:<code>activeDocument-&gt;dynamicCall(&quot;Close(void)&quot;);</code><br>参考链接：<br><a href="http://qt-project.org/wiki/Using_ActiveX_Object_in_QT" target="_blank" rel="external">http://qt-project.org/wiki/Using_ActiveX_Object_in_QT</a><br><a href="http://qt-project.org/wiki/Handling_Document_Formats" target="_blank" rel="external">http://qt-project.org/wiki/Handling_Document_Formats</a><br><a href="http://qt-project.org/wiki/Handling_Microsoft_Word_file_format" target="_blank" rel="external">http://qt-project.org/wiki/Handling_Microsoft_Word_file_format</a><br><a href="https://qt-project.org/search/tag/ms~word" target="_blank" rel="external">https://qt-project.org/search/tag/ms~word</a><br><a href="http://qt-project.org/forums/viewthread/20341" target="_blank" rel="external">http://qt-project.org/forums/viewthread/20341</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2014/10/13/Qt-Chinese-garbled/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/13/Qt-Chinese-garbled/" itemprop="url">
+                  Qt中文乱码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T13:43:42+00:00">
+                2014-10-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Qt/" itemprop="url" rel="index">
+                    <span itemprop="name">Qt</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/13/Qt-Chinese-garbled/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2014/10/13/Qt-Chinese-garbled/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2014/10/13/Qt-Chinese-garbled/" class="leancloud_visitors" data-flag-title="Qt中文乱码">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      385
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      2
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">    QTextCodec *codec = QTextCodec::codecForName("UTF-8");</div><div class="line">    QTextCodec::setCodecForLocale(QTextCodec::codecForLocale());</div><div class="line">#if (QT_VERSION &lt;= QT_VERSION_CHECK(5, 0, 0))</div><div class="line">    QTextCodec::setCodecForCStrings(QTextCodec::codecForLocale());</div><div class="line">    QTextCodec::setCodecForTr(codec);</div><div class="line">#endif</div></pre></td></tr></table></figure>
+<h2 id="乱码出现的原因"><a href="#乱码出现的原因" class="headerlink" title="乱码出现的原因"></a>乱码出现的原因</h2><p>QString内部采用的是 Unicode，它可以同时存放GBK中的字符”我是汉字”,BIG5中的字符”扂岆犖趼” 以及Latin-1中的字符”ÎÒÊÇºº×Ö”。<br>当你需要从窄字符串 char<em> 转成Unicode的QString字符串的，你需要告诉QString你的这串char</em> 中究竟是什么编码？GBK、BIG5、Latin-1？<br>在你不告诉它的情况下，它默认选择了Latin-1，于是8个字符”ÎÒÊÇºº×Ö”的unicode码被存进了QString中。最终，8个Latin字符出现在你期盼看到4中文字符的地方，<br>所谓的乱码出现了。<br>网上有很多方法介绍直接在main.cpp里设置：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">QTextCodec *codec = QTextCodec::codecForName(<span class="string">"UTF-8"</span>);</div><div class="line">QTextCodec::setCodecForTr(codec);</div><div class="line">QTextCodec::setCodecForLocale(codec);</div><div class="line">QTextCodec::setCodecForCStrings(codec);</div></pre></td></tr></table></figure></p>
+<p>其实这在某些情况下也是有问题的，因为程序可能读到系统的中文路径，或者调用中文路径下的外部程序，这时候如果系统是gb2312就有问题了。<br>因为中文路径的编码是采用utf-8存到QString里的，系统读中文路径解码的时候采用的却是系统的gb2312，所以会调不起带中文路径的外部程序。<br>以上问题下面方法可以解决：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">QTextCodec *codec = QTextCodec::codecForName(<span class="string">"UTF-8"</span>);</div><div class="line">QTextCodec::setCodecForTr(codec);</div><div class="line">QTextCodec::setCodecForLocale(QTextCodec::codecForLocale());</div><div class="line">QTextCodec::setCodecForCStrings(QTextCodec::codecForLocale());</div></pre></td></tr></table></figure></p>
+<p>对于外部字符串编码解码全部采用本地编码。<br>参考链接：<a href="http://blog.csdn.net/brave_heart_lxl/article/details/7186631" target="_blank" rel="external">http://blog.csdn.net/brave_heart_lxl/article/details/7186631</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+          
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg"
+               alt="Alex Lin" />
+          <p class="site-author-name" itemprop="name">Alex Lin</p>
+          <p class="site-description motion-element" itemprop="description">嗨，我是林天祥，iOS 开发者，专注移动软件开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chaoskyme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iwillcomeback" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.v2ex.com/member/error" target="_blank" title="V2EX">
+                  
+                    <i class="fa fa-fw fa-rocket"></i>
+                  
+                  V2EX
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/chaosky" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-git"></i>
+                  
+                  Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/chaosky" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.devtang.com" title="唐巧的博客" target="_blank">唐巧的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://coolshell.cn" title="酷壳" target="_blank">酷壳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.codingnow.com" title="云风的博客" target="_blank">云风的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://axiaoxin.com" title="信妈的博客" target="_blank">信妈的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://huxos.me" title="胡骏的博客" target="_blank">胡骏的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.h2ero.cn/" title="h2ero的博客" target="_blank">h2ero的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nleo.me" title="胡中华的博客" target="_blank">胡中华的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dbarobin.com" title="温国兵的随想录" target="_blank">温国兵的随想录</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/bbf6898c0002" title="jackfrued的博客" target="_blank">jackfrued的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 83086, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/83086/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("eB68LUN0RozWUhG9EPHGOv7A-gzGzoHsz", "rVLoe96MWG2qWRXz9OJnGSpz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

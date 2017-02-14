@@ -1,0 +1,1497 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="0wsQzlCw_nicXQs7QbZ6n_aTyfoSkbeNQw6xpj3ScWo" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="QJ33ASIjWB" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="支付宝支付,微信支付,IAP,应用内支付,Apple Pay," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chaosky's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="更新日志
+
+2016-05-26 添加 Pay 支付
+2016-08-08 更新 Pay 支付流程
+
+iOS支付分为两类，第三方支付和应用内支付（内购）。
+第三方支付包括：支付宝支付、微信支付、银联支付、百度钱包、京东支付等等。
+应用内支付（In-App Purchase）：在应用程序内购买虚拟商品。如果你在App Store上销售的应用程序，将收到支付金额的70％。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 支付">
+<meta property="og:url" content="http://chaosky.me/2016/01/21/iOS-Payment/index.html">
+<meta property="og:site_name" content="Chaosky's Notes">
+<meta property="og:description" content="更新日志
+
+2016-05-26 添加 Pay 支付
+2016-08-08 更新 Pay 支付流程
+
+iOS支付分为两类，第三方支付和应用内支付（内购）。
+第三方支付包括：支付宝支付、微信支付、银联支付、百度钱包、京东支付等等。
+应用内支付（In-App Purchase）：在应用程序内购买虚拟商品。如果你在App Store上销售的应用程序，将收到支付金额的70％。">
+<meta property="og:image" content="https://img.alicdn.com/top/i1/LB1PlBHKpXXXXXoXXXXXXXXXXXX">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/QQ20160121-1@2x.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/QQ20160121-0@2x.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/QQ20160121-2@2x.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/Snip20160124_5.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/Snip20160124_3.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/Snip20160124_4.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/QQ20160124-0@2x.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/QQ20160124-1@2x.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/Snip20160124_1.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/Snip20160124_2.png">
+<meta property="og:image" content="https://developer.apple.com/apple-pay/images/figure-1-payment-sheet-cn_2x.png">
+<meta property="og:image" content="https://developer.apple.com/apple-pay/images/figure-2-payment-flow-cn_2x.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_3.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_5.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_6.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_8.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_10.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_11.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_12.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_13.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_15.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_19.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_20.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_21.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_24.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_25.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_17.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/PassKit/Reference/PaymentTokenJSON/Art/payment_data_structure_2x.png">
+<meta property="og:updated_time" content="2017-02-14T14:42:25.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 支付">
+<meta name="twitter:description" content="更新日志
+
+2016-05-26 添加 Pay 支付
+2016-08-08 更新 Pay 支付流程
+
+iOS支付分为两类，第三方支付和应用内支付（内购）。
+第三方支付包括：支付宝支付、微信支付、银联支付、百度钱包、京东支付等等。
+应用内支付（In-App Purchase）：在应用程序内购买虚拟商品。如果你在App Store上销售的应用程序，将收到支付金额的70％。">
+<meta name="twitter:image" content="https://img.alicdn.com/top/i1/LB1PlBHKpXXXXXoXXXXXXXXXXXX">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chaosky.me/2016/01/21/iOS-Payment/"/>
+
+
+
+
+
+  <title> iOS 支付 | Chaosky's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=54252577";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chaosky's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">Getting Real。源码之前，了无秘密。</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-workspace">
+          <a href="/workspace" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cubes"></i> <br />
+            
+            工作空间
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skillmap">
+          <a href="/skillmap" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            技能树
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gate">
+          <a href="/gate" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            任意门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'WVe9S1RCHgLaWK_3xm3y','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2016/01/21/iOS-Payment/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS 支付
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-21T21:50:04+00:00">
+                2016-01-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/01/21/iOS-Payment/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2016/01/21/iOS-Payment/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2016/01/21/iOS-Payment/" class="leancloud_visitors" data-flag-title="iOS 支付">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      8,041
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      33
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>更新日志</strong></p>
+<ul>
+<li>2016-05-26 添加 Pay 支付</li>
+<li>2016-08-08 更新 Pay 支付流程</li>
+</ul>
+<p>iOS支付分为两类，<strong>第三方支付</strong>和<strong>应用内支付（内购）</strong>。</p>
+<p>第三方支付包括：支付宝支付、微信支付、银联支付、百度钱包、京东支付等等。</p>
+<p>应用内支付（In-App Purchase）：在应用程序内购买虚拟商品。如果你在App Store上销售的应用程序，将收到支付金额的70％。</p>
+<a id="more"></a>
+<h2 id="第三方支付"><a href="#第三方支付" class="headerlink" title="第三方支付"></a>第三方支付</h2><h3 id="弹出方式"><a href="#弹出方式" class="headerlink" title="弹出方式"></a>弹出方式</h3><h4 id="网页"><a href="#网页" class="headerlink" title="网页"></a>网页</h4><p>有些第三方支付没有安装客户端，可以直接弹出网页进行支付。（比如支付宝）</p>
+<h4 id="调用APP"><a href="#调用APP" class="headerlink" title="调用APP"></a>调用APP</h4><p>手机中安装了客户端可以跳转到APP中进行支付。微信支付只能调用App进行支付。</p>
+<h3 id="支付宝支付"><a href="#支付宝支付" class="headerlink" title="支付宝支付"></a>支付宝支付</h3><h4 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h4><ul>
+<li>支付宝开放平台（SDK&amp;开发文档）：<a href="https://open.alipay.com/platform/home.htm" target="_blank" rel="external">https://open.alipay.com/platform/home.htm</a></li>
+<li>移动支付集成：<a href="https://doc.open.alipay.com/doc2/detail?treeId=59&amp;articleId=103563&amp;docType=1" target="_blank" rel="external">https://doc.open.alipay.com/doc2/detail?treeId=59&amp;articleId=103563&amp;docType=1</a></li>
+<li>商户服务平台（与支付宝签约需要填写的公司资料）：<a href="https://b.alipay.com/newIndex.htm" target="_blank" rel="external">https://b.alipay.com/newIndex.htm</a></li>
+</ul>
+<h4 id="支付流程"><a href="#支付流程" class="headerlink" title="支付流程"></a>支付流程</h4><ol>
+<li><p>在商户服务平台先与支付宝签约，获得商户ID（partner）和账号ID（seller），需要提供公司资质或者营业执照，个人无法申请。</p>
+<p>文档地址：<a href="https://doc.open.alipay.com/doc2/detail?treeId=58&amp;articleId=103542&amp;docType=1" target="_blank" rel="external">https://doc.open.alipay.com/doc2/detail?treeId=58&amp;articleId=103542&amp;docType=1</a></p>
+</li>
+<li><p>生成并下载相应的公钥私钥文件（加密签名用）</p>
+<p>文档地址：<a href="https://doc.open.alipay.com/doc2/detail.htm?spm=0.0.0.0.POMYKl&amp;treeId=58&amp;articleId=103543&amp;docType=1" target="_blank" rel="external">https://doc.open.alipay.com/doc2/detail.htm?spm=0.0.0.0.POMYKl&amp;treeId=58&amp;articleId=103543&amp;docType=1</a></p>
+</li>
+<li><p>下载支付宝SDK：<a href="https://doc.open.alipay.com/doc2/detail?treeId=54&amp;articleId=103419&amp;docType=1" target="_blank" rel="external">https://doc.open.alipay.com/doc2/detail?treeId=54&amp;articleId=103419&amp;docType=1</a></p>
+</li>
+<li><p>生成订单信息</p>
+</li>
+<li><p>调用支付宝客户端，由支付宝客户端跟支付宝安全服务器打交道</p>
+</li>
+<li><p>支付完毕后返回支付结果给商户客户端和服务器</p>
+</li>
+</ol>
+<p>SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作方式，可以参考Demo。</p>
+<h4 id="代码集成流程"><a href="#代码集成流程" class="headerlink" title="代码集成流程"></a>代码集成流程</h4><p>参考文档地址：<a href="https://doc.open.alipay.com/doc2/detail.htm?spm=0.0.0.0.efmKDS&amp;treeId=59&amp;articleId=103676&amp;docType=1" target="_blank" rel="external">https://doc.open.alipay.com/doc2/detail.htm?spm=0.0.0.0.efmKDS&amp;treeId=59&amp;articleId=103676&amp;docType=1</a></p>
+<ol>
+<li><p>下载官方SDK</p>
+<p>下载地址：<a href="https://doc.open.alipay.com/doc2/detail?treeId=54&amp;articleId=103419&amp;docType=1" target="_blank" rel="external">https://doc.open.alipay.com/doc2/detail?treeId=54&amp;articleId=103419&amp;docType=1</a></p>
+<p>本Demo使用的SDK是从官方Demo整理出来的，整理的SDK版本：201501022。</p>
+<p>下载地址：<a href="http://7xooko.com1.z0.glb.clouddn.com/AlipaySDK.zip" target="_blank" rel="external">http://7xooko.com1.z0.glb.clouddn.com/AlipaySDK.zip</a></p>
+<p>目录结构如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">├── AlipaySDK<span class="selector-class">.bundle</span></div><div class="line">├── AlipaySDK<span class="selector-class">.framework</span></div><div class="line">├── Order<span class="selector-class">.h</span></div><div class="line">├── Order<span class="selector-class">.m</span></div><div class="line">├── Util</div><div class="line">├── libcrypto<span class="selector-class">.a</span></div><div class="line">├── libssl<span class="selector-class">.a</span></div><div class="line">└── openssl</div></pre></td></tr></table></figure>
+<p>其中：</p>
+<ul>
+<li><code>AlipaySDK.bundle</code>和<code>AlipaySDK.framework</code>是支付宝SDK</li>
+<li><code>Order</code>类：定义订单信息</li>
+<li><code>Util、libcrypto.a、libssl.a、openssl</code>：数据签名，对订单信息进行加密</li>
+</ul>
+</li>
+<li><p>添加依赖库</p>
+<p><img src="https://img.alicdn.com/top/i1/LB1PlBHKpXXXXXoXXXXXXXXXXXX" alt=""></p>
+<p>其中，需要注意的是：</p>
+<p>如果是Xcode 7.0之后的版本，需要添加libc++.tbd、libz.tbd；</p>
+<p>如果是Xcode 7.0之前的版本，需要添加libc++.dylib、libz.dylib。</p>
+</li>
+<li><p>创建<code>prefix header file</code>PCH文件，添加<code>#import &lt;Foundation/Foundation.h&gt;</code></p>
+<p>在<code>Build Settings</code>中的<code>prefix header</code>设置pch文件路径</p>
+</li>
+<li><p>在<code>Build Settings</code>中<code>Header Search Paths</code>添加头文件引用路径，<code>[文件路径]/AlipaySDK/</code></p>
+</li>
+<li><p>在需要调用AlipaySDK的文件中，增加头文件引用。</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#<span class="keyword">import</span>  &lt;AlipaySDK/AlipaySDK.h&gt;</div><div class="line">#<span class="keyword">import</span> <span class="string">"Order.h"</span></div><div class="line">#<span class="keyword">import</span> <span class="string">"DataSigner.h"</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>生成订单信息及签名</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//将商品信息赋予AlixPayOrder的成员变量</span></div><div class="line"><span class="keyword">Order</span> *<span class="keyword">order</span> = [[<span class="keyword">Order</span> alloc] init];</div><div class="line"><span class="keyword">order</span>.partner = PartnerID; <span class="comment">// 商户ID</span></div><div class="line"><span class="keyword">order</span>.seller = SellerID; <span class="comment">// 账号ID</span></div><div class="line"><span class="keyword">order</span>.tradeNO = @<span class="string">"20150923"</span>; <span class="comment">//订单ID（由商家自行制定）</span></div><div class="line"><span class="keyword">order</span>.productName = @<span class="string">"iPhone6s"</span>; <span class="comment">//商品标题</span></div><div class="line"><span class="keyword">order</span>.productDescription = @<span class="string">"新年打折"</span>; <span class="comment">//商品描述</span></div><div class="line"><span class="keyword">order</span>.amount = @<span class="string">"0.01"</span>; <span class="comment">//商品价格(单位：元)</span></div><div class="line"><span class="keyword">order</span>.notifyURL =  @<span class="string">"http://www.chaosky.me"</span>; <span class="comment">//回调URL，支付成功或者失败回调通知自己的服务器进行订单状态变更</span></div><div class="line"><span class="keyword">order</span>.service = @<span class="string">"mobile.securitypay.pay"</span>;</div><div class="line"><span class="keyword">order</span>.paymentType = @<span class="string">"1"</span>;</div><div class="line"><span class="keyword">order</span>.inputCharset = @<span class="string">"utf-8"</span>;</div><div class="line"><span class="keyword">order</span>.itBPay = @<span class="string">"30m"</span>;</div><div class="line"><span class="keyword">order</span>.showUrl = @<span class="string">"m.alipay.com"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 应用注册scheme,在AlixPayDemo-Info.plist定义URL types</span></div><div class="line">NSString *appScheme = @<span class="string">"AliPayDemo"</span>;</div><div class="line"></div><div class="line"><span class="comment">//将商品信息拼接成字符串</span></div><div class="line">NSString *orderSpec = [<span class="keyword">order</span> description];</div><div class="line">NSLog(@<span class="string">"orderSpec = %@"</span>,orderSpec);</div><div class="line"></div><div class="line"><span class="comment">//获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode</span></div><div class="line">id&lt;DataSigner&gt; signer = CreateRSADataSigner(PartnerPrivKey);</div><div class="line">NSString *signedString = [signer signString:orderSpec];</div><div class="line"></div><div class="line"><span class="comment">//将签名成功字符串格式化为订单字符串,请严格按照该格式</span></div><div class="line">NSString *orderString = nil;</div><div class="line"><span class="keyword">if</span> (signedString != nil) &#123;</div><div class="line">    orderString = [NSString stringWithFormat:@<span class="string">"%@&amp;sign=\"</span>%@\<span class="string">"&amp;sign_type=\"</span>%@\<span class="string">""</span>,</div><div class="line">                   orderSpec, signedString, @<span class="string">"RSA"</span>];</div><div class="line"></div><div class="line">    [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary * resultDic) &#123;</div><div class="line">        NSLog(@<span class="string">"reslut = %@"</span>,resultDic);</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Xcode设置URL scheme</p>
+<p>iPhone SDK可以把你的App和一个自定义的URL Scheme绑定。该URL Scheme可用来从浏览器或别的App启动你的App。</p>
+<p>配置方法：打开info.plist文件，找到或者添加如图所示的键值对：</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/QQ20160121-1@2x.png" alt=""></p>
+<p>URL Scheme值为代码中对应的值，<strong>必须一致</strong>。</p>
+</li>
+<li><p>配置支付宝客户端返回url处理方法</p>
+<p>AppDelegate.m文件中，增加引用代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;AlipaySDK/AlipaySDK.h&gt;</span></span></div></pre></td></tr></table></figure>
+<p>在@implementation AppDelegate中增加如下代码：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">-</span> (BOOL)<span class="selector-tag">application</span><span class="selector-pseudo">:(UIApplication</span> *)<span class="selector-tag">application</span> <span class="selector-tag">openURL</span><span class="selector-pseudo">:(NSURL</span> *)<span class="selector-tag">url</span> <span class="selector-tag">sourceApplication</span><span class="selector-pseudo">:(NSString</span> *)<span class="selector-tag">sourceApplication</span> <span class="selector-tag">annotation</span><span class="selector-pseudo">:(id)annotation</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//如果极简开发包不可用，会跳转支付宝钱包进行支付，需要将支付宝钱包的支付结果回传给开发包</span></div><div class="line">    <span class="selector-tag">if</span> ([url.host <span class="attribute">isEqualToString</span>:@<span class="string">"safepay"</span>]) &#123;</div><div class="line">        <span class="selector-attr">[[AlipaySDK defaultService]</span> <span class="selector-tag">processOrderWithPaymentResult</span><span class="selector-pseudo">:url</span> <span class="selector-tag">standbyCallback</span>:^(NSDictionary * resultDic) &#123;</div><div class="line">    <span class="comment">//【由于在跳转支付宝客户端支付的过程中，商户app在后台很可能被系统kill了，所以pay接口的callback就会失效，请商户对standbyCallback返回的回调结果进行处理,就是在这个方法里面处理跟callback一样的逻辑】</span></div><div class="line">            <span class="selector-tag">NSLog</span>(@<span class="string">"result = %@"</span>,resultDic);</div><div class="line">        &#125;];</div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">if</span> ([url.host <span class="attribute">isEqualToString</span>:@<span class="string">"platformapi"</span>])&#123;<span class="comment">//支付宝钱包快登授权返回authCode</span></div><div class="line"></div><div class="line">        <span class="selector-attr">[[AlipaySDK defaultService]</span> <span class="selector-tag">processAuthResult</span><span class="selector-pseudo">:url</span> <span class="selector-tag">standbyCallback</span>:^(NSDictionary * resultDic) &#123;</div><div class="line">            <span class="comment">//【由于在跳转支付宝客户端支付的过程中，商户app在后台很可能被系统kill了，所以pay接口的callback就会失效，请商户对standbyCallback返回的回调结果进行处理,就是在这个方法里面处理跟callback一样的逻辑】</span></div><div class="line">            <span class="selector-tag">NSLog</span>(@<span class="string">"result = %@"</span>,resultDic);</div><div class="line">        &#125;];</div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">return</span> <span class="selector-tag">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="微信支付"><a href="#微信支付" class="headerlink" title="微信支付"></a>微信支付</h3><p>需要提供公司资质或者营业执照，个人无法申请。</p>
+<h4 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h4><ul>
+<li>微信开放平台：<a href="https://open.weixin.qq.com" target="_blank" rel="external">https://open.weixin.qq.com</a></li>
+<li>微信支付商户平台：<a href="https://pay.weixin.qq.com/index.php" target="_blank" rel="external">https://pay.weixin.qq.com/index.php</a></li>
+<li>微信公众平台：<a href="https://mp.weixin.qq.com" target="_blank" rel="external">https://mp.weixin.qq.com</a></li>
+</ul>
+<h4 id="支付流程-1"><a href="#支付流程-1" class="headerlink" title="支付流程"></a>支付流程</h4><ol>
+<li><p>向微信注册你的应用程序id</p>
+<p><em>开发者应用登记页面</em> 进行登记，登记并选择移动应用进行设置后，将获得AppID，可立即用于开发。但应用登记完成后还需要提交审核，只有审核通过的应用才能正式发布使用。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/QQ20160121-0@2x.png" alt=""></p>
+</li>
+<li><p>微信APP支付接入商户服务中心</p>
+<p>参考文档链接：<a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419317780&amp;token=&amp;lang=zh_CN" target="_blank" rel="external">https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419317780&amp;token=&amp;lang=zh_CN</a></p>
+</li>
+<li><p>下载微信SDK文件，如果在项目中应使用SDK的最新版。</p>
+<p>官方资源下载地址：<a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419319164&amp;token=&amp;lang=zh_CN" target="_blank" rel="external">https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419319164&amp;token=&amp;lang=zh_CN</a></p>
+<p>本Demo使用的SDK是从官方Demo整理出来的，整理的SDK版本：1.6.1。</p>
+<p>下载地址：<a href="http://7xooko.com1.z0.glb.clouddn.com/AlipaySDK.zip" target="_blank" rel="external">http://7xooko.com1.z0.glb.clouddn.com/AlipaySDK.zip</a></p>
+<p>目录结构如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">├── SDKExport</div><div class="line">│   ├── WXApi<span class="selector-class">.h</span></div><div class="line">│   ├── WXApiObject<span class="selector-class">.h</span></div><div class="line">│   ├── libWeChatSDK<span class="selector-class">.a</span></div><div class="line">│   └── read_me<span class="selector-class">.txt</span></div><div class="line">└── lib</div><div class="line">    ├── ApiXml<span class="selector-class">.h</span></div><div class="line">    ├── ApiXml<span class="selector-class">.mm</span></div><div class="line">    ├── WXUtil<span class="selector-class">.h</span></div><div class="line">    ├── WXUtil<span class="selector-class">.mm</span></div><div class="line">    ├── payRequsestHandler<span class="selector-class">.h</span></div><div class="line">    └── payRequsestHandler.mm</div></pre></td></tr></table></figure>
+<p>其中：</p>
+<p><code>SDKExport</code>文件夹：SDK文件</p>
+<p><code>lib</code>文件夹：工具类</p>
+</li>
+<li><p>添加依赖库</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">SystemConfiguration<span class="selector-class">.framework</span></div><div class="line">libz<span class="selector-class">.dylib</span></div><div class="line">libsqlite3<span class="selector-class">.dylib</span></div><div class="line">libc++<span class="selector-class">.dylib</span></div><div class="line">CoreTelephony<span class="selector-class">.framework</span></div><div class="line">CoreGraphics.framework</div></pre></td></tr></table></figure>
+</li>
+<li><p>Xcode设置URL scheme</p>
+<p> 在Xcode中，选择你的工程设置项，选中“TARGETS”一栏，在“info”标签栏的“URL type“添加“URL scheme”为你所注册的应用程序id（如下图所示）。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/QQ20160121-2@2x.png" alt=""></p>
+</li>
+<li><p>在你需要使用微信终端API的文件中import WXApi.h 头文件，并增加 WXApiDelegate 协议。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 微信所有的API接口</span></div><div class="line"><span class="meta">#import <span class="meta-string">"WXApi.h"</span></span></div><div class="line"><span class="comment">// APP端签名相关头文件</span></div><div class="line"><span class="meta">#import <span class="meta-string">"payRequsestHandler.h"</span></span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> ()&lt;<span class="title">WXApiDelegate</span>&gt;</span></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>要使你的程序启动后微信终端能响应你的程序，必须在代码中向微信终端注册你的id。（如下图所示，在 AppDelegate 的 didFinishLaunchingWithOptions 函数中向微信注册id）。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (BOOL)<span class="string">application:</span>(UIApplication *)application <span class="string">didFinishLaunchingWithOptions:</span>(NSDictionary *)launchOptions &#123;</div><div class="line">    <span class="comment">// Override point for customization after application launch.</span></div><div class="line">    <span class="comment">//向微信注册</span></div><div class="line">    [WXApi <span class="string">registerApp:</span>APP_ID <span class="string">withDescription:</span>@<span class="string">"demo 2.0"</span>];</div><div class="line">    <span class="keyword">return</span> YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>重写AppDelegate的handleOpenURL和openURL方法：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (BOOL)<span class="string">application:</span>(UIApplication *)application <span class="string">handleOpenURL:</span>(NSURL *)url</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> [WXApi <span class="string">handleOpenURL:</span>url <span class="string">delegate:</span>self];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)<span class="string">application:</span>(UIApplication *)application <span class="string">openURL:</span>(NSURL *)url <span class="string">sourceApplication:</span>(NSString *)sourceApplication <span class="string">annotation:</span>(id)annotation</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> [WXApi <span class="string">handleOpenURL:</span>url <span class="string">delegate:</span>self];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>现在，你的程序要实现和微信终端交互的具体请求与回应，因此需要实现WXApiDelegate协议的两个方法：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>) <span class="string">onReq:</span>(BaseReq*)req</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>([req <span class="string">isKindOfClass:</span>[GetMessageFromWXReq <span class="class"><span class="keyword">class</span>]])</span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// 微信请求App提供内容， 需要app提供内容后使用sendRsp返回</span></div><div class="line">        NSString * strTitle = [NSString <span class="string">stringWithFormat:</span>@<span class="string">"微信请求App提供内容"</span>];</div><div class="line">        NSString * strMsg = @<span class="string">"微信请求App提供内容，App要调用sendResp:GetMessageFromWXResp返回给微信"</span>;</div><div class="line"></div><div class="line">        UIAlertView * alert = [[UIAlertView alloc] <span class="string">initWithTitle:</span>strTitle <span class="string">message:</span>strMsg <span class="string">delegate:</span>self <span class="string">cancelButtonTitle:</span>@<span class="string">"OK"</span> <span class="string">otherButtonTitles:</span>nil, nil];</div><div class="line">        alert.tag = <span class="number">1000</span>;</div><div class="line">        [alert show];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>([req <span class="string">isKindOfClass:</span>[ShowMessageFromWXReq <span class="class"><span class="keyword">class</span>]])</span></div><div class="line">    &#123;</div><div class="line">        ShowMessageFromWXReq *  temp = (ShowMessageFromWXReq*)req;</div><div class="line">        WXMediaMessage * msg = temp.message;</div><div class="line"></div><div class="line">        <span class="comment">//显示微信传过来的内容</span></div><div class="line">        WXAppExtendObject * obj = msg.mediaObject;</div><div class="line"></div><div class="line">        NSString * strTitle = [NSString <span class="string">stringWithFormat:</span>@<span class="string">"微信请求App显示内容"</span>];</div><div class="line">        NSString * strMsg = [NSString <span class="string">stringWithFormat:</span>@<span class="string">"标题：%@ \n内容：%@ \n附带信息：%@ \n缩略图:%lu bytes\n\n"</span>, msg.title, msg.description, obj.extInfo, msg.thumbData.length];</div><div class="line"></div><div class="line">        UIAlertView * alert = [[UIAlertView alloc] <span class="string">initWithTitle:</span>strTitle <span class="string">message:</span>strMsg <span class="string">delegate:</span>self <span class="string">cancelButtonTitle:</span>@<span class="string">"OK"</span> <span class="string">otherButtonTitles:</span>nil, nil];</div><div class="line">        [alert show];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>([req <span class="string">isKindOfClass:</span>[LaunchFromWXReq <span class="class"><span class="keyword">class</span>]])</span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">//从微信启动App</span></div><div class="line">        NSString * strTitle = [NSString <span class="string">stringWithFormat:</span>@<span class="string">"从微信启动"</span>];</div><div class="line">        NSString * strMsg = @<span class="string">"这是从微信启动的消息"</span>;</div><div class="line">        UIAlertView * alert = [[UIAlertView alloc] <span class="string">initWithTitle:</span>strTitle <span class="string">message:</span>strMsg <span class="string">delegate:</span>self <span class="string">cancelButtonTitle:</span>@<span class="string">"OK"</span> <span class="string">otherButtonTitles:</span>nil, nil];</div><div class="line">        [alert show];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>onReq是微信终端向第三方程序发起请求，要求第三方程序响应。第三方程序响应完后必须调用sendRsp返回。在调用sendRsp返回时，会切回到微信终端程序界面。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>) <span class="string">onResp:</span>(BaseResp*)resp</div><div class="line"> &#123;</div><div class="line">     NSString * strMsg = [NSString <span class="string">stringWithFormat:</span>@<span class="string">"errcode:%d"</span>, resp.errCode];</div><div class="line">     NSString * strTitle;</div><div class="line"></div><div class="line">     <span class="keyword">if</span>([resp <span class="string">isKindOfClass:</span>[SendMessageToWXResp <span class="class"><span class="keyword">class</span>]])</span></div><div class="line">     &#123;</div><div class="line">         strTitle = [NSString <span class="string">stringWithFormat:</span>@<span class="string">"发送媒体消息结果"</span>];</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">if</span>([resp <span class="string">isKindOfClass:</span>[PayResp <span class="class"><span class="keyword">class</span>]])&#123;</span></div><div class="line">         <span class="comment">//支付返回结果，实际支付结果需要去微信服务器端查询</span></div><div class="line">         strTitle = [NSString <span class="string">stringWithFormat:</span>@<span class="string">"支付结果"</span>];</div><div class="line"></div><div class="line">         <span class="keyword">switch</span> (resp.errCode) &#123;</div><div class="line">             <span class="keyword">case</span> <span class="string">WXSuccess:</span></div><div class="line">                 strMsg = @<span class="string">"支付结果：成功！"</span>;</div><div class="line">                 NSLog(@<span class="string">"支付成功－PaySuccess，retcode = %d"</span>, resp.errCode);</div><div class="line">                 <span class="keyword">break</span>;</div><div class="line"><span class="symbol"></span></div><div class="line">             default:</div><div class="line">                 strMsg = [NSString <span class="string">stringWithFormat:</span>@<span class="string">"支付结果：失败！retcode = %d, retstr = %@"</span>, resp.errCode,resp.errStr];</div><div class="line">                 NSLog(@<span class="string">"错误，retcode = %d, retstr = %@"</span>, resp.errCode,resp.errStr);</div><div class="line">                 <span class="keyword">break</span>;</div><div class="line">         &#125;</div><div class="line">     &#125;</div><div class="line">     UIAlertView * alert = [[UIAlertView alloc] <span class="string">initWithTitle:</span>strTitle <span class="string">message:</span>strMsg <span class="string">delegate:</span>self <span class="string">cancelButtonTitle:</span>@<span class="string">"OK"</span> <span class="string">otherButtonTitles:</span>nil, nil];</div><div class="line">     [alert show];</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>如果第三方程序向微信发送了sendReq的请求，那么onResp会被回调。sendReq请求调用后，会切到微信终端程序界面</p>
+</li>
+</ol>
+<h2 id="应用内支付（In-App-Purchase）"><a href="#应用内支付（In-App-Purchase）" class="headerlink" title="应用内支付（In-App Purchase）"></a>应用内支付（In-App Purchase）</h2><p>在应用程序内购买虚拟商品。如果你在App Store上销售的应用程序，将收到支付金额的70％。</p>
+<h3 id="相关资料-1"><a href="#相关资料-1" class="headerlink" title="相关资料"></a>相关资料</h3><p>沙盒测试账号：imetax@hotmail.com 密码：Test1000phone</p>
+<h3 id="支付流程-2"><a href="#支付流程-2" class="headerlink" title="支付流程"></a>支付流程</h3><h4 id="配置App-ID"><a href="#配置App-ID" class="headerlink" title="配置App ID"></a>配置App ID</h4><ol>
+<li>为应用建立建立一个不带通配符的App ID</li>
+<li>用该App ID生成和安装相应的Provisioning Profile文件。</li>
+</ol>
+<h4 id="配置iTunes-Connect"><a href="#配置iTunes-Connect" class="headerlink" title="配置iTunes Connect"></a>配置iTunes Connect</h4><ol>
+<li><p>填写相关的税务，银行，联系人信息</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/Snip20160124_5.png" alt=""></p>
+<p>参考链接：<a href="http://www.jianshu.com/p/c7cf65911bc1" target="_blank" rel="external">iOS App提交指南(二)-协议、税务和银行业务</a></p>
+</li>
+<li><p>添加一个用于在sandbox付费的测试用户</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/Snip20160124_3.png" alt=""></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/Snip20160124_4.png" alt=""></p>
+</li>
+<li><p>用该App ID创建一个新的应用。</p>
+</li>
+<li><p>创建应用内付费项目，选择付费类型。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/QQ20160124-0@2x.png" alt=""></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/QQ20160124-1@2x.png" alt=""></p>
+<p>App 内购买项目摘要填写  </p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/Snip20160124_1.png" alt=""></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/Snip20160124_2.png" alt=""></p>
+</li>
+</ol>
+<h4 id="主要代码实现"><a href="#主要代码实现" class="headerlink" title="主要代码实现"></a>主要代码实现</h4><ol>
+<li><p>在工程中引入 <code>StoreKit.framework</code> 和<code>#import &lt;StoreKit/StoreKit.h&gt;</code></p>
+</li>
+<li><p>获得所有的付费Product ID列表。这个可以用常量存储在本地，也可以由自己的服务器返回。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在内购项目中创建的商品单号</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ProductID_IAP_FTHJ @<span class="meta-string">"com.1000phone.IAPDemo.fthj_purple"</span> <span class="comment">// 方天画戟 488元</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ProductID_IAP_XYJ @<span class="meta-string">"com.1000phone.IAPDemo.xyj"</span> <span class="comment">// 轩辕剑 6,498元</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ProductID_IAP_JB @<span class="meta-string">"com.1000phone.IAPDemo.jb"</span> <span class="comment">// 金币 6元=6金币</span></span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>制作界面，展示所有的应用内付费项目。这些应用内付费项目的价格和介绍信息可以从App Store服务器请求，也可以是自己的服务器返回。向App Store查询速度非常慢，通常需要2-3秒钟，最好从服务器请求。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)createViews</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSArray</span> * buttonNames = @[<span class="string">@"轩辕剑 6498元"</span>, <span class="string">@"方天画戟 488元"</span>, <span class="string">@"金币6元=6金币"</span>];</div><div class="line">    __<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>) weakSelf = <span class="keyword">self</span>;</div><div class="line">    [buttonNames enumerateObjectsUsingBlock:^(<span class="built_in">NSString</span> * buttonName, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> * stop) &#123;</div><div class="line">        <span class="built_in">UIButton</span> * button = [<span class="built_in">UIButton</span> buttonWithType:<span class="built_in">UIButtonTypeSystem</span>];</div><div class="line">        [weakSelf.view addSubview:button];</div><div class="line">        button.frame = <span class="built_in">CGRectMake</span>(<span class="number">100</span>, <span class="number">100</span> + idx   * <span class="number">60</span>, <span class="number">150</span>, <span class="number">50</span>);</div><div class="line">        button.titleLabel.font = [<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">18</span>];</div><div class="line">        [button setTitle:buttonName forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line"></div><div class="line">        <span class="comment">// 设置tag值</span></div><div class="line">        button.tag = PAY_BUTTON_BEGIN_TAG + idx;</div><div class="line">        [button addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(buyProduct:) forControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)buyProduct:(<span class="built_in">UIButton</span> *) sender</div><div class="line">&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>当用户点击了一个IAP项目，我们先查询用户是否允许应用内付费。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)buyProduct:(<span class="built_in">UIButton</span> *) sender</div><div class="line">&#123;</div><div class="line">    <span class="keyword">self</span>.buyType = sender.tag - PAY_BUTTON_BEGIN_TAG;</div><div class="line">    <span class="keyword">if</span> ([<span class="built_in">SKPaymentQueue</span> canMakePayments]) &#123;</div><div class="line">        <span class="comment">// 执行下面提到的第5步：</span></div><div class="line">        [<span class="keyword">self</span> requestProductData];</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"允许程序内付费购买"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"不允许程序内付费购买"</span>);</div><div class="line">        <span class="built_in">UIAlertView</span> *alerView =  [[<span class="built_in">UIAlertView</span> alloc] initWithTitle:<span class="string">@"提示"</span></div><div class="line">                                                            message:<span class="string">@"您的手机没有打开程序内付费购买"</span></div><div class="line">                                                           delegate:<span class="literal">nil</span> cancelButtonTitle:<span class="built_in">NSLocalizedString</span>(<span class="string">@"关闭"</span>,<span class="literal">nil</span>) otherButtonTitles:<span class="literal">nil</span>];</div><div class="line"></div><div class="line">        [alerView show];</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>我们先通过该IAP的ProductID向AppStore查询，获得SKPayment实例，然后通过SKPaymentQueue的 addPayment方法发起一个购买的操作。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 下面的ProductId应该是事先在itunesConnect中添加好的，已存在的付费项目。否则查询会失败。</span></div><div class="line">- (<span class="keyword">void</span>)requestProductData &#123;</div><div class="line">   <span class="built_in">NSLog</span>(<span class="string">@"---------请求对应的产品信息------------"</span>);</div><div class="line">   <span class="built_in">NSArray</span> *product = <span class="literal">nil</span>;</div><div class="line">   <span class="keyword">switch</span> (<span class="keyword">self</span>.buyType) &#123;</div><div class="line">       <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">           product = [<span class="built_in">NSArray</span> arrayWithObject:ProductID_IAP_XYJ];</div><div class="line">           <span class="keyword">break</span>;</div><div class="line">       <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">           product = [<span class="built_in">NSArray</span> arrayWithObject:ProductID_IAP_FTHJ];</div><div class="line">           <span class="keyword">break</span>;</div><div class="line">       <span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">           product = [<span class="built_in">NSArray</span> arrayWithObject:ProductID_IAP_JB];</div><div class="line">           <span class="keyword">break</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">NSSet</span> *nsset = [<span class="built_in">NSSet</span> setWithArray:product];</div><div class="line">   <span class="built_in">SKProductsRequest</span> *request=[[<span class="built_in">SKProductsRequest</span> alloc] initWithProductIdentifiers: nsset];</div><div class="line">   request.delegate=<span class="keyword">self</span>;</div><div class="line">   [request start];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">#pragma mark - SKProductsRequestDelegate</span></div><div class="line"><span class="comment">// 收到的产品信息回调</span></div><div class="line">- (<span class="keyword">void</span>)productsRequest:(<span class="built_in">SKProductsRequest</span> *)request didReceiveResponse:(<span class="built_in">SKProductsResponse</span> *)response&#123;</div><div class="line"></div><div class="line">   <span class="built_in">NSLog</span>(<span class="string">@"-----------收到产品反馈信息--------------"</span>);</div><div class="line">   <span class="built_in">NSArray</span> *myProduct = response.products;</div><div class="line">   <span class="keyword">if</span> (myProduct.count == <span class="number">0</span>) &#123;</div><div class="line">       <span class="built_in">NSLog</span>(<span class="string">@"无法获取产品信息，购买失败。"</span>);</div><div class="line">       <span class="keyword">return</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">NSLog</span>(<span class="string">@"产品Product ID:%@"</span>,response.invalidProductIdentifiers);</div><div class="line">   <span class="built_in">NSLog</span>(<span class="string">@"产品付费数量: %d"</span>, (<span class="keyword">int</span>)[myProduct count]);</div><div class="line">   <span class="comment">// populate UI</span></div><div class="line">   <span class="keyword">for</span>(<span class="built_in">SKProduct</span> *product <span class="keyword">in</span> myProduct)&#123;</div><div class="line">       <span class="built_in">NSLog</span>(<span class="string">@"product info"</span>);</div><div class="line">       <span class="built_in">NSLog</span>(<span class="string">@"SKProduct 描述信息%@"</span>, [product description]);</div><div class="line">       <span class="built_in">NSLog</span>(<span class="string">@"产品标题 %@"</span> , product.localizedTitle);</div><div class="line">       <span class="built_in">NSLog</span>(<span class="string">@"产品描述信息: %@"</span> , product.localizedDescription);</div><div class="line">       <span class="built_in">NSLog</span>(<span class="string">@"价格: %@"</span> , product.price);</div><div class="line">       <span class="built_in">NSLog</span>(<span class="string">@"Product id: %@"</span> , product.productIdentifier);</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">SKPayment</span> * payment = [<span class="built_in">SKPayment</span> paymentWithProduct:myProduct[<span class="number">0</span>]];</div><div class="line">   <span class="built_in">NSLog</span>(<span class="string">@"---------发送购买请求------------"</span>);</div><div class="line">   [[<span class="built_in">SKPaymentQueue</span> defaultQueue] addPayment:payment];</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//弹出错误信息</span></div><div class="line">- (<span class="keyword">void</span>)request:(<span class="built_in">SKRequest</span> *)request didFailWithError:(<span class="built_in">NSError</span> *)error&#123;</div><div class="line">   <span class="built_in">NSLog</span>(<span class="string">@"-------弹出错误信息----------"</span>);</div><div class="line">   <span class="built_in">UIAlertView</span> *alerView =  [[<span class="built_in">UIAlertView</span> alloc] initWithTitle:<span class="built_in">NSLocalizedString</span>(<span class="string">@"Alert"</span>,<span class="literal">NULL</span>) message:[error localizedDescription]</div><div class="line">                                                      delegate:<span class="literal">nil</span> cancelButtonTitle:<span class="built_in">NSLocalizedString</span>(<span class="string">@"Close"</span>,<span class="literal">nil</span>) otherButtonTitles:<span class="literal">nil</span>];</div><div class="line">   [alerView show];</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>) requestDidFinish:(<span class="built_in">SKRequest</span> *)request</div><div class="line">&#123;</div><div class="line">   <span class="built_in">NSLog</span>(<span class="string">@"----------反馈信息结束--------------"</span>);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在viewDidLoad方法中，将购买页面设置成购买的Observer。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">-</span> (void)<span class="selector-tag">viewDidLoad</span> &#123;</div><div class="line">    <span class="selector-attr">[super viewDidLoad]</span>;</div><div class="line">    <span class="selector-attr">[self createViews]</span>;</div><div class="line">    <span class="comment">// 监听购买结果</span></div><div class="line">    <span class="selector-attr">[[SKPaymentQueue defaultQueue]</span> <span class="selector-tag">addTransactionObserver</span><span class="selector-pseudo">:self</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">-</span> (void)<span class="selector-tag">dealloc</span></div><div class="line">&#123;</div><div class="line">    <span class="selector-attr">[[SKPaymentQueue defaultQueue]</span> <span class="selector-tag">removeTransactionObserver</span><span class="selector-pseudo">:self</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>当用户购买的操作有结果时，就会触发下面的回调函数，相应进行处理即可。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma mark - SKPaymentTransactionObserver</span></div><div class="line"><span class="comment">// 处理交易结果</span></div><div class="line">- (<span class="keyword">void</span>)paymentQueue:(<span class="built_in">SKPaymentQueue</span> *)queue updatedTransactions:(<span class="built_in">NSArray</span> *)transactions &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="built_in">SKPaymentTransaction</span> *transaction <span class="keyword">in</span> transactions)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">switch</span> (transaction.transactionState)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">case</span> <span class="built_in">SKPaymentTransactionStatePurchased</span>:<span class="comment">//交易完成</span></div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"transactionIdentifier = %@"</span>, transaction.transactionIdentifier);</div><div class="line">                [<span class="keyword">self</span> completeTransaction:transaction];</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="built_in">SKPaymentTransactionStateFailed</span>:<span class="comment">//交易失败</span></div><div class="line">                [<span class="keyword">self</span> failedTransaction:transaction];</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="built_in">SKPaymentTransactionStateRestored</span>:<span class="comment">//已经购买过该商品</span></div><div class="line">                [<span class="keyword">self</span> restoreTransaction:transaction];</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="built_in">SKPaymentTransactionStatePurchasing</span>:      <span class="comment">//商品添加进列表</span></div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"商品添加进列表"</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 交易完成</span></div><div class="line">- (<span class="keyword">void</span>)completeTransaction:(<span class="built_in">SKPaymentTransaction</span> *)transaction &#123;</div><div class="line">    <span class="built_in">NSString</span> * productIdentifier = transaction.payment.productIdentifier;</div><div class="line"><span class="comment">//    NSString * receipt = [transaction.transactionReceipt base64EncodedString];</span></div><div class="line">    <span class="keyword">if</span> ([productIdentifier length] &gt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="comment">// 向自己的服务器验证购买凭证</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Remove the transaction from the payment queue.</span></div><div class="line">    [[<span class="built_in">SKPaymentQueue</span> defaultQueue] finishTransaction: transaction];</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 交易失败</span></div><div class="line">- (<span class="keyword">void</span>)failedTransaction:(<span class="built_in">SKPaymentTransaction</span> *)transaction &#123;</div><div class="line">    <span class="keyword">if</span>(transaction.error.code != <span class="built_in">SKErrorPaymentCancelled</span>) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"购买失败"</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"用户取消交易"</span>);</div><div class="line">    &#125;</div><div class="line">    [[<span class="built_in">SKPaymentQueue</span> defaultQueue] finishTransaction: transaction];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 已购商品</span></div><div class="line">- (<span class="keyword">void</span>)restoreTransaction:(<span class="built_in">SKPaymentTransaction</span> *)transaction &#123;</div><div class="line">    <span class="comment">// 对于已购商品，处理恢复购买的逻辑</span></div><div class="line">    [[<span class="built_in">SKPaymentQueue</span> defaultQueue] finishTransaction: transaction];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>服务器验证凭证(Optional)。如果购买成功，我们需要将凭证发送到服务器上进行验证。考虑到网络异常情况，iOS端的发送凭证操作应该进行持久化，如果程序退出，崩溃或网络异常，可以恢复重试。</p>
+</li>
+</ol>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ol>
+<li><a href="http://www.jianshu.com/p/86ac7d3b593a" target="_blank" rel="external">iOS开发内购全套图文教程</a></li>
+<li><a href="http://blog.devtang.com/blog/2012/12/09/in-app-purchase-check-list/" target="_blank" rel="external">iOS应用内付费(IAP)开发步骤列表</a></li>
+<li><a href="http://onevcat.com/2013/11/ios-iap-checklist/" target="_blank" rel="external">iOS内购实现及测试Check List</a></li>
+</ol>
+<h2 id="苹果支付（-Pay）"><a href="#苹果支付（-Pay）" class="headerlink" title="苹果支付（ Pay）"></a>苹果支付（ Pay）</h2><p>苹果支付是一种在应用内运行的具有隐秘性和安全性非接触式的支付方式。它允许触摸付款，你可以用来购买实体商品和服务。</p>
+<p>Apple 不会存储或共享客户的实际信用卡和借记卡卡号，因此商家和 App 开发者无需负责管理和保护实际的信用卡和借记卡卡号。</p>
+<p><img src="https://developer.apple.com/apple-pay/images/figure-1-payment-sheet-cn_2x.png" alt=""></p>
+<p><img src="https://developer.apple.com/apple-pay/images/figure-2-payment-flow-cn_2x.png" alt=""></p>
+<h3 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h3><p>除了使用 PassKit 框架实施 Apple Pay 之外，您还必须：</p>
+<ul>
+<li><p>通过<a href="https://developer.apple.com/apple-pay/" target="_blank" rel="external">付款处理机构或网关</a>设置一个帐户。</p>
+</li>
+<li><p>通过“<a href="https://developer.apple.com/account/ios/identifiers/merchant/merchantLanding.action" target="_blank" rel="external">证书、标识符和描述文件</a>”（“Certificates, Identifiers &amp; Profiles”）注册一个商家 ID。</p>
+</li>
+<li>生成一个 <a href="https://developer.apple.com/account/ios/certificate/certificateCreate.action" target="_blank" rel="external">Apple Pay 证书</a>，用于加密和解密付款令牌。</li>
+<li>在您的 App 中包括一个 Apple Pay 授权。</li>
+<li>遵循“应用审核准则”的第 29 节中列出的要求。</li>
+<li>遵循<a href="https://developer.apple.com/app-store/review/guidelines/#apple-pay" target="_blank" rel="external">《App 审核准则》</a>(“App Review Guidelines”)第 29 节中列出的要求。</li>
+</ul>
+<h3 id="支付流程-3"><a href="#支付流程-3" class="headerlink" title="支付流程"></a>支付流程</h3><h4 id="配置-Merchant-ID（商家ID）"><a href="#配置-Merchant-ID（商家ID）" class="headerlink" title="配置 Merchant ID（商家ID）"></a>配置 Merchant ID（商家ID）</h4><p>Apple Pay 中的商家 ID 用于标识你能够接受付款。与商家 ID 相关联的公钥与证书用于在支付过程中加密支付信息。要想使用 Apple Pay，你首先需要注册一个商家 ID 并且配置它的证书。</p>
+<ol>
+<li>在开发者中心选择<a href="https://developer.apple.com/account/ios/identifiers/merchant/merchantLanding.action" target="_blank" rel="external">证书、标识符及描述文件</a></li>
+<li>在标识符下选择商家 ID，点击右上角的添加按钮(+)。<br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_3.png" alt="Snip20160808_3"></li>
+<li><p>输入描述与和标识符，然后继续，检查设置然后点击注册，点击完成。<br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_5.png" alt="Snip20160808_5"></p>
+</li>
+<li><p>为商家 ID 配置证书，在开发者中心选择<a href="https://developer.apple.com/account/ios/identifiers/merchant/merchantLanding.action" target="_blank" rel="external">证书、标识符及描述文件</a>，在标识符下选择商家 ID。从列表中选择商家 ID，点击编辑。<br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_6.png" alt="Snip20160808_6"><br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_8.png" alt="Snip20160808_8"></p>
+</li>
+<li><p>点击创建证书， 根据提示生成证书签名请求（CSR），选择你的 CSR，然后点击生成下载证书。<br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_10.png" alt="Snip20160808_10"><br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_11.png" alt="Snip20160808_11"><br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_12.png" alt="Snip20160808_12"></p>
+</li>
+<li><p>如果你在钥匙串访问 (Keychain Access) 看到警告信息：该证书由一个未知的机构签发或者该证书有一个无效的发行人，请将 <a href="https://www.apple.com/certificateauthority/AppleWWDRCAG2.cer" target="_blank" rel="external">WWDR 中级证书 - G2</a> 以及 <a href="https://www.apple.com/certificateauthority/AppleRootCA-G2.cer" target="_blank" rel="external">Apple 根证书 - G2</a> 安装到你的钥匙串中。你可以在 <a href="https://www.apple.com/certificateauthority/" target="_blank" rel="external">https://www.apple.com/certificateauthority/</a> 下载到这两个证书。<br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_13.png" alt="Snip20160808_13"><br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_15.png" alt="Snip20160808_15"></p>
+</li>
+</ol>
+<h4 id="配置-App-ID"><a href="#配置-App-ID" class="headerlink" title="配置 App ID"></a>配置 App ID</h4><ol>
+<li>为应用建立建立一个不带通配符的App ID，并勾选上【Apple Pay】。<br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_19.png" alt="Snip20160808_19"></li>
+<li>在App IDs列表中编辑该App ID，进行Apple Pay的关联。<br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_20.png" alt="Snip20160808_20"><br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_21.png" alt="Snip20160808_21"><br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_24.png" alt="Snip20160808_24"><br> <img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_25.png" alt="Snip20160808_25"></li>
+<li>用该App ID生成和安装相应的Provisioning Profile文件。</li>
+</ol>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><h5 id="Xcode工程配置"><a href="#Xcode工程配置" class="headerlink" title="Xcode工程配置"></a>Xcode工程配置</h5><p>在 Xcode 的 【capabilities 面板】中为应用启用 【Apple Pay】功能。在 Apple Pay 这一行中点击开启，然后指定该应用使用的商家 ID 即可。<br><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-08-Snip20160808_17.png" alt="Snip20160808_17"></p>
+<h5 id="判断用户是否能够支付"><a href="#判断用户是否能够支付" class="headerlink" title="判断用户是否能够支付"></a>判断用户是否能够支付</h5><ol>
+<li><p>调用<code>PKPaymentAuthorizationViewController</code> 的 <code>canMakePayments</code> 方法可以判断当前设备是否支持 Apple Pay。</p>
+ <figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 判断是否支持Apple Pay</span></div><div class="line"><span class="keyword">if</span> <span class="comment">([PKPaymentAuthorizationViewController canMakePayments])</span> &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 如果 <code>canMakePayments</code> 返回 NO，则设备不支持 Apple Pay。不要显示 Apple Pay 按扭，你可以选择使用其它的支付方式。</p>
+</li>
+<li><p>调用 <code>PKPaymentAuthorizationViewController</code> 的方法 <code>canMakePaymentsUsingNetworks:(NSArray&lt;NSString *&gt; *)supportedNetworks</code> 判断用户是否能使用你支持的支付网络完成付款。  </p>
+<p> <code>canMakePaymentsUsingNetworks:</code>方法需要传递一个支持的支付网络数组。支付网络包括以下类型：</p>
+ <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">extern</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> PKPaymentNetworkAmex <span class="built_in">NS_AVAILABLE</span>(NA, <span class="number">8</span>_0);	<span class="comment">// 美国运通卡</span></div><div class="line"><span class="keyword">extern</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> PKPaymentNetworkChinaUnionPay <span class="built_in">NS_AVAILABLE</span>(NA, <span class="number">9</span>_2);	<span class="comment">// 中国银联卡</span></div><div class="line"><span class="keyword">extern</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> PKPaymentNetworkDiscover <span class="built_in">NS_AVAILABLE</span>(NA, <span class="number">9</span>_0);	<span class="comment">// 美国发现卡</span></div><div class="line"><span class="keyword">extern</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> PKPaymentNetworkInterac <span class="built_in">NS_AVAILABLE</span>(NA, <span class="number">9</span>_2);	<span class="comment">// 加拿大Interac银行卡</span></div><div class="line"><span class="keyword">extern</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> PKPaymentNetworkMasterCard <span class="built_in">NS_AVAILABLE</span>(NA, <span class="number">8</span>_0);	<span class="comment">// 万事达卡</span></div><div class="line"><span class="keyword">extern</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> PKPaymentNetworkPrivateLabel <span class="built_in">NS_AVAILABLE</span>(NA, <span class="number">9</span>_0);	<span class="comment">// 信用卡、借记卡</span></div><div class="line"><span class="keyword">extern</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> PKPaymentNetworkVisa <span class="built_in">NS_AVAILABLE</span>(NA, <span class="number">8</span>_0);	<span class="comment">// 维萨卡</span></div></pre></td></tr></table></figure>
+<p> 如果 <code>canMakePayementsUsingNetworks:</code>返回 NO，则表示设备支持 Apple Pay，但是用户并没有为任何请求的支付网络添加银行卡。你可以选择显示一个支付设置按扭，引导用户添加银行卡。如果用户点击该按扭，则开始设置新的银行卡流程 (例如，通过调用 openPaymentSetup 方法)。</p>
+ <figure class="highlight hsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 引导用户添加银行卡</span></div><div class="line"><span class="comment">// 判断是否能打开卡包</span></div><div class="line"><span class="keyword">if</span> ([PKPassLibrary isPassLibraryAvailable]) &#123;</div><div class="line">   PKPassLibrary * pk = [[PKPassLibrary <span class="keyword">alloc</span>] init]<span class="comment">;</span></div><div class="line">   [pk openPaymentSetup]<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+ <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 银行卡类型</span></div><div class="line"><span class="built_in">NSArray</span> * supportedNetworks = @[PKPaymentNetworkChinaUnionPay, PKPaymentNetworkPrivateLabel, PKPaymentNetworkInterac];</div><div class="line"></div><div class="line"><span class="comment">// 判断是否支持Apple Pay</span></div><div class="line"><span class="keyword">if</span> ([PKPaymentAuthorizationViewController canMakePayments]) &#123;</div><div class="line">   <span class="keyword">self</span>.paymentButton = [PKPaymentButton buttonWithType:PKPaymentButtonTypeBuy style:PKPaymentButtonStyleWhiteOutline];</div><div class="line">   [<span class="keyword">self</span>.paymentButton addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(paymentTapped:) forControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> ([PKPaymentAuthorizationViewController canMakePaymentsUsingNetworks:supportedNetworks]) &#123;</div><div class="line">   <span class="comment">// 添加银行卡</span></div><div class="line">   <span class="keyword">self</span>.paymentButton = [[PKPaymentButton alloc] initWithPaymentButtonType:PKPaymentButtonTypeSetUp paymentButtonStyle:PKPaymentButtonStyleWhiteOutline];</div><div class="line">   [<span class="keyword">self</span>.paymentButton addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(paymentSetupTapped:) forControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (<span class="keyword">self</span>.paymentButton != <span class="literal">nil</span>) &#123;</div><div class="line">   [<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.paymentButton];</div><div class="line">   <span class="keyword">self</span>.paymentButton.center = <span class="built_in">CGPointMake</span>(<span class="number">200</span>, <span class="number">100</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+ <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)<span class="string">paymentSetupTapped:</span>(PKPaymentButton *) sender &#123;</div><div class="line">   <span class="comment">// 判断是否打开卡包</span></div><div class="line">   <span class="keyword">if</span> ([PKPassLibrary isPassLibraryAvailable]) &#123;</div><div class="line">       PKPassLibrary * pk = [[PKPassLibrary alloc] init];</div><div class="line">       [pk openPaymentSetup];</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="显示支付按钮"><a href="#显示支付按钮" class="headerlink" title="显示支付按钮"></a>显示支付按钮</h5><p>使用 <code>PKPayementButton</code> 方法在初始化支付请求时创建带商标的 Apple Pay 按扭。</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ (instance<span class="keyword">type</span>)buttonWithType:(<span class="type">PKPaymentButtonType</span>)buttonType style:(<span class="type">PKPaymentButtonStyle</span>)buttonStyle;</div></pre></td></tr></table></figure>
+<p>PKPaymentButtonType按钮类型：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">PKPaymentButtonTypePlain = <span class="number">0</span>,  <span class="comment">// 显示文字【Pay】</span></div><div class="line">PKPaymentButtonTypeBuy,		  <span class="comment">// 显示文字【Buy with Pay】</span></div><div class="line">PKPaymentButtonTypeSetUp NS_ENUM_AVAILABLE_IOS(<span class="number">9</span>_0) <span class="comment">// 显示文字【Set up Pay】</span></div></pre></td></tr></table></figure>
+<p>PKPaymentButtonStyle样式类型：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">PKPaymentButtonStyleWhite = <span class="number">0</span>, <span class="comment">// 白底黑字</span></div><div class="line">PKPaymentButtonStyleWhiteOutline, <span class="comment">// 白底黑字，黑色边框</span></div><div class="line">PKPaymentButtonStyleBlack		  <span class="comment">// 黑底白字</span></div></pre></td></tr></table></figure>
+<h5 id="创建支付请求"><a href="#创建支付请求" class="headerlink" title="创建支付请求"></a>创建支付请求</h5><p>支付请求是 PKPayementRequest 类的一个实例。一个支持请求包含用户支付的物品概要清单、可选配送方式列表、用户需提供的配送信息、商家的信息以及支付处理机构。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)<span class="string">paymentTapped:</span>(PKPaymentButton *) sender &#123;</div><div class="line">    <span class="comment">// 创建支付请求</span></div><div class="line">    PKPaymentRequest * paymentRequest = [[PKPaymentRequest alloc] init];</div><div class="line"></div><div class="line">    <span class="comment">// 配置商家ID</span></div><div class="line">    paymentRequest.merchantIdentifier = @<span class="string">"merchant.me.chaosky.applepay"</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 配置货币代码及国家代码</span></div><div class="line">    paymentRequest.currencyCode = @<span class="string">"CNY"</span>;</div><div class="line">    paymentRequest.countryCode = @<span class="string">"CN"</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 支持的支付网络，用户能使用类型的银行卡</span></div><div class="line">    paymentRequest.supportedNetworks = @[PKPaymentNetworkChinaUnionPay, PKPaymentNetworkPrivateLabel];</div><div class="line"></div><div class="line">    <span class="comment">// 商家支付能力，商家的支付网络</span></div><div class="line">    paymentRequest.merchantCapabilities = PKMerchantCapability3DS | PKMerchantCapabilityEMV;</div><div class="line"></div><div class="line">    <span class="comment">// 是否显示发票收货地址</span></div><div class="line">    paymentRequest.requiredBillingAddressFields = PKAddressFieldNone;</div><div class="line"></div><div class="line">    <span class="comment">// 是否显示快递地址</span></div><div class="line">    paymentRequest.requiredShippingAddressFields = PKAddressFieldAll;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// 自定义联系信息</span></div><div class="line">    PKContact *contact = [[PKContact alloc] init];</div><div class="line"></div><div class="line">    NSPersonNameComponents *name = [[NSPersonNameComponents alloc] init];</div><div class="line">    name.givenName = @<span class="string">"天祥"</span>;</div><div class="line">    name.familyName = @<span class="string">"林"</span>;</div><div class="line">    contact.name = name;</div><div class="line"></div><div class="line">    CNMutablePostalAddress *address = [[CNMutablePostalAddress alloc] init];</div><div class="line">    address.street = @<span class="string">"天府广场"</span>;</div><div class="line">    address.city = @<span class="string">"成都"</span>;</div><div class="line">    address.state = @<span class="string">"四川"</span>;</div><div class="line">    address.postalCode = @<span class="string">"614100"</span>;</div><div class="line">    contact.postalAddress = address;</div><div class="line"></div><div class="line">    contact.emailAddress = @<span class="string">"chaosky.me@gmail.com"</span>;</div><div class="line">    contact.phoneNumber = [CNPhoneNumber <span class="string">phoneNumberWithStringValue:</span>@<span class="string">"1234567890"</span>];</div><div class="line">    paymentRequest.shippingContact = contact;</div><div class="line"></div><div class="line">    <span class="comment">// 配送方式</span></div><div class="line">    paymentRequest.shippingMethods = [self <span class="string">shippingMethodsForContact:</span>contact];</div><div class="line"></div><div class="line">    <span class="comment">// 默认配送类型</span></div><div class="line">    paymentRequest.shippingType = PKShippingTypeShipping;</div><div class="line"></div><div class="line">    <span class="comment">// 更新邮费</span></div><div class="line">    self.selectedShippingMethod = paymentRequest.shippingMethods[<span class="number">0</span>];</div><div class="line">    [self <span class="string">updateShippingCost:</span>self.selectedShippingMethod];</div><div class="line"></div><div class="line">    <span class="comment">// 支付汇总项</span></div><div class="line">    paymentRequest.paymentSummaryItems = self.summaryItems;</div><div class="line"></div><div class="line">    <span class="comment">// 附加数据</span></div><div class="line">    paymentRequest.applicationData = [@<span class="string">"buyid=123456"</span> <span class="string">dataUsingEncoding:</span>NSUTF8StringEncoding];</div><div class="line"></div><div class="line">    <span class="comment">// 验证用户支付授权</span></div><div class="line">    PKPaymentAuthorizationViewController * paymentAuthVC = [[PKPaymentAuthorizationViewController alloc] <span class="string">initWithPaymentRequest:</span>paymentRequest];</div><div class="line">    paymentAuthVC.delegate = self;</div><div class="line"></div><div class="line">    [self <span class="string">presentViewController:</span>paymentAuthVC <span class="string">animated:</span>YES <span class="string">completion:</span>nil];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 更新邮费</span></div><div class="line">- (<span class="keyword">void</span>)<span class="string">updateShippingCost:</span>(PKShippingMethod *) shippingMethod &#123;</div><div class="line">    <span class="comment">// 支付汇总项</span></div><div class="line">    <span class="comment">// 12.75 小计</span></div><div class="line">    NSDecimalNumber * subtotalAmount = [NSDecimalNumber <span class="string">decimalNumberWithMantissa:</span><span class="number">1275</span> <span class="string">exponent:</span><span class="number">-2</span> <span class="string">isNegative:</span>NO];</div><div class="line">    PKPaymentSummaryItem * subtotal = [PKPaymentSummaryItem <span class="string">summaryItemWithLabel:</span>@<span class="string">"小计"</span> <span class="string">amount:</span>subtotalAmount];</div><div class="line"></div><div class="line">    <span class="comment">// 2.00 折扣优惠</span></div><div class="line">    NSDecimalNumber * discountAmount = [NSDecimalNumber <span class="string">decimalNumberWithMantissa:</span><span class="number">200</span> <span class="string">exponent:</span><span class="number">-2</span> <span class="string">isNegative:</span>YES];</div><div class="line">    PKPaymentSummaryItem * discount = [PKPaymentSummaryItem <span class="string">summaryItemWithLabel:</span>@<span class="string">"折扣"</span> <span class="string">amount:</span>discountAmount];</div><div class="line"></div><div class="line">    <span class="comment">// 邮费</span></div><div class="line">    PKPaymentSummaryItem * shippingCost = [PKPaymentSummaryItem <span class="string">summaryItemWithLabel:</span>@<span class="string">"邮费"</span> <span class="string">amount:</span>shippingMethod.amount];</div><div class="line"></div><div class="line">    <span class="comment">// 总计项</span></div><div class="line">    <span class="comment">// 总计</span></div><div class="line">    NSDecimalNumber *totalAmount = [NSDecimalNumber zero];</div><div class="line">    totalAmount = [totalAmount <span class="string">decimalNumberByAdding:</span>subtotal.amount];</div><div class="line">    totalAmount = [totalAmount <span class="string">decimalNumberByAdding:</span>discount.amount];</div><div class="line">    totalAmount = [totalAmount <span class="string">decimalNumberByAdding:</span>shippingCost.amount];</div><div class="line">    PKPaymentSummaryItem * total = [PKPaymentSummaryItem <span class="string">summaryItemWithLabel:</span>@<span class="string">"千锋互联"</span> <span class="string">amount:</span>totalAmount];</div><div class="line"></div><div class="line">    self.summaryItems = @[subtotal, discount, shippingCost, total];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 根据用户地址获取配送方式</span></div><div class="line">- (NSArray *)<span class="string">shippingMethodsForContact:</span>(PKContact *) contact &#123;</div><div class="line">    <span class="comment">//配置快递方式</span></div><div class="line">    NSDecimalNumber * sfAmount = [NSDecimalNumber <span class="string">decimalNumberWithString:</span>@<span class="string">"20.00"</span>];</div><div class="line">    PKShippingMethod * sfShipping = [PKShippingMethod <span class="string">summaryItemWithLabel:</span>@<span class="string">"顺丰"</span> <span class="string">amount:</span>sfAmount];</div><div class="line">    sfShipping.identifier = @<span class="string">"shunfeng"</span>;</div><div class="line">    sfShipping.detail = @<span class="string">"24小时内送达"</span>;</div><div class="line"></div><div class="line">    NSDecimalNumber * stAmount = [NSDecimalNumber <span class="string">decimalNumberWithString:</span>@<span class="string">"10.00"</span>];</div><div class="line">    PKShippingMethod * stShipping = [PKShippingMethod <span class="string">summaryItemWithLabel:</span>@<span class="string">"申通"</span> <span class="string">amount:</span>stAmount];</div><div class="line">    stShipping.identifier = @<span class="string">"shentong"</span>;</div><div class="line">    stShipping.detail = @<span class="string">"3天内送达"</span>;</div><div class="line"></div><div class="line">    NSDecimalNumber * tcAmount = [NSDecimalNumber <span class="string">decimalNumberWithString:</span>@<span class="string">"8.00"</span>];</div><div class="line">    PKShippingMethod * tcShipping = [PKShippingMethod <span class="string">summaryItemWithLabel:</span>@<span class="string">"同城快递"</span> <span class="string">amount:</span>tcAmount];</div><div class="line">    tcShipping.identifier = @<span class="string">"tongcheng"</span>;</div><div class="line">    tcShipping.detail = @<span class="string">"12小时送达"</span>;</div><div class="line"></div><div class="line">    NSArray * shippingMethods = nil;</div><div class="line">    <span class="keyword">if</span> ([contact.postalAddress.city <span class="string">isEqualToString:</span>@<span class="string">"成都"</span>]) &#123;</div><div class="line">        shippingMethods = [NSArray <span class="string">arrayWithObjects:</span>sfShipping, stShipping, tcShipping, nil];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        shippingMethods = @[sfShipping, stShipping];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> shippingMethods;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>PKMerchantCapability枚举类型</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">//</span>    PKMerchantCapability3DS                                 = <span class="number">1</span>UL &lt;&lt; <span class="number">0</span>,   <span class="regexp">//</span> <span class="number">3</span>DS卡（磁条卡）</div><div class="line"><span class="regexp">//</span>    PKMerchantCapabilityEMV                                 = <span class="number">1</span>UL &lt;&lt; <span class="number">1</span>,   <span class="regexp">//</span> EMV卡（IC卡）</div><div class="line"><span class="regexp">//</span>    PKMerchantCapabilityCredit NS_ENUM_AVAILABLE_IOS(<span class="number">9</span>_0)   = <span class="number">1</span>UL &lt;&lt; <span class="number">2</span>,   <span class="regexp">//</span> 信用卡</div><div class="line"><span class="regexp">//</span>    PKMerchantCapabilityDebit  NS_ENUM_AVAILABLE_IOS(<span class="number">9</span>_0)   = <span class="number">1</span>UL &lt;&lt; <span class="number">3</span>    <span class="regexp">//</span> 借记卡</div></pre></td></tr></table></figure>
+<p>PKAddressField枚举类型</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/    PKAddressFieldNone                              = 0UL,      /</span><span class="regexp">/ 不需要地址</span></div><div class="line">/<span class="regexp">/    PKAddressFieldPostalAddress                     = 1UL &lt;&lt; 0, /</span><span class="regexp">/ 完整街道地址，包括名字、街道、城市、地区/</span>省份、邮编、国家</div><div class="line">/<span class="regexp">/    PKAddressFieldPhone                             = 1UL &lt;&lt; 1, /</span><span class="regexp">/ 电话号码</span></div><div class="line">/<span class="regexp">/    PKAddressFieldEmail                             = 1UL &lt;&lt; 2, /</span><span class="regexp">/ 邮箱</span></div><div class="line">/<span class="regexp">/    PKAddressFieldName NS_ENUM_AVAILABLE_IOS(8_3)   = 1UL &lt;&lt; 3, /</span><span class="regexp">/ 名字</span></div><div class="line">/<span class="regexp">/    PKAddressFieldAll                               = (PKAddressFieldPostalAddress|PKAddressFieldPhone|PKAddressFieldEmail|PKAddressFieldName) /</span><span class="regexp">/ 以上所有都具备</span></div></pre></td></tr></table></figure>
+<p>// PKShippingType配送类型</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">//</span>    PKShippingTypeShipping,   <span class="regexp">//</span> 第三方配送（默认），如顺丰、申通</div><div class="line"><span class="regexp">//</span>    PKShippingTypeDelivery,   <span class="regexp">//</span> 商家自己配送，如京东、披萨、花店、蛋糕店</div><div class="line"><span class="regexp">//</span>    PKShippingTypeStorePickup, <span class="regexp">//</span> 上门取货</div><div class="line"><span class="regexp">//</span>    PKShippingTypeServicePickup <span class="regexp">//</span> 服务收件，如京东设置的自提点</div></pre></td></tr></table></figure>
+<h6 id="一系列的支付汇总项"><a href="#一系列的支付汇总项" class="headerlink" title="一系列的支付汇总项"></a>一系列的支付汇总项</h6><p>由 <code>PKPaymentSummaryItem</code> 类表示支付请求中的不同部分。一个支付请求包括多个支付汇总项，一般包括：小计、折扣、配送费用、税以及总计。如果你没有其它任何额外的费用 (例如，配送或税)，那么支付的总额直接是所有购买商品费用的总和。关于每一项商品的费用的详细信息你需要在应用程序的其它合适位置显示。</p>
+<p>每一个汇总项都有标签和金额两个部分。标签是对该项的可读描述。金额对应于所需支付的金额。一个支付请求中的所有金额都使用该请求中指定的支付货币类型。对于折扣和优惠券，其金额被设置为负值。</p>
+<p>某些场景下，如果在支付授权的时候还不能获取应当支付的费用(例如，出租车收费)，则使用 <code>PKPaymentSummaryItemTypePending</code> 类型做小计项，并将其金额值设置为 0.0。系统随后会设置该项的金额值。</p>
+<p>汇总项列表中最后一项是总计项。总计项的金额是其它所有汇总项的金额的和。总计项的显示不同用于其它项。在该项中，你应该使用你的公司名称作为其标签，使用所有其它项的金额之和作为其金额值。最后，使用 paymentSummaryItems 属性将所有汇总项都添加到支付请求中。</p>
+<blockquote>
+<p>汇总项使用 NSDecimalNumber 类存储金额，并且金额使用 10 进制数表示。如示例代码演示的一样，可以通过显示地指定小数部分与指数部分创建该类的实例，也可以直接使用字符串的方式指定金额。在财务计算中绝大部分情况下都是使用的 10 进制数进行计算的，例如，计算 5% 的折扣。</p>
+</blockquote>
+<h6 id="配送方式的支付汇总项"><a href="#配送方式的支付汇总项" class="headerlink" title="配送方式的支付汇总项"></a>配送方式的支付汇总项</h6><p>为每一个可选的配送方式创建一个 <code>PKShippingMethod</code> 实例。与其它支付汇总项一样，配送方式也有一个用户可读的标签，例如标准配送或者可隔天配送，和一个配送金额值。与其它汇总项不同的是，配送方法有一个 detail 属性值，例如，7 月 29 日送达或者 24 小时之内送达等等。该属性值说明不同配送方式之间的区别。</p>
+<p>为了在委托方法中区分不同的配送方式，你可以使用 identifier 属性。有些配送方式并不是在所有地区都是可以使用的，或者它们费用会根据配送地址的不同而发生变化。你需要在用户选择配送地址或方法时更新其信息。</p>
+<h6 id="指定应用程序支持的支付处理机制"><a href="#指定应用程序支持的支付处理机制" class="headerlink" title="指定应用程序支持的支付处理机制"></a>指定应用程序支持的支付处理机制</h6><p>merchantCapabilities 属性值说明应用程序支持的支付处理协议。3DS 协议是须支持的支付处理协议， EMV 是可选的支付处理协议。</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Supports 3DS only</span></div><div class="line">paymentRequest.merchantCapabilities = PKMerchantCapability3DS;</div><div class="line"></div><div class="line"><span class="comment">// Supports both 3DS and EMV</span></div><div class="line">paymentRequest.merchantCapabilities = PKMerchantCapability3DS <span class="string">| PKMerchantCapabilityEMV;</span></div></pre></td></tr></table></figure>
+<h6 id="配送信息和账单信息"><a href="#配送信息和账单信息" class="headerlink" title="配送信息和账单信息"></a>配送信息和账单信息</h6><p>requiredBillingAddressFields 属性和 requiredShippingAddressFields 属性可以设置所需的账单信息和配送信息。</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">paymentRequest.<span class="attr">requiredBillingAddressFields</span> = PKAddressFieldEmail;</div><div class="line">paymentRequest.<span class="attr">requiredBillingAddressFields</span> = PKAddressFieldEmail | PKAddressFieldPostalAddress;</div></pre></td></tr></table></figure>
+<p>如果已有最新账单信息以及配送联系信息，你可以直接为支付请求设置这些值。 Apple Pay 会默认使用这些信息。但是，用户仍然可以选择在本次支付中使用其它联系信息。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">PKContact *contact = [[PKContact alloc] init]<span class="comment">;</span></div><div class="line"></div><div class="line">NSPersonNameComponents *name = [[NSPersonNameComponents alloc] init]<span class="comment">;</span></div><div class="line">name.givenName = @<span class="string">"天祥"</span><span class="comment">;</span></div><div class="line">name.familyName = @<span class="string">"林"</span><span class="comment">;</span></div><div class="line">contact.name = name<span class="comment">;</span></div><div class="line"></div><div class="line">CNMutablePostalAddress *<span class="keyword">address </span>= [[CNMutablePostalAddress alloc] init]<span class="comment">;</span></div><div class="line"><span class="keyword">address.street </span>= @<span class="string">"天府广场"</span><span class="comment">;</span></div><div class="line"><span class="keyword">address.city </span>= @<span class="string">"成都"</span><span class="comment">;</span></div><div class="line"><span class="keyword">address.state </span>= @<span class="string">"四川"</span><span class="comment">;</span></div><div class="line"><span class="keyword">address.postalCode </span>= @<span class="string">"614100"</span><span class="comment">;</span></div><div class="line">contact.postalAddress = <span class="keyword">address;</span></div><div class="line"></div><div class="line">contact.emailAddress = @<span class="string">"chaosky.me@gmail.com"</span><span class="comment">;</span></div><div class="line">contact.phoneNumber = [CNPhoneNumber phoneNumberWithStringValue:@<span class="string">"1234567890"</span>]<span class="comment">;</span></div><div class="line">paymentRequest.<span class="keyword">shippingContact </span>= contact<span class="comment">;</span></div></pre></td></tr></table></figure>
+<h5 id="授权支付"><a href="#授权支付" class="headerlink" title="授权支付"></a>授权支付</h5><p>支付授权过程是由支付授权视图控制器与其委托合作完成的。支付授权视图控制器做了两件事：  </p>
+<ul>
+<li><p>让用户选择支付请求所需的账单信息与配送信息。</p>
+</li>
+<li><p>让用户授权支付操作。</p>
+</li>
+</ul>
+<p>用户与视图控制器交互时，委托方法会被系统调用，所以在这些方法中你的应用可以更新所要显示的信息。例如在配送地址修改后更新配送价格。在用户授权支付请求后此方法还会被调用一次。</p>
+<h6 id="使用委托方法更新配送方式与配送费用"><a href="#使用委托方法更新配送方式与配送费用" class="headerlink" title="使用委托方法更新配送方式与配送费用"></a>使用委托方法更新配送方式与配送费用</h6><p>当用户输入配送信息时，授权视图控制器会调用委托的 paymentAuthorizationViewController:didSelectShippingContact:completion: 方法和 paymentAuthorizationViewController:didSelectShippingMethod:completion: 方法。你可以实现这两个方法来更新你的支付请求。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 用户更改配送地址</span></div><div class="line">- (<span class="keyword">void</span>)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didSelectShippingContact:(PKContact *)contact completion:(<span class="keyword">void</span> (^)(PKPaymentAuthorizationStatus, <span class="built_in">NSArray</span>&lt;PKShippingMethod *&gt; * _Nonnull, <span class="built_in">NSArray</span>&lt;PKPaymentSummaryItem *&gt; * _Nonnull))completion &#123;</div><div class="line">    <span class="keyword">self</span>.selectedContact = contact;</div><div class="line"></div><div class="line">    <span class="built_in">NSArray</span> *shippingMethods = [<span class="keyword">self</span> shippingMethodsForContact:contact];</div><div class="line">    <span class="comment">// 重新计算邮费</span></div><div class="line">    <span class="keyword">self</span>.selectedShippingMethod = shippingMethods[<span class="number">0</span>];</div><div class="line">    [<span class="keyword">self</span> updateShippingCost:<span class="keyword">self</span>.selectedShippingMethod];</div><div class="line"></div><div class="line">    completion(PKPaymentAuthorizationStatusSuccess, shippingMethods, <span class="keyword">self</span>.summaryItems);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 用户更改配送方式</span></div><div class="line">- (<span class="keyword">void</span>)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didSelectShippingMethod:(PKShippingMethod *)shippingMethod completion:(<span class="keyword">void</span> (^)(PKPaymentAuthorizationStatus, <span class="built_in">NSArray</span>&lt;PKPaymentSummaryItem *&gt; * _Nonnull))completion &#123;</div><div class="line">    <span class="keyword">self</span>.selectedShippingMethod = shippingMethod;</div><div class="line">    [<span class="keyword">self</span> updateShippingCost: shippingMethod];</div><div class="line">    completion(PKPaymentAuthorizationStatusSuccess, <span class="keyword">self</span>.summaryItems);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="支付被授权时创建支付令牌"><a href="#支付被授权时创建支付令牌" class="headerlink" title="支付被授权时创建支付令牌"></a>支付被授权时创建支付令牌</h6><p>当用户授权一个支付请求时，支付框架的 Apple 服务器与安全模块会协作创建一个支付令牌。你可以在委托方法 <code>paymentAuthorizationViewController:didAuthorizePayment:completion:</code> 中将支付信息以及其它你需要处理的信息，例如配送地址和购物车标识符，一起发送至你的服务器。这个过程如下所示：</p>
+<ol>
+<li>支付框架将支付请求发送至安全模块。只有安全模块会访问令牌化后的设备相关的支付卡号。</li>
+<li>安全模块将特定卡的支付数据和商家信息一起加密(加密后的数据只有 Apple 可以访问)，然后将加密后的数据发送至支付框架。支付框架再将这些数据发送至 Apple 的服务器。</li>
+<li>Apple 服务器使用商家标识证书将这些支付数据重新加密。这些令牌只能由你以及那些与你共享商户标识证书的人读取。随后服务器生成支付令牌再将其发送至设备。</li>
+<li>支付框架调用 paymentAuthorizationViewController:didAuthorizePayment:completion: 方法将令牌发送至你的委托。你在委托方法中再将其发送至你的服务器。</li>
+</ol>
+<p>在服务器上的处理操作取决于你是自己处理支付还是使用其它支付平台。不过，在两种情况下服务器都得处理订单再将处理结果返回给设备。在设备上，委托再将处理结果传入完成处理方法中。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 用户已经授权支付</span></div><div class="line">- (<span class="keyword">void</span>)<span class="string">paymentAuthorizationViewController:</span>(PKPaymentAuthorizationViewController *)controller <span class="string">didAuthorizePayment:</span>(PKPayment *)payment <span class="string">completion:</span>(<span class="keyword">void</span> (^)(PKPaymentAuthorizationStatus))completion</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 将付款信息与其它处理订单的必需信息一起发送至你的服务器。如支付令牌、配送地址、账单地址。</span></div><div class="line">    <span class="comment">// ...</span></div><div class="line"></div><div class="line">    <span class="comment">// 从你的服务器获取支付授权状态，验证支付结果</span></div><div class="line">    PKPaymentAuthorizationStatus status = PKPaymentAuthorizationStatusSuccess;</div><div class="line">    completion(status);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="授权支付完成"><a href="#授权支付完成" class="headerlink" title="授权支付完成"></a>授权支付完成</h6><p>支付框架显示完支付事务状态后，授权视图控制器会调用委托的 <code>aymentAuthorizationViewControllerDidFinish:</code> 方法。在此方法的实现中，你应该释放授权视图控制器然后再显示与应用相关的支付信息界面。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>) <span class="string">paymentAuthorizationViewControllerDidFinish:</span>(PKPaymentAuthorizationViewController *)controller</div><div class="line">&#123;</div><div class="line">    [controller <span class="string">dismissViewControllerAnimated:</span>YES <span class="string">completion:</span>nil];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="处理支付"><a href="#处理支付" class="headerlink" title="处理支付"></a>处理支付</h5><p>处理一次付款事务一般包括以下几个步骤：</p>
+<ol>
+<li>将付款信息与其它处理订单的必需信息一起发送至你的服务器。</li>
+<li>验证付款数据的散列值与签名。</li>
+<li>解密出支付数据。</li>
+<li>将支付数据提交给付款处理网络。</li>
+<li>将订单信息提交至你的订单跟踪系统。</li>
+</ol>
+<p>你有两种可选的方式处理付款过程：</p>
+<ol>
+<li>利用已有的支付平台来处理付款。</li>
+<li>自己实现付款过程。</li>
+</ol>
+<p>一次付款的处理过程通常情况下包括上述的大部分步骤。</p>
+<p>访问、验证以及处理付款信息都需要你懂得一些加密领域的知识，比如 SHA-1 哈希、访问和验证 PKCS #7 签名以及如何实现椭圆曲线 Diiffie-Hellman 密钥交换等。如果你没有这些加密的背景知识，我们建议你使用已有支付平台，它们会替你完成这些繁琐的操作。关于 Apple Pay 已支持的第三方支付平台，请参考 <a href="https://developer.apple.com/apple-pay/" target="_blank" rel="external">https://developer.apple.com/apple-pay/</a>。</p>
+<p>付款数据是嵌套结构。支付令牌是 PKPaymentToken 类的实例。其 paymentData 属性值是一个 JSON 字典。该 JSON 字典包括用于验证信息有效性头信息以及加密后的付款数据。加密后的支付数据包括付款金额、持卡人姓名以及其它特定支付处理协议的信息。</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/PassKit/Reference/PaymentTokenJSON/Art/payment_data_structure_2x.png" alt="付款数据的数据结构"></p>
+<p>更多关于付款数据的数据结构，请参考<a href="https://developer.apple.com/library/ios/documentation/PassKit/Reference/PaymentTokenJSON/PaymentTokenJSON.html#//apple_ref/doc/uid/TP40014929" target="_blank" rel="external">支付令牌的格式</a>。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a href="https://developer.apple.com/apple-pay/" target="_blank" rel="external">官方Pay教程</a></li>
+<li><a href="https://developer.apple.com/apple-pay/get-started/cn/" target="_blank" rel="external">Apple Pay 中文入门</a></li>
+<li><a href="https://developer.apple.com/library/prerelease/content/ApplePay_Guide/index.html#//apple_ref/doc/uid/TP40014764-CH1-SW1" target="_blank" rel="external">Apple Pay 编程指南</a></li>
+</ol>
+<h2 id="-Pay-VS-In-App-Purchase"><a href="#-Pay-VS-In-App-Purchase" class="headerlink" title=" Pay VS In-App Purchase"></a> Pay VS In-App Purchase</h2><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center"> Pay</th>
+<th style="text-align:center">In-App Purchase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>框架</td>
+<td style="text-align:center">PassKit</td>
+<td style="text-align:center">StoreKit</td>
+</tr>
+<tr>
+<td>适用范围</td>
+<td style="text-align:center"><strong>实体商品</strong>（如食品杂货、服装和电器）和<strong>服务</strong>（如俱乐部会员、酒店预订和活动门票）</td>
+<td style="text-align:center"><strong>销售虚拟商品</strong>，如适用于您的 App 的优质内容及订阅数字内容；程序内的内容和功能性；程序内货币服务；数码订阅</td>
+</tr>
+<tr>
+<td>支付处理</td>
+<td style="text-align:center">自己的支付平台处理付款</td>
+<td style="text-align:center">苹果公司处理付款</td>
+</tr>
+</tbody>
+</table>
+<h2 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a>代码下载</h2><p><a href="https://github.com/chaoskyme/Demo/tree/master/Payment" target="_blank" rel="external">https://github.com/chaoskyme/Demo/tree/master/Payment</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>天下大事，必作于细！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/WeChatPay.png" alt="Alex Lin WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/AliPay.png" alt="Alex Lin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/支付宝支付/" rel="tag"># 支付宝支付</a>
+          
+            <a href="/tags/微信支付/" rel="tag"># 微信支付</a>
+          
+            <a href="/tags/IAP/" rel="tag"># IAP</a>
+          
+            <a href="/tags/应用内支付/" rel="tag"># 应用内支付</a>
+          
+            <a href="/tags/Apple-Pay/" rel="tag"># Apple Pay</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/21/iOS-Notification/" rel="next" title="iOS 推送通知">
+                <i class="fa fa-chevron-left"></i> iOS 推送通知
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/30/iOS-Socket/" rel="prev" title="iOS Socket">
+                iOS Socket <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg"
+               alt="Alex Lin" />
+          <p class="site-author-name" itemprop="name">Alex Lin</p>
+          <p class="site-description motion-element" itemprop="description">嗨，我是林天祥，iOS 开发者，专注移动软件开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chaoskyme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iwillcomeback" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.v2ex.com/member/error" target="_blank" title="V2EX">
+                  
+                    <i class="fa fa-fw fa-rocket"></i>
+                  
+                  V2EX
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/chaosky" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-git"></i>
+                  
+                  Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/chaosky" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.devtang.com" title="唐巧的博客" target="_blank">唐巧的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://coolshell.cn" title="酷壳" target="_blank">酷壳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.codingnow.com" title="云风的博客" target="_blank">云风的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://axiaoxin.com" title="信妈的博客" target="_blank">信妈的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://huxos.me" title="胡骏的博客" target="_blank">胡骏的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.h2ero.cn/" title="h2ero的博客" target="_blank">h2ero的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nleo.me" title="胡中华的博客" target="_blank">胡中华的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dbarobin.com" title="温国兵的随想录" target="_blank">温国兵的随想录</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/bbf6898c0002" title="jackfrued的博客" target="_blank">jackfrued的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方支付"><span class="nav-number">1.</span> <span class="nav-text">第三方支付</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#弹出方式"><span class="nav-number">1.1.</span> <span class="nav-text">弹出方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网页"><span class="nav-number">1.1.1.</span> <span class="nav-text">网页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用APP"><span class="nav-number">1.1.2.</span> <span class="nav-text">调用APP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支付宝支付"><span class="nav-number">1.2.</span> <span class="nav-text">支付宝支付</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关资料"><span class="nav-number">1.2.1.</span> <span class="nav-text">相关资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#支付流程"><span class="nav-number">1.2.2.</span> <span class="nav-text">支付流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码集成流程"><span class="nav-number">1.2.3.</span> <span class="nav-text">代码集成流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信支付"><span class="nav-number">1.3.</span> <span class="nav-text">微信支付</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关文档"><span class="nav-number">1.3.1.</span> <span class="nav-text">相关文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#支付流程-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">支付流程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用内支付（In-App-Purchase）"><span class="nav-number">2.</span> <span class="nav-text">应用内支付（In-App Purchase）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关资料-1"><span class="nav-number">2.1.</span> <span class="nav-text">相关资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支付流程-2"><span class="nav-number">2.2.</span> <span class="nav-text">支付流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置App-ID"><span class="nav-number">2.2.1.</span> <span class="nav-text">配置App ID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置iTunes-Connect"><span class="nav-number">2.2.2.</span> <span class="nav-text">配置iTunes Connect</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主要代码实现"><span class="nav-number">2.2.3.</span> <span class="nav-text">主要代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接"><span class="nav-number">2.3.</span> <span class="nav-text">参考链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#苹果支付（-Pay）"><span class="nav-number">3.</span> <span class="nav-text">苹果支付（ Pay）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先决条件"><span class="nav-number">3.1.</span> <span class="nav-text">先决条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支付流程-3"><span class="nav-number">3.2.</span> <span class="nav-text">支付流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-Merchant-ID（商家ID）"><span class="nav-number">3.2.1.</span> <span class="nav-text">配置 Merchant ID（商家ID）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-App-ID"><span class="nav-number">3.2.2.</span> <span class="nav-text">配置 App ID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">3.2.3.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Xcode工程配置"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">Xcode工程配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#判断用户是否能够支付"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">判断用户是否能够支付</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#显示支付按钮"><span class="nav-number">3.2.3.3.</span> <span class="nav-text">显示支付按钮</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建支付请求"><span class="nav-number">3.2.3.4.</span> <span class="nav-text">创建支付请求</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#一系列的支付汇总项"><span class="nav-number">3.2.3.4.1.</span> <span class="nav-text">一系列的支付汇总项</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配送方式的支付汇总项"><span class="nav-number">3.2.3.4.2.</span> <span class="nav-text">配送方式的支付汇总项</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#指定应用程序支持的支付处理机制"><span class="nav-number">3.2.3.4.3.</span> <span class="nav-text">指定应用程序支持的支付处理机制</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配送信息和账单信息"><span class="nav-number">3.2.3.4.4.</span> <span class="nav-text">配送信息和账单信息</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#授权支付"><span class="nav-number">3.2.3.5.</span> <span class="nav-text">授权支付</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#使用委托方法更新配送方式与配送费用"><span class="nav-number">3.2.3.5.1.</span> <span class="nav-text">使用委托方法更新配送方式与配送费用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#支付被授权时创建支付令牌"><span class="nav-number">3.2.3.5.2.</span> <span class="nav-text">支付被授权时创建支付令牌</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#授权支付完成"><span class="nav-number">3.2.3.5.3.</span> <span class="nav-text">授权支付完成</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理支付"><span class="nav-number">3.2.3.6.</span> <span class="nav-text">处理支付</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">3.3.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-Pay-VS-In-App-Purchase"><span class="nav-number">4.</span> <span class="nav-text"> Pay VS In-App Purchase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码下载"><span class="nav-number">5.</span> <span class="nav-text">代码下载</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 83086, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 83086, xid: "2016/01/21/iOS-Payment/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/83086/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("eB68LUN0RozWUhG9EPHGOv7A-gzGzoHsz", "rVLoe96MWG2qWRXz9OJnGSpz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

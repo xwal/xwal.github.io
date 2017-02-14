@@ -1,0 +1,1209 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="0wsQzlCw_nicXQs7QbZ6n_aTyfoSkbeNQw6xpj3ScWo" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="QJ33ASIjWB" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Jailbreak,Cydia," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chaosky's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="更新日志
+本越狱教程在 Windows 和 Mac 上都可以。
+越狱前须知
+备份，备份，备份
+支持设备: iPhone 5s iPhone 6 iPhone 6+ iPhone 6s iPhone 6s+ iPhone 5E iPod Touch 6G iPad Mini 2 iPad Mini 3 iPad Mini 4 iPad Air iPad Air 2 iPad Pro
+支持固件版本：i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非官方iOS9.2-iOS9.3.3越狱图文教程">
+<meta property="og:url" content="http://chaosky.me/2016/12/07/Jailbreak-Using-Pangu-and-Cydia-Impactor/index.html">
+<meta property="og:site_name" content="Chaosky's Notes">
+<meta property="og:description" content="更新日志
+本越狱教程在 Windows 和 Mac 上都可以。
+越狱前须知
+备份，备份，备份
+支持设备: iPhone 5s iPhone 6 iPhone 6+ iPhone 6s iPhone 6s+ iPhone 5E iPod Touch 6G iPad Mini 2 iPad Mini 3 iPad Mini 4 iPad Air iPad Air 2 iPad Pro
+支持固件版本：i">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268035-640.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268173.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268041.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268176.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268178.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268050.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268053.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268070.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268059.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268062.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268065.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268073.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-QQ20161207-0@2x.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-QQ20161207-1@2x.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-QQ20161207-2@2x.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268088.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268091.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268094.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268097.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268100.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268103.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268106.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268112.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268115.jpg">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268118.jpg">
+<meta property="og:updated_time" content="2016-12-07T09:06:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="非官方iOS9.2-iOS9.3.3越狱图文教程">
+<meta name="twitter:description" content="更新日志
+本越狱教程在 Windows 和 Mac 上都可以。
+越狱前须知
+备份，备份，备份
+支持设备: iPhone 5s iPhone 6 iPhone 6+ iPhone 6s iPhone 6s+ iPhone 5E iPod Touch 6G iPad Mini 2 iPad Mini 3 iPad Mini 4 iPad Air iPad Air 2 iPad Pro
+支持固件版本：i">
+<meta name="twitter:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268035-640.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chaosky.me/2016/12/07/Jailbreak-Using-Pangu-and-Cydia-Impactor/"/>
+
+
+
+
+
+  <title> 非官方iOS9.2-iOS9.3.3越狱图文教程 | Chaosky's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=54252577";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chaosky's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">Getting Real。源码之前，了无秘密。</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-workspace">
+          <a href="/workspace" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cubes"></i> <br />
+            
+            工作空间
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skillmap">
+          <a href="/skillmap" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            技能树
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gate">
+          <a href="/gate" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            任意门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'WVe9S1RCHgLaWK_3xm3y','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2016/12/07/Jailbreak-Using-Pangu-and-Cydia-Impactor/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                非官方iOS9.2-iOS9.3.3越狱图文教程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-07T09:06:21+00:00">
+                2016-12-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2016-12-07T09:06:21+00:00">
+                2016-12-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/07/Jailbreak-Using-Pangu-and-Cydia-Impactor/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2016/12/07/Jailbreak-Using-Pangu-and-Cydia-Impactor/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2016/12/07/Jailbreak-Using-Pangu-and-Cydia-Impactor/" class="leancloud_visitors" data-flag-title="非官方iOS9.2-iOS9.3.3越狱图文教程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      552
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      2
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>更新日志</strong></p>
+<p>本越狱教程在 Windows 和 Mac 上都可以。</p>
+<h2 id="越狱前须知"><a href="#越狱前须知" class="headerlink" title="越狱前须知"></a>越狱前须知</h2><ol>
+<li>备份，备份，备份</li>
+<li>支持设备: iPhone 5s iPhone 6 iPhone 6+ iPhone 6s iPhone 6s+ iPhone 5E iPod Touch 6G iPad Mini 2 iPad Mini 3 iPad Mini 4 iPad Air iPad Air 2 iPad Pro</li>
+<li>支持固件版本：iOS9.2 ~ iOS9.3.3</li>
+<li>电脑或者 Mac 安装iTunes，保证设备电量充足</li>
+</ol>
+<a id="more"></a>
+<h2 id="越狱步骤"><a href="#越狱步骤" class="headerlink" title="越狱步骤"></a>越狱步骤</h2><h3 id="下载工具"><a href="#下载工具" class="headerlink" title="下载工具"></a>下载工具</h3><p>下载最新版的盘古越狱 IPA 文件。下载地址：<a href="http://www.iclarified.com/files/pangu/NvwaStone_1.0.ipa" target="_blank" rel="external">http://www.iclarified.com/files/pangu/NvwaStone_1.0.ipa</a></p>
+<p>下载 Cydia Impactor。下载地址：<a href="http://www.cydiaimpactor.com" target="_blank" rel="external">http://www.cydiaimpactor.com</a></p>
+<p>Mac</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268035-640.jpg" alt="268035-640"></p>
+<p>Windows</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268173.jpg" alt="268173"></p>
+<h3 id="安装-Impactor"><a href="#安装-Impactor" class="headerlink" title="安装 Impactor"></a>安装 Impactor</h3><p>Mac：双击 Impactor dmg 安装</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268041.jpg" alt="268041"></p>
+<p>Windows: 解压缩 Impactor zip</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268176.jpg" alt="268176"></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268178.jpg" alt="268178"></p>
+<h3 id="运行-Impactor-并-连接-iPhone"><a href="#运行-Impactor-并-连接-iPhone" class="headerlink" title="运行 Impactor 并 连接 iPhone"></a>运行 Impactor 并 连接 iPhone</h3><p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268050.jpg" alt="268050"></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268053.jpg" alt="268053"></p>
+<h3 id="安装-NvwaStone-IPA"><a href="#安装-NvwaStone-IPA" class="headerlink" title="安装 NvwaStone IPA"></a>安装 NvwaStone IPA</h3><p>拖拽 NvwaStone IPA 文件到 Cydia Impactor 应用中。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268070.jpg" alt="268070"></p>
+<p>拖拽进去以后，将会要求你输入 Apple ID 和 密码，用来对 IPA 文件签名并且能够运行在你的设备上。不幸的是，如果你没有开发者账号，IPA 文件签名只有7天有效，也就是只能运行7天。如果你有开发者账号 IPA 文件签名有1年。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268059.jpg" alt="268059"></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268062.jpg" alt="268062"></p>
+<p>Cydia Impactor 将会显示一个警告给开发者：这个应用将会撤销和替换该账号已有的开发证书，这可能会影响你现在的开发工作。<br><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268065.jpg" alt="268065"></p>
+<p>Cydia Impactor 将会签名 IPA 并 安装盘古越狱 APP 到你的设备上。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268073.jpg" alt="268073"></p>
+<h3 id="信任开发者描述文件"><a href="#信任开发者描述文件" class="headerlink" title="信任开发者描述文件"></a>信任开发者描述文件</h3><p>盘古越狱 APP 安装到设备上后，你需要信任开发者描述文件。</p>
+<p>点击【设置】——&gt; 【通用】——&gt; 【描述文件与设备管理】，找到你在 Cydia Impactor 中填写的对应邮箱地址。PS: 开发者账号不用信任即可。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-QQ20161207-0@2x.png" alt="QQ20161207-0@2x"></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-QQ20161207-1@2x.png" alt="QQ20161207-1@2x"></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-QQ20161207-2@2x.png" alt="QQ20161207-2@2x"></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268088.jpg" alt="268088"></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268091.jpg" alt="268091"></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268094.jpg" alt="268094"></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268097.jpg" alt="268097"></p>
+<h3 id="运行-盘古越狱-APP"><a href="#运行-盘古越狱-APP" class="headerlink" title="运行 盘古越狱 APP"></a>运行 盘古越狱 APP</h3><p>回到主界面，运行 盘古越狱 APP。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268100.jpg" alt="268100"></p>
+<p>允许通知</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268103.jpg" alt="268103"></p>
+<p>点击开始按钮</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268106.jpg" alt="268106"></p>
+<p>锁屏等待6秒钟，你将会收到你的设备已经越狱成功的通知。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268112.jpg" alt="268112"></p>
+<p>解锁设备，重新进入盘古越狱APP，正在准备越狱环境和安装 Cydia。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268115.jpg" alt="268115"></p>
+<p>完成后，屏幕会重启，Cydia出现在主界面上。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-12-07-268118.jpg" alt="268118"></p>
+<h3 id="重要提示"><a href="#重要提示" class="headerlink" title="重要提示"></a>重要提示</h3><p>每次重启设备后，需要重新运行盘古越狱 APP 来恢复越狱环境。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="http://onlinejailbreak.com/osx" target="_blank" rel="external">http://onlinejailbreak.com/osx</a></li>
+<li><a href="http://onlinejailbreak.com/windows" target="_blank" rel="external">http://onlinejailbreak.com/windows</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>天下大事，必作于细！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/WeChatPay.png" alt="Alex Lin WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/AliPay.png" alt="Alex Lin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Jailbreak/" rel="tag"># Jailbreak</a>
+          
+            <a href="/tags/Cydia/" rel="tag"># Cydia</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/13/Cocoa-Dependency-Manager/" rel="next" title="iOS 依赖库管理工具">
+                <i class="fa fa-chevron-left"></i> iOS 依赖库管理工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/07/Cydia-Sources-and-Tweaks/" rel="prev" title="Cydia 源 和 插件">
+                Cydia 源 和 插件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg"
+               alt="Alex Lin" />
+          <p class="site-author-name" itemprop="name">Alex Lin</p>
+          <p class="site-description motion-element" itemprop="description">嗨，我是林天祥，iOS 开发者，专注移动软件开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chaoskyme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iwillcomeback" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.v2ex.com/member/error" target="_blank" title="V2EX">
+                  
+                    <i class="fa fa-fw fa-rocket"></i>
+                  
+                  V2EX
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/chaosky" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-git"></i>
+                  
+                  Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/chaosky" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.devtang.com" title="唐巧的博客" target="_blank">唐巧的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://coolshell.cn" title="酷壳" target="_blank">酷壳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.codingnow.com" title="云风的博客" target="_blank">云风的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://axiaoxin.com" title="信妈的博客" target="_blank">信妈的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://huxos.me" title="胡骏的博客" target="_blank">胡骏的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.h2ero.cn/" title="h2ero的博客" target="_blank">h2ero的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nleo.me" title="胡中华的博客" target="_blank">胡中华的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dbarobin.com" title="温国兵的随想录" target="_blank">温国兵的随想录</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/bbf6898c0002" title="jackfrued的博客" target="_blank">jackfrued的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#越狱前须知"><span class="nav-number">1.</span> <span class="nav-text">越狱前须知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#越狱步骤"><span class="nav-number">2.</span> <span class="nav-text">越狱步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载工具"><span class="nav-number">2.1.</span> <span class="nav-text">下载工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Impactor"><span class="nav-number">2.2.</span> <span class="nav-text">安装 Impactor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行-Impactor-并-连接-iPhone"><span class="nav-number">2.3.</span> <span class="nav-text">运行 Impactor 并 连接 iPhone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-NvwaStone-IPA"><span class="nav-number">2.4.</span> <span class="nav-text">安装 NvwaStone IPA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信任开发者描述文件"><span class="nav-number">2.5.</span> <span class="nav-text">信任开发者描述文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行-盘古越狱-APP"><span class="nav-number">2.6.</span> <span class="nav-text">运行 盘古越狱 APP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要提示"><span class="nav-number">2.7.</span> <span class="nav-text">重要提示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 83086, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 83086, xid: "2016/12/07/Jailbreak-Using-Pangu-and-Cydia-Impactor/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/83086/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("eB68LUN0RozWUhG9EPHGOv7A-gzGzoHsz", "rVLoe96MWG2qWRXz9OJnGSpz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,1241 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="0wsQzlCw_nicXQs7QbZ6n_aTyfoSkbeNQw6xpj3ScWo" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="QJ33ASIjWB" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Tools,Setup Guide," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chaosky's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="更新日志
+
+2016-08-05 添加node、Python等终端命令
+2016-09-12 更新查找命令
+2016-11-24 更新 ruby、node、python的工具集
+
+
+工欲善其事，必先利其器。—— 工具篇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="macOS 开发配置手册——工具篇">
+<meta property="og:url" content="http://chaosky.me/2016/07/29/macOS-Setup-Guide-Tools/index.html">
+<meta property="og:site_name" content="Chaosky's Notes">
+<meta property="og:description" content="更新日志
+
+2016-08-05 添加node、Python等终端命令
+2016-09-12 更新查找命令
+2016-11-24 更新 ruby、node、python的工具集
+
+
+工欲善其事，必先利其器。—— 工具篇">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-01-Snip20160729_9.png">
+<meta property="og:updated_time" content="2016-11-24T00:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="macOS 开发配置手册——工具篇">
+<meta name="twitter:description" content="更新日志
+
+2016-08-05 添加node、Python等终端命令
+2016-09-12 更新查找命令
+2016-11-24 更新 ruby、node、python的工具集
+
+
+工欲善其事，必先利其器。—— 工具篇">
+<meta name="twitter:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-08-01-Snip20160729_9.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chaosky.me/2016/07/29/macOS-Setup-Guide-Tools/"/>
+
+
+
+
+
+  <title> macOS 开发配置手册——工具篇 | Chaosky's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=54252577";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chaosky's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">Getting Real。源码之前，了无秘密。</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-workspace">
+          <a href="/workspace" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cubes"></i> <br />
+            
+            工作空间
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skillmap">
+          <a href="/skillmap" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            技能树
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gate">
+          <a href="/gate" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            任意门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'WVe9S1RCHgLaWK_3xm3y','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2016/07/29/macOS-Setup-Guide-Tools/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                macOS 开发配置手册——工具篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-29T13:08:28+00:00">
+                2016-07-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2016-11-24T00:00:00+00:00">
+                2016-11-24
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/macOS/" itemprop="url" rel="index">
+                    <span itemprop="name">macOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/29/macOS-Setup-Guide-Tools/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2016/07/29/macOS-Setup-Guide-Tools/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2016/07/29/macOS-Setup-Guide-Tools/" class="leancloud_visitors" data-flag-title="macOS 开发配置手册——工具篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      3,063
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      14
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>更新日志</strong></p>
+<ul>
+<li>2016-08-05 添加node、Python等终端命令</li>
+<li>2016-09-12 更新<a href="#查找命令">查找命令</a></li>
+<li>2016-11-24 更新 ruby、node、python的工具集</li>
+</ul>
+<blockquote>
+<p>工欲善其事，必先利其器。—— 工具篇</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="命令行工具"><a href="#命令行工具" class="headerlink" title="命令行工具"></a>命令行工具</h2><h3 id="Xcode-Command-Line-Tools"><a href="#Xcode-Command-Line-Tools" class="headerlink" title="Xcode Command Line Tools"></a>Xcode Command Line Tools</h3><p>从 App store 或苹果开发者网站安装 <a href="https://developer.apple.com/xcode/" target="_blank" rel="external">Xcode</a> 。  </p>
+<p>紧接着，在终端中运行安装 <strong>Xcode Command Line Tools</strong>，执行命令：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ xcode-<span class="keyword">select</span> <span class="comment">--install</span></div></pre></td></tr></table></figure>
+<h3 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h3><p>zsh的介绍可以查看池老师的文章<a href="http://macshuo.com/?p=676" target="_blank" rel="external">终极 Shell</a></p>
+<h4 id="切换zsh"><a href="#切换zsh" class="headerlink" title="切换zsh"></a>切换zsh</h4><p>切换当前用户的shell，执行命令：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ chsh -s <span class="regexp">/bin/</span>zsh</div></pre></td></tr></table></figure>
+<p>执行时会要求输入密码</p>
+<h4 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh-my-zsh"></a>安装oh-my-zsh</h4><p>Oh My Zsh 介绍</p>
+<blockquote>
+<p>Oh My Zsh is an open source, community-driven framework for managing your zsh configuration. That sounds boring. Let’s try this again.<br>Oh My Zsh is a way of life! Once installed, your terminal prompt will become the talk of the town or your money back! Each time you interact with your command prompt, you’ll be able to take advantage of the hundreds of bundled plugins and pretty themes. Strangers will come up to you in cafés and ask you, “that is amazing. are you some sort of genius?” Finally, you’ll begin to get the sort of attention that you always felt that you deserved. …or maybe you’ll just use the time that you saved to start flossing more often.</p>
+</blockquote>
+<p>通过curl安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></div></pre></td></tr></table></figure>
+<h4 id="配置zsh"><a href="#配置zsh" class="headerlink" title="配置zsh"></a>配置zsh</h4><p>zsh 的配置主要集中在用户当前目录的.zshrc里，用 vim 或你喜欢的其他编辑器打开.zshrc，具体配置参见官方文档：<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">https://github.com/robbyrussell/oh-my-zsh</a></p>
+<h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><p>包管理工具可以让你安装和更新程序变得更方便，目前在 macOS 系统中最受欢迎的包管理工具是 Homebrew 。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>在安装 Homebrew 之前，需要将 <strong>Xcode Command Line Tools</strong> 安装完成，这样你就可以使用基于 <strong>Xcode Command Line Tools</strong> 编译的 Homebrew。</p>
+<p>在<strong>终端</strong>中执行以下命令，跟随指引，将完成 Hombrew 安装。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="regexp">/usr/</span>bin<span class="regexp">/ruby -e "$(curl -fsSL https:/</span><span class="regexp">/raw.githubusercontent.com/</span>Homebrew<span class="regexp">/install/m</span>aster<span class="regexp">/install)"</span></div></pre></td></tr></table></figure>
+<p>检查brew是否运行正常：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">brew </span>doctor</div></pre></td></tr></table></figure>
+<h4 id="Homebrew-基本使用"><a href="#Homebrew-基本使用" class="headerlink" title="Homebrew 基本使用"></a>Homebrew 基本使用</h4><p>安装程序包：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">brew </span><span class="keyword">install </span>&lt;package_name&gt;</div></pre></td></tr></table></figure>
+<p>更新本地Homebrew和程序包缓存：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">brew </span>update</div></pre></td></tr></table></figure>
+<p>更新程序包：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">brew </span>upgrade &lt;package_name&gt;</div></pre></td></tr></table></figure></p>
+<p>清除旧版程序包：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">brew </span>cleanup</div></pre></td></tr></table></figure>
+<p>查看已安装过的程序包列表：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew <span class="built_in">list</span> <span class="comment">--versions</span></div></pre></td></tr></table></figure>
+<h4 id="常用程序包"><a href="#常用程序包" class="headerlink" title="常用程序包"></a>常用程序包</h4><figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span> brew install carthage</div><div class="line"><span class="symbol">$</span> brew install cmake</div><div class="line"><span class="symbol">$</span> brew install ffmpeg</div><div class="line"><span class="symbol">$</span> brew install gdb			<span class="comment">// GNU debugger</span></div><div class="line"><span class="symbol">$</span> brew install git-flow	<span class="comment">//</span></div><div class="line"><span class="symbol">$</span> brew install jenkins</div><div class="line"><span class="symbol">$</span> brew install llvm			<span class="comment">// Next-gen compiler infrastructure</span></div><div class="line"><span class="symbol">$</span> brew install node</div><div class="line"><span class="symbol">$</span> brew install nvm</div><div class="line"><span class="symbol">$</span> brew install rmtrash		<span class="comment">// Move files to OS X's Trash</span></div><div class="line"><span class="symbol">$</span> brew install rename		<span class="comment">// Perl-powered file rename script with many helpful built-ins</span></div><div class="line"><span class="symbol">$</span> brew install subversion</div><div class="line"><span class="symbol">$</span> brew install swiftenv	<span class="comment">// Swift version manager</span></div><div class="line"><span class="symbol">$</span> brew install tldr			<span class="comment">// </span></div><div class="line"><span class="symbol">$</span> brew install tree			<span class="comment">//</span></div><div class="line"><span class="symbol">$</span> brew install wget</div><div class="line"><span class="symbol">$</span> brew install xctool</div></pre></td></tr></table></figure>
+<h4 id="安装Homebrew-Cask"><a href="#安装Homebrew-Cask" class="headerlink" title="安装Homebrew Cask"></a>安装Homebrew Cask</h4><p>通过 Homebrew Cask 优雅、简单、快速的安装和管理 OS X 图形界面程序，比如 Google Chrome 和 Dropbox。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">brew </span>tap caskroom/cask  // 添加 Github 上的 caskroom/cask 库</div><div class="line">$ <span class="keyword">brew </span>install <span class="keyword">brew-cask </span> // 安装 <span class="keyword">brew-cask</span></div><div class="line">$ <span class="keyword">brew </span>cask install google-chrome // 安装 Google 浏览器</div><div class="line">$ <span class="keyword">brew </span>update &amp;&amp; <span class="keyword">brew </span>upgrade <span class="keyword">brew-cask </span>&amp;&amp; <span class="keyword">brew </span>cleanup // 更新</div></pre></td></tr></table></figure>
+<h5 id="文件预览插件"><a href="#文件预览插件" class="headerlink" title="文件预览插件"></a>文件预览插件</h5><p>有些 插件 可以让 Mac 上的文件预览更有效，比如语法高亮、markdown 渲染、json 预览等等。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span>qlcolorcode</div><div class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span>qlstephen</div><div class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span>qlmarkdown</div><div class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span>quicklook-<span class="keyword">json</span></div><div class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span>qlprettypatch</div><div class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span>quicklook-csv</div><div class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span><span class="keyword">betterzipql</span></div><div class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span>webp-quicklook</div><div class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span>suspicious-package</div><div class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span>cheatsheet</div></pre></td></tr></table></figure>
+<h5 id="launchrocket"><a href="#launchrocket" class="headerlink" title="launchrocket"></a>launchrocket</h5><p>brew cask 安装 launchrocket，来管理通过 brew 安装的 service</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span>launchrocket</div></pre></td></tr></table></figure>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-08-01-Snip20160729_9.png" alt="Snip20160729_9"></p>
+<h3 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h3><h4 id="RVM"><a href="#RVM" class="headerlink" title="RVM"></a>RVM</h4><p>RVM 是一个命令行工具，可以提供一个便捷的多版本 Ruby 环境的管理和切换。</p>
+<p><a href="https://rvm.io/" target="_blank" rel="external">https://rvm.io/</a></p>
+<h5 id="RVM-安装"><a href="#RVM-安装" class="headerlink" title="RVM 安装"></a>RVM 安装</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ curl <span class="_">-s</span>SL https://get.rvm.io | bash <span class="_">-s</span> stable --auto-dotfiles</div><div class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm</div></pre></td></tr></table></figure>
+<p>修改 RVM 的 Ruby 安装源到 Ruby China 的 Ruby 镜像服务器，这样能提高安装速度。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>echo <span class="string">"ruby_url=https://cache.ruby-china.org/pub/ruby"</span> &gt; ~<span class="regexp">/.rvm/user</span><span class="regexp">/db</span></div></pre></td></tr></table></figure>
+<h5 id="Ruby-的安装与切换"><a href="#Ruby-的安装与切换" class="headerlink" title="Ruby 的安装与切换"></a>Ruby 的安装与切换</h5><p>列出已知的 Ruby 版本</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rvm <span class="built_in">list</span> known</div></pre></td></tr></table></figure>
+<p>安装一个 Ruby 版本</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rvm install <span class="number">2.3</span><span class="number">.0</span></div></pre></td></tr></table></figure>
+<p>切换 Ruby 版本</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>rvm <span class="keyword">use</span> <span class="number">2.3</span>.<span class="number">0</span></div></pre></td></tr></table></figure>
+<p>如果想设置为默认版本，这样一来以后新打开的控制台默认的 Ruby 就是这个版本</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rvm use <span class="number">2.3</span><span class="number">.0</span> --default</div><div class="line">``` </div><div class="line"></div><div class="line">查询已经安装的ruby</div></pre></td></tr></table></figure>
+<p>rvm list<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">卸载一个已安装版本</div></pre></td></tr></table></figure></p>
+<p>rvm remove 2.3.0<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### RubyGems</div><div class="line"></div><div class="line">RubyGems 是 Ruby 的一个包管理器，提供了分发 Ruby 程序和函式庫的标准格式“gem”，旨在方便地管理gem安装的工具，以及用于分发gem的服务器。</div></pre></td></tr></table></figure></p>
+<p>$ gem install cocoapods<br>$ gem install fastlane<br>$ gem install tty<br>$ gem install leancloud<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Python</div><div class="line"></div><div class="line">#### pyenv</div><div class="line"></div><div class="line">Python 多版本管理器，可以用来管理和切换不同的 Python 版本。</div><div class="line"></div><div class="line">##### 安装</div></pre></td></tr></table></figure></p>
+<p>$ brew install pyenv<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">##### 配置</div><div class="line"></div><div class="line">如果使用的是bash</div></pre></td></tr></table></figure></p>
+<p>$ echo ‘export PYENV_ROOT=”$HOME/.pyenv”‘ &gt;&gt; ~/.bashrc<br>$ echo ‘export PATH=”$PYENV_ROOT/bin:$PATH”‘ &gt;&gt; ~/.bashrc<br>$ echo ‘eval “$(pyenv init -)”‘ &gt;&gt; ~/.bashrc<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">如果使用的是zsh</div></pre></td></tr></table></figure></p>
+<p>$ echo ‘export PYENV_ROOT=”$HOME/.pyenv”‘ &gt;&gt; ~/.zshrc<br>$ echo ‘export PATH=”$PYENV_ROOT/bin:$PATH”‘ &gt;&gt; ~/.zshrc<br>$ echo ‘eval “$(pyenv init -)”‘ &gt;&gt; ~/.zshrc<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">##### 使用</div><div class="line"></div><div class="line">查看现在使用的 Python 版本</div></pre></td></tr></table></figure></p>
+<p>$ pyenv version<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">查看可供 pyenv 使用的 Python 版本</div></pre></td></tr></table></figure></p>
+<p>$ pyenv versions<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">安装 Python 版本</div></pre></td></tr></table></figure></p>
+<p>$ pyenv install 3.5.2<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">安装的版本会在~/.pyenv/versions目录下。</div><div class="line"></div><div class="line">此外，可以用 `--list` 参数查看所有可安装版本</div></pre></td></tr></table></figure></p>
+<p>$ pyenv install –list<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">卸载 Python 版本</div></pre></td></tr></table></figure></p>
+<p>$ pyenv uninstall 3.5.2<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">设置全局 Python 版本，一般不建议改变全局设置</div></pre></td></tr></table></figure></p>
+<p>$ pyenv global 3.5.2<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">设置局部 Python 版本</div></pre></td></tr></table></figure></p>
+<p>$ pyenv local 3.5.2<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">设置之后可以在目录内外分别试下 `which python`或 `python --version` 看看效果, 如果没变化的话可以 `python rehash` 之后再试试</div><div class="line"></div><div class="line">#### pip &amp; setuptools</div><div class="line"></div><div class="line">pip 和 setuptools 是 Python 的包管理器。</div><div class="line"></div><div class="line">更新 pip 和 setuptools 包管理器：</div></pre></td></tr></table></figure></p>
+<p>  pip install –upgrade pip setuptools<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">安装程序包</div></pre></td></tr></table></figure></p>
+<p>  pip install <package><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">通过依赖文件安装程序包</div></pre></td></tr></table></figure></package></p>
+<p>pip install -r requirements.txt<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">卸载程序包</div></pre></td></tr></table></figure></p>
+<p>$ pip uninstall <package><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">查看所有已安装程序包</div></pre></td></tr></table></figure></package></p>
+<p>$ pip list<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">搜索程序包</div></pre></td></tr></table></figure></p>
+<p>$ pip search “query”<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">升级程序包</div></pre></td></tr></table></figure></p>
+<p>$ pip install –upgrade SomePackage<br><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="undefined">常用 Python 程序包</span></div></pre></td></tr></table></figure></p>
+<p>$ pip install beautifulsoup4 // HTML解析<br>$ pip install NetEase-MusicBox // 网易云音乐命令行版<br>$ pip install starred    // 利用GitHub上stars项目生成类 awesome 列表的汇总页面。<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Node</div><div class="line"></div><div class="line">#### nvm</div><div class="line"></div><div class="line">node 的版本管理工具。</div><div class="line"></div><div class="line">##### 安装</div></pre></td></tr></table></figure></p>
+<p>$ brew install nvm<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">##### 配置</div><div class="line"></div><div class="line">添加一下代码到 .zshrc 配置文件中：</div></pre></td></tr></table></figure></p>
+<p>export NVM_DIR=”$HOME/.nvm”<br>. “/usr/local/opt/nvm/nvm.sh”<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">##### 使用</div></pre></td></tr></table></figure></p>
+<p>Usage:<br>  nvm –help                                Show this message<br>  nvm –version                             Print out the latest released version of nvm<br>  nvm install [-s] <version>                Download and install a <version>, [-s] from source. Uses .nvmrc if available<br>    –reinstall-packages-from=<version>     When installing, reinstall packages installed in <node|iojs|node version="" number=""><br>    –lts                                   When installing, only select from LTS (long-term support) versions<br>    –lts=<lts name="">                        When installing, only select from versions for a specific LTS line<br>  nvm uninstall <version>                   Uninstall a version<br>  nvm uninstall –lts                       Uninstall using automatic LTS (long-term support) alias <code>lts/*</code>, if available.<br>  nvm uninstall –lts=<lts name="">            Uninstall using automatic alias for provided LTS line, if available.<br>  nvm use [–silent] <version>              Modify PATH to use <version>. Uses .nvmrc if available<br>    –lts                                   Uses automatic LTS (long-term support) alias <code>lts/*</code>, if available.<br>    –lts=<lts name="">                        Uses automatic alias for provided LTS line, if available.<br>  nvm exec [–silent] <version> [<command>] Run <command> on <version>. Uses .nvmrc if available<br>    –lts                                   Uses automatic LTS (long-term support) alias <code>lts/*</code>, if available.<br>    –lts=<lts name="">                        Uses automatic alias for provided LTS line, if available.<br>  nvm run [–silent] <version> [<args>]     Run <code>node</code> on <version> with <args> as arguments. Uses .nvmrc if available<br>    –lts                                   Uses automatic LTS (long-term support) alias <code>lts/*</code>, if available.<br>    –lts=<lts name="">                        Uses automatic alias for provided LTS line, if available.<br>  nvm current                               Display currently activated version<br>  nvm ls                                    List installed versions<br>  nvm ls <version>                          List versions matching a given <version><br>  nvm ls-remote                             List remote versions available for install<br>    –lts                                   When listing, only show LTS (long-term support) versions<br>  nvm ls-remote <version>                   List remote versions available for install, matching a given <version><br>    –lts                                   When listing, only show LTS (long-term support) versions<br>    –lts=<lts name="">                        When listing, only show versions for a specific LTS line<br>  nvm version <version>                     Resolve the given description to a single local version<br>  nvm version-remote <version>              Resolve the given description to a single remote version<br>    –lts                                   When listing, only select from LTS (long-term support) versions<br>    –lts=<lts name="">                        When listing, only select from versions for a specific LTS line<br>  nvm deactivate                            Undo effects of <code>nvm</code> on current shell<br>  nvm alias [<pattern>]                     Show all aliases beginning with <pattern><br>  nvm alias <name> <version>                Set an alias named <name> pointing to <version><br>  nvm unalias <name>                        Deletes the alias named <name><br>  nvm reinstall-packages <version>          Reinstall global <code>npm</code> packages contained in <version> to current version<br>  nvm unload                                Unload <code>nvm</code> from shell<br>  nvm which [<version>]                     Display path to installed node version. Uses .nvmrc if available<br>  nvm cache dir                             Display path to the cache directory for nvm<br>  nvm cache clear                           Empty cache directory for nvm</version></version></version></name></name></version></name></version></name></pattern></pattern></lts></version></version></lts></version></version></version></version></lts></args></version></args></version></lts></version></version></lts></version></version></lts></version></lts></node|iojs|node></version></version></version></p>
+<p>Example:<br>  nvm install v0.10.32                  Install a specific version number<br>  nvm use 0.10                          Use the latest available 0.10.x release<br>  nvm run 0.10.32 app.js                Run app.js using node v0.10.32<br>  nvm exec 0.10.32 node app.js          Run <code>node app.js</code> with the PATH pointing to node v0.10.32<br>  nvm alias default 0.10.32             Set default node version on a shell</p>
+<p>Note:<br>  to remove, delete, or uninstall nvm - just remove the <code>$NVM_DIR</code> folder (usually <code>~/.nvm</code>)<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#### npm</span></div><div class="line"></div><div class="line"><span class="keyword">node</span> <span class="title">的包管理器。</span></div><div class="line"></div><div class="line">安装 node 程序包有两种方式：</div><div class="line"></div><div class="line"><span class="number">1</span>. 安装在本地工程项目中，只能本地项目使用，安装命令如下：</div></pre></td></tr></table></figure></p>
+<p>$ npm install <package> –save<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="bullet">2. </span>安装为全局程序包，安装命令如下：</div></pre></td></tr></table></figure></package></p>
+<p>$ npm install -g <package><br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 常用全局 npm 程序包</div></pre></td></tr></table></figure></package></p>
+<p>$ npm install -g hexo-cli    // 静态博客<br>$ npm install -g ionic        // Hybird 开发<br>$ npm install -g react-native-cli // React Native 开发<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 查找命令</div><div class="line"></div><div class="line">#### find</div><div class="line"></div><div class="line">find是最常见和最强大的查找命令，你可以用它找到任何你想找的文件。</div><div class="line"></div><div class="line">find的使用格式如下：</div></pre></td></tr></table></figure></p>
+<p>$ find &lt;指定目录&gt; &lt;指定条件&gt; &lt;指定动作&gt;</p>
+<ul>
+<li>&lt;指定目录&gt;： 所要搜索的目录及其所有子目录。默认为当前目录。</li>
+<li>&lt;指定条件&gt;： 所要搜索的文件的特征。</li>
+<li>&lt;指定动作&gt;： 对搜索结果进行特定的处理。<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#### locate</span></div><div class="line"></div><div class="line">locate命令其实是<span class="string">"find -name"</span>的另一种写法，但是要比后者快得多，原因在于它不搜索具体目录，而是搜索一个数据库（/var/<span class="class"><span class="keyword">lib</span>/<span class="title">locatedb</span>），这个数据库中含有本地所有文件信息。<span class="title">Linux</span>系统自动创建这个数据库，并且每天自动更新一次，所以使用<span class="title">locate</span>命令查不到最新变动过的文件。为了避免这种情况，可以在使用<span class="title">locate</span>之前，先使用<span class="title">updatedb</span>命令，手动更新数据库。</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>locate命令的使用实例：</p>
+<p>$ locate /etc/sh<br>搜索etc目录下所有以sh开头的文件。</p>
+<p>$ locate ~/m<br>搜索用户主目录下，所有以m开头的文件。</p>
+<p>$ locate -i ~/m<br>搜索用户主目录下，所有以m开头的文件，并且忽略大小写。<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### whereis</div><div class="line">whereis命令只能用于程序名的搜索，而且只搜索二进制文件（参数-b）、man说明文件（参数-m）和源代码文件（参数-s）。如果省略参数，则返回所有信息。</div></pre></td></tr></table></figure></p>
+<p>whereis命令的使用实例：<br>$ whereis grep<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### which</div><div class="line">which命令的作用是，在PATH变量指定的路径中，搜索某个系统命令的位置，并且返回第一个搜索结果。也就是说，使用which命令，就可以看到某个系统命令是否存在，以及执行的到底是哪一个位置的命令。</div></pre></td></tr></table></figure></p>
+<p>which命令的使用实例：<br>$ which grep<br>```</p>
+<h2 id="GUI工具"><a href="#GUI工具" class="headerlink" title="GUI工具"></a>GUI工具</h2><h3 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h3><h4 id="替换系统默认终端-iTerm-2"><a href="#替换系统默认终端-iTerm-2" class="headerlink" title="替换系统默认终端 - iTerm 2"></a>替换系统默认终端 - iTerm 2</h4><h4 id="中文输入法"><a href="#中文输入法" class="headerlink" title="中文输入法"></a>中文输入法</h4><p>推荐安装搜狗输入法。</p>
+<h4 id="窗口管理软件-SizeUp"><a href="#窗口管理软件-SizeUp" class="headerlink" title="窗口管理软件 - SizeUp"></a>窗口管理软件 - SizeUp</h4><h4 id="查找文件和应用程序-Alfred"><a href="#查找文件和应用程序-Alfred" class="headerlink" title="查找文件和应用程序 - Alfred"></a>查找文件和应用程序 - Alfred</h4><p>Alfred is an award-winning app for Mac OS X which boosts your efficiency with hotkeys, keywords, text expansion and more. Search your Mac and the web, and be more productive with custom actions to control your Mac.</p>
+<h4 id="来杯免费咖啡-Caffeine"><a href="#来杯免费咖啡-Caffeine" class="headerlink" title="来杯免费咖啡 - Caffeine"></a>来杯免费咖啡 - Caffeine</h4><p>你应该立刻安装这款免费的良心软件—Caffeine，设置开机启动，点一下状态栏的咖啡杯图标，当咖啡是满的时候，MacBook将不会进入休眠模式，再点一下咖啡杯空了就正常休眠，我默认设置开机启动，咖啡杯保持满满的状态。</p>
+<h4 id="快速切换和打开应用程序-Manico"><a href="#快速切换和打开应用程序-Manico" class="headerlink" title="快速切换和打开应用程序 - Manico"></a>快速切换和打开应用程序 - Manico</h4><p>MacBook系统默认设置了一个快捷键来显示当前运行中的应用程序，同时按下tab + command，将看到如下图的样式：</p>
+<h4 id="随心所欲的复制粘贴-PopClip"><a href="#随心所欲的复制粘贴-PopClip" class="headerlink" title="随心所欲的复制粘贴 - PopClip"></a>随心所欲的复制粘贴 - PopClip</h4><h4 id="增强资源管理器-XtraFinder"><a href="#增强资源管理器-XtraFinder" class="headerlink" title="增强资源管理器 - XtraFinder"></a>增强资源管理器 - XtraFinder</h4><h4 id="管理状态栏图标-Bartender"><a href="#管理状态栏图标-Bartender" class="headerlink" title="管理状态栏图标 - Bartender"></a>管理状态栏图标 - Bartender</h4><h4 id="音乐播放器-网易云音乐"><a href="#音乐播放器-网易云音乐" class="headerlink" title="音乐播放器 - 网易云音乐"></a>音乐播放器 - 网易云音乐</h4><h4 id="词典-有道词典"><a href="#词典-有道词典" class="headerlink" title="词典 - 有道词典"></a>词典 - 有道词典</h4><h4 id="文本编辑-Atom，Visual-Studio-Code"><a href="#文本编辑-Atom，Visual-Studio-Code" class="headerlink" title="文本编辑 - Atom，Visual Studio Code"></a>文本编辑 - Atom，Visual Studio Code</h4><h4 id="文本比较-Beyond-Compare"><a href="#文本比较-Beyond-Compare" class="headerlink" title="文本比较 - Beyond Compare"></a>文本比较 - Beyond Compare</h4><h4 id="垃圾清理-CleanMyMac-3"><a href="#垃圾清理-CleanMyMac-3" class="headerlink" title="垃圾清理 - CleanMyMac 3"></a>垃圾清理 - CleanMyMac 3</h4><h4 id="U盘启动制作-DiskMaker-X-5"><a href="#U盘启动制作-DiskMaker-X-5" class="headerlink" title="U盘启动制作 - DiskMaker X 5"></a>U盘启动制作 - DiskMaker X 5</h4><h4 id="笔记-Evernote"><a href="#笔记-Evernote" class="headerlink" title="笔记 - Evernote"></a>笔记 - Evernote</h4><h4 id="屏幕颜色调整（保护眼睛）-Flux"><a href="#屏幕颜色调整（保护眼睛）-Flux" class="headerlink" title="屏幕颜色调整（保护眼睛）- Flux"></a>屏幕颜色调整（保护眼睛）- Flux</h4><h4 id="图床-iPic"><a href="#图床-iPic" class="headerlink" title="图床 - iPic"></a>图床 - iPic</h4><h4 id="系统监测-iStat-Menus"><a href="#系统监测-iStat-Menus" class="headerlink" title="系统监测 - iStat Menus"></a>系统监测 - iStat Menus</h4><h4 id="gif-录制-licecap"><a href="#gif-录制-licecap" class="headerlink" title="gif 录制 - licecap"></a>gif 录制 - licecap</h4><h4 id="Markdown-MacDown，MWeb，Typora"><a href="#Markdown-MacDown，MWeb，Typora" class="headerlink" title="Markdown - MacDown，MWeb，Typora"></a>Markdown - MacDown，MWeb，Typora</h4><h4 id="思维导图-MindNode，XMind"><a href="#思维导图-MindNode，XMind" class="headerlink" title="思维导图 - MindNode，XMind"></a>思维导图 - MindNode，XMind</h4><h4 id="视频播放-MPlayerX"><a href="#视频播放-MPlayerX" class="headerlink" title="视频播放 - MPlayerX"></a>视频播放 - MPlayerX</h4><h4 id="流程图制作-OmniGraffle"><a href="#流程图制作-OmniGraffle" class="headerlink" title="流程图制作 - OmniGraffle"></a>流程图制作 - OmniGraffle</h4><h4 id="绘图-Paintbrush"><a href="#绘图-Paintbrush" class="headerlink" title="绘图 - Paintbrush"></a>绘图 - Paintbrush</h4><h4 id="虚拟机-Parallels-Desktop，VirtualBox"><a href="#虚拟机-Parallels-Desktop，VirtualBox" class="headerlink" title="虚拟机 - Parallels Desktop，VirtualBox"></a>虚拟机 - Parallels Desktop，VirtualBox</h4><h4 id="壁纸-Pimp-Your-Screen"><a href="#壁纸-Pimp-Your-Screen" class="headerlink" title="壁纸 - Pimp Your Screen"></a>壁纸 - Pimp Your Screen</h4><h4 id="Mac版PhotoShop-Pixelmator"><a href="#Mac版PhotoShop-Pixelmator" class="headerlink" title="Mac版PhotoShop - Pixelmator"></a>Mac版PhotoShop - Pixelmator</h4><h4 id="稍候阅读-Pocket"><a href="#稍候阅读-Pocket" class="headerlink" title="稍候阅读 - Pocket"></a>稍候阅读 - Pocket</h4><h4 id="番茄钟-Pomodoro-Time"><a href="#番茄钟-Pomodoro-Time" class="headerlink" title="番茄钟 - Pomodoro Time"></a>番茄钟 - Pomodoro Time</h4><h4 id="录屏-ScreenFlow"><a href="#录屏-ScreenFlow" class="headerlink" title="录屏 - ScreenFlow"></a>录屏 - ScreenFlow</h4><h4 id="翻墙-Lantern，ShadowsocksX，Surge"><a href="#翻墙-Lantern，ShadowsocksX，Surge" class="headerlink" title="翻墙 - Lantern，ShadowsocksX，Surge"></a>翻墙 - Lantern，ShadowsocksX，Surge</h4><h4 id="屏幕截图-Snip"><a href="#屏幕截图-Snip" class="headerlink" title="屏幕截图 - Snip"></a>屏幕截图 - Snip</h4><h4 id="解压缩-The-Unarchiver"><a href="#解压缩-The-Unarchiver" class="headerlink" title="解压缩 - The Unarchiver"></a>解压缩 - The Unarchiver</h4><h3 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h3><h4 id="文档查看-Dash"><a href="#文档查看-Dash" class="headerlink" title="文档查看 - Dash"></a>文档查看 - Dash</h4><h4 id="Andorid-开发-Android-Studio"><a href="#Andorid-开发-Android-Studio" class="headerlink" title="Andorid 开发 - Android Studio"></a>Andorid 开发 - Android Studio</h4><h4 id="原型设计-Axure-RP"><a href="#原型设计-Axure-RP" class="headerlink" title="原型设计 - Axure RP"></a>原型设计 - Axure RP</h4><h4 id="网络抓包-Charles"><a href="#网络抓包-Charles" class="headerlink" title="网络抓包 - Charles"></a>网络抓包 - Charles</h4><h4 id="iOS-动画制作-Core-Animator"><a href="#iOS-动画制作-Core-Animator" class="headerlink" title="iOS 动画制作 - Core Animator"></a>iOS 动画制作 - Core Animator</h4><h4 id="SVN版本控制管理-Cornerstone"><a href="#SVN版本控制管理-Cornerstone" class="headerlink" title="SVN版本控制管理 - Cornerstone"></a>SVN版本控制管理 - Cornerstone</h4><h4 id="Git版本控制管理-SourceTree"><a href="#Git版本控制管理-SourceTree" class="headerlink" title="Git版本控制管理 - SourceTree"></a>Git版本控制管理 - SourceTree</h4><h4 id="HTML-5-制作-Hype-3"><a href="#HTML-5-制作-Hype-3" class="headerlink" title="HTML 5 制作 - Hype 3"></a>HTML 5 制作 - Hype 3</h4><h4 id="应用程序图标制作-IconKit"><a href="#应用程序图标制作-IconKit" class="headerlink" title="应用程序图标制作 - IconKit"></a>应用程序图标制作 - IconKit</h4><h4 id="Objective-C-转换为Swift代码-iSwift"><a href="#Objective-C-转换为Swift代码-iSwift" class="headerlink" title="Objective-C 转换为Swift代码 - iSwift"></a>Objective-C 转换为Swift代码 - iSwift</h4><h4 id="json数据解析-Jason，JSON-Wizard"><a href="#json数据解析-Jason，JSON-Wizard" class="headerlink" title="json数据解析 - Jason，JSON Wizard"></a>json数据解析 - Jason，JSON Wizard</h4><h4 id="数据库-Navicat-Premium"><a href="#数据库-Navicat-Premium" class="headerlink" title="数据库 - Navicat Premium"></a>数据库 - Navicat Premium</h4><h4 id="SQLite数据库-sqlitebrowser"><a href="#SQLite数据库-sqlitebrowser" class="headerlink" title="SQLite数据库 - sqlitebrowser"></a>SQLite数据库 - sqlitebrowser</h4><h4 id="查看Github-Star-OhMyStar"><a href="#查看Github-Star-OhMyStar" class="headerlink" title="查看Github Star - OhMyStar"></a>查看Github Star - OhMyStar</h4><h4 id="Turn-drawings-into-code-PaintCode"><a href="#Turn-drawings-into-code-PaintCode" class="headerlink" title="Turn drawings into code - PaintCode"></a>Turn drawings into code - PaintCode</h4><h4 id="HTTP-API-测试-Paw"><a href="#HTTP-API-测试-Paw" class="headerlink" title="HTTP API 测试 - Paw"></a>HTTP API 测试 - Paw</h4><h4 id="iOS-UI-调试-Reveal"><a href="#iOS-UI-调试-Reveal" class="headerlink" title="iOS UI 调试 - Reveal"></a>iOS UI 调试 - Reveal</h4><h4 id="屏幕取色-Sip"><a href="#屏幕取色-Sip" class="headerlink" title="屏幕取色 - Sip"></a>屏幕取色 - Sip</h4><h4 id="移动应用原型设计-Sketch"><a href="#移动应用原型设计-Sketch" class="headerlink" title="移动应用原型设计 - Sketch"></a>移动应用原型设计 - Sketch</h4><h4 id="UML绘图-StarUML"><a href="#UML绘图-StarUML" class="headerlink" title="UML绘图 - StarUML"></a>UML绘图 - StarUML</h4>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>天下大事，必作于细！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/WeChatPay.png" alt="Alex Lin WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/AliPay.png" alt="Alex Lin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Tools/" rel="tag"># Tools</a>
+          
+            <a href="/tags/Setup-Guide/" rel="tag"># Setup Guide</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/27/iOS-Security-Defense-Reveal/" rel="next" title="使用Reveal分析别人App的UI布局">
+                <i class="fa fa-chevron-left"></i> 使用Reveal分析别人App的UI布局
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/29/macOS-Setup-Guide-Setting/" rel="prev" title="macOS 开发配置手册——设置篇">
+                macOS 开发配置手册——设置篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg"
+               alt="Alex Lin" />
+          <p class="site-author-name" itemprop="name">Alex Lin</p>
+          <p class="site-description motion-element" itemprop="description">嗨，我是林天祥，iOS 开发者，专注移动软件开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chaoskyme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iwillcomeback" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.v2ex.com/member/error" target="_blank" title="V2EX">
+                  
+                    <i class="fa fa-fw fa-rocket"></i>
+                  
+                  V2EX
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/chaosky" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-git"></i>
+                  
+                  Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/chaosky" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.devtang.com" title="唐巧的博客" target="_blank">唐巧的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://coolshell.cn" title="酷壳" target="_blank">酷壳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.codingnow.com" title="云风的博客" target="_blank">云风的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://axiaoxin.com" title="信妈的博客" target="_blank">信妈的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://huxos.me" title="胡骏的博客" target="_blank">胡骏的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.h2ero.cn/" title="h2ero的博客" target="_blank">h2ero的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nleo.me" title="胡中华的博客" target="_blank">胡中华的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dbarobin.com" title="温国兵的随想录" target="_blank">温国兵的随想录</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/bbf6898c0002" title="jackfrued的博客" target="_blank">jackfrued的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行工具"><span class="nav-number">1.</span> <span class="nav-text">命令行工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-Command-Line-Tools"><span class="nav-number">1.1.</span> <span class="nav-text">Xcode Command Line Tools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zsh"><span class="nav-number">1.2.</span> <span class="nav-text">zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#切换zsh"><span class="nav-number">1.2.1.</span> <span class="nav-text">切换zsh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装oh-my-zsh"><span class="nav-number">1.2.2.</span> <span class="nav-text">安装oh-my-zsh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置zsh"><span class="nav-number">1.2.3.</span> <span class="nav-text">配置zsh</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew"><span class="nav-number">1.3.</span> <span class="nav-text">Homebrew</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Homebrew-基本使用"><span class="nav-number">1.3.2.</span> <span class="nav-text">Homebrew 基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用程序包"><span class="nav-number">1.3.3.</span> <span class="nav-text">常用程序包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Homebrew-Cask"><span class="nav-number">1.3.4.</span> <span class="nav-text">安装Homebrew Cask</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文件预览插件"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">文件预览插件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#launchrocket"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">launchrocket</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ruby"><span class="nav-number">1.4.</span> <span class="nav-text">Ruby</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RVM"><span class="nav-number">1.4.1.</span> <span class="nav-text">RVM</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#RVM-安装"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">RVM 安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Ruby-的安装与切换"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">Ruby 的安装与切换</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI工具"><span class="nav-number">2.</span> <span class="nav-text">GUI工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用工具"><span class="nav-number">2.1.</span> <span class="nav-text">常用工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#替换系统默认终端-iTerm-2"><span class="nav-number">2.1.1.</span> <span class="nav-text">替换系统默认终端 - iTerm 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中文输入法"><span class="nav-number">2.1.2.</span> <span class="nav-text">中文输入法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#窗口管理软件-SizeUp"><span class="nav-number">2.1.3.</span> <span class="nav-text">窗口管理软件 - SizeUp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找文件和应用程序-Alfred"><span class="nav-number">2.1.4.</span> <span class="nav-text">查找文件和应用程序 - Alfred</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#来杯免费咖啡-Caffeine"><span class="nav-number">2.1.5.</span> <span class="nav-text">来杯免费咖啡 - Caffeine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速切换和打开应用程序-Manico"><span class="nav-number">2.1.6.</span> <span class="nav-text">快速切换和打开应用程序 - Manico</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#随心所欲的复制粘贴-PopClip"><span class="nav-number">2.1.7.</span> <span class="nav-text">随心所欲的复制粘贴 - PopClip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增强资源管理器-XtraFinder"><span class="nav-number">2.1.8.</span> <span class="nav-text">增强资源管理器 - XtraFinder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管理状态栏图标-Bartender"><span class="nav-number">2.1.9.</span> <span class="nav-text">管理状态栏图标 - Bartender</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#音乐播放器-网易云音乐"><span class="nav-number">2.1.10.</span> <span class="nav-text">音乐播放器 - 网易云音乐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#词典-有道词典"><span class="nav-number">2.1.11.</span> <span class="nav-text">词典 - 有道词典</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本编辑-Atom，Visual-Studio-Code"><span class="nav-number">2.1.12.</span> <span class="nav-text">文本编辑 - Atom，Visual Studio Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本比较-Beyond-Compare"><span class="nav-number">2.1.13.</span> <span class="nav-text">文本比较 - Beyond Compare</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾清理-CleanMyMac-3"><span class="nav-number">2.1.14.</span> <span class="nav-text">垃圾清理 - CleanMyMac 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#U盘启动制作-DiskMaker-X-5"><span class="nav-number">2.1.15.</span> <span class="nav-text">U盘启动制作 - DiskMaker X 5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#笔记-Evernote"><span class="nav-number">2.1.16.</span> <span class="nav-text">笔记 - Evernote</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#屏幕颜色调整（保护眼睛）-Flux"><span class="nav-number">2.1.17.</span> <span class="nav-text">屏幕颜色调整（保护眼睛）- Flux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图床-iPic"><span class="nav-number">2.1.18.</span> <span class="nav-text">图床 - iPic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统监测-iStat-Menus"><span class="nav-number">2.1.19.</span> <span class="nav-text">系统监测 - iStat Menus</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gif-录制-licecap"><span class="nav-number">2.1.20.</span> <span class="nav-text">gif 录制 - licecap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Markdown-MacDown，MWeb，Typora"><span class="nav-number">2.1.21.</span> <span class="nav-text">Markdown - MacDown，MWeb，Typora</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思维导图-MindNode，XMind"><span class="nav-number">2.1.22.</span> <span class="nav-text">思维导图 - MindNode，XMind</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视频播放-MPlayerX"><span class="nav-number">2.1.23.</span> <span class="nav-text">视频播放 - MPlayerX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流程图制作-OmniGraffle"><span class="nav-number">2.1.24.</span> <span class="nav-text">流程图制作 - OmniGraffle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绘图-Paintbrush"><span class="nav-number">2.1.25.</span> <span class="nav-text">绘图 - Paintbrush</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机-Parallels-Desktop，VirtualBox"><span class="nav-number">2.1.26.</span> <span class="nav-text">虚拟机 - Parallels Desktop，VirtualBox</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#壁纸-Pimp-Your-Screen"><span class="nav-number">2.1.27.</span> <span class="nav-text">壁纸 - Pimp Your Screen</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mac版PhotoShop-Pixelmator"><span class="nav-number">2.1.28.</span> <span class="nav-text">Mac版PhotoShop - Pixelmator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#稍候阅读-Pocket"><span class="nav-number">2.1.29.</span> <span class="nav-text">稍候阅读 - Pocket</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#番茄钟-Pomodoro-Time"><span class="nav-number">2.1.30.</span> <span class="nav-text">番茄钟 - Pomodoro Time</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#录屏-ScreenFlow"><span class="nav-number">2.1.31.</span> <span class="nav-text">录屏 - ScreenFlow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#翻墙-Lantern，ShadowsocksX，Surge"><span class="nav-number">2.1.32.</span> <span class="nav-text">翻墙 - Lantern，ShadowsocksX，Surge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#屏幕截图-Snip"><span class="nav-number">2.1.33.</span> <span class="nav-text">屏幕截图 - Snip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解压缩-The-Unarchiver"><span class="nav-number">2.1.34.</span> <span class="nav-text">解压缩 - The Unarchiver</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发工具"><span class="nav-number">2.2.</span> <span class="nav-text">开发工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文档查看-Dash"><span class="nav-number">2.2.1.</span> <span class="nav-text">文档查看 - Dash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Andorid-开发-Android-Studio"><span class="nav-number">2.2.2.</span> <span class="nav-text">Andorid 开发 - Android Studio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型设计-Axure-RP"><span class="nav-number">2.2.3.</span> <span class="nav-text">原型设计 - Axure RP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络抓包-Charles"><span class="nav-number">2.2.4.</span> <span class="nav-text">网络抓包 - Charles</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-动画制作-Core-Animator"><span class="nav-number">2.2.5.</span> <span class="nav-text">iOS 动画制作 - Core Animator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVN版本控制管理-Cornerstone"><span class="nav-number">2.2.6.</span> <span class="nav-text">SVN版本控制管理 - Cornerstone</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git版本控制管理-SourceTree"><span class="nav-number">2.2.7.</span> <span class="nav-text">Git版本控制管理 - SourceTree</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML-5-制作-Hype-3"><span class="nav-number">2.2.8.</span> <span class="nav-text">HTML 5 制作 - Hype 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用程序图标制作-IconKit"><span class="nav-number">2.2.9.</span> <span class="nav-text">应用程序图标制作 - IconKit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Objective-C-转换为Swift代码-iSwift"><span class="nav-number">2.2.10.</span> <span class="nav-text">Objective-C 转换为Swift代码 - iSwift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json数据解析-Jason，JSON-Wizard"><span class="nav-number">2.2.11.</span> <span class="nav-text">json数据解析 - Jason，JSON Wizard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库-Navicat-Premium"><span class="nav-number">2.2.12.</span> <span class="nav-text">数据库 - Navicat Premium</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQLite数据库-sqlitebrowser"><span class="nav-number">2.2.13.</span> <span class="nav-text">SQLite数据库 - sqlitebrowser</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看Github-Star-OhMyStar"><span class="nav-number">2.2.14.</span> <span class="nav-text">查看Github Star - OhMyStar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Turn-drawings-into-code-PaintCode"><span class="nav-number">2.2.15.</span> <span class="nav-text">Turn drawings into code - PaintCode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-API-测试-Paw"><span class="nav-number">2.2.16.</span> <span class="nav-text">HTTP API 测试 - Paw</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-UI-调试-Reveal"><span class="nav-number">2.2.17.</span> <span class="nav-text">iOS UI 调试 - Reveal</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#屏幕取色-Sip"><span class="nav-number">2.2.18.</span> <span class="nav-text">屏幕取色 - Sip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移动应用原型设计-Sketch"><span class="nav-number">2.2.19.</span> <span class="nav-text">移动应用原型设计 - Sketch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UML绘图-StarUML"><span class="nav-number">2.2.20.</span> <span class="nav-text">UML绘图 - StarUML</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 83086, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 83086, xid: "2016/07/29/macOS-Setup-Guide-Tools/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/83086/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("eB68LUN0RozWUhG9EPHGOv7A-gzGzoHsz", "rVLoe96MWG2qWRXz9OJnGSpz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,1298 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="0wsQzlCw_nicXQs7QbZ6n_aTyfoSkbeNQw6xpj3ScWo" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="QJ33ASIjWB" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Tips," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chaosky's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="更新日志
+
+2016.09.09 UIImageView加载WebP格式的图片
+2016.09.19 更新UI系列
+2016.10.18 更新隐藏GroupedTableView上边多余的间隔
+
+工具类提取assets.car中的图片iPhone 6 屏幕揭秘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS Tips">
+<meta property="og:url" content="http://chaosky.me/2016/05/26/iOS-Tips/index.html">
+<meta property="og:site_name" content="Chaosky's Notes">
+<meta property="og:description" content="更新日志
+
+2016.09.09 UIImageView加载WebP格式的图片
+2016.09.19 更新UI系列
+2016.10.18 更新隐藏GroupedTableView上边多余的间隔
+
+工具类提取assets.car中的图片iPhone 6 屏幕揭秘">
+<meta property="og:image" content="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/07/N--O83POLH925H7-7_-3TJT.jpg">
+<meta property="og:image" content="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/09/QQ20150923-1-2x.png">
+<meta property="og:image" content="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/09/QQ20150923-2-2x.png">
+<meta property="og:image" content="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/10/Xcode-Scheme-option.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-09-20-Snip20160920_4.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-09-20-Snip20160920_6.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2017-01-18-cheatsheetobjccd.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2017-01-18-消息传递-how choose.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-10-18-Snip20161017_2.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-10-18-Snip20161017_4.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-10-18-Snip20161017_6.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/571495-92c1547f64ea24f6.gif">
+<meta property="og:updated_time" content="2017-02-14T14:42:25.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS Tips">
+<meta name="twitter:description" content="更新日志
+
+2016.09.09 UIImageView加载WebP格式的图片
+2016.09.19 更新UI系列
+2016.10.18 更新隐藏GroupedTableView上边多余的间隔
+
+工具类提取assets.car中的图片iPhone 6 屏幕揭秘">
+<meta name="twitter:image" content="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/07/N--O83POLH925H7-7_-3TJT.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chaosky.me/2016/05/26/iOS-Tips/"/>
+
+
+
+
+
+  <title> iOS Tips | Chaosky's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=54252577";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chaosky's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">Getting Real。源码之前，了无秘密。</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-workspace">
+          <a href="/workspace" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cubes"></i> <br />
+            
+            工作空间
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skillmap">
+          <a href="/skillmap" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            技能树
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gate">
+          <a href="/gate" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            任意门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'WVe9S1RCHgLaWK_3xm3y','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2016/05/26/iOS-Tips/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS Tips
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-26T22:22:14+00:00">
+                2016-05-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/05/26/iOS-Tips/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2016/05/26/iOS-Tips/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2016/05/26/iOS-Tips/" class="leancloud_visitors" data-flag-title="iOS Tips">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      2,744
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      13
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>更新日志</strong></p>
+<ul>
+<li>2016.09.09 UIImageView加载WebP格式的图片</li>
+<li>2016.09.19 更新UI系列</li>
+<li>2016.10.18 更新<a href="#隐藏GroupedTableView上边多余的间隔">隐藏GroupedTableView上边多余的间隔</a></li>
+</ul>
+<h2 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h2><h3 id="提取assets-car中的图片"><a href="#提取assets-car中的图片" class="headerlink" title="提取assets.car中的图片"></a><a href="http://io.diveinedu.com/2015/01/15/提取Assets.car中的图片.html" target="_blank" rel="external">提取assets.car中的图片</a></h3><h3 id="iPhone-6-屏幕揭秘"><a href="#iPhone-6-屏幕揭秘" class="headerlink" title="iPhone 6 屏幕揭秘"></a><a href="http://wileam.com/iphone-6-screen-cn/" target="_blank" rel="external">iPhone 6 屏幕揭秘</a></h3><a id="more"></a>
+<h2 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h2><h3 id="iOS开发证书显示“此证书的签发者无效”解决方法"><a href="#iOS开发证书显示“此证书的签发者无效”解决方法" class="headerlink" title="iOS开发证书显示“此证书的签发者无效”解决方法"></a>iOS开发证书显示“此证书的签发者无效”解决方法</h3><p>原因：<strong>Apple Worldwide Developer Relations Certification Authority Intermediate Certificate</strong> 证书过期。</p>
+<p>解决办法：</p>
+<ol>
+<li>在『钥匙串访问』的菜单项中选择显示已过期证书，删除已过期证书。</li>
+<li>在Apple PKI网页下载最新的证书：<a href="https://developer.apple.com/certificationauthority/AppleWWDRCA.cer" target="_blank" rel="external">https://developer.apple.com/certificationauthority/AppleWWDRCA.cer</a> ，双击导入即可。</li>
+</ol>
+<h3 id="Xcode常见报错锦囊"><a href="#Xcode常见报错锦囊" class="headerlink" title="Xcode常见报错锦囊"></a><a href="http://mp.weixin.qq.com/s?__biz=MjM5OTM0MzIwMQ==&amp;mid=2652546100&amp;idx=1&amp;sn=4ddcd710eb3d93910e58067f2ec797c9&amp;scene=1&amp;srcid=0626DTqmwlU53fE6bc0mL8pw#rd" target="_blank" rel="external">Xcode常见报错锦囊</a></h3><h3 id="Xcode只显示iOS-Simulator的identifier，没有显示device-version"><a href="#Xcode只显示iOS-Simulator的identifier，没有显示device-version" class="headerlink" title="Xcode只显示iOS Simulator的identifier，没有显示device version"></a>Xcode只显示iOS Simulator的identifier，没有显示device version</h3><p>当安装多个版本的Xcode时，有可能会在某个Xcode中出现相同机型相同版本的多个模拟器，如图所示：<img src="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/07/N--O83POLH925H7-7_-3TJT.jpg" alt="alt">  </p>
+<p>解决办法：</p>
+<ol>
+<li>退出Xcode.app, iOS Simulator.app等</li>
+<li>执行命令关闭模拟器服务：<code>sudo killall -9 com.apple.CoreSimulator.CoreSimulatorService</code></li>
+<li>执行命令删除所有已经存在的模拟器：<code>rm -rf ~/Library/Developer/CoreSimulator/Devices</code></li>
+<li>重启Xcode，就可以看到在<code>~/Library/Developer/CoreSimulator/Devices</code>目录，新生成的模拟器设备。</li>
+<li>这样就不会有重复的模拟器设备了。  </li>
+</ol>
+<h3 id="如何删除Xcode-Downloads中的Components"><a href="#如何删除Xcode-Downloads中的Components" class="headerlink" title="如何删除Xcode Downloads中的Components"></a>如何删除Xcode Downloads中的Components</h3><p><img src="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/09/QQ20150923-1-2x.png" alt="alt"></p>
+<p>解决办法：</p>
+<ol>
+<li>退出Xcode.app, iOS Simulator.app等  </li>
+<li><code>cd /Library/Developer/CoreSimulator/Profiles/Runtimes</code>，如果已下载，可以在该目录中找到simruntime文件<br><img src="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/09/QQ20150923-2-2x.png" alt="alt"></li>
+<li>删除对应模拟器版本</li>
+<li>清空目录：<code>rm -rf ~/Library/Developer/CoreSimulator/Devices</code></li>
+<li>重启Xcode，让Xcode重新生成模拟器设备.  </li>
+</ol>
+<h3 id="完全卸载-Xcode"><a href="#完全卸载-Xcode" class="headerlink" title="完全卸载 Xcode"></a>完全卸载 Xcode</h3><p>终端输入以下命令：<code>sudo /Developer/Library/uninstall-devtools —mode=all</code></p>
+<h3 id="Xcode-6-x的Scheme选项在-OS-X-El-Capitan-10-11-中消失"><a href="#Xcode-6-x的Scheme选项在-OS-X-El-Capitan-10-11-中消失" class="headerlink" title="Xcode 6.x的Scheme选项在 OS X El Capitan(10.11)中消失"></a>Xcode 6.x的Scheme选项在 OS X El Capitan(10.11)中消失</h3><p><img src="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/10/Xcode-Scheme-option.png" alt=""></p>
+<p>解决办法：将Xcode的窗口拉长或者全屏就会出现</p>
+<h3 id="Xcode-7-1-无法安装Alcatraz插件"><a href="#Xcode-7-1-无法安装Alcatraz插件" class="headerlink" title="Xcode 7.1 无法安装Alcatraz插件"></a>Xcode 7.1 无法安装Alcatraz插件</h3><ol>
+<li>关闭Xcode</li>
+<li><p>移除之前安装的Xcode默认项  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">defaults</span> <span class="selector-tag">delete</span> <span class="selector-tag">com</span><span class="selector-class">.apple</span><span class="selector-class">.dt</span><span class="selector-class">.Xcode</span> <span class="selector-tag">DVTPlugInManagerNonApplePlugIns-Xcode-7</span><span class="selector-class">.0</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>卸载Alcatraz  </p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm -rf ~<span class="regexp">/Library/</span>Application\ Support<span class="regexp">/Developer/</span>Shared<span class="regexp">/Xcode/</span>Plug-ins<span class="regexp">/Alcatraz.xcplugin</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>移除所有通过Alcatraz安装的包  </p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm -rf ~<span class="regexp">/Library/</span>Application\ Support<span class="regexp">/Alcatraz/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>更新已安装插件的DVTPlugInCompatibilityUUID到7.1</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">find</span> ~<span class="regexp">/Library/</span>Application\ Support<span class="regexp">/Developer/</span>Shared<span class="regexp">/Xcode/</span>Plug-ins -name Info.plist -maxdepth <span class="number">3</span> | xargs -I&#123;&#125; defaults <span class="keyword">write</span> &#123;&#125; DVTPlugInCompatibilityUUIDs -array-add `defaults <span class="keyword">read</span> <span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>Info DVTPlugInCompatibilityUUID`</div></pre></td></tr></table></figure>
+</li>
+<li><p>重置Xcode Select<br><code>sudo xcode-select --reset</code></p>
+</li>
+<li>打开Xcode</li>
+<li><p>安装 Alcatraz</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -fsSL http<span class="variable">s:</span>//raw.github.<span class="keyword">com</span>/supermarin/Alcatraz/master/Scripts/install.<span class="keyword">sh</span> | <span class="keyword">sh</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>重启Xcode</p>
+</li>
+<li>选择”Load Bundles”启动Xcode</li>
+</ol>
+<h3 id="Xcode-安装编译后的-app文件"><a href="#Xcode-安装编译后的-app文件" class="headerlink" title="Xcode 安装编译后的.app文件"></a>Xcode 安装编译后的.app文件</h3><p><strong>安装之前需要启动iOS模拟器。</strong>  </p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="string">[Xcode安装路径]</span>/Contents/Developer/usr/bin/simctl install booted <span class="string">[要安装的APP路径]</span></div></pre></td></tr></table></figure>
+<p><strong>示例命令：</strong></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>Developer<span class="regexp">/usr/</span>bin<span class="regexp">/simctl install booted ~/</span>Desktop<span class="regexp">/Examine.app</span></div></pre></td></tr></table></figure>
+<h3 id="关闭-Xcode-8-终端打印一大堆日志"><a href="#关闭-Xcode-8-终端打印一大堆日志" class="headerlink" title="关闭 Xcode 8 终端打印一大堆日志"></a>关闭 Xcode 8 终端打印一大堆日志</h3><p>终端中打印的日志格式类似如下：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">subsystem:</span> com.apple.UIKit, <span class="string">category:</span> HIDEventFiltered, <span class="string">enable_level:</span> <span class="number">0</span>, <span class="string">persist_level:</span> <span class="number">0</span>, <span class="string">default_ttl:</span> <span class="number">0</span>, <span class="string">info_ttl:</span> <span class="number">0</span>, <span class="string">debug_ttl:</span> <span class="number">0</span>, <span class="string">generate_symptoms:</span> <span class="number">0</span>, <span class="string">enable_oversize:</span> <span class="number">1</span>, <span class="string">privacy_setting:</span> <span class="number">2</span>, <span class="string">enable_private_data:</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<p>解决办法：Edit Scheme -&gt; Run -&gt; Arguments，在<code>Environment Variables</code>里边添加<br><code>OS_ACTIVITY_MODE ＝ Disable</code></p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-09-20-Snip20160920_4.png" alt="Snip20160920_4"><br><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-09-20-Snip20160920_6.png" alt="Snip20160920_6"></p>
+<h3 id="Xcode-7-x-中使用-Xcode-8-的新字体-SF-Mono"><a href="#Xcode-7-x-中使用-Xcode-8-的新字体-SF-Mono" class="headerlink" title="Xcode 7.x 中使用 Xcode 8 的新字体 SF Mono"></a>Xcode 7.x 中使用 Xcode 8 的新字体 SF Mono</h3><p>从安装有 Xcode 8 的路径 <code>/Application/Xcode.app/Contents/SharedFrameworks/DVTKit.framework/Versions/A/Resources/Fonts</code> 下能找到这些字体。</p>
+<p>选中所有字体拖拽到 <code>Font Book.app</code>（字体册）中，这样在 Xcode 7 中就可以选择了。</p>
+<p>我自己将字体压缩了下，可以从这个地址下载： <a href="/assets/SFMonoFont.zip">SF Mono 字体</a></p>
+<h3 id="Xcode-Tips-Tricks"><a href="#Xcode-Tips-Tricks" class="headerlink" title="Xcode Tips Tricks"></a>Xcode Tips Tricks</h3><video src="http://7xooko.com1.z0.glb.clouddn.com/XcodeTipsTricks.mp4" width="600" height="400" controls="controls"><br>Your browser does not support the video tag.<br></video>
+
+<h3 id="Xcode-Snippets"><a href="#Xcode-Snippets" class="headerlink" title="Xcode Snippets"></a>Xcode Snippets</h3><p>关于 <strong>Xcode Snippets</strong> 的介绍，可以通过<a href="http://nshipster.cn/xcode-snippets/" target="_blank" rel="external">这篇文章</a>了解，以及如何生成自定义的代码片段。</p>
+<h4 id="安装-NShipster-提供的代码片段"><a href="#安装-NShipster-提供的代码片段" class="headerlink" title="安装 NShipster 提供的代码片段"></a>安装 NShipster 提供的代码片段</h4><p>仓库地址：<a href="https://github.com/Xcode-Snippets" target="_blank" rel="external">https://github.com/Xcode-Snippets</a></p>
+<ol>
+<li>安装命令行工具：<code>gem install xcodesnippet</code></li>
+<li>下载代码仓库：<code>git clone https://github.com/Xcode-Snippets/Objective-C.git</code></li>
+<li>进入该目录添加单条代码片段：<code>xcodesnippet install path/to/source.m</code></li>
+<li>该目录下有很多代码片段，可以通过命令批量添加：<code>ls -1 | xargs -L1 xcodesnippet install</code></li>
+</ol>
+<h4 id="安装唐巧提供的代码片段"><a href="#安装唐巧提供的代码片段" class="headerlink" title="安装唐巧提供的代码片段"></a>安装唐巧提供的代码片段</h4><p>仓库地址：<a href="https://github.com/tangqiaoboy/xcode_tool" target="_blank" rel="external">https://github.com/tangqiaoboy/xcode_tool</a></p>
+<ol>
+<li>下载项目仓库：<code>git clone https://github.com/tangqiaoboy/xcode_tool</code></li>
+<li><code>cd xcode_tool</code></li>
+<li><code>./setup_snippets.sh</code></li>
+</ol>
+<p>需要注意的是唐巧提供的代码片段，以后需要更新时可以直接仓库即可。</p>
+<h3 id="Understanding-and-Analyzing-Application-Crash-Reports"><a href="#Understanding-and-Analyzing-Application-Crash-Reports" class="headerlink" title="Understanding and Analyzing Application Crash Reports"></a>Understanding and Analyzing Application Crash Reports</h3><p>详情链接：<a href="https://developer.apple.com/library/content/technotes/tn2151/_index.html" target="_blank" rel="external">https://developer.apple.com/library/content/technotes/tn2151/_index.html</a></p>
+<h2 id="Foundation"><a href="#Foundation" class="headerlink" title="Foundation"></a>Foundation</h2><h3 id="获取程序沙盒Document目录"><a href="#获取程序沙盒Document目录" class="headerlink" title="获取程序沙盒Document目录"></a>获取程序沙盒<code>Document</code>目录</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *paths = <span class="built_in">NSSearchPathForDictionariesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>);</div><div class="line"><span class="built_in">NSString</span> *documentsDirectory = [paths objectAtIndex:<span class="number">0</span>];</div></pre></td></tr></table></figure>
+<h3 id="Objective-C-关键字"><a href="#Objective-C-关键字" class="headerlink" title="Objective-C 关键字"></a>Objective-C 关键字</h3><p><img src="http://7xooko.com1.z0.glb.clouddn.com/2017-01-18-cheatsheetobjccd.png" alt="cheatsheetobjccd"></p>
+<h3 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h3><p><img src="http://7xooko.com1.z0.glb.clouddn.com/2017-01-18-消息传递-how choose.png" alt="消息传递-how choose"></p>
+<h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><h3 id="UITableView"><a href="#UITableView" class="headerlink" title="UITableView"></a>UITableView</h3><h4 id="取消cell的分割线"><a href="#取消cell的分割线" class="headerlink" title="取消cell的分割线"></a>取消cell的分割线</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tableview.separatorStyle = UITableViewCellSeparatorStyleNone<span class="comment">;</span></div></pre></td></tr></table></figure>
+<h4 id="UITabelViewCell-的高亮状态的取消"><a href="#UITabelViewCell-的高亮状态的取消" class="headerlink" title="UITabelViewCell 的高亮状态的取消"></a>UITabelViewCell 的高亮状态的取消</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView willDisplayCell:(<span class="built_in">UITableViewCell</span> *)cell forRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</div><div class="line">    <span class="comment">//设置cell的背景是透明的。</span></div><div class="line">    cell.backgroundColor = [<span class="built_in">UIColor</span> clearColor];</div><div class="line">    <span class="comment">//取消cell的高亮状态</span></div><div class="line">    cell.selectionStyle = <span class="built_in">UITableViewCellSelectionStyleNone</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//使用下面的这个方法会导致cell不能响应点击事件</span></div><div class="line"></div><div class="line">- (<span class="built_in">BOOL</span>)tableView:(<span class="built_in">UITableView</span> *)tableView shouldHighlightRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="设置分割线的左右偏移量"><a href="#设置分割线的左右偏移量" class="headerlink" title="设置分割线的左右偏移量"></a>设置分割线的左右偏移量</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tableView.separatorInset = UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">100</span>, <span class="number">0</span>, <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<h4 id="TableView不显示没内容的Cell"><a href="#TableView不显示没内容的Cell" class="headerlink" title="TableView不显示没内容的Cell"></a>TableView不显示没内容的Cell</h4><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="literal">self</span>.<span class="built_in">table</span>View.<span class="built_in">table</span>FooterView = [[UIView alloc] init];</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tableView.separatorColor = [UIColor clearColor]<span class="comment">;</span></div></pre></td></tr></table></figure>
+<h4 id="更改tableviewcell的小对勾的颜色"><a href="#更改tableviewcell的小对勾的颜色" class="headerlink" title="更改tableviewcell的小对勾的颜色"></a>更改tableviewcell的小对勾的颜色</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tableView.tintColor = [UIColor redColor]<span class="comment">;</span></div></pre></td></tr></table></figure>
+<h4 id="UITableView-在页面加载完成后滚动到底部"><a href="#UITableView-在页面加载完成后滚动到底部" class="headerlink" title="UITableView 在页面加载完成后滚动到底部"></a>UITableView 在页面加载完成后滚动到底部</h4><p>方法原型：<code>- (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition</code></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>) <span class="string">viewDidAppear:</span>(BOOL)animated &#123;</div><div class="line">	[<span class="keyword">super</span> <span class="string">viewDidAppear:</span>animated];</div><div class="line">	[self.tableView <span class="string">selectRowAtIndexPath:</span>indexPath <span class="string">animated:</span>NO <span class="string">scrollPosition:</span>UITableViewScrollPositionBottom];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="隐藏GroupedTableView上边多余的间隔"><a href="#隐藏GroupedTableView上边多余的间隔" class="headerlink" title="隐藏GroupedTableView上边多余的间隔"></a>隐藏GroupedTableView上边多余的间隔</h4><p>第一个 Section 距离屏幕顶端有间隔，解决这个问题有三种方式。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-10-18-Snip20161017_2.png" alt="Snip20161017_2"></p>
+<h5 id="方式一：设置UITableViewHeader"><a href="#方式一：设置UITableViewHeader" class="headerlink" title="方式一：设置UITableViewHeader"></a>方式一：设置UITableViewHeader</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">CGRect</span> frame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="built_in">CGFLOAT_MIN</span>);</div><div class="line"><span class="keyword">self</span>.tableView.tableHeaderView = [[<span class="built_in">UIView</span> alloc] initWithFrame:frame];</div></pre></td></tr></table></figure>
+<h5 id="方式二：Storyboard"><a href="#方式二：Storyboard" class="headerlink" title="方式二：Storyboard"></a>方式二：Storyboard</h5><p>在第一个 Section 的上面拖进来一个空 UIView，设置view的height为0.1。<br><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-10-18-Snip20161017_4.png" alt="Snip20161017_4"><br><img src="http://7xooko.com1.z0.glb.clouddn.com/2016-10-18-Snip20161017_6.png" alt="Snip20161017_6"></p>
+<h5 id="方式三：实现heightForHeaderInSection协议方法"><a href="#方式三：实现heightForHeaderInSection协议方法" class="headerlink" title="方式三：实现heightForHeaderInSection协议方法"></a>方式三：实现heightForHeaderInSection协议方法</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">CGFloat</span>) tableView:(<span class="built_in">UITableView</span> *)tableView heightForHeaderInSection:(<span class="built_in">NSInteger</span>)section</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (section == <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> <span class="built_in">CGFLOAT_MIN</span>;</div><div class="line">    <span class="keyword">return</span> tableView.sectionHeaderHeight;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="UINavigationBar"><a href="#UINavigationBar" class="headerlink" title="UINavigationBar"></a>UINavigationBar</h3><h4 id="自定义leftBarbuttonItem，左滑返回手势失效"><a href="#自定义leftBarbuttonItem，左滑返回手势失效" class="headerlink" title="自定义leftBarbuttonItem，左滑返回手势失效"></a>自定义leftBarbuttonItem，左滑返回手势失效</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.navigationItem.leftBarButtonItem = [[<span class="built_in">UIBarButtonItem</span> alloc] initWithImage:img style:<span class="built_in">UIBarButtonItemStylePlain</span> target:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(onBack:)];</div><div class="line"><span class="keyword">self</span>.navigationController.interactivePopGestureRecognizer.delegate = (<span class="keyword">id</span>&lt;<span class="built_in">UIGestureRecognizerDelegate</span>&gt;)<span class="keyword">self</span>;</div></pre></td></tr></table></figure>
+<h4 id="滑动隐藏NavigationBar"><a href="#滑动隐藏NavigationBar" class="headerlink" title="滑动隐藏NavigationBar"></a>滑动隐藏NavigationBar</h4><p><code>navigationController.hidesBarsOnSwipe = Yes</code></p>
+<h4 id="导航条返回键隐藏title"><a href="#导航条返回键隐藏title" class="headerlink" title="导航条返回键隐藏title"></a>导航条返回键隐藏title</h4><p><code>[[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];</code></p>
+<h4 id="NavigationBar透明而不是带模糊的效果"><a href="#NavigationBar透明而不是带模糊的效果" class="headerlink" title="NavigationBar透明而不是带模糊的效果"></a>NavigationBar透明而不是带模糊的效果</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span>.navigationBar setBackgroundImage:[<span class="built_in">UIImage</span> new] forBarMetrics:<span class="built_in">UIBarMetricsDefault</span>];</div><div class="line"><span class="keyword">self</span>.navigationBar.shadowImage = [<span class="built_in">UIImage</span> new];</div><div class="line"><span class="keyword">self</span>.navigationBar.translucent = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
+<h4 id="改变导航栏里返回按钮的图标颜色"><a href="#改变导航栏里返回按钮的图标颜色" class="headerlink" title="改变导航栏里返回按钮的图标颜色"></a>改变导航栏里返回按钮的图标颜色</h4><p><code>self.navigationController.navigationBar.tintColor = [UIColor whiteColor];</code></p>
+<h3 id="拉伸图片，图片不变形"><a href="#拉伸图片，图片不变形" class="headerlink" title="拉伸图片，图片不变形"></a>拉伸图片，图片不变形</h3><p><code>UIImage *image = [[UIImage imageNamed:@&quot;xxx&quot;] stretchableImageWithLeftCapWidth:10 topCapHeight:10];</code></p>
+<h3 id="ScrollView莫名其妙不能在viewController划到顶"><a href="#ScrollView莫名其妙不能在viewController划到顶" class="headerlink" title="ScrollView莫名其妙不能在viewController划到顶"></a>ScrollView莫名其妙不能在viewController划到顶</h3><p><code>self.automaticallyAdjustsScrollViewInsets = NO;</code></p>
+<h3 id="怎么点击self-view就让键盘收起"><a href="#怎么点击self-view就让键盘收起" class="headerlink" title="怎么点击self.view就让键盘收起"></a>怎么点击self.view就让键盘收起</h3><p>两种方法：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span> *)touches withEvent:(<span class="built_in">UIEvent</span> *)event</div><div class="line">&#123;</div><div class="line">   [<span class="keyword">self</span>.view endEditing:<span class="literal">YES</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)canBecomeFirstResponder &#123;</div><div class="line">	<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div><div class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span> *)touches withEvent:(<span class="built_in">UIEvent</span> *)event</div><div class="line">&#123;</div><div class="line">   [<span class="keyword">self</span> becomeFirstResponder];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="修改状态栏样式"><a href="#修改状态栏样式" class="headerlink" title="修改状态栏样式"></a>修改状态栏样式</h3><p>在info.plist文件中添加<code>UIViewControllerBasedStatusBarAppearance</code>设置为NO<br><code>[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];</code></p>
+<h3 id="一句话解决倒计时问题，比如获取验证码倒计时"><a href="#一句话解决倒计时问题，比如获取验证码倒计时" class="headerlink" title="一句话解决倒计时问题，比如获取验证码倒计时"></a><a href="http://www.jianshu.com/p/ccbbdc776876" target="_blank" rel="external">一句话解决倒计时问题，比如获取验证码倒计时</a></h3><p><img src="http://upload-images.jianshu.io/upload_images/571495-92c1547f64ea24f6.gif" alt=""></p>
+<h3 id="WKWebView的使用和各种坑的解决方法（OC＋Swift）"><a href="#WKWebView的使用和各种坑的解决方法（OC＋Swift）" class="headerlink" title="WKWebView的使用和各种坑的解决方法（OC＋Swift）"></a><a href="http://www.jianshu.com/p/403853b63537" target="_blank" rel="external">WKWebView的使用和各种坑的解决方法（OC＋Swift）</a></h3><h3 id="UIImageView加载WebP格式的图片"><a href="#UIImageView加载WebP格式的图片" class="headerlink" title="UIImageView加载WebP格式的图片"></a>UIImageView加载WebP格式的图片</h3><p>WebP格式简介：<a href="http://isux.tencent.com/introduction-of-webp.html" target="_blank" rel="external">http://isux.tencent.com/introduction-of-webp.html</a></p>
+<p>WebP格式图片示例：<a href="http://7xooko.com1.z0.glb.clouddn.com/1.sm.webp" target="_blank" rel="external">http://7xooko.com1.z0.glb.clouddn.com/1.sm.webp</a></p>
+<h4 id="使用CocoaPods和SDWebImage"><a href="#使用CocoaPods和SDWebImage" class="headerlink" title="使用CocoaPods和SDWebImage"></a>使用CocoaPods和SDWebImage</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">pod</span> <span class="string">'SDWebImage'</span></div><div class="line">pod <span class="string">'SDWebImage/WebP'</span></div></pre></td></tr></table></figure>
+<h4 id="使用CocoaPods和YYWebImage"><a href="#使用CocoaPods和YYWebImage" class="headerlink" title="使用CocoaPods和YYWebImage"></a>使用CocoaPods和YYWebImage</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">pod</span> <span class="string">'YYWebImage'</span></div><div class="line">pod <span class="string">'YYImage/WebP'</span></div></pre></td></tr></table></figure>
+<h2 id="常用宏"><a href="#常用宏" class="headerlink" title="常用宏"></a>常用宏</h2><h3 id="尺寸宏"><a href="#尺寸宏" class="headerlink" title="尺寸宏"></a>尺寸宏</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">StatusBar_HEIGHT</span> 20</div><div class="line"></div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">NavigationBar_HEIGHT</span> 44</div><div class="line"></div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">NavigationBarIcon</span> 20</div><div class="line"></div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">TabBar_HEIGHT</span> 49</div><div class="line"></div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">TabBarIcon</span> 30</div><div class="line"></div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">SCREEN_WIDTH</span> (<span class="selector-attr">[UIScreen mainScreen]</span><span class="selector-class">.bounds</span><span class="selector-class">.size</span><span class="selector-class">.width</span>)</div><div class="line"></div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">SCREEN_HEIGHT</span> (<span class="selector-attr">[UIScreen mainScreen]</span><span class="selector-class">.bounds</span><span class="selector-class">.size</span><span class="selector-class">.height</span>)</div></pre></td></tr></table></figure>
+<h3 id="打印宏"><a href="#打印宏" class="headerlink" title="打印宏"></a>打印宏</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//直接替换NSLog</span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> DEBUG</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> NSLog(FORMAT, ...) fprintf(stderr,<span class="meta-string">"\n%s:%d %s \t%s\n"</span>, [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __FUNCTION__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> NSLog(FORMAT, ...) nil</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<h3 id="系统宏"><a href="#系统宏" class="headerlink" title="系统宏"></a>系统宏</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取版本</span></div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">IOS_VERSION</span> <span class="selector-attr">[[[UIDevice currentDevice]</span> <span class="selector-tag">systemVersion</span>] <span class="selector-tag">floatValue</span>]</div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">CurrentSystemVersion</span> <span class="selector-attr">[[UIDevice currentDevice]</span> <span class="selector-tag">systemVersion</span>]</div><div class="line"></div><div class="line"><span class="comment">// 获取当前语言</span></div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">CurrentLanguage</span> ([[NSLocale preferredLanguages] <span class="attribute">objectAtIndex</span>:<span class="number">0</span>])</div><div class="line"></div><div class="line"><span class="comment">// 判断是真机还是模拟器</span></div><div class="line"><span class="selector-id">#if</span> <span class="selector-tag">TARGET_OS_IPHONE</span></div><div class="line"><span class="comment">//iPhone Device</span></div><div class="line"><span class="selector-id">#endif</span></div><div class="line"></div><div class="line"><span class="selector-id">#if</span> <span class="selector-tag">TARGET_IPHONE_SIMULATOR</span></div><div class="line"><span class="comment">//iPhone Simulator</span></div><div class="line"><span class="selector-id">#endif</span></div><div class="line"></div><div class="line"><span class="comment">// 检查系统版本</span></div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">SYSTEM_VERSION_EQUAL_TO</span>(v)                  ([[[UIDevice currentDevice] systemVersion] <span class="attribute">compare</span>:v <span class="attribute">options</span>:NSNumericSearch] == NSOrderedSame)</div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">SYSTEM_VERSION_GREATER_THAN</span>(v)              ([[[UIDevice currentDevice] systemVersion] <span class="attribute">compare</span>:v <span class="attribute">options</span>:NSNumericSearch] == NSOrderedDescending)</div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO</span>(v)  ([[[UIDevice currentDevice] systemVersion] <span class="attribute">compare</span>:v <span class="attribute">options</span>:NSNumericSearch] != NSOrderedAscending)</div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">SYSTEM_VERSION_LESS_THAN</span>(v)                ([[[UIDevice currentDevice] systemVersion] <span class="attribute">compare</span>:v <span class="attribute">options</span>:NSNumericSearch] == NSOrderedAscending)</div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO</span>(v)    ([[[UIDevice currentDevice] systemVersion] <span class="attribute">compare</span>:v <span class="attribute">options</span>:NSNumericSearch] != NSOrderedDescending)</div></pre></td></tr></table></figure>
+<h3 id="内存宏"><a href="#内存宏" class="headerlink" title="内存宏"></a>内存宏</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用ARC和不使用ARC</span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> __has_feature(objc_arc)</span></div><div class="line"><span class="comment">//compiling with ARC</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="comment">// compiling without ARC</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - common functions</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> RELEASE_SAFELY(__POINTER) &#123; [__POINTER release]; __POINTER = nil; &#125;</span></div><div class="line"></div><div class="line"><span class="comment">//释放一个对象</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> SAFE_DELETE(P) <span class="meta-keyword">if</span>(P) &#123; [P release], P = nil; &#125;</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> SAFE_RELEASE(x) [x release];x=nil</span></div></pre></td></tr></table></figure>
+<h3 id="颜色宏"><a href="#颜色宏" class="headerlink" title="颜色宏"></a>颜色宏</h3><figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// rgb颜色转换（16进制-&gt;10进制）</span></div><div class="line">#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((<span class="built_in">float</span>)((rgbValue &amp; <span class="number">0xFF0000</span>) &gt;&gt; <span class="number">16</span>))/<span class="number">255.0</span> <span class="built_in">green</span>:((<span class="built_in">float</span>)((rgbValue &amp; <span class="number">0xFF00</span>) &gt;&gt; <span class="number">8</span>))/<span class="number">255.0</span> <span class="built_in">blue</span>:((<span class="built_in">float</span>)(rgbValue &amp; <span class="number">0xFF</span>))/<span class="number">255.0</span> <span class="built_in">alpha</span>:<span class="number">1.0</span>]</div><div class="line"></div><div class="line"><span class="comment">// RGB颜色</span></div><div class="line">#define RGBCOLOR(r, g, b) [UIColor colorWithRed:(r)/<span class="number">255.0</span>f <span class="built_in">green</span>:(g)/<span class="number">255.0</span>f <span class="built_in">blue</span>:(b)/<span class="number">255.0</span>f <span class="built_in">alpha</span>:<span class="number">1</span>]</div><div class="line">#define RGBACOLOR(r, g, b, a) [UIColor colorWithRed:(r)/<span class="number">255.0</span>f <span class="built_in">green</span>:(g)/<span class="number">255.0</span>f <span class="built_in">blue</span>:(b)/<span class="number">255.0</span>f <span class="built_in">alpha</span>:(a)]</div><div class="line"></div><div class="line"><span class="comment">// 背景色</span></div><div class="line">#define BACKGROUNDCOLOR [UIColor colorWithRed:<span class="number">242.0</span>/<span class="number">255.0</span> <span class="built_in">green</span>:<span class="number">236.0</span>/<span class="number">255.0</span> <span class="built_in">blue</span>:<span class="number">231.0</span>/<span class="number">255.0</span> <span class="built_in">alpha</span>:<span class="number">1.0</span>]</div><div class="line"></div><div class="line"><span class="comment">// 清除背景色</span></div><div class="line">#define CLEARCOLOR [UIColor clearColor]</div></pre></td></tr></table></figure>
+<h3 id="其他宏"><a href="#其他宏" class="headerlink" title="其他宏"></a>其他宏</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//方正黑体简体字体定义</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> FONT(F) [UIFont fontWithName:@<span class="meta-string">"FZHTJW--GB1-0"</span> size:(F)]</span></div><div class="line"></div><div class="line"><span class="comment">//定义一个API</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> BaseAPIURL                @<span class="meta-string">"http://xxxxx/"</span></span></div><div class="line"><span class="comment">//登陆API</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> APILogin              [APIURL stringByAppendingString:@<span class="meta-string">"Login"</span>]</span></div><div class="line"></div><div class="line"><span class="comment">//设置View的tag属性</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> VIEWWITHTAG(_OBJECT, _TAG)    [_OBJECT viewWithTag : _TAG]</span></div><div class="line"></div><div class="line"><span class="comment">//G－C－D</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> BACK(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAIN(block) dispatch_async(dispatch_get_main_queue(),block)</span></div><div class="line"></div><div class="line"><span class="comment">//NSUserDefaults 实例化</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> USER_DEFAULT [NSUserDefaults standardUserDefaults]</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//由角度获取弧度 有弧度获取角度</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> degreesToRadian(x) (M_PI * (x) / 180.0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> radianToDegrees(radian) (radian*180.0)/(M_PI)</span></div></pre></td></tr></table></figure>
+<h3 id="单例宏"><a href="#单例宏" class="headerlink" title="单例宏"></a>单例宏</h3><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#define SYNTHESIZE_SINGLETON_FOR_CLASS(classname) \</span></div><div class="line"><span class="string">\</span></div><div class="line">static classname *shared<span class="comment">##classname = nil; \</span></div><div class="line"><span class="string">\</span></div><div class="line">+ (classname *)shared<span class="comment">##classname \</span></div><div class="line">&#123; <span class="string">\</span></div><div class="line">@synchronized(self) <span class="string">\</span></div><div class="line">&#123; <span class="string">\</span></div><div class="line"><span class="keyword">if</span> (shared<span class="comment">##classname == nil) \</span></div><div class="line">&#123; <span class="string">\</span></div><div class="line">shared<span class="comment">##classname = [[self alloc] init]; \</span></div><div class="line">&#125; <span class="string">\</span></div><div class="line">&#125; <span class="string">\</span></div><div class="line"><span class="string">\</span></div><div class="line"><span class="keyword">return</span> shared<span class="comment">##classname; \</span></div><div class="line">&#125; <span class="string">\</span></div><div class="line"><span class="string">\</span></div><div class="line">+ (id)allocWithZone:(NSZone *)zone <span class="string">\</span></div><div class="line">&#123; <span class="string">\</span></div><div class="line">@synchronized(self) <span class="string">\</span></div><div class="line">&#123; <span class="string">\</span></div><div class="line"><span class="keyword">if</span> (shared<span class="comment">##classname == nil) \</span></div><div class="line">&#123; <span class="string">\</span></div><div class="line">shared<span class="comment">##classname = [super allocWithZone:zone]; \</span></div><div class="line"><span class="keyword">return</span> shared<span class="comment">##classname; \</span></div><div class="line">&#125; <span class="string">\</span></div><div class="line">&#125; <span class="string">\</span></div><div class="line"><span class="string">\</span></div><div class="line"><span class="keyword">return</span> nil; <span class="string">\</span></div><div class="line">&#125; <span class="string">\</span></div><div class="line"><span class="string">\</span></div><div class="line">- (id)copyWithZone:(NSZone *)zone <span class="string">\</span></div><div class="line">&#123; <span class="string">\</span></div><div class="line"><span class="keyword">return</span> self; <span class="string">\</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h2><h3 id="键盘遮挡"><a href="#键盘遮挡" class="headerlink" title="键盘遮挡"></a>键盘遮挡</h3><p><a href="">IQKeyboardManager</a></p>
+<h3 id="iOS动画帧速计算类库"><a href="#iOS动画帧速计算类库" class="headerlink" title="iOS动画帧速计算类库"></a>iOS动画帧速计算类库</h3><p><a href="https://github.com/kconner/KMCGeigerCounter" target="_blank" rel="external">KMCGeigerCounter</a></p>
+<h3 id="Gif-播放"><a href="#Gif-播放" class="headerlink" title="Gif 播放"></a>Gif 播放</h3><p><a href="https://github.com/Flipboard/FLAnimatedImage" target="_blank" rel="external">FLAnimatedImage</a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="版本号的命名"><a href="#版本号的命名" class="headerlink" title="版本号的命名"></a>版本号的命名</h3><p>根据国际主流的惯例，使用「语义化版本（Semantic Versioning）」的命名方式，有时简称 SemVer。  </p>
+<p><strong>语义化版本号</strong>（以下简称「版本号」）的格式是：<strong>\<major\>.\<minor\>.\<patch\></patch\></minor\></major\></strong> 。如：1.4.15、6.2.0。</p>
+<h4 id="每一位版本号的含义"><a href="#每一位版本号的含义" class="headerlink" title="每一位版本号的含义"></a>每一位版本号的含义</h4><ul>
+<li><strong>\<major\></major\></strong> 即主版本号，俗称大版本升级。改动到主版本号时，标志着 API 发生了巨大变化，包括但不限于新增特性、修改机制、删除功能， <strong>一般不兼容上一个主版本号</strong>。</li>
+<li><strong>\<minor\></minor\></strong> 即次版本号，俗称小版本升级。当我们进行常规的新增或修改功能时，改动次版本号，但是 <strong>必须是向前兼容的</strong>。这也意味着我们 <strong>不能直接删除某个功能</strong>。如若必要，我们可以在 changelog 中标记某项功能为「即将删除（Deprecated）」，然后在下一个大版本中将其彻底删除。</li>
+<li><strong>\<patch\></patch\></strong> 即修订号，俗称 bug 修复。顾名思义，如果仅仅为了修复或调整一些小问题，我们就只改动修订号。</li>
+</ul>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>版本号前不要加 v。</li>
+<li>不要在数字前补 0。错误示例：01.12.03。</li>
+<li>每一位版本号按照 +1 的速度递增，不要在版本号之间跳跃。</li>
+<li>主版本号停留在 0 的版本号，即 0.x.x 应当视作还在内部开发阶段的代码。如果代码有公共 API，此时不宜对外公开。</li>
+<li>1.0.0 的版本号用于界定公共 API 的形成。</li>
+<li>当次版本号递增时，修订号归零；当主版本号递增时，次版本号、修订号归零。</li>
+<li>进行新的开发时，版本号从 0.1.0 开始。</li>
+<li>如果不小心把一个不兼容的改版当成了次版本号发行，应当发行一个新的次版本号来更正这个问题并且恢复向下兼容。注意 不能去修改已发行的版本。</li>
+</ul>
+<h4 id="一个典型的版本号发展示例"><a href="#一个典型的版本号发展示例" class="headerlink" title="一个典型的版本号发展示例"></a>一个典型的版本号发展示例</h4><ul>
+<li>0.1.0</li>
+<li>0.1.1</li>
+<li>0.1.2</li>
+<li>0.2.0</li>
+<li>1.0.0</li>
+<li>1.1.0</li>
+<li>1.1.1</li>
+<li>……</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>天下大事，必作于细！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/WeChatPay.png" alt="Alex Lin WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/AliPay.png" alt="Alex Lin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Tips/" rel="tag"># Tips</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/30/Command-Line-Tools/" rel="next" title="命令行工具使用技巧">
+                <i class="fa fa-chevron-left"></i> 命令行工具使用技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/27/Develop-Platform/" rel="prev" title="开发平台">
+                开发平台 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg"
+               alt="Alex Lin" />
+          <p class="site-author-name" itemprop="name">Alex Lin</p>
+          <p class="site-description motion-element" itemprop="description">嗨，我是林天祥，iOS 开发者，专注移动软件开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chaoskyme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iwillcomeback" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.v2ex.com/member/error" target="_blank" title="V2EX">
+                  
+                    <i class="fa fa-fw fa-rocket"></i>
+                  
+                  V2EX
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/chaosky" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-git"></i>
+                  
+                  Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/chaosky" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.devtang.com" title="唐巧的博客" target="_blank">唐巧的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://coolshell.cn" title="酷壳" target="_blank">酷壳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.codingnow.com" title="云风的博客" target="_blank">云风的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://axiaoxin.com" title="信妈的博客" target="_blank">信妈的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://huxos.me" title="胡骏的博客" target="_blank">胡骏的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.h2ero.cn/" title="h2ero的博客" target="_blank">h2ero的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nleo.me" title="胡中华的博客" target="_blank">胡中华的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dbarobin.com" title="温国兵的随想录" target="_blank">温国兵的随想录</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/bbf6898c0002" title="jackfrued的博客" target="_blank">jackfrued的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工具类"><span class="nav-number">1.</span> <span class="nav-text">工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#提取assets-car中的图片"><span class="nav-number">1.1.</span> <span class="nav-text">提取assets.car中的图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iPhone-6-屏幕揭秘"><span class="nav-number">1.2.</span> <span class="nav-text">iPhone 6 屏幕揭秘</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xcode"><span class="nav-number">2.</span> <span class="nav-text">Xcode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS开发证书显示“此证书的签发者无效”解决方法"><span class="nav-number">2.1.</span> <span class="nav-text">iOS开发证书显示“此证书的签发者无效”解决方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode常见报错锦囊"><span class="nav-number">2.2.</span> <span class="nav-text">Xcode常见报错锦囊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode只显示iOS-Simulator的identifier，没有显示device-version"><span class="nav-number">2.3.</span> <span class="nav-text">Xcode只显示iOS Simulator的identifier，没有显示device version</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何删除Xcode-Downloads中的Components"><span class="nav-number">2.4.</span> <span class="nav-text">如何删除Xcode Downloads中的Components</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全卸载-Xcode"><span class="nav-number">2.5.</span> <span class="nav-text">完全卸载 Xcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-6-x的Scheme选项在-OS-X-El-Capitan-10-11-中消失"><span class="nav-number">2.6.</span> <span class="nav-text">Xcode 6.x的Scheme选项在 OS X El Capitan(10.11)中消失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-7-1-无法安装Alcatraz插件"><span class="nav-number">2.7.</span> <span class="nav-text">Xcode 7.1 无法安装Alcatraz插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-安装编译后的-app文件"><span class="nav-number">2.8.</span> <span class="nav-text">Xcode 安装编译后的.app文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭-Xcode-8-终端打印一大堆日志"><span class="nav-number">2.9.</span> <span class="nav-text">关闭 Xcode 8 终端打印一大堆日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-7-x-中使用-Xcode-8-的新字体-SF-Mono"><span class="nav-number">2.10.</span> <span class="nav-text">Xcode 7.x 中使用 Xcode 8 的新字体 SF Mono</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-Tips-Tricks"><span class="nav-number">2.11.</span> <span class="nav-text">Xcode Tips Tricks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-Snippets"><span class="nav-number">2.12.</span> <span class="nav-text">Xcode Snippets</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-NShipster-提供的代码片段"><span class="nav-number">2.12.1.</span> <span class="nav-text">安装 NShipster 提供的代码片段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装唐巧提供的代码片段"><span class="nav-number">2.12.2.</span> <span class="nav-text">安装唐巧提供的代码片段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Understanding-and-Analyzing-Application-Crash-Reports"><span class="nav-number">2.13.</span> <span class="nav-text">Understanding and Analyzing Application Crash Reports</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Foundation"><span class="nav-number">3.</span> <span class="nav-text">Foundation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取程序沙盒Document目录"><span class="nav-number">3.1.</span> <span class="nav-text">获取程序沙盒Document目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Objective-C-关键字"><span class="nav-number">3.2.</span> <span class="nav-text">Objective-C 关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息传递"><span class="nav-number">3.3.</span> <span class="nav-text">消息传递</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI"><span class="nav-number">4.</span> <span class="nav-text">UI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UITableView"><span class="nav-number">4.1.</span> <span class="nav-text">UITableView</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#取消cell的分割线"><span class="nav-number">4.1.1.</span> <span class="nav-text">取消cell的分割线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UITabelViewCell-的高亮状态的取消"><span class="nav-number">4.1.2.</span> <span class="nav-text">UITabelViewCell 的高亮状态的取消</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置分割线的左右偏移量"><span class="nav-number">4.1.3.</span> <span class="nav-text">设置分割线的左右偏移量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TableView不显示没内容的Cell"><span class="nav-number">4.1.4.</span> <span class="nav-text">TableView不显示没内容的Cell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改tableviewcell的小对勾的颜色"><span class="nav-number">4.1.5.</span> <span class="nav-text">更改tableviewcell的小对勾的颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UITableView-在页面加载完成后滚动到底部"><span class="nav-number">4.1.6.</span> <span class="nav-text">UITableView 在页面加载完成后滚动到底部</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隐藏GroupedTableView上边多余的间隔"><span class="nav-number">4.1.7.</span> <span class="nav-text">隐藏GroupedTableView上边多余的间隔</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方式一：设置UITableViewHeader"><span class="nav-number">4.1.7.1.</span> <span class="nav-text">方式一：设置UITableViewHeader</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方式二：Storyboard"><span class="nav-number">4.1.7.2.</span> <span class="nav-text">方式二：Storyboard</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方式三：实现heightForHeaderInSection协议方法"><span class="nav-number">4.1.7.3.</span> <span class="nav-text">方式三：实现heightForHeaderInSection协议方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UINavigationBar"><span class="nav-number">4.2.</span> <span class="nav-text">UINavigationBar</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义leftBarbuttonItem，左滑返回手势失效"><span class="nav-number">4.2.1.</span> <span class="nav-text">自定义leftBarbuttonItem，左滑返回手势失效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滑动隐藏NavigationBar"><span class="nav-number">4.2.2.</span> <span class="nav-text">滑动隐藏NavigationBar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#导航条返回键隐藏title"><span class="nav-number">4.2.3.</span> <span class="nav-text">导航条返回键隐藏title</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NavigationBar透明而不是带模糊的效果"><span class="nav-number">4.2.4.</span> <span class="nav-text">NavigationBar透明而不是带模糊的效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改变导航栏里返回按钮的图标颜色"><span class="nav-number">4.2.5.</span> <span class="nav-text">改变导航栏里返回按钮的图标颜色</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拉伸图片，图片不变形"><span class="nav-number">4.3.</span> <span class="nav-text">拉伸图片，图片不变形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ScrollView莫名其妙不能在viewController划到顶"><span class="nav-number">4.4.</span> <span class="nav-text">ScrollView莫名其妙不能在viewController划到顶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么点击self-view就让键盘收起"><span class="nav-number">4.5.</span> <span class="nav-text">怎么点击self.view就让键盘收起</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改状态栏样式"><span class="nav-number">4.6.</span> <span class="nav-text">修改状态栏样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一句话解决倒计时问题，比如获取验证码倒计时"><span class="nav-number">4.7.</span> <span class="nav-text">一句话解决倒计时问题，比如获取验证码倒计时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WKWebView的使用和各种坑的解决方法（OC＋Swift）"><span class="nav-number">4.8.</span> <span class="nav-text">WKWebView的使用和各种坑的解决方法（OC＋Swift）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIImageView加载WebP格式的图片"><span class="nav-number">4.9.</span> <span class="nav-text">UIImageView加载WebP格式的图片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用CocoaPods和SDWebImage"><span class="nav-number">4.9.1.</span> <span class="nav-text">使用CocoaPods和SDWebImage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用CocoaPods和YYWebImage"><span class="nav-number">4.9.2.</span> <span class="nav-text">使用CocoaPods和YYWebImage</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用宏"><span class="nav-number">5.</span> <span class="nav-text">常用宏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#尺寸宏"><span class="nav-number">5.1.</span> <span class="nav-text">尺寸宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打印宏"><span class="nav-number">5.2.</span> <span class="nav-text">打印宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统宏"><span class="nav-number">5.3.</span> <span class="nav-text">系统宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存宏"><span class="nav-number">5.4.</span> <span class="nav-text">内存宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色宏"><span class="nav-number">5.5.</span> <span class="nav-text">颜色宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他宏"><span class="nav-number">5.6.</span> <span class="nav-text">其他宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例宏"><span class="nav-number">5.7.</span> <span class="nav-text">单例宏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方库"><span class="nav-number">6.</span> <span class="nav-text">第三方库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#键盘遮挡"><span class="nav-number">6.1.</span> <span class="nav-text">键盘遮挡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS动画帧速计算类库"><span class="nav-number">6.2.</span> <span class="nav-text">iOS动画帧速计算类库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gif-播放"><span class="nav-number">6.3.</span> <span class="nav-text">Gif 播放</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">7.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#版本号的命名"><span class="nav-number">7.1.</span> <span class="nav-text">版本号的命名</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#每一位版本号的含义"><span class="nav-number">7.1.1.</span> <span class="nav-text">每一位版本号的含义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意事项"><span class="nav-number">7.1.2.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个典型的版本号发展示例"><span class="nav-number">7.1.3.</span> <span class="nav-text">一个典型的版本号发展示例</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 83086, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 83086, xid: "2016/05/26/iOS-Tips/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/83086/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("eB68LUN0RozWUhG9EPHGOv7A-gzGzoHsz", "rVLoe96MWG2qWRXz9OJnGSpz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,1196 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="0wsQzlCw_nicXQs7QbZ6n_aTyfoSkbeNQw6xpj3ScWo" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="QJ33ASIjWB" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Unix 编程艺术," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chaosky's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="《Unix 编程艺术》：这本书在模块化、文本化、配置、接口、复杂度、优化、可移植性等方面，都提供了Unix/Linux世界所积累的宝贵经验。好的程序可以经受时间、平台与用户的考验，好的编程思想可以经受实践的检验。
+
+读书笔记摘录自 《Unix 编程艺术》
+
+Unix 设计原则所有的 Unix 哲学浓缩为一条铁律，『KISS』原则：Keep It Simple, Stupid!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unix 编程艺术">
+<meta property="og:url" content="http://chaosky.me/2016/09/05/Unix-Art/index.html">
+<meta property="og:site_name" content="Chaosky's Notes">
+<meta property="og:description" content="《Unix 编程艺术》：这本书在模块化、文本化、配置、接口、复杂度、优化、可移植性等方面，都提供了Unix/Linux世界所积累的宝贵经验。好的程序可以经受时间、平台与用户的考验，好的编程思想可以经受实践的检验。
+
+读书笔记摘录自 《Unix 编程艺术》
+
+Unix 设计原则所有的 Unix 哲学浓缩为一条铁律，『KISS』原则：Keep It Simple, Stupid!">
+<meta property="og:updated_time" content="2016-09-05T15:55:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unix 编程艺术">
+<meta name="twitter:description" content="《Unix 编程艺术》：这本书在模块化、文本化、配置、接口、复杂度、优化、可移植性等方面，都提供了Unix/Linux世界所积累的宝贵经验。好的程序可以经受时间、平台与用户的考验，好的编程思想可以经受实践的检验。
+
+读书笔记摘录自 《Unix 编程艺术》
+
+Unix 设计原则所有的 Unix 哲学浓缩为一条铁律，『KISS』原则：Keep It Simple, Stupid!">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chaosky.me/2016/09/05/Unix-Art/"/>
+
+
+
+
+
+  <title> Unix 编程艺术 | Chaosky's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=54252577";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chaosky's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">Getting Real。源码之前，了无秘密。</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-workspace">
+          <a href="/workspace" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cubes"></i> <br />
+            
+            工作空间
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skillmap">
+          <a href="/skillmap" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            技能树
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gate">
+          <a href="/gate" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            任意门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'WVe9S1RCHgLaWK_3xm3y','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2016/09/05/Unix-Art/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Unix 编程艺术
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-05T15:55:51+00:00">
+                2016-09-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2016-09-05T15:55:51+00:00">
+                2016-09-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/05/Unix-Art/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2016/09/05/Unix-Art/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2016/09/05/Unix-Art/" class="leancloud_visitors" data-flag-title="Unix 编程艺术">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      3,682
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      12
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>《Unix 编程艺术》：这本书在模块化、文本化、配置、接口、复杂度、优化、可移植性等方面，都提供了Unix/Linux世界所积累的宝贵经验。好的程序可以经受时间、平台与用户的考验，好的编程思想可以经受实践的检验。</p>
+<blockquote>
+<p>读书笔记摘录自 《Unix 编程艺术》</p>
+</blockquote>
+<h2 id="Unix-设计原则"><a href="#Unix-设计原则" class="headerlink" title="Unix 设计原则"></a>Unix 设计原则</h2><p>所有的 Unix 哲学浓缩为一条铁律，『KISS』原则：Keep It Simple, Stupid!</p>
+<a id="more"></a>
+<h3 id="Unix-管道的发明人、Unix-传统的奠基人之一-Doug-Mcllroy"><a href="#Unix-管道的发明人、Unix-传统的奠基人之一-Doug-Mcllroy" class="headerlink" title="Unix 管道的发明人、Unix 传统的奠基人之一 Doug Mcllroy"></a>Unix 管道的发明人、Unix 传统的奠基人之一 Doug Mcllroy</h3><ol>
+<li>让每个程序就做好一件事。如果有新任务，就重新开始，不要往原程序中加入新功能而搞得复杂。</li>
+<li>假定每个程序的输出都会成为另一个程序的输入，哪怕那个程序还是未知的。输出中不要有无关的信息干扰。避免使用严格的分栏格式和二进制格式输入。不要坚持使用交互式输入。</li>
+<li>尽可能早地将设计和编译的软件投入试用，哪怕是操作系统也不例外，理想情况下，应该是在几星期内。对拙劣的代码别犹豫，扔掉重写。</li>
+<li>优先使用工具而不是拙劣的帮助来减轻编程任务的负担。工欲善其事必先利其器。</li>
+</ol>
+<p>一个程序只做一件事，并做好。程序要能协作。程序要能处理文本流，因为这是最通用的接口。</p>
+<h3 id="最伟大的C语言大师之一-Rob-Pike"><a href="#最伟大的C语言大师之一-Rob-Pike" class="headerlink" title="最伟大的C语言大师之一 Rob Pike"></a>最伟大的C语言大师之一 Rob Pike</h3><ol>
+<li>你无法断定程序会在什么地方耗费运行时间。瓶颈经常出现在想不到的地方，所以别急于胡乱找个地方改代码，除非你已经证实那儿就是瓶颈所在。</li>
+<li>估量。在你没对代码进行估量，特别是没找到最耗时的那部分之前，别去优化速度。</li>
+<li>花哨的算法在 n 很小时通常很慢，而 n 通常很小。花哨算法的常数复杂度很大。除非你确定 n 总是很大，否则不要用花哨算法（即使 n 很大，也优先考虑原则2）。</li>
+<li><p>花哨的算法比简单算法更容易出 bug，更难实现。尽量使用简单的算法配合简单的数据结构。</p>
+<blockquote>
+<p>拿不准就穷举。</p>
+</blockquote>
+</li>
+<li><p>数据压倒一切。如果已经选择了正确的数据结构并且把一切都组织得井井有条，正确的算法也就不言自明。编程的核心是数据结构，而不是算法。</p>
+<blockquote>
+<p>给我看流程图而不让我看数据表，我仍会迷茫不解；如果给我看数据表，通常就不需要流程图了；数据表是够说明问题了。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="Unix-哲学"><a href="#Unix-哲学" class="headerlink" title="Unix 哲学"></a>Unix 哲学</h3><h4 id="模块原则：使用简洁的接口拼合简单的部件"><a href="#模块原则：使用简洁的接口拼合简单的部件" class="headerlink" title="模块原则：使用简洁的接口拼合简单的部件"></a>模块原则：使用简洁的接口拼合简单的部件</h4><p>计算机编程的本质就是控制复杂度。</p>
+<p>要编制复杂软件而又不至于一败涂地的唯一方法就是降低其整体复杂度——用清晰的接口把若干简单的模块组合成一个复杂软件。如此一来，多数问题只会局限于某个局部，那么就还有希望对局部进行改进而不至牵动全身。</p>
+<h4 id="清晰原则：清晰胜于机巧"><a href="#清晰原则：清晰胜于机巧" class="headerlink" title="清晰原则：清晰胜于机巧"></a>清晰原则：清晰胜于机巧</h4><p>在写程序时，要想到你不是写给执行代码的计算机看的，而是给人——将来阅读维护源码的人，包括你自己——看的。</p>
+<p>在选择算法和实现时就应该考虑到将来的可扩展性。而为了取得程序一丁点的性能提升就大幅度增加技术的复杂度和晦涩性，这个买卖做不得——这不仅仅是因为复杂的代码容易滋生 bug，也因为它会使日后的阅读和维护工作更加艰难。</p>
+<p>相反，优雅而清晰的代码不仅不容易崩溃——而且更易于让后来的修改者立刻理解。</p>
+<p>永远不要去吃力地解读语段晦涩的代码三次。</p>
+<h4 id="组合原则：设计时考虑拼接组合"><a href="#组合原则：设计时考虑拼接组合" class="headerlink" title="组合原则：设计时考虑拼接组合"></a>组合原则：设计时考虑拼接组合</h4><p>如果程序彼此之间不能有效通信，那么软件就难免会陷入复杂度的泥淖。</p>
+<p>在输入输出方面，Unix 传统极力提倡采用简单、文本化、面向流、设备无关的格式。文本刘界面的简洁性加强了工具的封装性。</p>
+<p>要想让程序具有组合性，就要使程序彼此独立。在文本流这一端的程序应该尽可能不要考虑文本流另一端的程序。将一端的程序替换为另一个截然不同的程序，而完全不惊扰另一端应该很容易做到。</p>
+<p>当程序无法自然地使用序列化、协议形式的接口时，正确的 Unix 设计至少是，把尽可能多的编程元素组织为一套定义良好的 API。这样，至少你可以通过链接调用应用程序，或者可以根据不同任务的需求粘合使用不同的接口。</p>
+<h4 id="分离原则：策略同机制分离，接口同引擎分离"><a href="#分离原则：策略同机制分离，接口同引擎分离" class="headerlink" title="分离原则：策略同机制分离，接口同引擎分离"></a>分离原则：策略同机制分离，接口同引擎分离</h4><p>实行机制，而不是策略。因为策略和机制是按照不同的时间尺度变化的，策略的变化要远远快于机制。GUI 工具包的观感时尚来去匆匆，而光栅操作和组合却是永恒的。</p>
+<h4 id="简洁原则：设计要简洁，复杂度能低则低"><a href="#简洁原则：设计要简洁，复杂度能低则低" class="headerlink" title="简洁原则：设计要简洁，复杂度能低则低"></a>简洁原则：设计要简洁，复杂度能低则低</h4><p>简洁而漂亮。总是设法将程序系统分解为几个能够协作的小部分，并本能地抵制任何用过多噱头来粉饰程序的企图。</p>
+<h4 id="吝啬原则：除非确无他法，不要编写庞大的程序"><a href="#吝啬原则：除非确无他法，不要编写庞大的程序" class="headerlink" title="吝啬原则：除非确无他法，不要编写庞大的程序"></a>吝啬原则：除非确无他法，不要编写庞大的程序</h4><p>『大』有两重含义：体积大，复杂程度高。程序大了，维护起来就困难。</p>
+<h4 id="透明性原则：设计要可见，以便审查和调试"><a href="#透明性原则：设计要可见，以便审查和调试" class="headerlink" title="透明性原则：设计要可见，以便审查和调试"></a>透明性原则：设计要可见，以便审查和调试</h4><p>因为调试通常会占用四分之三甚至更多的开发时间，所有一开始就多做点工作以减少日后调试的工作量会很划算。一个特别有效的减少调试工作量的方法就是设计时充分考虑透明性和显见性。</p>
+<p>软件系统的透明性是指你一眼就能看出软件是在做什么以及怎么做的。显见性指程序带有监视和显示内部状态的功能，这样程序不仅能够运行良好，而且还可以看得出它以何种方式运行。</p>
+<p>程序如果要展示其正确性，应该使用足够简单的输入输出格式，这样才能保证很容易地检验有效输入和正确输出之间的关系是否正确。</p>
+<p>出于充分考虑透明性和显见性的目的，还应该提倡接口简洁，以方便其他程序对其进行操作——尤其是测试监视工具和调试脚本。</p>
+<h4 id="健壮原则：健壮源于透明与简洁"><a href="#健壮原则：健壮源于透明与简洁" class="headerlink" title="健壮原则：健壮源于透明与简洁"></a>健壮原则：健壮源于透明与简洁</h4><p>软件的健壮性指软件不仅能在正常情况下运行良好，而且在超出设计者设想的意外条件下也能够运行良好。</p>
+<p>让程序健壮的方法，就是让程序的内部逻辑更易于理解。要做到这一点主要两种方法：透明化和简洁化。</p>
+<p>在有异常输入的情况下，保证软件健壮性的一个相当重要的策略就是避免在代码中出现特例。bug 通常隐藏在处理特例的代码以及处理不同特殊情况的交互操作部分的代码中。</p>
+<p>模块性（代码简朴，接口简洁）是组织程序以达到更简洁目的的一个方法。</p>
+<h4 id="表示原则：把知识叠入数据以求逻辑质朴而健壮"><a href="#表示原则：把知识叠入数据以求逻辑质朴而健壮" class="headerlink" title="表示原则：把知识叠入数据以求逻辑质朴而健壮"></a>表示原则：把知识叠入数据以求逻辑质朴而健壮</h4><p>即使最简单的程序逻辑让人类来验证也很困难，但是就算是很复杂的数据，对人类来说，还是相对容易地就能够推导和建模的。</p>
+<p>数据要比编程逻辑更容易驾驭。所以接下来，如果要在复杂数据和复杂代码中选择一个，宁愿选择前者。更进一步：在设计中，你应该主动将代码的复杂度转移到数据之中去。</p>
+<p>特别是 C 语言对指针使用控制的功能，促进了在内核以上各个编码层面上对动态修改引用结构。在结构中用非常简单的指针操作就能够完成的任务，在其他语言中，往往不得不用更复杂的过程才能完成。</p>
+<h4 id="通俗原则：接口设计避免标新立异"><a href="#通俗原则：接口设计避免标新立异" class="headerlink" title="通俗原则：接口设计避免标新立异"></a>通俗原则：接口设计避免标新立异</h4><p>也就是众所周知的『最少惊奇原则』。</p>
+<p>最易用的程序就是用户需要学习新东西最少的程序——或者，换句话说，最易用的程序就是最切合用户已有知识的程序。</p>
+<p>接口设计应该避免毫无来由的标新立异和自作聪明；关注目标受众，对于不同的人群，最少惊奇的意义也不同；关注传统惯例，Unix 世界形成了一套系统的惯例，这些惯例的存在有个极好的理由：缓和学习曲线。</p>
+<h4 id="缄默原则：如果一个程序没什么好说的，就保持沉默"><a href="#缄默原则：如果一个程序没什么好说的，就保持沉默" class="headerlink" title="缄默原则：如果一个程序没什么好说的，就保持沉默"></a>缄默原则：如果一个程序没什么好说的，就保持沉默</h4><p>Unix 中最古老最持久的设计原则之一就是：若程序没有什么特别之处可讲，就保持沉默。行为良好的程序应该默默工作，决不唠唠叨叨，碍手碍脚。沉默是金。</p>
+<p>设计良好的程序将用户的注意力视为有限的宝贵资源，只有在必要时才要求使用。</p>
+<h4 id="补救原则：出现异常时，马上退出并给出足量错误信息"><a href="#补救原则：出现异常时，马上退出并给出足量错误信息" class="headerlink" title="补救原则：出现异常时，马上退出并给出足量错误信息"></a>补救原则：出现异常时，马上退出并给出足量错误信息</h4><p>软件在发生错误的时候也应该与在正常操作的情况下一样，有透明的逻辑。最理想的情况当然是软件能够适应和应付非正常操作；而如果补救措施明明没有成功，却悄无声息地埋下崩溃的隐患，直到很久以后才显现出来，这就是最坏的一种情况。</p>
+<p>因此，软件要尽可能从容地应付各种错误输入和自身的运行错误。但是，如果做不到这一点，就让程序尽可能以一种容易诊断错误的方式终止。</p>
+<h4 id="经济原则：宁花机器一分，不花程序员一秒"><a href="#经济原则：宁花机器一分，不花程序员一秒" class="headerlink" title="经济原则：宁花机器一分，不花程序员一秒"></a>经济原则：宁花机器一分，不花程序员一秒</h4><h4 id="生成原则：避免手工-hack，尽量编写程序去生成程序"><a href="#生成原则：避免手工-hack，尽量编写程序去生成程序" class="headerlink" title="生成原则：避免手工 hack，尽量编写程序去生成程序"></a>生成原则：避免手工 hack，尽量编写程序去生成程序</h4><p>程序中的任何手工 hacking 都是滋生错误和延误的温床。程序规格越简单抽象，设计者就越容易做对。有程序生成代码几乎（在各个层次）总是比手写代码廉价并且更值得信赖。</p>
+<h4 id="优化原则：雕琢前先得有原型，跑之前先学会走"><a href="#优化原则：雕琢前先得有原型，跑之前先学会走" class="headerlink" title="优化原则：雕琢前先得有原型，跑之前先学会走"></a>优化原则：雕琢前先得有原型，跑之前先学会走</h4><p>原型设计最基本的原则：『90%的功能现在能实现，比100%的功能永远实现不了强』。做好原型设计可以帮助你避免为蝇头小利而投入过多的时间。</p>
+<p>过早的优化是万恶之源。</p>
+<p>还不知道瓶颈所在就匆忙进行优化，这可能是唯一一个比乱加功能更损害设计的错误。从畸形的代码到杂乱无章的数据布局，牺牲透明性和简洁性而片面追求速度、内存或者磁盘使用的后果随处可见。滋生无数 bug，耗费以百万计的人时——这点芝麻大的好处，远不能抵消后续排错所付出的代价。</p>
+<p>先制作原型，在精雕细琢。优化之前先确保能用。</p>
+<p>先求运行，再求正确，最后求快。</p>
+<p>先给你的设计做个未优化的、运行缓慢、很耗内存但是正确的实现，然后进行系统地调整，寻找那些可以通过牺牲最小的局部简洁性而获得较大性能提升的地方。</p>
+<p>制作原型对于系统设计和优化同样重要——比起阅读一个冗长的规格说明，判断一个原型究竟是不是符合设想要容易得多。借助原型化找出哪些功能不必实现，有助于对性能进行优化；那些不用写的代码显然无需优化。</p>
+<h4 id="多样原则：绝不相信所谓『不二法门』的断言"><a href="#多样原则：绝不相信所谓『不二法门』的断言" class="headerlink" title="多样原则：绝不相信所谓『不二法门』的断言"></a>多样原则：绝不相信所谓『不二法门』的断言</h4><p>即使最出色的软件也常常会受限于设计者的想象力。没有人能聪明到把所有东西都最优化，也不可能预想到软件所有可能的用途。设计一个僵化、封闭、不愿与外界沟通的软件，简直就是一种病态的傲慢。</p>
+<p>Unix 奉行的是广泛采用多种语言、开放的可扩展系统和用户定制机制。</p>
+<h4 id="扩展原则：设计着眼未来，未来总比预想快"><a href="#扩展原则：设计着眼未来，未来总比预想快" class="headerlink" title="扩展原则：设计着眼未来，未来总比预想快"></a>扩展原则：设计着眼未来，未来总比预想快</h4><p>为数据格式和代码留下扩展的空间，否则，就会发现自己常常被原先的不明智选择捆住了手脚，因为你无法既要改变他们又要维持对原来的兼容性。</p>
+<p>设计协议或者文件格式时，应使其具有充分的自描述性以便可以扩展。</p>
+<p>设计代码时，要有很好的组织，让将来的开发者增加新功能时无需拆毁或者重建整个架构。</p>
+<h3 id="运用-Unix-哲学"><a href="#运用-Unix-哲学" class="headerlink" title="运用 Unix 哲学"></a>运用 Unix 哲学</h3><p>要良好的运用 Unix 哲学，你就应该不断追求卓越。你必须相信，软件设计时一门技艺，值得你付出所有的智慧、创造力和激情。否则，你的视线就不会超越哪些简单、老套的设计和实现：你就会在应该思考的时候急急忙忙跑去编程。你就会在该无情删繁就简的时候反而把问题复杂化——然后你还会反过来奇怪你的代码怎么会那么臃肿、那么难以调试，</p>
+<p>要良好地运用 Unix 哲学，你应该珍惜你的时间绝不浪费。一旦某人已经解决了某个问题，就直接拿来利用，不要让骄傲或偏见拽住你又去重做一遍。永远不要蛮干：要多用巧劲，省下力气到需要的时候在用，好钢用在刀刃上。善用工具，尽可能将一切都自动化。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>天下大事，必作于细！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/WeChatPay.png" alt="Alex Lin WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/AliPay.png" alt="Alex Lin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unix-编程艺术/" rel="tag"># Unix 编程艺术</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/05/Design-Inspiration/" rel="next" title="设计灵感 —— 寻找素材">
+                <i class="fa fa-chevron-left"></i> 设计灵感 —— 寻找素材
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/09/SNS-Platform/" rel="prev" title="第三方登录和分享常见问题集锦">
+                第三方登录和分享常见问题集锦 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg"
+               alt="Alex Lin" />
+          <p class="site-author-name" itemprop="name">Alex Lin</p>
+          <p class="site-description motion-element" itemprop="description">嗨，我是林天祥，iOS 开发者，专注移动软件开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chaoskyme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iwillcomeback" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.v2ex.com/member/error" target="_blank" title="V2EX">
+                  
+                    <i class="fa fa-fw fa-rocket"></i>
+                  
+                  V2EX
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/chaosky" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-git"></i>
+                  
+                  Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/chaosky" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.devtang.com" title="唐巧的博客" target="_blank">唐巧的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://coolshell.cn" title="酷壳" target="_blank">酷壳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.codingnow.com" title="云风的博客" target="_blank">云风的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://axiaoxin.com" title="信妈的博客" target="_blank">信妈的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://huxos.me" title="胡骏的博客" target="_blank">胡骏的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.h2ero.cn/" title="h2ero的博客" target="_blank">h2ero的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nleo.me" title="胡中华的博客" target="_blank">胡中华的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dbarobin.com" title="温国兵的随想录" target="_blank">温国兵的随想录</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/bbf6898c0002" title="jackfrued的博客" target="_blank">jackfrued的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unix-设计原则"><span class="nav-number">1.</span> <span class="nav-text">Unix 设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix-管道的发明人、Unix-传统的奠基人之一-Doug-Mcllroy"><span class="nav-number">1.1.</span> <span class="nav-text">Unix 管道的发明人、Unix 传统的奠基人之一 Doug Mcllroy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最伟大的C语言大师之一-Rob-Pike"><span class="nav-number">1.2.</span> <span class="nav-text">最伟大的C语言大师之一 Rob Pike</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix-哲学"><span class="nav-number">1.3.</span> <span class="nav-text">Unix 哲学</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模块原则：使用简洁的接口拼合简单的部件"><span class="nav-number">1.3.1.</span> <span class="nav-text">模块原则：使用简洁的接口拼合简单的部件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清晰原则：清晰胜于机巧"><span class="nav-number">1.3.2.</span> <span class="nav-text">清晰原则：清晰胜于机巧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组合原则：设计时考虑拼接组合"><span class="nav-number">1.3.3.</span> <span class="nav-text">组合原则：设计时考虑拼接组合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分离原则：策略同机制分离，接口同引擎分离"><span class="nav-number">1.3.4.</span> <span class="nav-text">分离原则：策略同机制分离，接口同引擎分离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简洁原则：设计要简洁，复杂度能低则低"><span class="nav-number">1.3.5.</span> <span class="nav-text">简洁原则：设计要简洁，复杂度能低则低</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#吝啬原则：除非确无他法，不要编写庞大的程序"><span class="nav-number">1.3.6.</span> <span class="nav-text">吝啬原则：除非确无他法，不要编写庞大的程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#透明性原则：设计要可见，以便审查和调试"><span class="nav-number">1.3.7.</span> <span class="nav-text">透明性原则：设计要可见，以便审查和调试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#健壮原则：健壮源于透明与简洁"><span class="nav-number">1.3.8.</span> <span class="nav-text">健壮原则：健壮源于透明与简洁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表示原则：把知识叠入数据以求逻辑质朴而健壮"><span class="nav-number">1.3.9.</span> <span class="nav-text">表示原则：把知识叠入数据以求逻辑质朴而健壮</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通俗原则：接口设计避免标新立异"><span class="nav-number">1.3.10.</span> <span class="nav-text">通俗原则：接口设计避免标新立异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缄默原则：如果一个程序没什么好说的，就保持沉默"><span class="nav-number">1.3.11.</span> <span class="nav-text">缄默原则：如果一个程序没什么好说的，就保持沉默</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补救原则：出现异常时，马上退出并给出足量错误信息"><span class="nav-number">1.3.12.</span> <span class="nav-text">补救原则：出现异常时，马上退出并给出足量错误信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#经济原则：宁花机器一分，不花程序员一秒"><span class="nav-number">1.3.13.</span> <span class="nav-text">经济原则：宁花机器一分，不花程序员一秒</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成原则：避免手工-hack，尽量编写程序去生成程序"><span class="nav-number">1.3.14.</span> <span class="nav-text">生成原则：避免手工 hack，尽量编写程序去生成程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优化原则：雕琢前先得有原型，跑之前先学会走"><span class="nav-number">1.3.15.</span> <span class="nav-text">优化原则：雕琢前先得有原型，跑之前先学会走</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多样原则：绝不相信所谓『不二法门』的断言"><span class="nav-number">1.3.16.</span> <span class="nav-text">多样原则：绝不相信所谓『不二法门』的断言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展原则：设计着眼未来，未来总比预想快"><span class="nav-number">1.3.17.</span> <span class="nav-text">扩展原则：设计着眼未来，未来总比预想快</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运用-Unix-哲学"><span class="nav-number">1.4.</span> <span class="nav-text">运用 Unix 哲学</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 83086, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 83086, xid: "2016/09/05/Unix-Art/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/83086/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("eB68LUN0RozWUhG9EPHGOv7A-gzGzoHsz", "rVLoe96MWG2qWRXz9OJnGSpz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

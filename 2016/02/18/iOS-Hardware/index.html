@@ -1,0 +1,1244 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="0wsQzlCw_nicXQs7QbZ6n_aTyfoSkbeNQw6xpj3ScWo" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="QJ33ASIjWB" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="QRCode,Sensor,3D Touch," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chaosky's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="更新日志
+
+更新二维码生成
+
+二维码扫描识别iOS中实现二维码和条形码扫描，两大开源组件 ZBarSDK 与 ZXing以及AVFoundation。AVFoundation.framework（iOS 7 ）之后才添加了二维码扫描的功能。
+二维码生成12345678910111213141516- (UIImage *)qrCodeGenerator:(NSString *)msg size:(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 硬件（二维码、传感器、3D-Touch、蓝牙）">
+<meta property="og:url" content="http://chaosky.me/2016/02/18/iOS-Hardware/index.html">
+<meta property="og:site_name" content="Chaosky's Notes">
+<meta property="og:description" content="更新日志
+
+更新二维码生成
+
+二维码扫描识别iOS中实现二维码和条形码扫描，两大开源组件 ZBarSDK 与 ZXing以及AVFoundation。AVFoundation.framework（iOS 7 ）之后才添加了二维码扫描的功能。
+二维码生成12345678910111213141516- (UIImage *)qrCodeGenerator:(NSString *)msg size:(">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/070034106495370.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/070035576334022.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/Snip20160128_1.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/171313_aywB_2340880.png">
+<meta property="og:image" content="http://7xooko.com1.z0.glb.clouddn.com/172431_lbhm_2340880.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20151021/1445415797442101.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20151021/1445416998255315.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20151021/1445417062907362.png">
+<meta property="og:updated_time" content="2017-02-14T14:42:25.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 硬件（二维码、传感器、3D-Touch、蓝牙）">
+<meta name="twitter:description" content="更新日志
+
+更新二维码生成
+
+二维码扫描识别iOS中实现二维码和条形码扫描，两大开源组件 ZBarSDK 与 ZXing以及AVFoundation。AVFoundation.framework（iOS 7 ）之后才添加了二维码扫描的功能。
+二维码生成12345678910111213141516- (UIImage *)qrCodeGenerator:(NSString *)msg size:(">
+<meta name="twitter:image" content="http://7xooko.com1.z0.glb.clouddn.com/070034106495370.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chaosky.me/2016/02/18/iOS-Hardware/"/>
+
+
+
+
+
+  <title> iOS 硬件（二维码、传感器、3D-Touch、蓝牙） | Chaosky's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=54252577";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chaosky's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">Getting Real。源码之前，了无秘密。</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-workspace">
+          <a href="/workspace" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cubes"></i> <br />
+            
+            工作空间
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-skillmap">
+          <a href="/skillmap" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            技能树
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gate">
+          <a href="/gate" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            任意门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'WVe9S1RCHgLaWK_3xm3y','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chaosky.me/2016/02/18/iOS-Hardware/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alex Lin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Chaosky's Notes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Chaosky's Notes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS 硬件（二维码、传感器、3D-Touch、蓝牙）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-18T11:11:12+00:00">
+                2016-02-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-02-14T14:42:25+00:00">
+                2017-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/02/18/iOS-Hardware/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2016/02/18/iOS-Hardware/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2016/02/18/iOS-Hardware/" class="leancloud_visitors" data-flag-title="iOS 硬件（二维码、传感器、3D-Touch、蓝牙）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  
+                    <span title="Words count in article" }}">
+                      2,994
+                    </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  
+                    <span title="Reading time" }}">
+                      12
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>更新日志</strong></p>
+<ul>
+<li>更新<a href="#二维码生成">二维码生成</a></li>
+</ul>
+<h2 id="二维码"><a href="#二维码" class="headerlink" title="二维码"></a>二维码</h2><h3 id="扫描识别"><a href="#扫描识别" class="headerlink" title="扫描识别"></a>扫描识别</h3><p>iOS中实现二维码和条形码扫描，两大开源组件 ZBarSDK 与 ZXing以及AVFoundation。AVFoundation.framework（iOS 7 ）之后才添加了二维码扫描的功能。</p>
+<h3 id="二维码生成"><a href="#二维码生成" class="headerlink" title="二维码生成"></a>二维码生成</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">UIImage</span> *)qrCodeGenerator:(<span class="built_in">NSString</span> *)msg size:(<span class="built_in">CGSize</span>)size &#123;</div><div class="line">    <span class="built_in">NSData</span> * data = [msg dataUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</div><div class="line">    </div><div class="line">    <span class="built_in">NSDictionary</span> * params = @&#123;<span class="string">@"inputMessage"</span>: data, <span class="string">@"inputCorrectionLevel"</span>: <span class="string">@"H"</span>&#125;;</div><div class="line">    <span class="built_in">CIFilter</span> * qrEncoder = [<span class="built_in">CIFilter</span> filterWithName:<span class="string">@"CIQRCodeGenerator"</span> withInputParameters:params];</div><div class="line">    <span class="built_in">CIImage</span> * ciImage = qrEncoder.outputImage;</div><div class="line">    <span class="built_in">UIImage</span> * qrImage = [<span class="built_in">UIImage</span> imageWithCIImage:ciImage];</div><div class="line">    </div><div class="line">    <span class="built_in">UIGraphicsBeginImageContext</span>(size);</div><div class="line">    <span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line">    <span class="built_in">CGContextSetInterpolationQuality</span>(context, kCGInterpolationNone);</div><div class="line">    [qrImage drawInRect:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, size.width, size.height)];</div><div class="line">    qrImage = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line">    <span class="built_in">UIGraphicsEndImageContext</span>();</div><div class="line">    <span class="keyword">return</span> qrImage;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Demo下载</strong>：<a href="https://github.com/chaoskyme/Demo/tree/master/QRCodeScanner" target="_blank" rel="external">QRCodeScanner</a></p>
+<a id="more"></a>
+<h2 id="传感器"><a href="#传感器" class="headerlink" title="传感器"></a>传感器</h2><h3 id="距离传感器（Proximity-Sensor）"><a href="#距离传感器（Proximity-Sensor）" class="headerlink" title="距离传感器（Proximity Sensor）"></a>距离传感器（Proximity Sensor）</h3><p>用于检测是否有其他物体靠近设备屏幕</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 开启距离感应功能</span></div><div class="line">[<span class="built_in">UIDevice</span> currentDevice].proximityMonitoringEnabled = <span class="literal">YES</span>;</div><div class="line"><span class="comment">// 监听距离感应的通知</span></div><div class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter] addObserver:<span class="keyword">self</span></div><div class="line">selector:<span class="keyword">@selector</span>(proximityChange:)</div><div class="line">name:<span class="built_in">UIDeviceProximityStateDidChangeNotification</span></div><div class="line">object:<span class="literal">nil</span>];</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)proximityChange:(<span class="built_in">NSNotification</span> *)notification &#123;</div><div class="line">    <span class="keyword">if</span> ([<span class="built_in">UIDevice</span> currentDevice].proximityState == <span class="literal">YES</span>) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"某个物体靠近了设备屏幕"</span>); <span class="comment">// 屏幕会自动锁住</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"某个物体远离了设备屏幕"</span>); <span class="comment">// 屏幕会自动解锁</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="磁力计传感器（Magnetometer-Sensor）"><a href="#磁力计传感器（Magnetometer-Sensor）" class="headerlink" title="磁力计传感器（Magnetometer Sensor）"></a>磁力计传感器（Magnetometer Sensor）</h3><p>可以感应地球磁场， 获得方向信息， 使位置服务数据更精准。</p>
+<p>可以用于电子罗盘和导航应用。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">调用CLLocationManager的startUpdatingHeading方法获取方向信息。获取方向结束时，可调用stopUpdatingHeading方法结束获取方向信息。</div><div class="line"></div><div class="line">当设备的方向改变时，iOS系统将会自动激发CLLocationManager的delegate对象的<span class="string">locationManager:</span><span class="string">didUpdateHeading:</span>方法，而程序可通过重写该方法来获取设备方向。</div></pre></td></tr></table></figure>
+<h3 id="环境光传感器（Ambient-Light-Sensor）"><a href="#环境光传感器（Ambient-Light-Sensor）" class="headerlink" title="环境光传感器（Ambient Light Sensor）"></a>环境光传感器（Ambient Light Sensor）</h3><p>是iPhone和Mac设备中最为古老的传感器成员</p>
+<p>它能够让你在使用 Mac、iPhone、iPad时，眼睛更为舒适。</p>
+<p>从一个明亮的室外走入相对黑暗的室内后，iOS设备会自动调低亮度，让屏幕显得不再那么光亮刺眼。</p>
+<p>当你使用iPhone拍照时，闪光灯会在一定条件下自动开启</p>
+<p>几乎所有的Mac 都带有背光键盘，当周围光线弱到一定条件时，会自动开启键盘背光</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取当前环境下屏幕亮度</span></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"Screen Brightness: %f"</span>,[<span class="built_in">UIScreen</span> mainScreen].brightness);</div><div class="line"><span class="comment">// 可以监听屏幕亮度改变的通知 UIScreenBrightnessDidChangeNotification</span></div></pre></td></tr></table></figure>
+<h2 id="CoreMotion"><a href="#CoreMotion" class="headerlink" title="CoreMotion"></a>CoreMotion</h2><p>CoreMotion是一个专门处理Motion的框架，其中包含了两个部分加速度计和陀螺仪。加速计由三个坐标轴决定，用户最常见的操作设备的动作移动，晃动手机(摇一摇)，倾斜手机都可以被设备检测到，加速计可以检测到线性的变化，陀螺仪可以更好的检测到偏转的动作，可以根据用户的动作做出相应的动作，iOS模拟器无法模拟以上动作，真机调试需要开发者账号。</p>
+<p>处理Motion事件有三种方式，开始(motionBegan)，结束(motionEnded)，取消(motionCancelled)：</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- <span class="params">(void)</span>motionBegan:<span class="params">(UIEventSubtype)</span>motion withEvent:<span class="params">(UIEvent *)</span>event NS_AVAILABLE_IOS<span class="params">(<span class="number">3</span>_0)</span>;</div><div class="line">- <span class="params">(void)</span>motionEnded:<span class="params">(UIEventSubtype)</span>motion withEvent:<span class="params">(UIEvent *)</span>event NS_AVAILABLE_IOS<span class="params">(<span class="number">3</span>_0)</span>;</div><div class="line">- <span class="params">(void)</span>motionCancelled:<span class="params">(UIEventSubtype)</span>motion withEvent:<span class="params">(UIEvent *)</span>event NS_AVAILABLE_IOS<span class="params">(<span class="number">3</span>_0)</span>;</div></pre></td></tr></table></figure>
+<p>CMMotionManager类能够使用到设备的所有移动数据(motion data)，Core Motion框架提供了两种对motion数据的操作方式：</p>
+<p>pull方式：能够以CoreMotionManager的只读方式获取当前任何传感器状态或是组合数据，在有需要的时候，再主动去采集数据；</p>
+<p>push方式：是以块或者闭包的形式收集到想要得到的数据并且在特定周期内得到实时的更新，实时采集所有数据（采集频率高)；</p>
+<h3 id="加速计传感器（Motion-Accelerometer-Sensor）"><a href="#加速计传感器（Motion-Accelerometer-Sensor）" class="headerlink" title="加速计传感器（Motion/Accelerometer Sensor）"></a>加速计传感器（Motion/Accelerometer Sensor）</h3><p>加速计用于检测设备在X、Y、Z轴上的加速度 （哪个方向有力的作用）</p>
+<p>加速计可以用于检测设备的摇晃，经典应用场景</p>
+<p>摇一摇、计步器</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/070034106495370.png" alt=""></p>
+<p>如果只需要知道设备的方向，不需要知道具体方向矢量角度，那么可以使用UIDevice进行操作，还可以根据方向就行判断,具体可以参考一下苹果官网代码:</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>) viewDidLoad &#123;</div><div class="line">     <span class="comment">// Request to turn on accelerometer and begin receiving accelerometer events</span></div><div class="line">     [[<span class="built_in">UIDevice</span> currentDevice] beginGeneratingDeviceOrientationNotifications];</div><div class="line">     [[<span class="built_in">NSNotificationCenter</span> defaultCenter] addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(orientationChanged:) name:<span class="built_in">UIDeviceOrientationDidChangeNotification</span> object:<span class="literal">nil</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)orientationChanged:(<span class="built_in">NSNotification</span> *)notification &#123;</div><div class="line">     <span class="comment">// Respond to changes in device orientation</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>) viewDidDisappear &#123;</div><div class="line">     <span class="comment">// Request to stop receiving accelerometer events and turn off accelerometer</span></div><div class="line">     [[<span class="built_in">NSNotificationCenter</span> defaultCenter] removeObserver:<span class="keyword">self</span>];</div><div class="line">     [[<span class="built_in">UIDevice</span> currentDevice] endGeneratingDeviceOrientationNotifications];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">BOOL</span>)canBecomeFirstResponder &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidAppear:(<span class="built_in">BOOL</span>)animated &#123;</div><div class="line">    [<span class="keyword">self</span> becomeFirstResponder];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Push 方式：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建运动管理者对象</span></div><div class="line">_motionMgr = [[<span class="built_in">CMMotionManager</span> alloc] init];</div><div class="line"></div><div class="line"><span class="comment">// 判断加速计是否可用（最好判断）</span></div><div class="line"><span class="keyword">if</span> (_motionMgr.isAccelerometerAvailable) &#123;</div><div class="line">    <span class="comment">// 加速计可用</span></div><div class="line">    <span class="comment">// 设置采样间隔</span></div><div class="line">    _motionMgr.accelerometerUpdateInterval = <span class="number">1.0</span>/<span class="number">30.0</span>; <span class="comment">// 1秒钟采样30次</span></div><div class="line"></div><div class="line">    <span class="comment">// 开始采样（采样到数据就会调用handler，handler会在queue中执行）</span></div><div class="line">    [_motionMgr startAccelerometerUpdatesToQueue:[[<span class="built_in">NSOperationQueue</span> alloc] init] withHandler:^(<span class="built_in">CMAccelerometerData</span> * accelerometerData, <span class="built_in">NSError</span> * error) &#123;</div><div class="line">        <span class="built_in">CMAcceleration</span> acceleration = accelerometerData.acceleration;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"CMAcceleration: %f--%f--%f"</span>, acceleration.x, acceleration.y, acceleration.z);</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// 加速度计不能用</span></div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"加速度计不能用"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Pull 方式：</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建运动管理者对象</span></div><div class="line"><span class="variable">_motionManager</span> = [[CMMotionManager alloc] init];</div><div class="line"></div><div class="line"><span class="comment">// 判断加速计是否可用（最好判断）</span></div><div class="line"><span class="keyword">if</span> (<span class="variable">_motionManager</span>.isAccelerometerAvailable) &#123;</div><div class="line">    <span class="comment">// 加速计可用</span></div><div class="line"></div><div class="line">    <span class="comment">// 设置加速计采样频率</span></div><div class="line">    <span class="variable">_motionManager</span>.accelerometerUpdateInterval = <span class="number">1.0</span>/<span class="number">30.0</span>; <span class="comment">// 1秒钟采样30次</span></div><div class="line">    <span class="comment">// 开始采样</span></div><div class="line">    [<span class="variable">_motionManager</span> startAccelerometerUpdates];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 在需要的时候采集加速度数据</span></div><div class="line">CMAcceleration acceleration = <span class="variable">_motionManager</span>.accelerometerData.acceleration;</div><div class="line">NSLog(@<span class="string">"%f, %f, %f"</span>, acceleration.x, acceleration.y, acceleration.z);</div></pre></td></tr></table></figure>
+<h3 id="陀螺仪（Gyroscope）"><a href="#陀螺仪（Gyroscope）" class="headerlink" title="陀螺仪（Gyroscope）"></a>陀螺仪（Gyroscope）</h3><p>陀螺仪的原理是检测设备在X、Y、Z轴上所旋转的角速度</p>
+<p>陀螺仪在赛车类游戏中有重大作用：</p>
+<p>模拟汽车驾驶时方向盘旋转的动作，使得这类游戏的操控体验更为真实</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/070035576334022.png" alt=""></p>
+<p>Push 方式：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建运动管理者对象</span></div><div class="line"><span class="keyword">if</span> (!_motionManager) &#123;</div><div class="line">    _motionManager = [[<span class="built_in">CMMotionManager</span> alloc] init];</div><div class="line">&#125;</div><div class="line"><span class="comment">// 判断陀螺仪是否可用</span></div><div class="line"><span class="keyword">if</span> (_motionManager.gyroAvailable) &#123;</div><div class="line">    <span class="comment">// 设置采样频率</span></div><div class="line">    _motionManager.gyroUpdateInterval = <span class="number">1</span> / <span class="number">10.0</span>; <span class="comment">// 1秒钟采样10次</span></div><div class="line">    <span class="comment">// 开始采样</span></div><div class="line">    [_motionManager startGyroUpdatesToQueue:[[<span class="built_in">NSOperationQueue</span> alloc] init] withHandler:^(<span class="built_in">CMGyroData</span> * gyroData, <span class="built_in">NSError</span> * error) &#123;</div><div class="line">        <span class="comment">// 获取陀螺仪的信息</span></div><div class="line">        <span class="built_in">CMRotationRate</span> rotationRate = gyroData.rotationRate;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"x:%f y:%f z:%f"</span>, rotationRate.x, rotationRate.y, rotationRate.z);</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// 陀螺仪不能用</span></div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"陀螺仪不能用"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Pull 方式：</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建运动管理者对象</span></div><div class="line"><span class="keyword">if</span> (!<span class="variable">_motionManager</span>) &#123;</div><div class="line">    <span class="variable">_motionManager</span> = [[CMMotionManager alloc] init];</div><div class="line">&#125;</div><div class="line"><span class="comment">// 判断陀螺仪是否可用</span></div><div class="line"><span class="keyword">if</span> (<span class="variable">_motionManager</span>.gyroAvailable) &#123;</div><div class="line">    <span class="comment">// 设置采样频率</span></div><div class="line">    <span class="variable">_motionManager</span>.gyroUpdateInterval = <span class="number">1</span> / <span class="number">10.0</span>; <span class="comment">// 1秒钟采样10次</span></div><div class="line">    <span class="comment">// 开始采样</span></div><div class="line">    [<span class="variable">_motionManager</span> startGyroUpdates];</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// 陀螺仪不能用</span></div><div class="line">    NSLog(@<span class="string">"陀螺仪不能用"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 在需要的时候采集加速度数据</span></div><div class="line">CMRotationRate rotationRate = <span class="variable">_motionManager</span>.gyroData.rotationRate;</div><div class="line">NSLog(@<span class="string">"x:%f y:%f z:%f"</span>, rotationRate.x, rotationRate.y, rotationRate.z);</div></pre></td></tr></table></figure>
+<h3 id="计步器（CMStepCounter）"><a href="#计步器（CMStepCounter）" class="headerlink" title="计步器（CMStepCounter）"></a>计步器（CMStepCounter）</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 判断当前系统版本，iOS 8 之后CMStepCounter废弃了</span></div><div class="line"><span class="keyword">if</span> ([[<span class="built_in">UIDevice</span> currentDevice].systemVersion floatValue] &lt; <span class="number">8.0</span>)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 1.判断计步器是否可用</span></div><div class="line">    <span class="keyword">if</span> (![<span class="built_in">CMStepCounter</span> isStepCountingAvailable]) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"计步器不可用"</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 创建计步器</span></div><div class="line">    <span class="keyword">if</span> (!_stepCounter) &#123;</div><div class="line">        _stepCounter = [[<span class="built_in">CMStepCounter</span> alloc] init];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 开始计步</span></div><div class="line">    <span class="comment">// updateOn : 用户走了多少步之后, 更新block</span></div><div class="line">    <span class="built_in">NSOperationQueue</span> *queue = [[<span class="built_in">NSOperationQueue</span> alloc] init];</div><div class="line">    [_stepCounter startStepCountingUpdatesToQueue:queue updateOn:<span class="number">5</span> withHandler:^(<span class="built_in">NSInteger</span> numberOfSteps, <span class="built_in">NSDate</span> * timestamp, <span class="built_in">NSError</span> * error) &#123;</div><div class="line">        <span class="keyword">if</span> (error) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, error);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"一共走了%ld步"</span>, numberOfSteps);</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// 判断计步器是否可用</span></div><div class="line">    <span class="keyword">if</span> (![<span class="built_in">CMPedometer</span> isStepCountingAvailable]) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 创建计步器</span></div><div class="line">    <span class="keyword">if</span> (!_pedometer) &#123;</div><div class="line">        _pedometer = [[<span class="built_in">CMPedometer</span> alloc] init];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 开始计步</span></div><div class="line">    <span class="comment">// FromDate : 从什么时间开始计步</span></div><div class="line">    <span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> date];</div><div class="line">    [_pedometer startPedometerUpdatesFromDate:date withHandler:^(<span class="built_in">CMPedometerData</span> * pedometerData, <span class="built_in">NSError</span> * error) &#123;</div><div class="line">        <span class="keyword">if</span> (error) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, error);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"您一共走了%@步"</span>, pedometerData.numberOfSteps);</div><div class="line">    &#125;];</div><div class="line"></div><div class="line">    <span class="comment">// 计算两个时间间隔走了多少步</span></div><div class="line">    <span class="built_in">NSDateFormatter</span> *fmt = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line">    fmt.dateFormat = <span class="string">@"yyyy-MM-dd"</span>;</div><div class="line">    <span class="built_in">NSDate</span> *fromDate = [fmt dateFromString:<span class="string">@"2015-9-26"</span>];</div><div class="line">    <span class="built_in">NSDate</span> *toDate = [fmt dateFromString:<span class="string">@"2016-1-28"</span>];</div><div class="line">    [_pedometer queryPedometerDataFromDate:fromDate toDate:toDate withHandler:^(<span class="built_in">CMPedometerData</span> * pedometerData, <span class="built_in">NSError</span> * error) &#123;</div><div class="line"></div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"从%@到%@期间，总共走了%@步，总长%@米，上楼%@层，下楼%@层"</span>, pedometerData.startDate, pedometerData.endDate, pedometerData.numberOfSteps, pedometerData.distance, pedometerData.floorsAscended, pedometerData.floorsDescended);</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Demo-下载：SensorDemo"><a href="#Demo-下载：SensorDemo" class="headerlink" title="Demo 下载：SensorDemo"></a>Demo 下载：<a href="https://github.com/chaoskyme/Demo/tree/master/SensorDemo" target="_blank" rel="external">SensorDemo</a></h3><h2 id="3D-Touch"><a href="#3D-Touch" class="headerlink" title="3D Touch"></a>3D Touch</h2><p>3D Touch 仅支持iPhone 6S/ 6S Plus，支持的iOS 系统版本为iOS 9。</p>
+<p>使用3D Touch功能，主要分为以下三个模块：Home Screen Quick Actions、Peek and Pop、UITouch Force Properties。</p>
+<h3 id="Home-Screen-Quick-Actions"><a href="#Home-Screen-Quick-Actions" class="headerlink" title="Home Screen Quick Actions"></a>Home Screen Quick Actions</h3><p>通过主屏幕的应用Icon，我们可以用3D Touch呼出一个菜单，进行快速定位应用功能模块相关功能的开发。</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/Snip20160128_1.png" alt=""></p>
+<p>iOS9为我们提供了两种屏幕标签，分别是静态标签和动态标签。</p>
+<h4 id="静态标签"><a href="#静态标签" class="headerlink" title="静态标签"></a>静态标签</h4><p>静态标签是我们在项目的配置plist文件中配置的标签，在用户安装程序后就可以使用，并且排序会在动态标签的前面。</p>
+<p>在info.plist文件中添加如下键值（系统没有提示，只能手动输入）：</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/171313_aywB_2340880.png" alt=""></p>
+<p>显示效果</p>
+<p><img src="http://7xooko.com1.z0.glb.clouddn.com/172431_lbhm_2340880.png" alt=""></p>
+<p>添加步骤：</p>
+<ol>
+<li><p>先添加了一个UIApplicationShortcutItems的数组</p>
+</li>
+<li><p>数组中添加的元素就是对应的静态标签，在每个标签中我们需要添加一些设置的键值：</p>
+<p>必填项：</p>
+<p><code>UIApplicationShortcutItemType</code> 这个键值设置一个快捷通道类型的字符串</p>
+<p><code>UIApplicationShortcutItemTitle</code> 这个键值设置标签的标题</p>
+<p>选填项：</p>
+<p><code>UIApplicationShortcutItemSubtitle</code> 设置标签的副标题</p>
+<p><code>UIApplicationShortcutItemIconType</code> 设置标签Icon类型</p>
+<p><code>UIApplicationShortcutItemIconFile</code>  设置标签的Icon文件</p>
+<p><code>UIApplicationShortcutItemUserInfo</code> 设置信息字典(用于传值)</p>
+</li>
+</ol>
+<h4 id="动态标签"><a href="#动态标签" class="headerlink" title="动态标签"></a>动态标签</h4><p>动态标签是我们在程序中，通过代码添加的。</p>
+<p>与之相关的类，主要有三个：</p>
+<p><code>UIApplicationShortcutItem</code> 创建3DTouch标签的类</p>
+<p><code>UIMutableApplicationShortcutItem</code> 创建可变的3DTouch标签的类</p>
+<p><code>UIApplicationShortcutIcon</code> 创建标签中图片Icon的类</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建</span></div><div class="line">UIApplicationShortcutItem * item = [[UIApplicationShortcutItem alloc]<span class="string">initWithType:</span>@<span class="string">"two"</span> <span class="string">localizedTitle:</span>@<span class="string">"第二个标签"</span> <span class="string">localizedSubtitle:</span>@<span class="string">"看我哦"</span> <span class="string">icon:</span>[UIApplicationShortcutIcon <span class="string">iconWithType:</span>UIApplicationShortcutIconTypePlay] <span class="string">userInfo:</span>nil];</div><div class="line"><span class="comment">// 添加</span></div><div class="line">[UIApplication sharedApplication].shortcutItems = @[item];</div></pre></td></tr></table></figure>
+<h4 id="响应标签的行为"><a href="#响应标签的行为" class="headerlink" title="响应标签的行为"></a>响应标签的行为</h4><p>当我们点击标签进入应用程序时，有这样一个方法可以进行一些操作：</p>
+<p><code>- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler</code></p>
+<p>当我们通过标签进入app时，就会在<code>AppDelegate</code>中调用这样一个回调，我们可以获取shortcutItem的信息进行相关逻辑操作。</p>
+<p>这里有一点需要注意：</p>
+<p>我们在app的入口函数：</p>
+<p><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code></p>
+<p>也需要进行一下判断，在launchOptions中有UIApplicationLaunchOptionsShortcutItemKey这样一个键，通过它，我们可以区别是否是从标签进入的app，如果是则处理结束逻辑后，返回NO，防止处理逻辑被反复回调。</p>
+<h4 id="几点注意："><a href="#几点注意：" class="headerlink" title="几点注意："></a>几点注意：</h4><ol>
+<li>快捷标签最多可以创建四个，包括静态的和动态的。</li>
+<li>每个标签的题目和icon最多两行，多出的会用…省略</li>
+</ol>
+<h3 id="Peek-and-Pop"><a href="#Peek-and-Pop" class="headerlink" title="Peek and Pop"></a>Peek and Pop</h3><p>peek (预览)和 pop (详阅)。</p>
+<p>现在你可以授权应用的视图控制器来响应用户不同的按压力量。随着用户按压力量的增加，交互会出现三个阶段:</p>
+<h4 id="1-暗示内容预览是可使用的"><a href="#1-暗示内容预览是可使用的" class="headerlink" title="1.暗示内容预览是可使用的"></a>1.暗示内容预览是可使用的</h4><p>轻按后，周围内容会变得模糊，这告诉用户预览更多内容( peek )是可以使用的。</p>
+<p><img src="http://cc.cocimg.com/api/uploads/20151021/1445415797442101.png" alt=""></p>
+<h4 id="2-展示预览-peek-，和快捷选项菜单（peek-quick-actions）"><a href="#2-展示预览-peek-，和快捷选项菜单（peek-quick-actions）" class="headerlink" title="2.展示预览(peek)，和快捷选项菜单（peek quick actions）"></a>2.展示预览(peek)，和快捷选项菜单（peek quick actions）</h4><p>轻按，屏幕视图就会过渡到 peek，一个你设置的用来展示更多内容的视图－就像Mail app做的一样。如果用户这时结束了触碰，peek就会消失并且应用回到交互开始之前的状态。</p>
+<p>或者这个时候，用户可以在peek界面上更用力按下来跳转到使用peek呈现的视图,这个过渡动画会使用系统提供的pop过渡。pop出来的视图会填满你应用的根视图并显示一个返航按钮可以回到交互开始的地方。(图中没有显示最后展示pop视图的阶段)</p>
+<p><img src="http://cc.cocimg.com/api/uploads/20151021/1445416998255315.png" alt=""></p>
+<p><strong>Peek快速选项</strong></p>
+<p>如果用户一直保持触摸，可以向上滑动Peek视图，系统会展示出你预先设置和peek关联的peek快速选项。</p>
+<p>每一项peek快速选项都是你应用中的深度链接。当peek快速选项出现后，用户可以停止触摸而且peek会停留在屏幕中。用户可点击一个快速选项，唤出相关链接。</p>
+<p><img src="http://cc.cocimg.com/api/uploads/20151021/1445417062907362.png" alt=""></p>
+<h4 id="3-可选的跳转到预览中的视图-pop"><a href="#3-可选的跳转到预览中的视图-pop" class="headerlink" title="3.可选的跳转到预览中的视图(pop)"></a>3.可选的跳转到预览中的视图(pop)</h4><p>当你使用 peek 和 pop 时,系统通过压力决定从哪个阶段过度至下一个。用户可以在设置&gt;通用&gt;辅助功能&gt;3D Touch中进行修改。</p>
+<h3 id="UITouch-Force-Properties"><a href="#UITouch-Force-Properties" class="headerlink" title="UITouch Force Properties"></a>UITouch Force Properties</h3><p>In iOS 9, the UITouch class has two new properties to support custom implementation of 3D Touch in your app: <strong>force</strong> and <strong>maximumPossibleForce</strong>. For the first time on iOS devices, these properties let you detect and respond to touch pressure in the UIEvent objects your app receives.</p>
+<p>The force of a touch has a high dynamic range, available as a floating point value to your app.</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ol>
+<li>官方文档：<a href="https://developer.apple.com/ios/3d-touch/" target="_blank" rel="external">https://developer.apple.com/ios/3d-touch/</a></li>
+<li><a href="http://my.oschina.net/u/2340880/blog/511509" target="_blank" rel="external">http://my.oschina.net/u/2340880/blog/511509</a></li>
+<li><a href="http://www.cocoachina.com/ios/20151028/13849.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20151028/13849.html</a></li>
+</ol>
+<h3 id="Demo-下载：3D-Touch"><a href="#Demo-下载：3D-Touch" class="headerlink" title="Demo 下载：3D-Touch"></a>Demo 下载：<a href="https://github.com/chaoskyme/Demo/tree/master/3D-Touch" target="_blank" rel="external">3D-Touch</a></h3><h2 id="蓝牙（BlueTooth）"><a href="#蓝牙（BlueTooth）" class="headerlink" title="蓝牙（BlueTooth）"></a>蓝牙（BlueTooth）</h2><p>参考PO主另外一篇文章：<a href="http://chaosky.me/2016/03/18/Bluetooth-Communication/">http://chaosky.me/2016/03/18/Bluetooth-Communication/</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>天下大事，必作于细！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/WeChatPay.png" alt="Alex Lin WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/AliPay.png" alt="Alex Lin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/QRCode/" rel="tag"># QRCode</a>
+          
+            <a href="/tags/Sensor/" rel="tag"># Sensor</a>
+          
+            <a href="/tags/3D-Touch/" rel="tag"># 3D Touch</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/18/UIScrollView-AutoLayout/" rel="next" title="UIScrollView的子视图实现AutoLayout布局">
+                <i class="fa fa-chevron-left"></i> UIScrollView的子视图实现AutoLayout布局
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/18/iOS-Checklist/" rel="prev" title="iOS 清单">
+                iOS 清单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xooko.com1.z0.glb.clouddn.com/2016-06-13-IMG_0254.jpg"
+               alt="Alex Lin" />
+          <p class="site-author-name" itemprop="name">Alex Lin</p>
+          <p class="site-description motion-element" itemprop="description">嗨，我是林天祥，iOS 开发者，专注移动软件开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chaoskyme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iwillcomeback" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.v2ex.com/member/error" target="_blank" title="V2EX">
+                  
+                    <i class="fa fa-fw fa-rocket"></i>
+                  
+                  V2EX
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/chaosky" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-git"></i>
+                  
+                  Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/chaosky" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.devtang.com" title="唐巧的博客" target="_blank">唐巧的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://coolshell.cn" title="酷壳" target="_blank">酷壳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.codingnow.com" title="云风的博客" target="_blank">云风的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://axiaoxin.com" title="信妈的博客" target="_blank">信妈的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://huxos.me" title="胡骏的博客" target="_blank">胡骏的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.h2ero.cn/" title="h2ero的博客" target="_blank">h2ero的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nleo.me" title="胡中华的博客" target="_blank">胡中华的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dbarobin.com" title="温国兵的随想录" target="_blank">温国兵的随想录</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/bbf6898c0002" title="jackfrued的博客" target="_blank">jackfrued的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二维码"><span class="nav-number">1.</span> <span class="nav-text">二维码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#扫描识别"><span class="nav-number">1.1.</span> <span class="nav-text">扫描识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维码生成"><span class="nav-number">1.2.</span> <span class="nav-text">二维码生成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传感器"><span class="nav-number">2.</span> <span class="nav-text">传感器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#距离传感器（Proximity-Sensor）"><span class="nav-number">2.1.</span> <span class="nav-text">距离传感器（Proximity Sensor）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#磁力计传感器（Magnetometer-Sensor）"><span class="nav-number">2.2.</span> <span class="nav-text">磁力计传感器（Magnetometer Sensor）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境光传感器（Ambient-Light-Sensor）"><span class="nav-number">2.3.</span> <span class="nav-text">环境光传感器（Ambient Light Sensor）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CoreMotion"><span class="nav-number">3.</span> <span class="nav-text">CoreMotion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加速计传感器（Motion-Accelerometer-Sensor）"><span class="nav-number">3.1.</span> <span class="nav-text">加速计传感器（Motion/Accelerometer Sensor）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#陀螺仪（Gyroscope）"><span class="nav-number">3.2.</span> <span class="nav-text">陀螺仪（Gyroscope）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计步器（CMStepCounter）"><span class="nav-number">3.3.</span> <span class="nav-text">计步器（CMStepCounter）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-下载：SensorDemo"><span class="nav-number">3.4.</span> <span class="nav-text">Demo 下载：SensorDemo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D-Touch"><span class="nav-number">4.</span> <span class="nav-text">3D Touch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Home-Screen-Quick-Actions"><span class="nav-number">4.1.</span> <span class="nav-text">Home Screen Quick Actions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态标签"><span class="nav-number">4.1.1.</span> <span class="nav-text">静态标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态标签"><span class="nav-number">4.1.2.</span> <span class="nav-text">动态标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应标签的行为"><span class="nav-number">4.1.3.</span> <span class="nav-text">响应标签的行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几点注意："><span class="nav-number">4.1.4.</span> <span class="nav-text">几点注意：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Peek-and-Pop"><span class="nav-number">4.2.</span> <span class="nav-text">Peek and Pop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-暗示内容预览是可使用的"><span class="nav-number">4.2.1.</span> <span class="nav-text">1.暗示内容预览是可使用的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-展示预览-peek-，和快捷选项菜单（peek-quick-actions）"><span class="nav-number">4.2.2.</span> <span class="nav-text">2.展示预览(peek)，和快捷选项菜单（peek quick actions）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-可选的跳转到预览中的视图-pop"><span class="nav-number">4.2.3.</span> <span class="nav-text">3.可选的跳转到预览中的视图(pop)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UITouch-Force-Properties"><span class="nav-number">4.3.</span> <span class="nav-text">UITouch Force Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章"><span class="nav-number">4.4.</span> <span class="nav-text">参考文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-下载：3D-Touch"><span class="nav-number">4.5.</span> <span class="nav-text">Demo 下载：3D-Touch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#蓝牙（BlueTooth）"><span class="nav-number">5.</span> <span class="nav-text">蓝牙（BlueTooth）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 83086, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 83086, xid: "2016/02/18/iOS-Hardware/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/83086/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("eB68LUN0RozWUhG9EPHGOv7A-gzGzoHsz", "rVLoe96MWG2qWRXz9OJnGSpz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
