@@ -82,4 +82,13 @@ All you have to do is enter the following command in Terminal.
 
 `$ curl https://raw.githubusercontent.com/qrpike/Web-Font-Load/master/install.sh | sh`
 
+### Lost permission for sudo in OSX El Captain
+
+The easiest way to restore both was starting `Script Editor` and then typing and running that script:
+
+```
+do shell script "/usr/sbin/chown root:wheel /" with administrator privileges
+do shell script "/bin/chmod 755 /" with administrator privileges
+```
+
 
