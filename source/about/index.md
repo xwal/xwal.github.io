@@ -13,3 +13,8 @@ date: 2015-08-29 11:15:25
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=28461702&auto=1&height=66"></iframe>
 
+## Doing
+### 2017/02
+* 阅读「构建之法——现代软件工程」亚马逊链接：<http://t.cn/RJFxbbU>
+* 阅读「Cocos2d-JS游戏开发」亚马逊链接：<http://t.cn/RJFxnY7>
+
