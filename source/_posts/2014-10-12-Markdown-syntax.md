@@ -3,7 +3,7 @@ layout: post
 title: "Markdown语法说明"
 date: 2014-10-12 00:30:35 +0800
 comments: true
-categories: Guide
+categories: Manual
 tags: markdown
 ---
 

@@ -1,10 +1,10 @@
-title: 持续集成
+title: iOS 持续集成
 date: 2016-09-26 23:00:51
 updated: 2016-09-26 23:00:51
 tags:
 - TravisCI
 - Jenkins
-categories: CI
+categories: iOS
 ---
 
 **更新日志**

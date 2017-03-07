@@ -3,7 +3,7 @@ layout: post
 title: "Windows程序免杀的分析"
 date: 2014-09-03 20:11:48 +0800
 comments: true
-categories: Visual C++
+categories: Windows
 tags: 
 - Antivirus
 - Windows

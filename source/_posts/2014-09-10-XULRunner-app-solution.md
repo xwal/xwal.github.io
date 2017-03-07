@@ -3,7 +3,7 @@ layout: post
 title: "XULRunner桌面应用解决方案"
 date: 2014-09-10 19:29:58 +0800
 comments: true
-categories: Desktop App
+categories: Windows
 tags:
 - XULRunner
 - XUL
