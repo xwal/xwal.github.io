@@ -18,6 +18,8 @@
     "hexo-renderer-marked": "^0.2.10",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
+    "hexo-tag-aplayer": "^2.0.1",
+    "hexo-tag-dplayer": "^0.1.7",
     "hexo-wordcount": "^2.0.0"
   }
 }
