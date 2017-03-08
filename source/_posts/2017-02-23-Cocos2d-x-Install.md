@@ -10,7 +10,7 @@ categories: 游戏开发
 
 ## Cocos2d-x 引擎
 
-Cocos2d-x引擎可在 Cocos官网下载，其下载地址为：http://www.cocos.com/download/。当然，亦可从Cocos2d-x的 GitHub 仓库拉取，仓库地址：https://github.com/cocos2d/cocos2d-x。下载完成后，引擎包的主要内容下。
+Cocos2d-x引擎可在 Cocos官网下载，其下载地址为：<http://www.cocos.com/download/>。当然，亦可从Cocos2d-x的 GitHub 仓库拉取，仓库地址：<https://github.com/cocos2d/cocos2d-x>。下载完成后，引擎包的主要内容下。
 ![framework_architecture](http://7xooko.com1.z0.glb.clouddn.com/2017-03-06-framework_architecture.jpg)
 
 
@@ -73,7 +73,7 @@ $ python setup.py
 然后根据提示，将Cocos Console所需的文件路径拖曳进去，最后根据末尾行提示进行对应的操作。
 ![Jietu20170306-170411]http://7xooko.com1.z0.glb.clouddn.com/2017-03-06-Jietu20170306-170411.png)
 
-此时，Cocos Console安装成功。若要卸载Cocos Console，则Mac OS X用户可删除/Users/用户名/下.bash_profile/.zshrc文件中对应的值，而Windows用户只需删除对应的系统环境变量值即可。
+此时，Cocos Console安装成功。若要卸载Cocos Console，则Mac OS X用户可删除 `/Users/用户名/下.bash_profile或者.zshrc` 文件中对应的值，而Windows用户只需删除对应的系统环境变量值即可。
 
 ## 创建、编译和运行工程
 
