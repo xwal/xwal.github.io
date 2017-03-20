@@ -62,4 +62,8 @@ git submodule update --init --recursive --remote
 
 参考链接：<http://stackoverflow.com/questions/913701/changing-remote-repository-for-a-git-submodule>
 
+## 显示磁盘使用空间
 
+```
+du -sh *
+```
