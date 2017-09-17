@@ -1,11 +1,11 @@
-title: 世界地理画报
+title: 世界画报
 date: 2016-11-22 15:48:31
 comments: true
 ---
 
-**世界地理画报，每日精选最美壁纸。**
+**世界画报，每日精选最美壁纸。**
 
-**世界地理画报总共分为四大块，地理集、画报集、壁纸集和最美集。**
+**世界画报总共分为四大块，地理集、画报集、壁纸集和最美集。**
 
 ## 地理集
 
@@ -44,7 +44,7 @@ comments: true
 
 ### 点击下载
 
-[![世界地理画报 iPhone下载](http://7xooko.com1.z0.glb.clouddn.com/2016-11-22-NGP-iPhone-Download.png)](https://itunes.apple.com/us/app/guo-jia-de-li-hua-bao/id1178885979?l=zh&ls=1&mt=8)
+[![世界画报 iPhone下载](http://7xooko.com1.z0.glb.clouddn.com/2016-11-22-NGP-iPhone-Download.png)](https://itunes.apple.com/us/app/guo-jia-de-li-hua-bao/id1178885979?l=zh&ls=1&mt=8)
 
 ### 扫码下载
 
