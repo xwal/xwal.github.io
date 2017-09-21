@@ -519,6 +519,12 @@ which命令的使用实例：
 $ which grep
 ```
 
+### 生成 SSH Keys
+
+```
+ssh-keygen -t rsa -C "your_email@example.com"
+```
+
 ## GUI工具
 
 ### 常用工具
