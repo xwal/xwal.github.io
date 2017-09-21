@@ -91,4 +91,10 @@ do shell script "/usr/sbin/chown root:wheel /" with administrator privileges
 do shell script "/bin/chmod 755 /" with administrator privileges
 ```
 
+### 找回允许任何来源选项
+
+```
+sudo spctl --master-disable
+```
+
 
