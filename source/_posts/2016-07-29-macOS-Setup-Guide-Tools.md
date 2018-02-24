@@ -18,7 +18,9 @@ categories: macOS
 <!-- more -->
 
 ## 命令行工具
+
 ### Xcode Command Line Tools
+
 从 App store 或苹果开发者网站安装 [Xcode](https://developer.apple.com/xcode/) 。  
 
 紧接着，在终端中运行安装 **Xcode Command Line Tools**，执行命令：
@@ -26,11 +28,13 @@ categories: macOS
 ```
 $ xcode-select --install
 ```
+
 ### zsh
 
 zsh的介绍可以查看池老师的文章[终极 Shell](http://macshuo.com/?p=676)
 
 #### 切换zsh
+
 切换当前用户的shell，执行命令：
 
 ```
@@ -92,6 +96,7 @@ $ brew update
 ```
 
 更新程序包：
+
 ```
 $ brew upgrade <package_name>
 ```
@@ -131,6 +136,7 @@ $ brew install xctool
 ```
 
 #### 安装Homebrew Cask
+
 通过 Homebrew Cask 优雅、简单、快速的安装和管理 OS X 图形界面程序，比如 Google Chrome 和 Dropbox。
 
 ```
@@ -142,22 +148,17 @@ $ brew update && brew upgrade brew-cask && brew cleanup // 更新
 
 ##### 文件预览插件
 
+<https://github.com/sindresorhus/quick-look-plugins>
+
 有些 插件 可以让 Mac 上的文件预览更有效，比如语法高亮、markdown 渲染、json 预览等等。
 
 ```
-$ brew cask install qlcolorcode
-$ brew cask install qlstephen
-$ brew cask install qlmarkdown
-$ brew cask install quicklook-json
-$ brew cask install qlprettypatch
-$ brew cask install quicklook-csv
-$ brew cask install betterzipql
-$ brew cask install webp-quicklook
-$ brew cask install suspicious-package
-$ brew cask install cheatsheet
+$ brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize webpquicklook suspicious-package quicklookase qlvideo
+$ brew cask install provisionql
 ```
 
 ##### launchrocket
+
 brew cask 安装 launchrocket，来管理通过 brew 安装的 service
 
 ```
