@@ -3,7 +3,7 @@ branches:
   - source
 language: node_js
 node_js:
-- stable
+- lts/carbon
 sudo: required
 before_install:
 - openssl aes-256-cbc -K $encrypted_3b2ff833daf4_key -iv $encrypted_3b2ff833daf4_iv
