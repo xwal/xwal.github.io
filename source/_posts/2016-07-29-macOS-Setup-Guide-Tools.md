@@ -45,11 +45,6 @@ $ chsh -s /bin/zsh
 
 #### 安装oh-my-zsh
 
-Oh My Zsh 介绍
-
-> Oh My Zsh is an open source, community-driven framework for managing your zsh configuration. That sounds boring. Let's try this again.
-> Oh My Zsh is a way of life! Once installed, your terminal prompt will become the talk of the town or your money back! Each time you interact with your command prompt, you'll be able to take advantage of the hundreds of bundled plugins and pretty themes. Strangers will come up to you in cafés and ask you, "that is amazing. are you some sort of genius?" Finally, you'll begin to get the sort of attention that you always felt that you deserved. ...or maybe you'll just use the time that you saved to start flossing more often.
-
 通过curl安装：
 
 ```
@@ -59,7 +54,6 @@ $ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools
 #### 配置zsh
 
 zsh 的配置主要集中在用户当前目录的.zshrc里，用 vim 或你喜欢的其他编辑器打开.zshrc，具体配置参见官方文档：<https://github.com/robbyrussell/oh-my-zsh>
-
 
 ### Homebrew
 
@@ -133,6 +127,7 @@ $ brew install tldr			//
 $ brew install tree			//
 $ brew install wget
 $ brew install xctool
+$ brew install binutils // FSF/GNU ld, ar, readelf, etc. for native development
 ```
 
 #### 安装Homebrew Cask
@@ -212,7 +207,7 @@ $ rvm use 2.3.0
 
 ```
 rvm use 2.3.0 --default
-``` 
+```
 
 查询已经安装的ruby
 
