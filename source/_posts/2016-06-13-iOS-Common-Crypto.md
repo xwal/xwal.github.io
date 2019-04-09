@@ -549,9 +549,9 @@ unsigned char *CC_MD5(const void *data, CC_LONG len, unsigned char *md)
 
 SHA家族的五个算法，分别是SHA-1、SHA-224、SHA-256、SHA-384，和SHA-512，由美国国家安全局（NSA）所设计，并由美国国家标准与技术研究院（NIST）发布；是美国的政府标准。后四者有时并称为SHA-2。SHA-1在许多安全协议中广为使用，包括TLS和SSL、PGP、SSH、S/MIME和IPsec，曾被视为是MD5（更早之前被广为使用的散列函数）的后继者。但SHA-1的安全性如今被密码学家严重质疑；虽然至今尚未出现对SHA-2有效的攻击，它的算法跟SHA-1基本上仍然相似；因此有些人开始发展其他替代的散列算法。缘于最近[何时？]对SHA-1的种种攻击发表，“美国国家标准与技术研究院（NIST）开始设法经由公开竞争管道（类似高级加密标准AES的发展经过），发展一个或多个新的散列算法。”
 
-![](http://7xooko.com1.z0.glb.clouddn.com/2016-06-12-Snip20160612_1.png)
+![](/images/2016-06-12-Snip20160612_1.png)
 
-![](http://7xooko.com1.z0.glb.clouddn.com/2016-06-12-Snip20160612_2.png)
+![](/images/2016-06-12-Snip20160612_2.png)
 
 #### SHA代码实现
 

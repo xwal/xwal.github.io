@@ -24,7 +24,7 @@ categories: iOS
 
 OSCHINA 的 iPhone 客户端源码，可直接在 App Store上搜索“开源中国”来安装此app
 
-![](http://7xooko.com1.z0.glb.clouddn.com/2016-04-08-OSCHINA-iPhone.png)
+![](/images/2016-04-08-OSCHINA-iPhone.png)
 
 ## Git@OSC客户端
 
@@ -36,9 +36,9 @@ OSCHINA 的 iPhone 客户端源码，可直接在 App Store上搜索“开源中
 
 Git@OSC iPhone 客户端，方便用户查看Git@OSC的项目以及简单的操作issue等。
 
-![](http://7xooko.com1.z0.glb.clouddn.com/2016-04-08-Git@OSC-App-1.png)
+![](/images/2016-04-08-Git@OSC-App-1.png)
 
-![](http://7xooko.com1.z0.glb.clouddn.com/2016-04-08-Git@OSC-App-2.png)
+![](/images/2016-04-08-Git@OSC-App-2.png)
 
 ## Coding客户端
 
@@ -64,7 +64,7 @@ Coding iOS 客户端源代码。
 
 找房、租房App。
 
-![](http://7xooko.com1.z0.glb.clouddn.com/2016-04-08-Fangzhur-App.png)
+![](/images/2016-04-08-Fangzhur-App.png)
 
 ## LeagueofLegends
 
@@ -76,7 +76,7 @@ Coding iOS 客户端源代码。
 
 an iOS App for LeagueofLegends。
 
-![](http://7xooko.com1.z0.glb.clouddn.com/2016-04-08-LOL-App.png)
+![](/images/2016-04-08-LOL-App.png)
 
 ## phphub
 

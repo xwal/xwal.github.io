@@ -128,7 +128,7 @@ UIApplication *app = [UIApplication sharedApplication];
 
 ### 远程推送原理
 
-![](http://7xooko.com1.z0.glb.clouddn.com/Push-Overview.jpg)
+![](/images/Push-Overview.jpg)
 
 1. 注册：为应用程序申请消息推送服务。此时你的设备会向APNs服务器发送注册请求。
 2. APNs服务器接收请求，并将deviceToken返给你设备上的应用程序

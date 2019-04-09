@@ -121,7 +121,7 @@ push方式：是以块或者闭包的形式收集到想要得到的数据并且�
 
 摇一摇、计步器
 
-![](http://7xooko.com1.z0.glb.clouddn.com/070034106495370.png)
+![](/images/070034106495370.png)
 
 如果只需要知道设备的方向，不需要知道具体方向矢量角度，那么可以使用UIDevice进行操作，还可以根据方向就行判断,具体可以参考一下苹果官网代码:
 
@@ -204,7 +204,7 @@ NSLog(@"%f, %f, %f", acceleration.x, acceleration.y, acceleration.z);
 
 模拟汽车驾驶时方向盘旋转的动作，使得这类游戏的操控体验更为真实
 
-![](http://7xooko.com1.z0.glb.clouddn.com/070035576334022.png)
+![](/images/070035576334022.png)
 
 Push 方式：
 
@@ -328,7 +328,7 @@ else {
 
 通过主屏幕的应用Icon，我们可以用3D Touch呼出一个菜单，进行快速定位应用功能模块相关功能的开发。
 
-![](http://7xooko.com1.z0.glb.clouddn.com/Snip20160128_1.png)
+![](/images/Snip20160128_1.png)
 
 iOS9为我们提供了两种屏幕标签，分别是静态标签和动态标签。
 
@@ -338,11 +338,11 @@ iOS9为我们提供了两种屏幕标签，分别是静态标签和动态标签�
 
 在info.plist文件中添加如下键值（系统没有提示，只能手动输入）：
 
-![](http://7xooko.com1.z0.glb.clouddn.com/171313_aywB_2340880.png)
+![](/images/171313_aywB_2340880.png)
 
 显示效果
 
-![](http://7xooko.com1.z0.glb.clouddn.com/172431_lbhm_2340880.png)
+![](/images/172431_lbhm_2340880.png)
 
 添加步骤：
 

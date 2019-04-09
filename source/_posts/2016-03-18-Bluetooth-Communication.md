@@ -94,7 +94,7 @@ Central可以通过读写Service中Characteristic的value与Peripheral进行交�
 
 ## 蓝牙开发流程
 CoreBluetooth框架的核心其实是两个东西，peripheral和central, 可以理解成外设和中心。对应他们分别有一组相关的API和类。
-![](http://7xooko.com1.z0.glb.clouddn.com/CoreBluetoothFramework.jpeg)
+![](/images/CoreBluetoothFramework.jpeg)
 这两组api分别对应不同的业务场景，左侧叫做中心模式，就是以你的app作为中心，连接其他的外设的场景，而右侧称为外设模式，使用手机作为外设别其他中心设备操作的场景。
 服务和特征，特征的属性(service and characteristic)：每个设备都会有一些服务，每个服务里面都会有一些特征，特征就是具体键值对，提供数据的地方。每个特征属性分为这么几种：读，写，通知这么几种方式。
 ```

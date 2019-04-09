@@ -11,7 +11,7 @@ categories:
 
 ### iOS
 iOS系统分为可分为四级结构，由上至下分别为可触摸层（Cocoa Touch Layer）、媒体层（Media Layer）、核心服务层（Core Services Layer）、核心系统层（Core OS Layer），每个层级提供不同的服务。低层级结构提供基础服务如文件系统、内存管理、I/O操作等。高层级结构建立在低层级结构之上提供具体服务如UI控件、文件访问等。
-![797918-71efb73f5f3ab3](http://7xooko.com1.z0.glb.clouddn.com/2016-12-30-797918-71efb73f5f3ab3c6.png)
+![797918-71efb73f5f3ab3](/images/2016-12-30-797918-71efb73f5f3ab3c6.png)
 
 #### 可触摸层（Cocoa Touch Layer）
 可触摸层主要提供用户交互相关的服务如界面控件、事件管理、通知中心、地图，包含以下框架：
@@ -23,7 +23,7 @@ iOS系统分为可分为四级结构，由上至下分别为可触摸层（Cocoa
 * iAd（广告）
 * Message UI（邮件与SMS显示）
 * PushKit（iOS8新push机制）
-![797918-486bd1393e7d908a](http://7xooko.com1.z0.glb.clouddn.com/2016-12-30-797918-486bd1393e7d908a.jpg)
+![797918-486bd1393e7d908a](/images/2016-12-30-797918-486bd1393e7d908a.jpg)
 
 
 #### 媒体层（Media Layer）
@@ -32,7 +32,7 @@ iOS系统分为可分为四级结构，由上至下分别为可触摸层（Cocoa
 * 图像引擎（Core Graphics、Core Image、Core Animation、OpenGL ES）
 * 音频引擎 （Core Audio、 AV Foundation、OpenAL）
 * 视频引擎（AV Foundation、Core Media）
-![797918-30e2f3470787b368](http://7xooko.com1.z0.glb.clouddn.com/2016-12-30-797918-30e2f3470787b368.jpg)
+![797918-30e2f3470787b368](/images/2016-12-30-797918-30e2f3470787b368.jpg)
 
 #### 核心服务层（Core Services Layer）
 核心服务层为程序提供基础的系统服务例如网络访问、浏览器引擎、定位、文件访问、数据库访问等，主要包含以下框架：
@@ -43,7 +43,7 @@ iOS系统分为可分为四级结构，由上至下分别为可触摸层（Cocoa
 * Foundation（基础功能如NSString）
 * Webkit（浏览器引擎）
 * JavaScript（JavaScript引擎）
-![797918-cc0de0f6f45ff252](http://7xooko.com1.z0.glb.clouddn.com/2016-12-30-797918-cc0de0f6f45ff252.jpg)
+![797918-cc0de0f6f45ff252](/images/2016-12-30-797918-cc0de0f6f45ff252.jpg)
 
 #### 核心系统层（Core OS Layer）
 核心系统层提供为上层结构提供最基础的服务如操作系统内核服务、本地认证、安全、加速等。
@@ -52,12 +52,12 @@ iOS系统分为可分为四级结构，由上至下分别为可触摸层（Cocoa
 * 本地认证（指纹识别验证等）
 * 安全（提供管理证书、公钥、密钥等的接口）
 * 加速 (执行数学、大数字以及DSP运算,这些接口iOS设备硬件相匹配）
-![797918-2965748e8e244c2e](http://7xooko.com1.z0.glb.clouddn.com/2016-12-30-797918-2965748e8e244c2e.jpg)
+![797918-2965748e8e244c2e](/images/2016-12-30-797918-2965748e8e244c2e.jpg)
 
 ### Android
 
 Andorid 大致可以分为四层结构：应用层、应用框架层、系统运行库层、Linux内核层。
-![20140311140541765](http://7xooko.com1.z0.glb.clouddn.com/2016-12-30-20140311140541765.jpeg)
+![20140311140541765](/images/2016-12-30-20140311140541765.jpeg)
 
 
 #### 应用层
