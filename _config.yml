@@ -72,7 +72,6 @@ deploy:
 - type: git
   repo:
     GitHub: git@github.com:chaoskyme/chaoskyme.github.io.git,master
-    Coding: git@git.coding.net:chaosky/chaosky.git,coding-pages
 
 # Generate Atom
 # npm install hexo-generator-feed --save
