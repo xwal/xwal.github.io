@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.8.0"
+    "version": "3.9.0"
   },
   "dependencies": {
     "gitment": "0.0.3",
-    "hexo": "^3.8.0",
+    "hexo": "^3.9.0",
     "hexo-admin": "^2.3.0",
     "hexo-deployer-git": "^1.0.0",
     "hexo-generator-archive": "^0.1.4",
@@ -21,8 +21,6 @@
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
     "hexo-symbols-count-time": "^0.3.2",
-    "hexo-tag-aplayer": "^2.0.1",
-    "hexo-tag-dplayer": "^0.1.7",
     "hexo-wordcount": "^2.0.0"
   }
 }
