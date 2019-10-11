@@ -30,6 +30,7 @@ jobs:
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         git config --global user.name 'chaosky'
         git config --global user.email 'chaosky.me@gmail.com'
+        git submodule update --init
         npm install hexo-cli -g
         npm install
     - name: deploy to github
