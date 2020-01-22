@@ -1,13 +1,10 @@
 title: 非官方iOS9.2-iOS9.3.3越狱图文教程 
 date: 2016-12-07 09:06:21
-updated: 2016-12-07 09:06:21
 tags:
 - Jailbreak
 - Cydia
 categories: iOS
 ---
-
-**更新日志**
 
 本越狱教程在 Windows 和 Mac 上都可以。
 
@@ -29,48 +26,48 @@ categories: iOS
 
 Mac
 
-![268035-640](/images/2016-12-07-268035-640.jpg)
+![268035-640](http://file.blog.chaosky.tech/2016-12-07-268035-640.jpg)
 
 Windows
 
-![268173](/images/2016-12-07-268173.jpg)
+![268173](http://file.blog.chaosky.tech/2016-12-07-268173.jpg)
 
 ### 安装 Impactor
 
 Mac：双击 Impactor dmg 安装
 
-![268041](/images/2016-12-07-268041.jpg)
+![268041](http://file.blog.chaosky.tech/2016-12-07-268041.jpg)
 
 Windows: 解压缩 Impactor zip
 
-![268176](/images/2016-12-07-268176.jpg)
+![268176](http://file.blog.chaosky.tech/2016-12-07-268176.jpg)
 
-![268178](/images/2016-12-07-268178.jpg)
+![268178](http://file.blog.chaosky.tech/2016-12-07-268178.jpg)
 
 ### 运行 Impactor 并 连接 iPhone
 
-![268050](/images/2016-12-07-268050.jpg)
+![268050](http://file.blog.chaosky.tech/2016-12-07-268050.jpg)
 
-![268053](/images/2016-12-07-268053.jpg)
+![268053](http://file.blog.chaosky.tech/2016-12-07-268053.jpg)
 
 ### 安装 NvwaStone IPA 
 
 拖拽 NvwaStone IPA 文件到 Cydia Impactor 应用中。
 
-![268070](/images/2016-12-07-268070.jpg)
+![268070](http://file.blog.chaosky.tech/2016-12-07-268070.jpg)
 
 拖拽进去以后，将会要求你输入 Apple ID 和 密码，用来对 IPA 文件签名并且能够运行在你的设备上。不幸的是，如果你没有开发者账号，IPA 文件签名只有7天有效，也就是只能运行7天。如果你有开发者账号 IPA 文件签名有1年。
 
-![268059](/images/2016-12-07-268059.jpg)
+![268059](http://file.blog.chaosky.tech/2016-12-07-268059.jpg)
 
-![268062](/images/2016-12-07-268062.jpg)
+![268062](http://file.blog.chaosky.tech/2016-12-07-268062.jpg)
 
 Cydia Impactor 将会显示一个警告给开发者：这个应用将会撤销和替换该账号已有的开发证书，这可能会影响你现在的开发工作。
-![268065](/images/2016-12-07-268065.jpg)
+![268065](http://file.blog.chaosky.tech/2016-12-07-268065.jpg)
 
 Cydia Impactor 将会签名 IPA 并 安装盘古越狱 APP 到你的设备上。
 
-![268073](/images/2016-12-07-268073.jpg)
+![268073](http://file.blog.chaosky.tech/2016-12-07-268073.jpg)
 
 ### 信任开发者描述文件
 
@@ -78,46 +75,46 @@ Cydia Impactor 将会签名 IPA 并 安装盘古越狱 APP 到你的设备上。
 
 点击【设置】——> 【通用】——> 【描述文件与设备管理】，找到你在 Cydia Impactor 中填写的对应邮箱地址。PS: 开发者账号不用信任即可。
 
-![QQ20161207-0@2x](/images/2016-12-07-QQ20161207-0@2x.png)
+![QQ20161207-0@2x](http://file.blog.chaosky.tech/2016-12-07-QQ20161207-0@2x.png)
 
-![QQ20161207-1@2x](/images/2016-12-07-QQ20161207-1@2x.png)
+![QQ20161207-1@2x](http://file.blog.chaosky.tech/2016-12-07-QQ20161207-1@2x.png)
 
 
-![QQ20161207-2@2x](/images/2016-12-07-QQ20161207-2@2x.png)
+![QQ20161207-2@2x](http://file.blog.chaosky.tech/2016-12-07-QQ20161207-2@2x.png)
 
-![268088](/images/2016-12-07-268088.jpg)
+![268088](http://file.blog.chaosky.tech/2016-12-07-268088.jpg)
 
-![268091](/images/2016-12-07-268091.jpg)
+![268091](http://file.blog.chaosky.tech/2016-12-07-268091.jpg)
 
-![268094](/images/2016-12-07-268094.jpg)
+![268094](http://file.blog.chaosky.tech/2016-12-07-268094.jpg)
 
-![268097](/images/2016-12-07-268097.jpg)
+![268097](http://file.blog.chaosky.tech/2016-12-07-268097.jpg)
 
 ### 运行 盘古越狱 APP
 
 回到主界面，运行 盘古越狱 APP。
 
-![268100](/images/2016-12-07-268100.jpg)
+![268100](http://file.blog.chaosky.tech/2016-12-07-268100.jpg)
 
 允许通知
 
-![268103](/images/2016-12-07-268103.jpg)
+![268103](http://file.blog.chaosky.tech/2016-12-07-268103.jpg)
 
 点击开始按钮
 
-![268106](/images/2016-12-07-268106.jpg)
+![268106](http://file.blog.chaosky.tech/2016-12-07-268106.jpg)
 
 锁屏等待6秒钟，你将会收到你的设备已经越狱成功的通知。
 
-![268112](/images/2016-12-07-268112.jpg)
+![268112](http://file.blog.chaosky.tech/2016-12-07-268112.jpg)
 
 解锁设备，重新进入盘古越狱APP，正在准备越狱环境和安装 Cydia。
 
-![268115](/images/2016-12-07-268115.jpg)
+![268115](http://file.blog.chaosky.tech/2016-12-07-268115.jpg)
 
 完成后，屏幕会重启，Cydia出现在主界面上。
 
-![268118](/images/2016-12-07-268118.jpg)
+![268118](http://file.blog.chaosky.tech/2016-12-07-268118.jpg)
 
 ### 重要提示
 

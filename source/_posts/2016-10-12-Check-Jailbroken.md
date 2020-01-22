@@ -1,11 +1,8 @@
 title: 越狱检测
 date: 2016-10-12 11:53:53
-updated: 2016-10-12 11:53:53
 tags: Jailbreak
 categories: iOS
 ---
-
-**更新日志**
 
 代码详情查看以下
 

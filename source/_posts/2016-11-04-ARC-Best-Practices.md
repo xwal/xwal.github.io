@@ -1,13 +1,10 @@
 title: 【译】ARC 最佳实践
 date: 2016-11-04 09:06:04
-updated: 2016-11-04 09:06:04
 tags:
 - ARC
 - 译文
 categories: iOS
 ---
-
-**更新日志**
 
 英文原文出处：<http://amattn.com/p/arc_best_practices.html>
 

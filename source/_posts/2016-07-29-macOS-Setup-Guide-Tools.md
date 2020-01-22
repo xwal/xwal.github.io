@@ -1,17 +1,10 @@
 title: macOS 开发配置手册——工具篇
 date: 2016-07-29 13:08:28
-updated: 2016-11-24
 tags: 
 - Setup Guide
 - Tools
 categories: macOS
 ---
-
-**更新日志**
-
-- 2016-08-05 添加node、Python等终端命令
-- 2016-09-12 更新[查找命令](#查找命令)
-- 2016-11-24 更新 ruby、node、python的工具集
 
 > 工欲善其事，必先利其器。—— 工具篇
 
@@ -160,7 +153,7 @@ brew cask 安装 launchrocket，来管理通过 brew 安装的 service
 $ brew cask install launchrocket
 ```
 
-![Snip20160729_9](/images/2016-08-01-Snip20160729_9.png)
+![Snip20160729_9](http://file.blog.chaosky.tech/2016-08-01-Snip20160729_9.png)
 
 ### Ruby
 

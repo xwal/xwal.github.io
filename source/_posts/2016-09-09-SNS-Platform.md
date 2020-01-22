@@ -1,14 +1,11 @@
 title: 第三方登录和分享常见问题集锦
 date: 2016-09-09 17:17:36
-updated: 2016-09-09 17:17:36
 tags:
 - SNS
 - 第三方分享
 - 第三方登录
 categories: iOS
 ---
-
-**更新日志**
 
 ## 新浪微博
 ### iOS sso package or sign error

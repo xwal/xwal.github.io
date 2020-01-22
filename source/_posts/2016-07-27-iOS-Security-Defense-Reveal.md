@@ -1,15 +1,11 @@
 title: 使用Reveal分析别人App的UI布局
 date: 2016-07-27 13:43:53
-updated: 2017-02-13
 tags:
 - Tools
 - Reveal
 - Jailbreak
 categories: iOS
 ---
-
-**更新日志**
-1. Reveal 破解版已更新到 Reveal v4 版本，集成框架上有些不同
 
 ## 准备工作
 
@@ -24,27 +20,27 @@ categories: iOS
 
 ## 操作步骤
 ### 在Cydia中搜索并安装Reveal Loader
-![Snip20160727_11](/images/2016-07-27-Snip20160727_11.png)
+![Snip20160727_11](http://file.blog.chaosky.tech/2016-07-27-Snip20160727_11.png)
 
 ### 远程连接iPhone设备
 1. 在Cydia中安装OpenSSH工具
 2. 打开Wi-Fi设置，获取IP地址（例如：192.168.2.6）
-![Snip20160727_1](/images/2016-07-27-Snip20160727_1.png)
+![Snip20160727_1](http://file.blog.chaosky.tech/2016-07-27-Snip20160727_1.png)
 
 3. 打开终端，执行命令`ssh root@[设备IP地址]`（例如：`ssh root@192.168.2.6`）
 4. 等待几分钟后，允许新连接
-![Snip20160727_3](/images/2016-07-27-Snip20160727_3.png)
+![Snip20160727_3](http://file.blog.chaosky.tech/2016-07-27-Snip20160727_3.png)
 
 5. 输入密码`alpine`登录iPhone设备
-![Snip20160727_4](/images/2016-07-27-Snip20160727_4.png)
+![Snip20160727_4](http://file.blog.chaosky.tech/2016-07-27-Snip20160727_4.png)
 
 
 ### 检查iOS设备上`/Library/`目录下是否有一个名为`RHRevealLoader`的目录
-![Snip20160727_5](/images/2016-07-27-Snip20160727_5.png)
+![Snip20160727_5](http://file.blog.chaosky.tech/2016-07-27-Snip20160727_5.png)
 
 1. 若没有则创建该目录：`mkdir /Library/RHRevealLoader`
 2. 启动Reveal并选择Help → Show Reveal Library in Finder，这将会打开Finder窗口，并显示一个名为iOS-Libraries的文件夹。
-	![](/images/reveal/show-reveal-library-in-finder.jpg)
+	![](http://file.blog.chaosky.tech/reveal/show-reveal-library-in-finder.jpg)
 	将该目录下的`libReveal.dylib`通过scp或者iFunBox上传到刚才的手机目录，scp执行的命令如下：
 	
 	```
@@ -56,12 +52,12 @@ categories: iOS
 
 ### 启动Reveal调试别人的App
 1. 打开设置程序，配置Reveal Loader
-	![Snip20160727_6](/images/2016-07-27-Snip20160727_6.png)
+	![Snip20160727_6](http://file.blog.chaosky.tech/2016-07-27-Snip20160727_6.png)
 2. 在Reveal设置中选择你要查看的App，Enabled Applications
-	![Snip20160727_8](/images/2016-07-27-Snip20160727_8.png)
+	![Snip20160727_8](http://file.blog.chaosky.tech/2016-07-27-Snip20160727_8.png)
 3. 在Reveal中调试查看
 	调试时，需要注意越狱设备和Mac需要在同一网路环境中
-	![Snip20160727_10](/images/2016-07-27-Snip20160727_10.png)
+	![Snip20160727_10](http://file.blog.chaosky.tech/2016-07-27-Snip20160727_10.png)
 	
 ## 注意
 

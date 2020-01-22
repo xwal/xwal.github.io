@@ -1,14 +1,10 @@
 title: iOS 依赖库管理工具
 date: 2016-11-13 20:31:44
-updated: 2016-11-13 20:31:44
 tags:
 - CocoaPods
 - Carthage
 categories: iOS
 ---
-
-**更新日志**
-* 2016-11-13 重新整理 iOS的包依赖管理工具，更新到最新安装方法
 
 ## CocoaPods
 

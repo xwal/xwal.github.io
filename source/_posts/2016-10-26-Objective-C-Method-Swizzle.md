@@ -1,13 +1,10 @@
 title: Objective-C Method Swizzle
 date: 2016-10-26 21:05:50
-updated: 2016-10-26 21:05:50
 tags:
 - Objective-C
 - Runtime
 categories: iOS
 ---
-
-**更新日志**
 
 Method Swizzle（方法调配、方法混合、方法调和、方法混写） 是 Objective-C 运行时的黑魔法之一。我们可以通过 Swizzle 的手段，在运行时对某些方法的实现进行替换，这是 Objective-C 甚至说 Cocoa 开发中最为华丽，同时也是最为危险的技巧之一。Swizzle 使用了 Objective-C 的动态派发，对于 NSObject 的子类是可以直接使用的。
 

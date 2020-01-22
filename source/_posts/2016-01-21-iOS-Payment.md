@@ -9,11 +9,6 @@ tags:
 categories: iOS
 ---
 
-**更新日志**
-
-- 2016-05-26 添加 Pay 支付
-- 2016-08-08 更新 Pay 支付流程
-
 iOS支付分为两类，**第三方支付**和**应用内支付（内购）**。
 
 第三方支付包括：支付宝支付、微信支付、银联支付、百度钱包、京东支付等等。
@@ -72,7 +67,7 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
 
    本Demo使用的SDK是从官方Demo整理出来的，整理的SDK版本：201501022。
 
-   下载地址：</images/AlipaySDK.zip>
+   下载地址：<http://file.blog.chaosky.tech/AlipaySDK.zip>
 
    目录结构如下：
 
@@ -164,7 +159,7 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
 
    配置方法：打开info.plist文件，找到或者添加如图所示的键值对：
 
-   ![](/images/QQ20160121-1@2x.png)
+   ![](http://file.blog.chaosky.tech/QQ20160121-1@2x.png)
 
    URL Scheme值为代码中对应的值，**必须一致**。
 
@@ -217,7 +212,7 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
 
    *开发者应用登记页面* 进行登记，登记并选择移动应用进行设置后，将获得AppID，可立即用于开发。但应用登记完成后还需要提交审核，只有审核通过的应用才能正式发布使用。
 
-   ![](/images/QQ20160121-0@2x.png)
+   ![](http://file.blog.chaosky.tech/QQ20160121-0@2x.png)
 
 2. 微信APP支付接入商户服务中心
 
@@ -229,7 +224,7 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
 
    本Demo使用的SDK是从官方Demo整理出来的，整理的SDK版本：1.6.1。
 
-   下载地址：</images/AlipaySDK.zip>
+   下载地址：<http://file.blog.chaosky.tech/AlipaySDK.zip>
 
    目录结构如下：
 
@@ -269,7 +264,7 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
 
     在Xcode中，选择你的工程设置项，选中“TARGETS”一栏，在“info”标签栏的“URL type“添加“URL scheme”为你所注册的应用程序id（如下图所示）。
 
-   ![](/images/QQ20160121-2@2x.png)
+   ![](http://file.blog.chaosky.tech/QQ20160121-2@2x.png)
 
 6. 在你需要使用微信终端API的文件中import WXApi.h 头文件，并增加 WXApiDelegate 协议。
 
@@ -403,29 +398,29 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
 
 1. 填写相关的税务，银行，联系人信息
 
-   ![](/images/Snip20160124_5.png)
+   ![](http://file.blog.chaosky.tech/Snip20160124_5.png)
 
    参考链接：[iOS App提交指南(二)-协议、税务和银行业务](http://www.jianshu.com/p/c7cf65911bc1)
 
 2. 添加一个用于在sandbox付费的测试用户
 
-   ![](/images/Snip20160124_3.png)
+   ![](http://file.blog.chaosky.tech/Snip20160124_3.png)
 
-   ![](/images/Snip20160124_4.png)
+   ![](http://file.blog.chaosky.tech/Snip20160124_4.png)
 
 3. 用该App ID创建一个新的应用。
 
 4. 创建应用内付费项目，选择付费类型。
 
-   ![](/images/QQ20160124-0@2x.png)
+   ![](http://file.blog.chaosky.tech/QQ20160124-0@2x.png)
 
-   ![](/images/QQ20160124-1@2x.png)
+   ![](http://file.blog.chaosky.tech/QQ20160124-1@2x.png)
 
    App 内购买项目摘要填写  
 
-   ![](/images/Snip20160124_1.png)
+   ![](http://file.blog.chaosky.tech/Snip20160124_1.png)
 
-   ![](/images/Snip20160124_2.png)
+   ![](http://file.blog.chaosky.tech/Snip20160124_2.png)
 
 #### 主要代码实现
 
@@ -675,32 +670,32 @@ Apple Pay 中的商家 ID 用于标识你能够接受付款。与商家 ID 相�
 
 1. 在开发者中心选择[证书、标识符及描述文件](https://developer.apple.com/account/ios/identifiers/merchant/merchantLanding.action)
 2. 在标识符下选择商家 ID，点击右上角的添加按钮(+)。
-	![Snip20160808_3](/images/2016-08-08-Snip20160808_3.png)
+	![Snip20160808_3](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_3.png)
 3. 输入描述与和标识符，然后继续，检查设置然后点击注册，点击完成。
-	![Snip20160808_5](/images/2016-08-08-Snip20160808_5.png)
+	![Snip20160808_5](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_5.png)
 
 4. 为商家 ID 配置证书，在开发者中心选择[证书、标识符及描述文件](https://developer.apple.com/account/ios/identifiers/merchant/merchantLanding.action)，在标识符下选择商家 ID。从列表中选择商家 ID，点击编辑。
-	![Snip20160808_6](/images/2016-08-08-Snip20160808_6.png)
-	![Snip20160808_8](/images/2016-08-08-Snip20160808_8.png)
+	![Snip20160808_6](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_6.png)
+	![Snip20160808_8](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_8.png)
 
 5. 点击创建证书， 根据提示生成证书签名请求（CSR），选择你的 CSR，然后点击生成下载证书。
-	![Snip20160808_10](/images/2016-08-08-Snip20160808_10.png)
-	![Snip20160808_11](/images/2016-08-08-Snip20160808_11.png)
-	![Snip20160808_12](/images/2016-08-08-Snip20160808_12.png)
+	![Snip20160808_10](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_10.png)
+	![Snip20160808_11](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_11.png)
+	![Snip20160808_12](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_12.png)
 
 6. 如果你在钥匙串访问 (Keychain Access) 看到警告信息：该证书由一个未知的机构签发或者该证书有一个无效的发行人，请将 [WWDR 中级证书 - G2](https://www.apple.com/certificateauthority/AppleWWDRCAG2.cer) 以及 [Apple 根证书 - G2](https://www.apple.com/certificateauthority/AppleRootCA-G2.cer) 安装到你的钥匙串中。你可以在 <https://www.apple.com/certificateauthority/> 下载到这两个证书。
-	![Snip20160808_13](/images/2016-08-08-Snip20160808_13.png)
-	![Snip20160808_15](/images/2016-08-08-Snip20160808_15.png)
+	![Snip20160808_13](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_13.png)
+	![Snip20160808_15](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_15.png)
 
 #### 配置 App ID
 
 1. 为应用建立建立一个不带通配符的App ID，并勾选上【Apple Pay】。
-	![Snip20160808_19](/images/2016-08-08-Snip20160808_19.png)
+	![Snip20160808_19](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_19.png)
 2. 在App IDs列表中编辑该App ID，进行Apple Pay的关联。
-	![Snip20160808_20](/images/2016-08-08-Snip20160808_20.png)
-	![Snip20160808_21](/images/2016-08-08-Snip20160808_21.png)
-	![Snip20160808_24](/images/2016-08-08-Snip20160808_24.png)
-	![Snip20160808_25](/images/2016-08-08-Snip20160808_25.png)
+	![Snip20160808_20](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_20.png)
+	![Snip20160808_21](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_21.png)
+	![Snip20160808_24](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_24.png)
+	![Snip20160808_25](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_25.png)
 3. 用该App ID生成和安装相应的Provisioning Profile文件。
 
 #### 代码实现
@@ -708,7 +703,7 @@ Apple Pay 中的商家 ID 用于标识你能够接受付款。与商家 ID 相�
 ##### Xcode工程配置
 
 在 Xcode 的 【capabilities 面板】中为应用启用 【Apple Pay】功能。在 Apple Pay 这一行中点击开启，然后指定该应用使用的商家 ID 即可。
-![Snip20160808_17](/images/2016-08-08-Snip20160808_17.png)
+![Snip20160808_17](http://file.blog.chaosky.tech/2016-08-08-Snip20160808_17.png)
 
 ##### 判断用户是否能够支付
 

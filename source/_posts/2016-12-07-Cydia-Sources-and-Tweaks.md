@@ -1,13 +1,10 @@
 title: Cydia 源 和 插件
 date: 2016-12-07 11:52:20
-updated: 2016-12-07 11:52:20
 tags:
 - Jailbreak
 - Cydia
 categories: iOS
 ---
-
-**更新日志**
 
 ## Cydia 源
 

@@ -1,6 +1,5 @@
 title: 单例类
 date: 2016-09-24 20:09:24
-updated: 2016-09-24 20:09:24
 tags:
 - Singteton
 categories: iOS
