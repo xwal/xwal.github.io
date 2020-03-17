@@ -1,49 +1,14 @@
-title: 世界画报
+title: 世界画报 - 最美画报集
 date: 2016-11-22 15:48:31
-
 comments: true
 ---
 
-**世界画报，每日精选最美壁纸。**
+## 介绍
 
-**世界画报总共分为三大块，每日推荐、每日最美、壁纸精选。**
+世界画报，每日精选最美壁纸。
+每日推荐：每天为您奉上精选的地理图片，在精美的视觉享受中，轻松汲取所需的科普与人文养分！
+每日最美：设计师精选的海量高品质壁纸，点亮你的屏幕！
+壁纸精选：精挑细选真正适合设为壁纸的图片！
 
-## 每日推荐
-
-
-![ngp_1_1](http://file.blog.chaosky.tech/2016-12-27-ngp_1_1.png)
-
-![ngp_1_2](http://file.blog.chaosky.tech/2016-12-27-ngp_1_2.png)
-
-
-## 每日最美
-
-
-![ngp_2_1](http://file.blog.chaosky.tech/2016-12-27-ngp_2_1.png)
-
-![ngp_2_2](http://file.blog.chaosky.tech/2016-12-27-ngp_2_2.png)
-
-
-## 壁纸精选
-
-
-![ngp_3_1](http://file.blog.chaosky.tech/2016-12-27-ngp_3_1.png)
-
-
-## 免费下载地址
-
-
-### 点击下载
-
-[![世界画报 iPhone下载](http://file.blog.chaosky.tech/2016-11-22-NGP-iPhone-Download.png)](https://itunes.apple.com/us/app/guo-jia-de-li-hua-bao/id1178885979?l=zh&ls=1&mt=8)
-
-### 扫码下载
-
-![1482831032](http://file.blog.chaosky.tech/2016-12-27-1482831032.png)
-
-
-
-
-
-
-
+## 下载地址
+<https://itunes.apple.com/cn/app/id1483196698?mt=8>
