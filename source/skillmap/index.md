@@ -3,7 +3,7 @@ date: 2016-08-16 17:16:13
 ---
 ## 知道创宇研发技能表
 
-在线查看：<http://blog.knownsec.com/Knownsec_RD_Checklist/>
+在线查看：<https://blog.knownsec.com/Knownsec_RD_Checklist/index.html>
 
 ##  iOS开发工程师必备技能图谱
 
