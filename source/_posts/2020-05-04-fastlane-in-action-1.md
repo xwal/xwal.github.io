@@ -1,9 +1,14 @@
 title: Fastlane 实践（一）：自动化打包和发布
 tags:
-- fastlane
-- CI
+  - fastlane
+  - CI
+
 categories: iOS
+
+date: 2020-05-04 13:38:31
+
 ---
+
 ![](https://docs.fastlane.tools/img/fastlane_text.png)
 > fastlane is the easiest way to automate beta deployments and releases for your iOS and Android apps. 🚀 It handles all tedious tasks, like generating screenshots, dealing with code signing, and releasing your application.
 
@@ -58,6 +63,8 @@ $ gem install cocoapods
 $ gem install fastlane -NV
 $ gem install bundle
 ```
+
+<!-- more -->
 
 ## 快速开始
 
@@ -740,3 +747,4 @@ end
 
 ```
 
+以上 fastlane 满足基本的功能需求。
