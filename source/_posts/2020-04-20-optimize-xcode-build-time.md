@@ -1,10 +1,9 @@
-title: 记录一次解决 Xcode 编译慢的过程
+title: 记录一次优化 Xcode 编译的过程
 tags:
   - Xcode
 categories: iOS
 date: 2020-04-20 09:48:18
 ---
-
 
 接触新项目后，发现没有改代码的情况下，每次编译基本上编译时间都在一分钟左右。就有了一个想法去解决这个问题，断断续续花了三天时间解决，解决过程中，学习到很多，记录下来。
 
@@ -172,7 +171,17 @@ spec.resources = ['Images/*.png', 'Sounds/*']
 
 由于组件化的原因，我们的某个组件采用了`Assets.xcassets` 和 Storyboard 需要拷贝到主工程中进行引用，Pod 库只能以 `resources` 的方式引用资源。经过这次优化编译速度有了很大提升。
 
-## 0x05 参考链接
+## 0x05 后续：Pods 文件更改没有更新
+
+优化了 Xcode 编译后，出现另外一个问题：更改 Pods 库后，Pods 库已编译但主工程没有使用最新的frameworks，导致动态链接的时候找不到对应的符号而产生崩溃。
+
+导致这个问题的原因是 `Build Phases` 中的 `[CP] Embed Pods Frameworks` 不是每次都执行，猜测可能是 Xcode 11 的 `New Build System` 做了优化，导致脚本没有执行。最终想了个办法来解决这个问题，追加命令来执行脚本 `find "${PODS_ROOT}" -type f -name *frameworks.sh -exec bash -c "touch \"{}\"" \;`，使得脚本每次能执行更新frameworks。
+
+因为 `[CP] Embed Pods Frameworks`的脚本是由 CocoaPods 进行修改的，所有我将上面的命令通过hook的方式来追加，具体使用方法可以查看 <https://github.com/chaoskyme/cocoapods-xcode-patch>。
+
+编译时间也有所增加，在工程中测试大概增加了20s左右，还有优化的空间，后续如果想到更好的解决办法再更新。
+
+## 0x06 参考链接
 
 - <https://elliotsomething.github.io/2018/05/23/XCodeBuild/>
 - <https://github.com/CocoaPods/CocoaPods/issues/8122>
