@@ -1,5 +1,4 @@
 title: {{ title }}
 tags:
 categories:
-
 ---
