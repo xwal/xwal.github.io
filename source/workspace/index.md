@@ -13,11 +13,11 @@ comments: true
 
 ## 开源项目
 
-### [iOS Interview Questions](https://github.com/chaoskyme/iOS-Interview-Questions)
+### [iOS Interview Questions](https://github.com/chaoskyx/iOS-Interview-Questions)
 
 收集整理iOS笔试面试题
 
-### [mobile-mediainfo](https://github.com/chaoskyme/mobile-mediainfo)
+### [mobile-mediainfo](https://github.com/chaoskyx/mobile-mediainfo)
 
 MediaInfo is a convenient unified display of the most relevant technical and tag data for video and audio files.
 
