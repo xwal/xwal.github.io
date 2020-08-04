@@ -150,3 +150,7 @@ class GDTPackage {
 2. `lint` 时遇到 `Include of non-modular header inside framework module` 错误，可以在后面添加 `--use-libraries`。虽然能验证和上传通过，但是其他项目引用的时候还是会有问题。
 
 3. `user_target_xcconfig` 是针对所有 `Pod` 的，可能和其他 `Pod` 存在冲突。`pod_target_xcconfig` 是针对当前 `Pod` 的。
+
+## 参考链接
+
+1. [Modules - Clang 12 documentation](http://clang.llvm.org/docs/Modules.html)
