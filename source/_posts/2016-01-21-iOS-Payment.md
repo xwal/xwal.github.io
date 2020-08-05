@@ -1126,6 +1126,6 @@ paymentRequest.shippingContact = contact;
 
 ## 代码下载
 
-<https://github.com/chaoskyme/Demo/tree/master/Payment>
+<https://github.com/chaoskyx/Demo/tree/master/Payment>
 
 

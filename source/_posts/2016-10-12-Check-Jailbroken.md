@@ -8,6 +8,6 @@ categories: iOS
 
 <!-- more -->
 
-<script src="https://gist.github.com/chaoskyme/12d9b72b65f55d0faf7d9690fa1a71b1.js"></script>
+<script src="https://gist.github.com/chaoskyx/12d9b72b65f55d0faf7d9690fa1a71b1.js"></script>
 
 

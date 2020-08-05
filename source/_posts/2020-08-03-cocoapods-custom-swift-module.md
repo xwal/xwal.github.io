@@ -124,7 +124,7 @@ module GDTPackageBridge {
   s.preserve_paths = ['GDTPackage/Module/module.modulemap', 'GDTPackage/Module/BridgeHeader.h']
   s.pod_target_xcconfig = {
     # 路径根据实际情况进行引用，必须保证路径是正确的
-    'SWIFT_INCLUDE_PATHS' => ['$(PODS_ROOT)/GDTPackage/Module', '$(SRCROOT)/../../GDTPackage/Module']
+    'SWIFT_INCLUDE_PATHS' => ['$(PODS_ROOT)/GDTPackage/Module', '$(PODS_TARGET_SRCROOT)/GDTPackage/Module']
   }
 
   s.dependency 'GDTMobSDK'

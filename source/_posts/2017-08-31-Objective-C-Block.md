@@ -99,7 +99,7 @@ block对变量的捕获规则：
 
 ## @weakify, @strongify 使用
 
-<script src="https://gist.github.com/chaoskyme/041628148019749e13f49756010eea94.js"></script>
+<script src="https://gist.github.com/chaoskyx/041628148019749e13f49756010eea94.js"></script>
 
 1. weakify(self)展开后是: **weak typeof(self) **weak_self = self;
 

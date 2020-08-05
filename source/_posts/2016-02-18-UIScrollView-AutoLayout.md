@@ -21,4 +21,4 @@ UIScrollView中子视图建立约束不能实现滚动，要实现子视图的Au
 ![](http://file.blog.chaosky.tech/UIScrollViewAutoLayout.gif)
 
 ## Demo 下载
-<https://github.com/chaoskyme/Demo/tree/master/UIScrollViewAutoLayout>
+<https://github.com/chaoskyx/Demo/tree/master/UIScrollViewAutoLayout>

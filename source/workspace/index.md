@@ -23,5 +23,5 @@ MediaInfo is a convenient unified display of the most relevant technical and tag
 
 mobile-mediainfo is a Framework for iOS8+, compiled also for armv7, armv7s, arm64 , i386(Simulator) and x86_64(Simulator).
 
-### [Tesseract OCR iOS](https://github.com/chaoskyme/Tesseract-OCR-iOS)
+### [Tesseract OCR iOS](https://github.com/chaoskyx/Tesseract-OCR-iOS)
 Tesseract OCR iOS is a Framework for iOS8+, compiled also for armv7s and arm64. I have upgraded tesseract version to 4.1.1 release.
