@@ -105,9 +105,3 @@ feed:
   type: atom
   path: atom.xml
   limit: 20
-
-# hexo-admin authentification
-admin:
-  username: chaosky
-  password_hash: $2a$10$owdkktVn.reLPuzFOnX2/e6DnHpXXS.jhiBydhn6/W5MJshg9VSNC
-  secret: my super secret phrase
