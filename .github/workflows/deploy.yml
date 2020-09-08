@@ -24,7 +24,7 @@ jobs:
     - name: Use Ruby ${{ matrix.ruby-version }}
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: ${{ ruby-version }}
+        ruby-version: ${{ matrix.ruby-version }}
     - name: prepare build environment
       env:
         GH_ACTION_DEPLOY_KEY: ${{secrets.GH_ACTION_DEPLOY_KEY}}
