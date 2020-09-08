@@ -12,6 +12,8 @@ repo_name = "chaoskyx.github.io" # 存放 issues
 sitemap_url = "https://raw.githubusercontent.com/chaoskyx/chaoskyx.github.io/master/sitemap.xml" # sitemap
 kind = "Gitalk"
 
+puts "token -> #{token}"
+
 sitemap = SitemapParser.new sitemap_url
 urls = sitemap.to_a
 
@@ -20,7 +22,8 @@ conn = Faraday.new(:url => "https://api.github.com/repos/#{username}/#{repo_name
   conn.adapter Faraday.default_adapter
 end
 
-urls.each_with_index do |url, index|
+index = 0
+for url in urls
   id = Digest::MD5.hexdigest URI(url).path
   response = conn.get do |req|
     req.params["labels"] = [kind, id].join(',')
@@ -38,6 +41,7 @@ urls.each_with_index do |url, index|
       req.body = { body: body, labels: [kind, id], title: title }.to_json
     end
     puts response.body
+    index += 1
+    sleep 15 if index % 20 == 0
   end
-  sleep 15 if index % 20 == 0
 end
