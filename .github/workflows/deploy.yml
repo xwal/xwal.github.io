@@ -13,16 +13,22 @@ jobs:
     strategy:
       matrix:
         node-version: [10.x]
+        ruby-version: [2.6.6]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Use Ruby ${{ matrix.ruby-version }}
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: ${{ ruby-version }}
     - name: prepare build environment
       env:
         GH_ACTION_DEPLOY_KEY: ${{secrets.GH_ACTION_DEPLOY_KEY}}
+        GH_ACTION_GITHUB_TOKEN: ${{secrets.GH_ACTION_GITHUB_TOKEN}}
       run: |
         mkdir -p ~/.ssh/
         echo "$GH_ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
@@ -34,8 +40,14 @@ jobs:
         git submodule update --init
         npm install hexo-cli -g
         npm install
+        gem install faraday activesupport sitemap-parser nokogiri
     - name: deploy to github
       run: |
         hexo d -g
+      env:
+        CI: true
+    - name: initialize comments
+      run: |
+        ruby comment.rb
       env:
         CI: true
