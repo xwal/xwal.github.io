@@ -9,7 +9,7 @@ require 'nokogiri'
 username = "chaoskyx" # GitHub 用户名
 token = ENV['GH_ACTION_GITHUB_TOKEN']  # GitHub Token
 repo_name = "chaoskyx.github.io" # 存放 issues
-sitemap_url = "https://chaosky.tech/sitemap.xml" # sitemap
+sitemap_url = "https://raw.githubusercontent.com/chaoskyx/chaoskyx.github.io/master/sitemap.xml" # sitemap
 kind = "Gitalk"
 
 sitemap = SitemapParser.new sitemap_url
