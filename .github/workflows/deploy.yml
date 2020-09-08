@@ -28,7 +28,6 @@ jobs:
     - name: prepare build environment
       env:
         GH_ACTION_DEPLOY_KEY: ${{secrets.GH_ACTION_DEPLOY_KEY}}
-        GH_ACTION_GITHUB_TOKEN: ${{secrets.GH_ACTION_GITHUB_TOKEN}}
       run: |
         mkdir -p ~/.ssh/
         echo "$GH_ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
@@ -47,7 +46,7 @@ jobs:
       env:
         CI: true
     - name: initialize comments
+      env:
+        GH_ACTION_GITHUB_TOKEN: ${{secrets.GH_ACTION_GITHUB_TOKEN}}
       run: |
         ruby comment.rb
-      env:
-        CI: true
