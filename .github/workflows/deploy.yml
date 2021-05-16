@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         node-version: [10.x]
-        ruby-version: [2.6.6]
+        ruby-version: [2.7.3]
 
     steps:
     - uses: actions/checkout@v2
@@ -22,13 +22,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Use Ruby ${{ matrix.ruby-version }}
-      uses: actions/setup-ruby@v1
+      uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
     - name: prepare build environment
       env:
         GH_ACTION_DEPLOY_KEY: ${{secrets.GH_ACTION_DEPLOY_KEY}}
       run: |
+        set -e
         mkdir -p ~/.ssh/
         echo "$GH_ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
