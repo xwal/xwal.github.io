@@ -39,9 +39,9 @@ ARCH = RbConfig::CONFIG['arch']
 puts "OS: #{OSVERSION}"
 puts "CPU: #{CPU}"
 puts "Arch: #{ARCH}"
-```   
+```
 
-输出结果：
+执行 `ruby arch.rb`：
 
 ```
 OS: darwin20
