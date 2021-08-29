@@ -29,12 +29,10 @@ jobs:
       env:
         GH_ACTION_DEPLOY_KEY: ${{secrets.GH_ACTION_DEPLOY_KEY}}
       run: |
-        set -e
         mkdir -p ~/.ssh/
         echo "$GH_ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
-        ssh-keyscan chaosky.tech >> ~/.ssh/known_hosts
         git config --global user.name 'chaosky'
         git config --global user.email 'chaosky.me@gmail.com'
         git submodule update --init
