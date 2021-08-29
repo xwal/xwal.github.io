@@ -6,10 +6,10 @@ require 'sitemap-parser'
 require 'digest'
 require 'nokogiri'
 
-username = "chaoskyx" # GitHub 用户名
+username = "xwal" # GitHub 用户名
 token = ENV['GH_ACTION_GITHUB_TOKEN']  # GitHub Token
-repo_name = "chaoskyx.github.io" # 存放 issues
-sitemap_url = "https://raw.githubusercontent.com/chaoskyx/chaoskyx.github.io/master/sitemap.xml" # sitemap
+repo_name = "xwal.github.io" # 存放 issues
+sitemap_url = "https://raw.githubusercontent.com/xwal/xwal.github.io/master/sitemap.xml" # sitemap
 kind = "Gitalk"
 
 puts "token -> #{token}"

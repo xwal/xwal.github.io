@@ -28,5 +28,5 @@ SingleObject 类提供了一个静态方法，供外界获取它的静态实例�
 
 ![](http://www.runoob.com/wp-content/uploads/2014/08/singleton_pattern_uml_diagram.jpg)
 
-<script src="https://gist.github.com/chaoskyx/23a6095423494752f3bee55c114a2a97.js"></script>
+<script src="https://gist.github.com/xwal/23a6095423494752f3bee55c114a2a97.js"></script>
 

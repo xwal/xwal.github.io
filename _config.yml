@@ -96,7 +96,7 @@ theme: next-reloaded
 deploy:
 - type: git
   repo:
-    GitHub: git@github.com:chaoskyx/chaoskyx.github.io.git,master
+    GitHub: git@github.com:xwal/xwal.github.io.git,master
     # blog: git@chaosky.tech:/home/git/blog.git,master
 
 # Generate Atom

@@ -14,12 +14,12 @@ Method Swizzle（方法调配、方法混合、方法调和、方法混写） �
 
 ## 代码实现
 
-<script src="https://gist.github.com/chaoskyx/4758787cda11d473c2abdf3ef5c63d67.js"></script>
+<script src="https://gist.github.com/xwal/4758787cda11d473c2abdf3ef5c63d67.js"></script>
 
 ## 示例demo
 
 demo 中实现了通过 Swizzle 的方式统计应用内所有按钮的点击次数。
 
-代码下载地址：<https://github.com/chaoskyx/Demo/tree/master/SwizzleDemo>
+代码下载地址：<https://github.com/xwal/Demo/tree/master/SwizzleDemo>
 
 

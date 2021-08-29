@@ -25,7 +25,7 @@ sudo apt-get install build-essential libgtk2.0-dev
 <!--more-->
 ## 编译sublime-imfix.c文件
 
-<script src="https://gist.github.com/chaoskyx/ad79f1090c00b2c649d3.js"></script>
+<script src="https://gist.github.com/xwal/ad79f1090c00b2c649d3.js"></script>
 
 ### 编译共享内库  
     gcc -shared -o libsublime-imfix.so sublime_imfix.c `pkg-config --libs --cflags gtk+-2.0` -fPIC

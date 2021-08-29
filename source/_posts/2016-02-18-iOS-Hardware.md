@@ -34,7 +34,7 @@ iOS中实现二维码和条形码扫描，两大开源组件 ZBarSDK 与 ZXing�
 }
 ```
 
-**Demo下载**：[QRCodeScanner](https://github.com/chaoskyx/Demo/tree/master/QRCodeScanner)
+**Demo下载**：[QRCodeScanner](https://github.com/xwal/Demo/tree/master/QRCodeScanner)
 
 <!--more-->
 ## 传感器
@@ -312,7 +312,7 @@ else {
 }
 ```
 
-### Demo 下载：[SensorDemo](https://github.com/chaoskyx/Demo/tree/master/SensorDemo)
+### Demo 下载：[SensorDemo](https://github.com/xwal/Demo/tree/master/SensorDemo)
 
 ## 3D Touch
 
@@ -446,7 +446,7 @@ The force of a touch has a high dynamic range, available as a floating point val
 2. <http://my.oschina.net/u/2340880/blog/511509>
 3. <http://www.cocoachina.com/ios/20151028/13849.html>
 
-### Demo 下载：[3D-Touch](https://github.com/chaoskyx/Demo/tree/master/3D-Touch)
+### Demo 下载：[3D-Touch](https://github.com/xwal/Demo/tree/master/3D-Touch)
 
 ## 蓝牙（BlueTooth）
 

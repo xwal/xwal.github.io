@@ -177,7 +177,7 @@ spec.resources = ['Images/*.png', 'Sounds/*']
 
 导致这个问题的原因是 `Build Phases` 中的 `[CP] Embed Pods Frameworks` 不是每次都执行，猜测可能是 Xcode 11 的 `New Build System` 做了优化，导致脚本没有执行。最终想了个办法来解决这个问题，追加命令来执行脚本 `find "${PODS_ROOT}" -type f -name *frameworks.sh -exec bash -c "touch \"{}\"" \;`，使得脚本每次能执行更新frameworks。
 
-因为 `[CP] Embed Pods Frameworks`的脚本是由 CocoaPods 进行修改的，所有我将上面的命令通过hook的方式来追加，具体使用方法可以查看 <https://github.com/chaoskyx/cocoapods-xcode-patch>。
+因为 `[CP] Embed Pods Frameworks`的脚本是由 CocoaPods 进行修改的，所有我将上面的命令通过hook的方式来追加，具体使用方法可以查看 <https://github.com/xwal/cocoapods-xcode-patch>。
 
 编译时间也有所增加，在工程中测试大概增加了20s左右，还有优化的空间，后续如果想到更好的解决办法再更新。
 

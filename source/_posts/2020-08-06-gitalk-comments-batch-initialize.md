@@ -38,9 +38,9 @@ require 'sitemap-parser'
 require 'digest'
 require 'nokogiri'
 
-username = "chaoskyx" # GitHub 用户名
+username = "xwal" # GitHub 用户名
 token = "xxxxxx"  # GitHub Token
-repo_name = "chaoskyx.github.io" # 存放 issues
+repo_name = "xwal.github.io" # 存放 issues
 sitemap_url = "https://chaosky.tech/sitemap.xml" # sitemap
 kind = "Gitalk"
 
