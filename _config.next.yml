@@ -154,7 +154,7 @@ social_icons:
 # Blog rolls
 links_settings:
   icon: fa fa-globe
-  title: Links
+  title: 友情链接
   # Available values: block | inline
   layout: block
 
