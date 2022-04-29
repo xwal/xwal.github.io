@@ -38,7 +38,7 @@ jobs:
         git submodule update --init
         npm install hexo-cli -g
         npm install
-        gem install faraday activesupport sitemap-parser nokogiri
+        bundle install
     - name: deploy to github
       run: |
         hexo d -g

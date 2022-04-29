@@ -17,9 +17,9 @@ puts "token -> #{token}"
 sitemap = SitemapParser.new sitemap_url
 urls = sitemap.to_a
 
-conn = Faraday.new(:url => "https://api.github.com/repos/#{username}/#{repo_name}/issues") do |conn|
-  conn.basic_auth(username, token)
-  conn.adapter Faraday.default_adapter
+conn = Faraday.new(:url => "https://api.github.com/repos/#{username}/#{repo_name}/issues") do |req|
+  req.request :authorization, username, token
+  req.adapter Faraday.default_adapter
 end
 
 index = 0

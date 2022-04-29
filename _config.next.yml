@@ -143,7 +143,7 @@ site_state: true
 social:
   GitHub: https://github.com/xwal || fab fa-github
   E-Mail: mailto:chaosky.me@gmail.com || fa fa-envelope
-  Twitter: https://twitter.com/chaoskyx || fab fa-twitter
+  Twitter: https://twitter.com/xwal69 || fab fa-twitter
   Telegram: https://t.me/chaosky || fab fa-telegram
 
 social_icons:
@@ -360,7 +360,7 @@ codeblock:
   # All available themes: https://theme-next.js.org/highlight/
   theme:
     light: default
-    dark: tomorrow-night
+    dark: stackoverflow-dark
   prism:
     light: prism
     dark: prism-dark
