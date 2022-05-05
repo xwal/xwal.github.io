@@ -18,7 +18,7 @@ sitemap = SitemapParser.new sitemap_url
 urls = sitemap.to_a
 
 conn = Faraday.new(:url => "https://api.github.com/repos/#{username}/#{repo_name}/issues") do |req|
-  req.request :authorization, username, token
+  req.request :authorization, :basic, username, token
   req.adapter Faraday.default_adapter
 end
 
@@ -27,17 +27,21 @@ for url in urls
   id = Digest::MD5.hexdigest URI(url).path
   response = conn.get do |req|
     req.params["labels"] = [kind, id].join(',')
+    req.headers['Accept'] = 'application/vnd.github.v3+json'
     req.headers['Content-Type'] = 'application/json'
   end
   response_hash = JSON.load(response.body)
+
+  # puts url, id, response_hash
   
   if response_hash.count == 0
-    document = Nokogiri::HTML(open(url))
+    document = Nokogiri::HTML(URI.open(url))
     title = document.xpath("//head/title/text()").to_s
     desc = document.xpath("//head/meta[@name='description']/@content").to_s
     body = url + "\n\n" + desc
     puts title
     response = conn.post do |req|
+      req.headers['Accept'] = 'application/vnd.github.v3+json'
       req.body = { body: body, labels: [kind, id], title: title }.to_json
     end
     puts response.body

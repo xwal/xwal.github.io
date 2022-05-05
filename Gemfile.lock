@@ -107,7 +107,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.4-x86_64-darwin)
+    nokogiri (1.13.5-x86_64-darwin)
       racc (~> 1.4)
     open-uri (0.2.0)
       stringio
@@ -176,4 +176,4 @@ DEPENDENCIES
   sitemap-parser
 
 BUNDLED WITH
-   2.2.20
+   2.3.12
