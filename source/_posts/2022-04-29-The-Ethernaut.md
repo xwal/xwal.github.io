@@ -2,9 +2,7 @@ title: The Ethernaut 解析
 date: 2022-04-29 17:09:04
 tags:
 - ethernaut
-categories:
-- web3
-- blockchain
+categories: Web3
 ---
 
 [Ethernaut](https://ethernaut.openzeppelin.com/) 是一个基于 Web3/Solidity 的对抗游戏，每一关都有一个带有安全问题的智能合约供玩家去模拟攻击。 

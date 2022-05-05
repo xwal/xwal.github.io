@@ -2,9 +2,7 @@ title: 0. Hello Ethernaut
 date: 2022-04-29 17:46:45
 tags:
 - ethernaut
-categories:
-- web3
-- blockchain
+categories: Web3
 ---
 
 本节主要就是一个新手教学，让人先了解游戏玩法及闯关模式，需要对 MetaMask、JavaScript、console等有基本了解。
