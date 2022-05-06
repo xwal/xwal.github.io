@@ -1,7 +1,7 @@
 title: 引言&思考
 ---
 
-![](/images/knowledge.png)
+{% img /images/knowledge.png 379 46 %}
 
 ## 2020-06-04
 

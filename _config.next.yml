@@ -86,7 +86,10 @@ menu:
   archives: /archives/ || fa fa-archive
   categories: /categories/ || fa fa-th
   tags: /tags/ || fa fa-tags
-  工作空间: /workspace/ || fa fa-cubes
+  工作空间:
+   default: /workspace/ || fa fa-cubes
+   iOS: /iOS || fa fa-brands fa-apple
+   Web3: /Web3 || fa fa-brands fa-ethereum
   技能树: /skillmap/ || fa fa-list
   引言: /quotes/ || fa fa-quote-left
   about: /about/ || fa fa-user
@@ -145,10 +148,11 @@ social:
   E-Mail: mailto:chaosky.me@gmail.com || fa fa-envelope
   Twitter: https://twitter.com/xwal69 || fab fa-twitter
   Telegram: https://t.me/chaosky || fab fa-telegram
+  RSS: /atom.xml || fa fa-rss
 
 social_icons:
   enable: true
-  icons_only: false
+  icons_only: true
   transition: true
 
 # Blog rolls
@@ -167,7 +171,7 @@ toc:
   # Automatically add list number to toc.
   number: true
   # If true, all words will placed on next lines if header width longer then sidebar width.
-  wrap: false
+  wrap: true
   # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
   expand_all: false
   # Maximum heading depth of generated toc.
@@ -782,15 +786,15 @@ note:
   #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
   #  - disabled  disable all CSS styles import of note tag.
   style: simple
-  icons: false
+  icons: true
   # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
   # Offset also applied to label tag variables. This option can work with disabled note tag.
-  light_bg_offset: 0
+  light_bg_offset: -3
 
 # Tabs tag
 tabs:
   transition:
-    tabs: false
+    tabs: true
     labels: true
 
 # PDF tag
@@ -804,7 +808,7 @@ pdf:
 
 # Mermaid tag
 mermaid:
-  enable: false
+  enable: true
   # Available themes: default | dark | forest | neutral
   theme: forest
 
