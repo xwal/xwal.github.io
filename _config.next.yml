@@ -159,16 +159,6 @@ links_settings:
   layout: block
 
 links:
-  MacTalk: http://macshuo.com/
-  唐巧: http://blog.devtang.com
-  酷壳: http://coolshell.cn
-  云风: http://blog.codingnow.com
-  信妈: http://axiaoxin.com
-  胡骏: http://huxos.me
-  h2ero: http://blog.h2ero.cn/
-  胡中华: https://nleo.me
-  jackfrued: http://www.jianshu.com/u/bbf6898c0002
-  唐雷: http://www.exiatian.com/
 
 # Table of Contents in the Sidebar
 # Front-matter variable (unsupport wrap expand_all).
@@ -199,11 +189,11 @@ footer:
   # Icon between year and copyright info.
   icon:
     # Icon name in Font Awesome. See: https://fontawesome.com/icons
-    name: fa fa-heart
+    name: fa fa-keyboard
     # If you want to animate the icon, set it to true.
     animated: false
     # Change the color of icon, using Hex Code.
-    color: "#ff0000"
+    color: "#1D3150"
 
   # If not defined, `author` from Hexo `_config.yml` will be used.
   copyright:
@@ -213,7 +203,7 @@ footer:
 
   # Beian ICP and gongan information for Chinese users. See: https://beian.miit.gov.cn, http://www.beian.gov.cn
   beian:
-    enable: true
+    enable: false
     icp: 蜀ICP备20000598号-1
     # The digit in the num of gongan beian.
     gongan_id: 51012402000434
@@ -258,14 +248,14 @@ tag_icon: true
 reward_settings:
   # If true, a donate button will be displayed in every article by default.
   enable: true
-  animation: true
+  animation: false
   comment: 天下大事，必作于细！
 
 reward:
   wechatpay: /images/WeChatPay.png
   alipay: /images/AliPay.png
   #paypal: /images/paypal.png
-  #bitcoin: /images/bitcoin.png
+  ETH: /images/eth.jpg
 
 # Subscribe through Telegram Channel, Twitter, etc.
 # Usage: `Key: permalink || icon` (Font Awesome)
@@ -566,7 +556,7 @@ comments:
   style: tabs
   # Choose a comment system to be displayed by default.
   # Available values: disqus | disqusjs | changyan | livere | gitalk | utterances
-  active:
+  active: gitalk
   # Setting `true` means remembering the comment system selected by the visitor.
   storage: true
   # Lazyload all comment systems.
