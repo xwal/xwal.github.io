@@ -87,9 +87,9 @@ menu:
   categories: /categories/ || fa fa-th
   tags: /tags/ || fa fa-tags
   工作空间:
-   default: /workspace/ || fa fa-cubes
-   iOS: /iOS || fa fa-brands fa-apple
-   Web3: /Web3 || fa fa-brands fa-ethereum
+    default: /workspace/ || fa fa-cubes
+    iOS: /iOS || fa fa-brands fa-apple
+    Web3: /Web3 || fa fa-brands fa-ethereum
   技能树: /skillmap/ || fa fa-list
   引言: /quotes/ || fa fa-quote-left
   about: /about/ || fa fa-user
