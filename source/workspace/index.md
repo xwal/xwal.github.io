@@ -7,4 +7,3 @@ comments: true
 
 * [iOS 项目](iOS)
 * [Web3 项目](Web3)
-* [其他项目](other)

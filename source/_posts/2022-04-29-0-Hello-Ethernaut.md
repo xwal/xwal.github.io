@@ -5,6 +5,9 @@ tags:
 categories: Web3
 ---
 
+**Difficulty**: 0/10
+**Level**: https://ethernaut.openzeppelin.com/level/0x4E73b858fD5D7A5fc1c3455061dE52a53F35d966
+
 本节主要就是一个新手教学，让人先了解游戏玩法及闯关模式，需要对 MetaMask、JavaScript、console等有基本了解。
 
 打开 Developer Console (F12) ，输入
