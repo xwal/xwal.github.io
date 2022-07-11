@@ -21,6 +21,7 @@ categories: Web3
 
 ### 题目解析
 
-- [0. Hello Ethernaut](2022-04-29-0-Hello-Ethernaut.md)
-- [1. Fallback](2022-05-19-1-Fallback.md)
-
+- [0. Hello Ethernaut](/2022/04/29/0-Hello-Ethernaut/)
+- [1. Fallback](/2022/05/19/1-Fallback/)
+- [2. Fallout](/2022/07/11/2-Fallout/)
+- [3. Coin Flip](/2022/07/11/3-Coin-Flip/)
