@@ -3,7 +3,7 @@ date: 2016-07-23 12:13:06
 tags:
 - 直播
 - RTMP
-categories: macOS
+categories: MacOS
 ---
 直播开发流程:
 数据采集→ 数据编码 → 数据传输(流媒体服务器) → 解码数据 → 播放显示  

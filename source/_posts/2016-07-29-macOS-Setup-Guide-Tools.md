@@ -3,7 +3,7 @@ date: 2016-07-29 13:08:28
 tags: 
 - Setup Guide
 - Tools
-categories: macOS
+categories: MacOS
 ---
 
 > 工欲善其事，必先利其器。—— 工具篇

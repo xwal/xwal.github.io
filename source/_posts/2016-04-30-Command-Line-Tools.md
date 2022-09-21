@@ -1,7 +1,7 @@
 title: 命令行工具使用技巧
 date: 2016-04-30 22:11:50
 tags: Tools
-categories: Unix/Linux
+categories: Linux
 ---
 ## 只显示子目录、不显示文件，可以使用下面的命令。
 ```

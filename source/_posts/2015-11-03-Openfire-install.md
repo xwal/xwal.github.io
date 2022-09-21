@@ -3,7 +3,7 @@ date: 2015-11-03 23:31:21
 tags: 
 - Openfire
 - XMPP
-categories: macOS
+categories: MacOS
 ---
 
 # Mac OS 10.11 Openfire无法启动问题

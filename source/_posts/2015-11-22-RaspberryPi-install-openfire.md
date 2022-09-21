@@ -4,7 +4,7 @@ tags:
 - Openfire
 - Raspberrypi
 - XMPP
-categories: Unix/Linux
+categories: Linux
 ---
 ### 树莓派基本配置
 

@@ -1,7 +1,7 @@
 title: Linux RaspberryPi
 date: 2016-05-28 20:35:13
 tags: RaspberryPi
-categories: Unix/Linux
+categories: Linux
 ---
 ## 安装Node.js
 ```

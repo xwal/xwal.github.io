@@ -3,7 +3,7 @@ layout: post
 title: "Ubuntu安装配置"
 date: 2014-08-19 21:02:01 +0800
 comments: true
-categories: Unix/Linux
+categories: Linux
 tags:
 - Ubuntu
 - 装机

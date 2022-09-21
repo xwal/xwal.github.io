@@ -1,7 +1,7 @@
 title: iOS vs Android
 date: 2016-12-30 19:05:56
 tags:
-categories:
+categories: 软件设计
 ---
 
 ## 系统架构
