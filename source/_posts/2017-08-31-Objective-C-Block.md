@@ -45,7 +45,7 @@ struct Block_layout {
 2. _NSConcreteStackBlock 保存在栈中的 block，当函数返回时会被销毁。
 3. _NSConcreteMallocBlock 保存在堆中的 block，当引用计数为 0 时会被销毁。
 
-![](http://file.blog.chaosky.tech/1155481-5436194b4c0899b8.png)
+![](1155481-5436194b4c0899b8.png)
 
 block对变量的捕获规则：
 

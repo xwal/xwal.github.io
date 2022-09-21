@@ -539,7 +539,7 @@ end
 
 这是一个完成的自动化的过程。不过实际发布过程中，截图那部分笔者所在公司还是自己手动上传了，fastlane基本还是用来自动化打包。
 
-![intro-fastlane-tree](http://file.blog.chaosky.tech/2017-03-07-intro-fastlane-tree.png)
+![intro-fastlane-tree](2017-03-07-intro-fastlane-tree.png)
 安装fastlane
 
 ```

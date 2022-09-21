@@ -28,7 +28,7 @@ OS层：最底层的 BSD Socket 提供了对网络编程最大程度的控制，
 
 Socket是应用层与TCP/IP协议族通信的中间软件抽象层，它是一组接口。
 
-![](http://file.blog.chaosky.tech/Socket%E5%B1%82%E6%AC%A1.jpg)
+![](Socket层次.jpg)
 
 ## TCP和UDP的区别
 
@@ -46,11 +46,11 @@ UDP：面向非连接、传输不可靠、用于传输少量数据(数据包模�
 
 ### TCP C/S架构程序设计基本框架
 
-![](http://file.blog.chaosky.tech/5269612b25e6df1b3ee5ab8352b2c3b6.jpg)
+![](5269612b25e6df1b3ee5ab8352b2c3b6.jpg)
 
 #### TCP 三次握手
 
-![](http://file.blog.chaosky.tech/543019bab569d5cce5143f7a0c25b872.png)
+![](543019bab569d5cce5143f7a0c25b872.png)
 
 最形象理解：
 
@@ -64,7 +64,7 @@ UDP：面向非连接、传输不可靠、用于传输少量数据(数据包模�
 
 #### TCP 四次挥手
 
-![](http://file.blog.chaosky.tech/cbb39ed0e10f4a9e8cdeaeb38ebc3695.png)
+![](cbb39ed0e10f4a9e8cdeaeb38ebc3695.png)
 
 #### 代码实现
 
@@ -243,7 +243,7 @@ UDP：面向非连接、传输不可靠、用于传输少量数据(数据包模�
 
 #### UDP C/S架构程序设计基本框架
 
-![](http://file.blog.chaosky.tech/cd6d1690d3d6eefd300987e590c1483f.jpg)
+![](cd6d1690d3d6eefd300987e590c1483f.jpg)
 
 ### 字节顺序
 

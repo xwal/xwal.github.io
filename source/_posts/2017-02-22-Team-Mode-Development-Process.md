@@ -84,12 +84,12 @@ categories: 软件设计
 
 ### 瀑布模型（Waterfall Model）
 
-![相邻步骤的回溯](http://file.blog.chaosky.tech/2017-03-07-Jietu20170302-113416.png)
-![收集反馈并改进](http://file.blog.chaosky.tech/2017-03-07-Jietu20170302-113508.png)
+![相邻步骤的回溯](2017-03-07-Jietu20170302-113416.png)
+![收集反馈并改进](2017-03-07-Jietu20170302-113508.png)
 
-![6种文档](http://file.blog.chaosky.tech/2017-03-07-Jietu20170302-113540.png)
+![6种文档](2017-03-07-Jietu20170302-113540.png)
 
-![子瀑布模型](http://file.blog.chaosky.tech/2017-03-07-Snip20170302_3.png)
+![子瀑布模型](2017-03-07-Snip20170302_3.png)
 
 ### Rational Unified Process统一流程（RUP）
 
@@ -145,13 +145,13 @@ RUP 把软件开发分成几个阶段，一个大阶段的结束称为一个里�
 
 **交付阶段**——这时候，团队工作的重点是确保软件能满足最终用户的实际需求。交付阶段可以有迭代（beta1，beta2等），团队还要注意处理用户设置、安装和可用性等问题。在交付阶段的终点是第四个里程碑：产品发布（Product Release）里程碑。
 
-![Snip20170302_5](http://file.blog.chaosky.tech/2017-03-07-Snip20170302_5.png)
+![Snip20170302_5](2017-03-07-Snip20170302_5.png)
 
 ### 渐进交付的流程（Evolutionary Delivery），MVP 和 MBP
 
 当系统的主要需求和架构明确之后，软件团队进入了一个不断演进的 evolution 循环中：
 
-![Snip20170302_6](http://file.blog.chaosky.tech/2017-03-07-Snip20170302_6.png)
+![Snip20170302_6](2017-03-07-Snip20170302_6.png)
 
 
 MVP —— Minimal Viable Product，最小可行产品，又称为Minimal Feature Set，最小功能集。

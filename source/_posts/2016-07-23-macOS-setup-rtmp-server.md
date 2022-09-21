@@ -119,8 +119,8 @@ categories: MacOS
 软件下载地址：<https://obsproject.com>
 
 软件设置如图：
-![Snip20160723_1](http://file.blog.chaosky.tech/2016-07-23-Snip20160723_1.png)
-![Snip20160723_2](http://file.blog.chaosky.tech/2016-07-23-Snip20160723_2.png)
+![Snip20160723_1](2016-07-23-Snip20160723_1.png)
+![Snip20160723_2](2016-07-23-Snip20160723_2.png)
 #### ffmpeg
 
 安装ffmpeg
@@ -156,7 +156,7 @@ $ ffmpeg -f avfoundation -list_devices true -i ""
 
 选择File -> Open Network...
 
-![Snip20160723_4](http://file.blog.chaosky.tech/2016-07-23-Snip20160723_4.png)
+![Snip20160723_4](2016-07-23-Snip20160723_4.png)
 
 
 

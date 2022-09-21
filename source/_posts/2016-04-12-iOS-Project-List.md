@@ -22,8 +22,6 @@ categories: iOS
 
 OSCHINA 的 iPhone 客户端源码，可直接在 App Store上搜索“开源中国”来安装此app
 
-![](http://file.blog.chaosky.tech/2016-04-08-OSCHINA-iPhone.png)
-
 ## Git@OSC客户端
 
 ### 项目地址
@@ -33,10 +31,6 @@ OSCHINA 的 iPhone 客户端源码，可直接在 App Store上搜索“开源中
 ### 项目简介
 
 Git@OSC iPhone 客户端，方便用户查看Git@OSC的项目以及简单的操作issue等。
-
-![](http://file.blog.chaosky.tech/2016-04-08-Git@OSC-App-1.png)
-
-![](http://file.blog.chaosky.tech/2016-04-08-Git@OSC-App-2.png)
 
 ## Coding客户端
 
@@ -62,8 +56,6 @@ Coding iOS 客户端源代码。
 
 找房、租房App。
 
-![](http://file.blog.chaosky.tech/2016-04-08-Fangzhur-App.png)
-
 ## LeagueofLegends
 
 ### 项目地址
@@ -73,8 +65,6 @@ Coding iOS 客户端源代码。
 ### 项目简介
 
 an iOS App for LeagueofLegends。
-
-![](http://file.blog.chaosky.tech/2016-04-08-LOL-App.png)
 
 ## phphub
 

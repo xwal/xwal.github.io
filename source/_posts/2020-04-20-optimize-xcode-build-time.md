@@ -19,8 +19,6 @@ $ defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
 
 ### 编译 Build
 
-![WX20200418-182140@2x](http://file.blog.chaosky.tech/2020/04/18/1587205361-WX20200418-182140@2x.png)
-
 编译时长 56.3 s，其中耗时比较长的过程为以下：
 
 -  **Compile asset catalogs**：23.5 s

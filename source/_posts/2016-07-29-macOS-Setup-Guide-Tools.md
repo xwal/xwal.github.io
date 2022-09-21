@@ -153,7 +153,7 @@ brew cask 安装 launchrocket，来管理通过 brew 安装的 service
 $ brew cask install launchrocket
 ```
 
-![Snip20160729_9](http://file.blog.chaosky.tech/2016-08-01-Snip20160729_9.png)
+![Snip20160729_9](2016-08-01-Snip20160729_9.png)
 
 ### Ruby
 
