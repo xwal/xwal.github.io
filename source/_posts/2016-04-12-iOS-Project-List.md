@@ -1,5 +1,6 @@
 title: iOS完整项目示例仓库
 date: 2016-04-12 14:28:52
+updated: 2016-04-12 14:28:52
 tags:
 - 完整项目
 - Objective-C
@@ -367,5 +368,4 @@ A Hacker News reader iOS app written in Swift.
 ### 项目地址
 
 <https://github.com/phpmaple/Stick-Hero-Swift>
-
 

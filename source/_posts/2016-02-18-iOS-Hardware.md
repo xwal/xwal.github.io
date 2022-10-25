@@ -1,5 +1,6 @@
 title: iOS 硬件（二维码、传感器、3D-Touch、蓝牙）
 date: 2016-02-18 11:11:12
+updated: 2016-02-18 11:11:12
 tags:
 - QRCode
 - Sensor
@@ -451,5 +452,4 @@ The force of a touch has a high dynamic range, available as a floating point val
 ## 蓝牙（BlueTooth）
 
 参考PO主另外一篇文章：<http://chaosky.me/2016/03/18/Bluetooth-Communication/>
-
 

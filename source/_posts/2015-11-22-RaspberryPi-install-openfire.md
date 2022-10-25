@@ -1,5 +1,6 @@
 title: 树莓派安装Openfire搭建XMPP服务器
 date: 2015-11-22 16:44:02
+updated: 2015-11-22 16:44:02
 tags:
 - Openfire
 - Raspberrypi
@@ -43,5 +44,4 @@ categories: Linux
 通过命令可以对Openfire服务进行启动/停止/重启/强制加载 `/etc/init.d/openfire {start|stop|restart|force-reload}`   
 
 通过启动`sudo /etc/init.d/openfire start`并访问`http://[openfire server ip]:9090`进行初始设置
-
 

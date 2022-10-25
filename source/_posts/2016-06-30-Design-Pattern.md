@@ -1,5 +1,6 @@
 title: 设计模式 （Design Pattern）
 date: 2016-06-30 15:45:48
+updated: 2016-06-30 15:45:48
 tags:
 - 设计模式
 - Design Pattern

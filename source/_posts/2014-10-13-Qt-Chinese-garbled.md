@@ -2,6 +2,7 @@
 layout: post
 title: "Qt中文乱码"
 date: 2014-10-13 21:43:42 +0800
+updated: 2014-10-13 21:43:42 +0800
 comments: true
 categories: Qt
 tags: 

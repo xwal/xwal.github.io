@@ -1,5 +1,6 @@
 title: OS X Cocos2d-x 环境搭建
 date: 2017-02-23 22:32:32
+updated: 2017-02-23 22:32:32
 tags:
 - Cocos2d-x
 categories: 游戏开发

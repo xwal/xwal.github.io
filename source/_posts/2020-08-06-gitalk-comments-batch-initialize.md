@@ -1,5 +1,6 @@
 title: Gitalk 评论批量初始化
 date: 2020-08-06 18:41:52
+updated: 2020-08-06 18:41:52
 tags:
 - gitalk
 categories: Blog

@@ -1,5 +1,6 @@
 title: 0. Hello Ethernaut
 date: 2022-04-29 17:46:45
+updated: 2022-04-29 17:46:45
 tags:
 - ethernaut
 categories: Web3

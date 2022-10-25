@@ -1,5 +1,6 @@
 title: Mac OS 10.11 Openfire安装
 date: 2015-11-03 23:31:21
+updated: 2015-11-03 23:31:21
 tags: 
 - Openfire
 - XMPP
@@ -26,5 +27,4 @@ sudo rm -rf /Library/PreferencePanes/Openfire.prefPane
 sudo rm -rf /usr/local/openfire
 sudo rm -rf /Library/LaunchDaemons/org.jivesoftware.openfire.plist
 ```
-
 

@@ -1,5 +1,6 @@
 title: iOS 持续集成
 date: 2016-09-26 23:00:51
+updated: 2016-09-26 23:00:51
 tags:
 - TravisCI
 - Jenkins

@@ -1,5 +1,6 @@
 title: 苹果开发者账号申请或续费
 date: 2019-12-17 10:29:18
+updated: 2019-12-17 10:29:18
 tags: 开发者账号
 categories: iOS 
 ---

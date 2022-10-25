@@ -1,5 +1,6 @@
 title: iOS 推送通知
 date: 2016-01-21 21:07:11
+updated: 2016-01-21 21:07:11
 tags:
 - 推送通知
 - 远程推送
@@ -221,5 +222,4 @@ UIApplication *app = [UIApplication sharedApplication];
 [JPush iOS集成指南](http://docs.jpush.io/guideline/ios_guide/)
 
 [iOS SDK 开发教程](http://docs.jpush.io/client/ios_tutorials/)
-
 

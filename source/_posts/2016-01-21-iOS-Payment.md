@@ -1,5 +1,6 @@
 title: iOS 支付
 date: 2016-01-21 21:50:04
+updated: 2016-01-21 21:50:04
 tags:
 - 支付宝支付
 - 微信支付
@@ -182,7 +183,7 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
            }];
        }
        if ([url.host isEqualToString:@"platformapi"]){//支付宝钱包快登授权返回authCode
-
+   
            [[AlipaySDK defaultService] processAuthResult:url standbyCallback:^(NSDictionary * resultDic) {
                //【由于在跳转支付宝客户端支付的过程中，商户app在后台很可能被系统kill了，所以pay接口的callback就会失效，请商户对standbyCallback返回的回调结果进行处理,就是在这个方法里面处理跟callback一样的逻辑】
                NSLog(@"result = %@",resultDic);
@@ -308,7 +309,7 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
            // 微信请求App提供内容， 需要app提供内容后使用sendRsp返回
            NSString * strTitle = [NSString stringWithFormat:@"微信请求App提供内容"];
            NSString * strMsg = @"微信请求App提供内容，App要调用sendResp:GetMessageFromWXResp返回给微信";
-
+   
            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
            alert.tag = 1000;
            [alert show];
@@ -317,13 +318,13 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
        {
            ShowMessageFromWXReq *  temp = (ShowMessageFromWXReq*)req;
            WXMediaMessage * msg = temp.message;
-
+   
            //显示微信传过来的内容
            WXAppExtendObject * obj = msg.mediaObject;
-
+   
            NSString * strTitle = [NSString stringWithFormat:@"微信请求App显示内容"];
            NSString * strMsg = [NSString stringWithFormat:@"标题：%@ \n内容：%@ \n附带信息：%@ \n缩略图:%lu bytes\n\n", msg.title, msg.description, obj.extInfo, msg.thumbData.length];
-
+   
            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
            [alert show];
        }
@@ -345,7 +346,7 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
     {
         NSString * strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
         NSString * strTitle;
-
+   
         if([resp isKindOfClass:[SendMessageToWXResp class]])
         {
             strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
@@ -353,13 +354,13 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
         if([resp isKindOfClass:[PayResp class]]){
             //支付返回结果，实际支付结果需要去微信服务器端查询
             strTitle = [NSString stringWithFormat:@"支付结果"];
-
+   
             switch (resp.errCode) {
                 case WXSuccess:
                     strMsg = @"支付结果：成功！";
                     NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
                     break;
-
+   
                 default:
                     strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
                     NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
@@ -431,7 +432,7 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
    #define ProductID_IAP_JB @"com.1000phone.IAPDemo.jb" // 金币 6元=6金币
    ```
 
-   ​
+   
 
 3. 制作界面，展示所有的应用内付费项目。这些应用内付费项目的价格和介绍信息可以从App Store服务器请求，也可以是自己的服务器返回。向App Store查询速度非常慢，通常需要2-3秒钟，最好从服务器请求。
 
@@ -459,7 +460,7 @@ SDK里有集成支付宝功能的一个Demo，集成支付功能的具体操作�
    }
    ```
 
-   ​
+   
 
 4. 当用户点击了一个IAP项目，我们先查询用户是否允许应用内付费。
 
@@ -741,7 +742,7 @@ Apple Pay 中的商家 ID 用于标识你能够接受付款。与商家 ID 相�
     ```
     // 银行卡类型
     NSArray * supportedNetworks = @[PKPaymentNetworkChinaUnionPay, PKPaymentNetworkPrivateLabel, PKPaymentNetworkInterac];
-
+    
     // 判断是否支持Apple Pay
     if ([PKPaymentAuthorizationViewController canMakePayments]) {
        self.paymentButton = [PKPaymentButton buttonWithType:PKPaymentButtonTypeBuy style:PKPaymentButtonStyleWhiteOutline];
@@ -752,7 +753,7 @@ Apple Pay 中的商家 ID 用于标识你能够接受付款。与商家 ID 相�
        self.paymentButton = [[PKPaymentButton alloc] initWithPaymentButtonType:PKPaymentButtonTypeSetUp paymentButtonStyle:PKPaymentButtonStyleWhiteOutline];
        [self.paymentButton addTarget:self action:@selector(paymentSetupTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
-
+    
     if (self.paymentButton != nil) {
        [self.view addSubview:self.paymentButton];
        self.paymentButton.center = CGPointMake(200, 100);
@@ -1123,5 +1124,4 @@ paymentRequest.shippingContact = contact;
 ## 代码下载
 
 <https://github.com/xwal/Demo/tree/master/Payment>
-
 

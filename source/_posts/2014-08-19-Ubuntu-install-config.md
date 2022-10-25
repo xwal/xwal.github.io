@@ -2,6 +2,7 @@
 layout: post
 title: "Ubuntu安装配置"
 date: 2014-08-19 21:02:01 +0800
+updated: 2014-08-19 21:02:01 +0800
 comments: true
 categories: Linux
 tags:

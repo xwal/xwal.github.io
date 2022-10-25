@@ -2,6 +2,7 @@
 layout: post
 title: "Ubuntu下sublime text 中文输入"
 date: 2014-08-19 17:39:02 +0800
+updated: 2014-08-19 17:39:02 +0800
 comments: true
 categories: Linux
 tags: 

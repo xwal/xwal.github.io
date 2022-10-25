@@ -1,5 +1,6 @@
 title: missing compatible arch in ffi_c.bundle on M1 with system Ruby
 date: 2021-06-17 18:24:06
+updated: 2021-06-17 18:24:06
 tags:
 - CocoaPods
 - ruby
