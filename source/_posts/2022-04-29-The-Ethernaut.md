@@ -1,6 +1,6 @@
 title: The Ethernaut 解析
 date: 2022-04-29 17:09:04
-updated: 2022-04-29 17:09:04
+updated: 2022-10-26 10:19:43
 tags:
 - ethernaut
 categories: Web3
@@ -27,3 +27,4 @@ categories: Web3
 - [2. Fallout](/2022/07/11/2-Fallout/)
 - [3. Coin Flip](/2022/07/11/3-Coin-Flip/)
 - [4. Telephone](/2022/10/11/4-Telephone/)
+- [5. Token](2022-10-26-5-Token)

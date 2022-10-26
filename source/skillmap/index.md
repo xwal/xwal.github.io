@@ -1,6 +1,10 @@
 title: 技能树
 date: 2016-08-16 17:16:13
 ---
+
+## 区块链黑暗森林自救手册
+在线查看：<https://darkhandbook.io/>
+github: https://github.com/slowmist/Blockchain-dark-forest-selfguard-handbook
 ## 知道创宇研发技能表
 
 在线查看：<https://blog.knownsec.com/Knownsec_RD_Checklist/index.html>
