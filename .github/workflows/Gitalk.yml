@@ -1,0 +1,25 @@
+name: Gitalk
+
+on:
+  push:
+    branches:
+    - source
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: [2.7.3]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+    - name: initialize comments
+      env:
+        GH_ACTION_GITHUB_TOKEN: ${{secrets.GH_ACTION_GITHUB_TOKEN}}
+      run: |
+        bundle install
+        ruby comment.rb

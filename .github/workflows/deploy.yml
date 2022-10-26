@@ -1,4 +1,4 @@
-name: Deploy CI
+name: Deploy
 
 on:
   push:
@@ -38,14 +38,8 @@ jobs:
         git submodule update --init
         npm install hexo-cli -g
         npm install
-        bundle install
     - name: deploy to github
       run: |
         hexo d -g
       env:
         CI: true
-    - name: initialize comments
-      env:
-        GH_ACTION_GITHUB_TOKEN: ${{secrets.GH_ACTION_GITHUB_TOKEN}}
-      run: |
-        ruby comment.rb
