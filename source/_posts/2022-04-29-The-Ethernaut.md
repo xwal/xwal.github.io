@@ -28,3 +28,4 @@ categories: Web3
 - [3. Coin Flip](/2022/07/11/3-Coin-Flip/)
 - [4. Telephone](/2022/10/11/4-Telephone/)
 - [5. Token](2022-10-26-5-Token)
+- [6. Delegation](2022-11-01-6-Delegation)
