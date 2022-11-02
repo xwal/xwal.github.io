@@ -1,5 +1,6 @@
 title: 软件工程师能力自我评价表
 date: 2022-11-02 10:50:13
+comments: false
 ---
 
 转载自：<http://www.cnblogs.com/xinz/p/3852177.html>

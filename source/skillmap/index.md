@@ -15,8 +15,8 @@ iOS开发工程师必备技能图谱：[点击查看大图](/assets/iOS开发工
 
 思维导图下载：[iOS开发工程师必备技能图谱.mindnode](/assets/iOS开发工程师必备技能图谱.zip)
 
-## [软件工程师的任务清单（PSP2.1）](task-checklist)
+## [软件工程师的任务清单（PSP2.1）](checklist)
 
-## [软件工程师能力自我评价表](engineer-form)
+## [软件工程师能力自我评价表](engineer)
 
-## [代码复审的核查表](codereview-form)
+## [代码复审的核查表](codereview)
