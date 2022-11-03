@@ -30,3 +30,4 @@ categories: Web3
 - [5. Token](/2022/10/26/5-Token)
 - [6. Delegation](/2022/11/01/6-Delegation)
 - [7. Force](/2022/11/03/7-Force)
+- [8. Vault](/2022/11/03/8-Vault)
