@@ -4,6 +4,9 @@ on:
   push:
     branches:
     - source
+  schedule:
+  - cron: '0 21 * * *'
+  workflow_dispatch:
 
 jobs:
   comment:
