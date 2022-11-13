@@ -86,8 +86,8 @@ menu:
   archives: /archives/ || fa fa-archive
   categories: /categories/ || fa fa-th
   tags: /tags/ || fa fa-tags
-  工作空间: /workspace/ || fa fa-cubes
-  技能树: /skillmap/ || fa fa-list
+  作坊: /workspace/ || fa fa-cubes
+  技能: /skillmap/ || fa fa-list
   引言: /quotes/ || fa fa-quote-left
   about: /about/ || fa fa-user
 
@@ -817,7 +817,7 @@ mermaid:
 # Use Animate.css to animate everything.
 # For more information: https://animate.style
 motion:
-  enable: true
+  enable: false
   async: true
   transition:
     # All available transition variants: https://theme-next.js.org/animate/

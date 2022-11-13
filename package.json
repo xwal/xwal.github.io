@@ -19,7 +19,7 @@
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-feed": "^3.0.0",
     "hexo-generator-index": "^3.0.0",
-    "hexo-generator-searchdb": "^1.4.0",
+    "hexo-generator-searchdb": "^1.4.1",
     "hexo-generator-sitemap": "^3.0.1",
     "hexo-generator-tag": "^2.0.0",
     "hexo-renderer-ejs": "^2.0.0",
@@ -27,8 +27,8 @@
     "hexo-renderer-pug": "^3.0.0",
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
-    "hexo-theme-next": "^8.13.1",
-    "hexo-word-counter": "^0.0.3",
+    "hexo-theme-next": "^8.13.2",
+    "hexo-word-counter": "^0.1.0",
     "hexo-wordcount": "^6.0.1",
     "yarn-upgrade-all": "^0.7.1"
   }
