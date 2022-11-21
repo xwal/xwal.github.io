@@ -603,7 +603,7 @@ livere_uid: # <your_uid>
 # Gitalk
 # For more information: https://gitalk.github.io
 gitalk:
-  enable: true
+  enable: false
   github_id: xwal
   repo: xwal.github.io
   client_id: 7468cea68feda45ca013
@@ -631,6 +631,30 @@ utterances:
 # For more information: https://posativ.org/isso/
 isso: # <data_isso>
 
+# Giscus
+# For more information: https://giscus.app/
+giscus:
+  enable: true
+  repo: xwal/xwal.github.io
+  repo_id: MDEwOlJlcG9zaXRvcnkxNzQ4MDMxMA==
+  category: Comment
+  category_id: DIC_kwDOAQq6ds4CSrDW
+  # Available values: pathname | url | title | og:title
+  mapping: title
+  # Available values: 0 | 1 
+  reactions_enabled: 1
+  # Available values: 0 | 1 
+  emit_metadata: 1
+  # Available values: light | dark | dark_high_contrast | transparent_dark | preferred-color-scheme
+  theme: light
+  # Available values: en | zh-C
+  lang: zh-CN
+  # Available value: anonymous
+  crossorigin: anonymous
+  # Place the comment box above the comments
+  input_position: bottom
+  # Load the comments lazily
+  loading: lazy
 
 # ---------------------------------------------------------------
 # Post Widgets & Content Sharing Services

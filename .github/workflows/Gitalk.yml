@@ -1,12 +1,12 @@
 name: Gitalk
 
-on:
-  push:
-    branches:
-    - source
-  schedule:
-  - cron: '0 21 * * *'
-  workflow_dispatch:
+# on:
+#   push:
+#     branches:
+#     - source
+#   schedule:
+#   - cron: '0 21 * * *'
+#   workflow_dispatch:
 
 jobs:
   comment:
