@@ -2,8 +2,7 @@ title: iOS 完全越狱指南（iPhone 6s 15.7.1）
 date: 2022-11-21 12:21:21
 updated: 2022-11-21 12:21:21
 tags:
-
-- jailbreak
+- Jailbreak
 categories: iOS
 ---
 
