@@ -3,6 +3,10 @@ title: 引言&思考
 
 {% img /images/knowledge.png 379 46 %}
 
+## 2022-11-24
+
+The best way to learn is by teaching.
+
 ## 2020-06-04
 
 ### 多用库，少用框架
