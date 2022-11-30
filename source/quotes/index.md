@@ -3,9 +3,23 @@ title: 引言&思考
 
 {% img /images/knowledge.png 379 46 %}
 
+Discussion 方便记录，再定期整理梳理到 Markdown 中。
+
+<details open>
+<summary><strong>2022</strong></summary>
+
+## 2022-11-30
+
+Web2 + Web3 = Web5
+
 ## 2022-11-24
 
 The best way to learn is by teaching.
+
+</details>
+
+<details>
+<summary><strong>2020</strong></summary>
 
 ## 2020-06-04
 
@@ -76,6 +90,11 @@ Result: 结果怎样，在这样的情况下你学习到了什么
 ## 2020-04-16
 
 你只有掌握了某个方面的知识，在工作中碰到问题时才能够想到用这个知识去解决问题。如果你都不知道有这么一种方法，又怎么会用它去解决自己的问题呢？
+
+</details>
+
+<details>
+<summary><strong>2019及之前</strong></summary>
 
 ## 2019-01-18
 
@@ -168,3 +187,4 @@ Result: 结果怎样，在这样的情况下你学习到了什么
 > **5、加入一个好团队**  
 > 最好的进步方式就是跟自己强的人一起做事。
 
+</details>
