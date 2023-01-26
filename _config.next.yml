@@ -87,9 +87,9 @@ menu:
   categories: /categories/ || fa fa-th
   tags: /tags/ || fa fa-tags
   作坊: /workspace/ || fa fa-cubes
-  技能: /skillmap/ || fa fa-list
-  引言: /quotes/ || fa fa-quote-left
-  about: /about/ || fa fa-user
+  技能: /skillmap/ || fa fa-atom
+  摘录: /quotes/ || fa fa-quote-left
+  about: /about/ || fa fa-dragon
 
 # Enable / Disable menu icons / item badges.
 menu_settings:

@@ -28,9 +28,9 @@
     "hexo-renderer-pug": "^3.0.0",
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
-    "hexo-theme-next": "^8.13.2",
+    "hexo-theme-next": "^8.14.1",
     "hexo-word-counter": "^0.1.0",
     "hexo-wordcount": "^6.0.1",
-    "yarn-upgrade-all": "^0.7.1"
+    "yarn-upgrade-all": "^0.7.2"
   }
 }
