@@ -7,3 +7,6 @@ public/
 .deploy*/
 .MWebMetaData
 source/.MWebMetaData
+Gemfile.lock
+Package-lock.json
+yarn.lock

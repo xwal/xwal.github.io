@@ -8,7 +8,10 @@ subtitle: Strategy, Execution, Communication.
 description: Hi, I'm an iOS engineer, focusing on mobile software development.
 keywords: iOS
 author: Alex Lin
-language: zh-CN
+language:
+  - zh-CN
+  - en
+  - zh-TW
 timezone: ''
 
 # URL
