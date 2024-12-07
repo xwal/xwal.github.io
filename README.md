@@ -4,17 +4,20 @@
 ### Install Hexo
 
 ```shell
-$ npm install -g hexo-cli
-// or
+$ fnm install lts-iron
+$ corepack enable
 $ yarn global add hexo-cli
 ```
 
 ### Install Dependency
 
 ```shell
-$ npm install
-// or
 $ yarn install
 $ bundle install
 ```
 
+### Upgrade Dependency to Latest Version
+
+```shell
+$ yarn upgrade --latest
+```
