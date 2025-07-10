@@ -121,10 +121,11 @@ sidebar:
   position: left
   #position: right
 
-  # Manual define the sidebar width. If commented, will be default for:
-  # Muse | Mist: 320
-  # Pisces | Gemini: 240
-  #width: 300
+  # Sidebar width.
+  # Applicable to Muse | Mist and mobile of Pisces | Gemini.
+  width_expanded: 320
+  # Applicable to desktop of Pisces | Gemini.
+  width_dual_column: 240
 
   # Sidebar Display (only for Muse | Mist), available values:
   #  - post    expand on posts automatically. Default.
@@ -157,7 +158,7 @@ site_state: true
 social:
   GitHub: https://github.com/xwal || fab fa-github
   E-Mail: mailto:chaosky.me@gmail.com || fa fa-envelope
-  Twitter: https://twitter.com/xwal69 || fab fa-twitter
+  Twitter: https://x.com/cyberxwa || fab fa-twitter
   Telegram: https://t.me/chaosky || fab fa-telegram
   RSS: /atom.xml || fa fa-rss
 
@@ -265,7 +266,6 @@ reward_settings:
   # If true, a donate button will be displayed in every article by default.
   enable: true
   animation: false
-  comment: 天下大事，必作于细！
 
 reward:
   wechatpay: /images/WeChatPay.png

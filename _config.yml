@@ -120,3 +120,26 @@ feed:
   type: atom
   path: atom.xml
   limit: 20
+
+# https://github.com/dimaslanjaka/hexo-adsense
+adsense:
+  # enable(true) or disable(false)
+  enable: true
+  # ca-pub-xxxx
+  pub: ca-pub-6178635866936443
+  # enable in-article
+  # boolean = by scanning source_dir/_data/hexo-adsense/*.html
+  # array of files = only read spesific html files
+  article_ads: true
+  # ads field
+  # post = only post
+  # site = all pages and posts
+  field: "site"
+  # auto redirect to https
+  https: true
+  # block user with adblock enabled
+  adblock: true
+  # exclude pattern to disable adsense
+  exclude:
+    - "*.min.html"
+    - "exclude/**/*"

@@ -5,6 +5,7 @@
 
 ```shell
 $ fnm install lts-iron
+$ rbenv install
 $ corepack enable
 $ yarn global add hexo-cli
 ```
