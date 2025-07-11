@@ -130,7 +130,8 @@ adsense:
   # enable in-article
   # boolean = by scanning source_dir/_data/hexo-adsense/*.html
   # array of files = only read spesific html files
-  article_ads: true
+  article_ads:
+    - "source/ads/in_article.html"
   # ads field
   # post = only post
   # site = all pages and posts
