@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <meta name="google-site-verification" content="yGwNBR-9-6B60StDh4ueJp0Io9gjnzwX0IiXkPL4Pqc">
+  <meta name="msvalidate.01" content="562E828CD9FA60A6D3CDFE1BD31D3FF3">
+  <meta name="baidu-site-verification" content="iYaX85B5Bg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chaosky.tech","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Hi, I&#39;m an iOS engineer, focusing on mobile software development.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Alex Lin&#39;s Notes">
+<meta property="og:url" content="https://chaosky.tech/page/6/index.html">
+<meta property="og:site_name" content="Alex Lin&#39;s Notes">
+<meta property="og:description" content="Hi, I&#39;m an iOS engineer, focusing on mobile software development.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Alex Lin">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://chaosky.tech/page/6/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/6/index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Alex Lin's Notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?QJ33ASIjWB"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.7.0/mermaid.min.js","integrity":"sha256-4+IKDqhZ/sXjc8Wtl2/MsxI4e0s1KpEVdbEP7V/Lz8U="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/addtoany.js" defer></script>
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<script id="hexo-adsense-config" type="application/json">{"enable":true,"article_ads":["source/ads/in_article.html"],"pub":"ca-pub-6178635866936443","adblock":true,"https":true,"field":"site","type":"javascript","exclude":["*.min.html","exclude/**/*"],"development":false,"args":{"_":[],"g":true},"debug":false,"safe":false,"silent":false,"env":"development","version":"7.3.0","cmd":"d","init":true,"adsense":{"enable":true,"pub":"ca-pub-6178635866936443","article_ads":["source/ads/in_article.html"],"field":"site","https":true,"adblock":true,"exclude":["*.min.html","exclude/**/*"]}}</script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178635866936443" crossorigin="anonymous"></script><link rel="alternate" href="/atom.xml" title="Alex Lin's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Alex Lin's Notes</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Strategy, Execution, Communication.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">100</span></a></li><li class="menu-item menu-item-作坊"><a href="/workspace/" rel="section"><i class="fa fa-cubes fa-fw"></i>作坊</a></li><li class="menu-item menu-item-技能"><a href="/skillmap/" rel="section"><i class="fa fa-atom fa-fw"></i>技能</a></li><li class="menu-item menu-item-摘录"><a href="/quotes/" rel="section"><i class="fa fa-quote-left fa-fw"></i>摘录</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-dragon fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Lin"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Alex Lin</p>
+  <div class="site-description" itemprop="description">Hi, I'm an iOS engineer, focusing on mobile software development.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xwal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xwal" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaosky.me@gmail.com" title="E-Mail → mailto:chaosky.me@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://x.com/cyberxwa" title="Twitter → https:&#x2F;&#x2F;x.com&#x2F;cyberxwa" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/chaosky" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;chaosky" rel="noopener me" target="_blank"><i class="fab fa-telegram fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/07/27/iOS-Security-Defense-Reveal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/07/27/iOS-Security-Defense-Reveal/" class="post-title-link" itemprop="url">使用Reveal分析别人App的UI布局</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-07-27 13:43:53" itemprop="dateCreated datePublished" datetime="2016-07-27T13:43:53+00:00">2016-07-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>553</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="越狱iOS设备"><a href="#越狱iOS设备" class="headerlink" title="越狱iOS设备"></a>越狱iOS设备</h3><ol>
+<li>如何越狱可以参考<a target="_blank" rel="noopener" href="http://www.pangu.io/">盘古越狱</a>的相关文章，具体详情参见链接：<a target="_blank" rel="noopener" href="http://jailbreak.25pp.com/ppjailbreak/?from=25pp_00119">http://jailbreak.25pp.com/ppjailbreak/?from=25pp_00119</a>，最新iOS越狱可以支持iOS 9.3.3，也可以看我整理的<a target="_blank" rel="noopener" href="http://chaosky.me/2016/12/07/Jailbreak-Using-Pangu-and-Cydia-Impactor/">非官方的越狱文章</a>。</li>
+<li>在Cydia源中安装OpenSSH、MobileSubstrate等工具，之后的文章会讲到其他工具</li>
+</ol>
+<h3 id="macOS-本地安装Reveal"><a href="#macOS-本地安装Reveal" class="headerlink" title="macOS 本地安装Reveal"></a>macOS 本地安装Reveal</h3><p>具体安装及使用可以参见我之前的文章：<a target="_blank" rel="noopener" href="http://chaosky.me/2016/07/27/Reveal">http://chaosky.me/2016/07/27/Reveal</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/07/27/iOS-Security-Defense-Reveal/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/07/27/Reveal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/07/27/Reveal/" class="post-title-link" itemprop="url">使用Reveal调试和分析iOS应用UI</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-07-27 13:38:54" itemprop="dateCreated datePublished" datetime="2016-07-27T13:38:54+00:00">2016-07-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>11 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Reveal是分析、调试iOS应用UI的利器。</p>
+<p>Reveal能够在运行时调试和修改iOS应用程序。它能连接到应用程序，并允许开发者编辑各种用户界面参数，这反过来会立即反应在程序的UI上。就像用FireBug调试HTML页面一样，在不需要重写代码、重新构建和重新部署应用程序的情况下就能够调试和修改iOS用户界面。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/07/27/Reveal/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/07/23/macOS-setup-rtmp-server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/07/23/macOS-setup-rtmp-server/" class="post-title-link" itemprop="url">macOS 搭建 RTMP 直播服务器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-07-23 12:13:06" itemprop="dateCreated datePublished" datetime="2016-07-23T12:13:06+00:00">2016-07-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MacOS/" itemprop="url" rel="index"><span itemprop="name">MacOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>577</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>直播开发流程:<br>数据采集→ 数据编码 → 数据传输(流媒体服务器) → 解码数据 → 播放显示<br>本文主要介绍如何搭建RTMP直播服务器以及测试流媒体服务器是否搭建成功。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/07/23/macOS-setup-rtmp-server/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/06/30/Design-Pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/06/30/Design-Pattern/" class="post-title-link" itemprop="url">设计模式 （Design Pattern）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-06-30 15:45:48" itemprop="dateCreated datePublished" datetime="2016-06-30T15:45:48+00:00">2016-06-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">软件设计</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>21k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1:15</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="面向过程和面向对象"><a href="#面向过程和面向对象" class="headerlink" title="面向过程和面向对象"></a>面向过程和面向对象</h2><ol>
+<li><p>面向过程是祈使句，面向对象是主谓（宾）结构。</p>
+</li>
+<li><p>面向过程注重数据的存储和操作，面向对象注重用程序模拟生活逻辑。</p>
+</li>
+<li><p>面向过程数据和操作数据的过程是分离的，没有逻辑上的必然联系；面向对象中数据和操作数据的方法是逻辑上的整体，称之为对象。</p>
+</li>
+</ol>
+<h2 id="面向对象的基本概念"><a href="#面向对象的基本概念" class="headerlink" title="面向对象的基本概念"></a>面向对象的基本概念</h2><ul>
+<li><p>对象：现实世界中的对象是我们认识世界的基本单元，世界就是由这些基本单元组成的。一切皆为对象；每个对象都是独一无二的；对象都有属性和行为；对象都属于某个类。</p>
+</li>
+<li><p>类：类是对一组具有共同属性和行为的对象的抽象，它是对象的蓝图和模板。</p>
+</li>
+<li><p>消息：对象与对象之间存在着一定的联系，这种联系通过消息的传递来实现。程序中的一切操作都通过向对象发送消息来实现，对象接收到消息后，调用有关对象的行为来完成相应的操作。</p>
+</li>
+</ul>
+<h2 id="面向对象的3个基本要素"><a href="#面向对象的3个基本要素" class="headerlink" title="面向对象的3个基本要素"></a>面向对象的3个基本要素</h2><h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>封装是把一个事物包装起来，使外界不了解它的内部的具体情况。在面向对象的程序设计中，封装就是把相关的数据和代码结合成一个有机的整体，形成数据和操作代码的封装体，对外只提供一个可以控制的接口，内部大部分的实现细节对外隐蔽，达到对数据访问权的合理控制。封装使程序中个部分之间的相互联系达到最小，提高了程序的安全性，简化了程序代码的编写工作。</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承是从已有的类创建新类的过程，提供继承信息的称为父类，得到继承信息的称为子类，子类和父类之间是IS-A关系，继承使得类与类之间形成一个层次结构。</p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>多态是不同结构的对象可以以各自不同的方式响应同一个消息，或者说同一个消息可以根据发送消息的对象的不同而采用多种不同的操作行为，这是面向对象最精髓的部分。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/06/30/Design-Pattern/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/06/24/AppStore-Review-Guidelines/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/06/24/AppStore-Review-Guidelines/" class="post-title-link" itemprop="url">App Store 审核指南——2016.6</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-06-24 15:15:57" itemprop="dateCreated datePublished" datetime="2016-06-24T15:15:57+00:00">2016-06-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-23 17:40:30" itemprop="dateModified" datetime="2025-07-23T17:40:30+00:00">2025-07-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>11k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>41 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="提交应用之前的检查列表"><a href="#提交应用之前的检查列表" class="headerlink" title="提交应用之前的检查列表"></a>提交应用之前的检查列表</h2><p>为了帮助你的应用能够尽可能顺利的过审，请查看下面列出来的可能降低审核速度或者被拒绝的常见失误。本清单无法代替审核条款，但你需要确保你已经达到了清单的要求作为良好的开始。</p>
+<p><strong>确保你已经：</strong></p>
+<ul>
+<li><p>测试你的应用程序，保证它不会发生崩溃和错误</p>
+</li>
+<li><p>确保你的应用程序的信息和应用内容保持完整和准确</p>
+</li>
+<li><p>保证联系人信息始终有效，审核团队可以及时联系到你</p>
+</li>
+<li><p>提供一个有效的测试帐号以及登录信息，并提供测试功能必要的的硬件和资源（例如，一个测试用的二维码）</p>
+</li>
+<li><p>保证后台服务在审核期间运行正常</p>
+</li>
+<li><p>如果应用的某些功能和应用内付费隐藏较深，需提供详细的描述文档和支持文档。如果因为地域的原因我们无法正常使用该功能，请提供该功能的描述视频链接。</p>
+</li>
+<li><p>请检查你的应用程序是否符合其他规范，包括（注意文中部分内容也有对应的条款和说明，请注意查看）</p>
+<p>开发指南<br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007072">应用程序编程指南（App Programming Guide）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/mac/documentation/General/Conceptual/ExtensibilityPG/">应用扩展编程指南（App Extension Programming Guide）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/icloud/documentation/data-storage/index.html">iOS数据存储条款（iOS Data Storage Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672">Mac OS X文件系统文档（Mac OS X File System Documentation）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/safari/documentation/Tools/Conceptual/SafariExtensionGuide/Introduction/Introduction.html">Safari扩展开发指南（Safari Extensions Development Guide）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/ios/iTunesConnectGuide/">iTunes Connect开发指南（iTunes Connect Developer Guide）</a></p>
+<p>设计指南<br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/">iOS人机交互界面条款（iOS Human Interface Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/">Mac OS人机交互界面条款（Mac OS Human Interface Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/tvos/human-interface-guidelines/">tvOS人机交互界面条款（tvOS Human Interface Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/watch/human-interface-guidelines/">watchOS人机交互界面条款（watchOS Human Interface Guidelines）</a></p>
+<p>品牌营销指南<br><a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/marketing/guidelines/">App Store市场营销条款（App Store Marketing Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/apple-pay/Apple-Pay-Identity-Guidelines.pdf">苹果支付身份条款（Apple Pay Identity Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/wallet/Add-to-Apple-Wallet-Guidelines.pdf">加入苹果支付许可条款（Add to Apple Wallet Guidelines）</a><br><a target="_blank" rel="noopener" href="http://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html">使用Apple商标和版权的条款（Guidelines for Using Apple Trademarks and Copyrights）</a></p>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/06/24/AppStore-Review-Guidelines/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/06/13/iOS-Common-Crypto/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/06/13/iOS-Common-Crypto/" class="post-title-link" itemprop="url">iOS 密码技术</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-06-13 12:27:03" itemprop="dateCreated datePublished" datetime="2016-06-13T12:27:03+00:00">2016-06-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-23 17:40:29" itemprop="dateModified" datetime="2025-07-23T17:40:29+00:00">2025-07-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>22 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="转码技术"><a href="#转码技术" class="headerlink" title="转码技术"></a>转码技术</h2><h3 id="URL转码（百分号转码）"><a href="#URL转码（百分号转码）" class="headerlink" title="URL转码（百分号转码）"></a>URL转码（百分号转码）</h3><p>URL：只有字母和数字[0-9a-zA-Z]、一些特殊符号<code>$-_.+!*&#39;(),[不包括双引号]</code>、以及某些保留字，才可以不经过编码直接用于URL。</p>
+<h4 id="URL-编码实现"><a href="#URL-编码实现" class="headerlink" title="URL 编码实现"></a>URL 编码实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 废弃接口</span><br><span class="line">- (NSString *)stringByAddingPercentEscapesUsingEncoding:(NSStringEncoding)encoding</span><br><span class="line">// iOS 7 之后</span><br><span class="line">- (NSString *)stringByAddingPercentEncodingWithAllowedCharacters:(NSCharacterSet *)allowedCharacters</span><br></pre></td></tr></table></figure>
+
+<h4 id="URL-解码实现"><a href="#URL-解码实现" class="headerlink" title="URL 解码实现"></a>URL 解码实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 废弃接口</span><br><span class="line">- (NSString *)stringByReplacingPercentEscapesUsingEncoding:(NSStringEncoding)encoding</span><br><span class="line">// iOS 7 之后</span><br><span class="line">@property(readonly, copy) NSString *stringByRemovingPercentEncoding</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/tags/html_ref_urlencode.html">http://www.w3school.com.cn/tags/html_ref_urlencode.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%99%BE%E5%88%86%E5%8F%B7%E7%BC%96%E7%A0%81">维基百科</a></li>
+<li><a target="_blank" rel="noopener" href="http://tool.oschina.net/encode?type=4">在线工具</a></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/06/13/iOS-Common-Crypto/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/05/28/Linux-RaspberryPi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/05/28/Linux-RaspberryPi/" class="post-title-link" itemprop="url">Linux RaspberryPi</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-05-28 20:35:13" itemprop="dateCreated datePublished" datetime="2016-05-28T20:35:13+00:00">2016-05-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-23 17:40:29" itemprop="dateModified" datetime="2025-07-23T17:40:29+00:00">2025-07-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>36</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Using Ubuntu</span><br><span class="line">curl -sL https://<span class="keyword">deb</span>.nodesource.<span class="keyword">com</span>/setup_6.<span class="keyword">x</span> | sudo -E bash -</span><br><span class="line">sudo apt-<span class="built_in">get</span> install -<span class="keyword">y</span> nodejs</span><br><span class="line"></span><br><span class="line"># Using Debian, <span class="keyword">as</span> root</span><br><span class="line">curl -sL https://<span class="keyword">deb</span>.nodesource.<span class="keyword">com</span>/setup_6.<span class="keyword">x</span> | bash -</span><br><span class="line">apt-<span class="built_in">get</span> install -<span class="keyword">y</span> nodejs</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/05/27/Develop-Platform/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/05/27/Develop-Platform/" class="post-title-link" itemprop="url">开发平台</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-05-27 15:32:40" itemprop="dateCreated datePublished" datetime="2016-05-27T15:32:40+00:00">2016-05-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-23 17:40:29" itemprop="dateModified" datetime="2025-07-23T17:40:29+00:00">2025-07-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>455</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="BasS-（后端即服务）"><a href="#BasS-（后端即服务）" class="headerlink" title="BasS （后端即服务）"></a>BasS （后端即服务）</h2><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>作用</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LeanCloud</td>
+<td>存储、消息推送、用户分析、扩展模块</td>
+<td><a target="_blank" rel="noopener" href="https://leancloud.cn/">https://leancloud.cn/</a></td>
+</tr>
+<tr>
+<td>Bmob</td>
+<td>云数据库、文件服务、消息推送、短信验证码</td>
+<td><a target="_blank" rel="noopener" href="http://www.bmob.cn/">http://www.bmob.cn/</a></td>
+</tr>
+<tr>
+<td>七牛</td>
+<td>云存储</td>
+<td><a target="_blank" rel="noopener" href="http://www.qiniu.com/">http://www.qiniu.com/</a></td>
+</tr>
+<tr>
+<td>环信</td>
+<td>即时通讯</td>
+<td><a target="_blank" rel="noopener" href="http://www.easemob.com/">http://www.easemob.com/</a></td>
+</tr>
+<tr>
+<td>融云</td>
+<td>即时通讯</td>
+<td><a target="_blank" rel="noopener" href="http://www.rongcloud.cn/">http://www.rongcloud.cn/</a></td>
+</tr>
+<tr>
+<td>CloudKit</td>
+<td>iCloud 的 SDK，使用 CloudKit 让开发者的 iOS 应用和 OS X 应用共享数据</td>
+<td><a target="_blank" rel="noopener" href="https://developer.apple.com/icloud/index.html">https://developer.apple.com/icloud/index.html</a></td>
+</tr>
+<tr>
+<td>友盟</td>
+<td>为中国移动开发者提供免费的统计分析服务及开发者工具</td>
+<td><a target="_blank" rel="noopener" href="http://www.umeng.com/">http://www.umeng.com</a></td>
+</tr>
+<tr>
+<td>极光推送</td>
+<td>专注推送的 BasS 服务提供商</td>
+<td><a target="_blank" rel="noopener" href="https://www.jpush.cn/">https://www.jpush.cn</a></td>
+</tr>
+<tr>
+<td>Flurry</td>
+<td>Yahoo的App分析统计工具集</td>
+<td><a target="_blank" rel="noopener" href="https://developer.yahoo.com/">https://developer.yahoo.com</a></td>
+</tr>
+<tr>
+<td>Google Analytics</td>
+<td>Google的移动分析统计</td>
+<td><a target="_blank" rel="noopener" href="http://www.google.com/intl/zh-CN_ALL/analytics/index.html">http://www.google.com/intl/zh-CN_ALL/analytics/index.html</a></td>
+</tr>
+<tr>
+<td>MTA</td>
+<td>腾讯云统计</td>
+<td><a target="_blank" rel="noopener" href="http://mta.qq.com/">http://mta.qq.com</a></td>
+</tr>
+<tr>
+<td>App Annie</td>
+<td>数据统计分析</td>
+<td><a target="_blank" rel="noopener" href="https://www.appannie.com/cn/">https://www.appannie.com/cn/</a></td>
+</tr>
+</tbody></table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/05/27/Develop-Platform/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/05/26/iOS-Tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/05/26/iOS-Tips/" class="post-title-link" itemprop="url">iOS Tips</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-05-26 22:22:14" itemprop="dateCreated datePublished" datetime="2016-05-26T22:22:14+00:00">2016-05-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-09-21 10:28:58" itemprop="dateModified" datetime="2022-09-21T10:28:58+00:00">2022-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>12 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h2><h3 id="提取assets-car中的图片"><a href="#提取assets-car中的图片" class="headerlink" title="提取assets.car中的图片"></a>提取assets.car中的图片</h3><p><strong>ThemeEngine</strong>：Mac下的Assets.car文件查看工具，能够将图片导入到PhotoShop中进行编辑，提供了导出图片的功能。ThemeEngine拥有命令行版和图形界面版。使用私有APICoreUI开发。 下载地址：<a target="_blank" rel="noopener" href="https://github.com/alexzielenski/ThemeEngine">https://github.com/alexzielenski/ThemeEngine</a></p>
+<p><strong>cartool</strong>：Mac下的命令行小工具，能够将Assets.car文件解包到指定文件夹。目标文件夹需要事先创建好。该工具使用私有API中的CoreUI进行开发。 下载地址：<a target="_blank" rel="noopener" href="https://github.com/steventroughtonsmith/cartool">https://github.com/steventroughtonsmith/cartool</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cartool Assets.car outputDir</span><br></pre></td></tr></table></figure>
+
+<p><strong>acextract</strong>：Mac下的命令行工具，Swift版。 下载地址：<a target="_blank" rel="noopener" href="https://github.com/bartoszj/acextract">https://github.com/bartoszj/acextract</a></p>
+<h3 id="iPhone-6-屏幕揭秘-iPhone-6屏幕揭秘-pdf"><a href="#iPhone-6-屏幕揭秘-iPhone-6屏幕揭秘-pdf" class="headerlink" title="[iPhone 6 屏幕揭秘](iPhone 6屏幕揭秘.pdf)"></a>[iPhone 6 屏幕揭秘](iPhone 6屏幕揭秘.pdf)</h3><h3 id="iOS-通过获取iTunes上的APP信息，判断是否提醒升级APP"><a href="#iOS-通过获取iTunes上的APP信息，判断是否提醒升级APP" class="headerlink" title="iOS 通过获取iTunes上的APP信息，判断是否提醒升级APP"></a>iOS 通过获取iTunes上的APP信息，判断是否提醒升级APP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST https://itunes.apple.com/CN/lookup?<span class="built_in">id</span>=978591579</span><br></pre></td></tr></table></figure>
+
+<p>使用POST方法，id 是iTunes connect里APP信息的Apple ID：为APP自动生成的id</p>
+<h3 id="Charles-请求-HTTPS-出现-“You-may-need-to-configure-your-browser-or-application-to-trust-the-Charles-Root-Certificate-See-SSL-Proxying-in-the-Help-menu”"><a href="#Charles-请求-HTTPS-出现-“You-may-need-to-configure-your-browser-or-application-to-trust-the-Charles-Root-Certificate-See-SSL-Proxying-in-the-Help-menu”" class="headerlink" title="Charles 请求 HTTPS 出现 “You may need to configure your browser or application to trust the Charles Root Certificate. See SSL Proxying in the Help menu”"></a>Charles 请求 HTTPS 出现 “You may need to configure your browser or application to trust the Charles Root Certificate. See SSL Proxying in the Help menu”</h3><p>首先确认是否安装了 Charles 的证书，该证书在菜单 Help -&gt; SSL Proxying 下，需要同时安装在 Mac 和 模拟器或者设备上，具体使用方法参见子菜单。其次因为 10.3 以上系统需要你在“证书信任设置”中信任 Charles 的证书。在设备上点击设置 -&gt; 通用 -&gt; 关于本机 -&gt; 证书信任设置 -&gt; 选择 Charles 的证书打开。</p>
+<h3 id="通过-Apple-Configurator-下载-ipa-包"><a href="#通过-Apple-Configurator-下载-ipa-包" class="headerlink" title="通过 Apple Configurator 下载 ipa 包"></a>通过 Apple Configurator 下载 ipa 包</h3><ol>
+<li>安装Apple Configurator</li>
+<li>打开Apple Configurator，连接 iOS 设备</li>
+<li>点击导航栏的添加按钮选择 Apps，然后点选你需要的app，点击添加后，将会开始下载。</li>
+<li>下载完成后，先别点击任何选项！打开Finder，然后进入这个路径 <code>~/Library/Group Containers/K36BKF7T3D.group.com.apple.configurator/Library/Caches/Assets/TemporaryItems/MobileApps/</code> 就可以看到你刚下载的 ipa 包。这个是临时文件，你关闭 Apple Configurator 或者点选后会自动消失的。</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/05/26/iOS-Tips/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/04/30/Command-Line-Tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/04/30/Command-Line-Tools/" class="post-title-link" itemprop="url">命令行工具使用技巧</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-04-30 22:11:50" itemprop="dateCreated datePublished" datetime="2016-04-30T22:11:50+00:00">2016-04-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>301</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="只显示子目录、不显示文件，可以使用下面的命令。"><a href="#只显示子目录、不显示文件，可以使用下面的命令。" class="headerlink" title="只显示子目录、不显示文件，可以使用下面的命令。"></a>只显示子目录、不显示文件，可以使用下面的命令。</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只显示常规目录</span></span><br><span class="line"><span class="variable">$</span> <span class="built_in">ls</span> <span class="literal">-d</span> */</span><br><span class="line"><span class="variable">$</span> <span class="built_in">ls</span> <span class="operator">-F</span> | grep /</span><br><span class="line"><span class="variable">$</span> <span class="built_in">ls</span> <span class="literal">-l</span> | grep ^d</span><br><span class="line"><span class="variable">$</span> tree <span class="literal">-dL</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 只显示隐藏目录</span></span><br><span class="line"><span class="variable">$</span> <span class="built_in">ls</span> <span class="literal">-d</span> .*/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 隐藏目录和非隐藏目录都显示</span></span><br><span class="line"><span class="variable">$</span> find <span class="literal">-maxdepth</span> <span class="number">1</span> <span class="literal">-type</span> d</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自runyf</p>
+</blockquote>
+<h2 id="Git常用命令速查表"><a href="#Git常用命令速查表" class="headerlink" title="Git常用命令速查表"></a>Git常用命令速查表</h2><p><img src="https://dn-coding-net-production-pp.qbox.me/100e4dc6-0317-409f-9ff9-935890315137.jpg"></p>
+<blockquote>
+<p>来自Coding</p>
+</blockquote>
+<h2 id="清除DNS缓存命令"><a href="#清除DNS缓存命令" class="headerlink" title="清除DNS缓存命令"></a>清除DNS缓存命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> dscacheutil -flushcache</span><br><span class="line"><span class="built_in">sudo</span> killall -HUP mDNSResponder</span><br></pre></td></tr></table></figure>
+
+<h2 id="批量重命名文件"><a href="#批量重命名文件" class="headerlink" title="批量重命名文件"></a>批量重命名文件</h2><p>以下命令将文件名中包含<code>~iphone</code>的文字替换为空字符</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">ls</span>`; <span class="keyword">do</span> <span class="built_in">mv</span> -f <span class="variable">$i</span> `<span class="built_in">echo</span> <span class="variable">$i</span> | sed <span class="string">&#x27;s/~iphone//g&#x27;</span>`; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Git-删除-一个-submodule"><a href="#Git-删除-一个-submodule" class="headerlink" title="Git 删除 一个 submodule"></a>Git 删除 一个 submodule</h2><ol>
+<li>删除 <code>.gitmodules</code> 文件中关联内容；</li>
+<li>执行 <code>git add .gitmodules</code></li>
+<li>删除 <code>.git/config</code> 文件中关联内容；</li>
+<li>执行 <code>git rm --cached path_to_submodule</code>（不包含尾部斜线）</li>
+<li>执行 <code>rm -rf .git/modules/path_to_submodule</code></li>
+<li>提交 <code>git commit -m &quot;Removed submodule &lt;name&gt;&quot;</code></li>
+<li>删除子模块文件 <code>rm -rf path_to_submodule</code></li>
+</ol>
+<h2 id="Changing-remote-repository-for-a-git-submodule"><a href="#Changing-remote-repository-for-a-git-submodule" class="headerlink" title="Changing remote repository for a git submodule"></a>Changing remote repository for a git submodule</h2><p>You should just be able to edit the <strong>.gitmodules</strong> file to update the URL and then run <strong>git submodule sync</strong> to reflect that change to the superproject and your working copy.</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config <span class="attr">--file</span>=<span class="selector-class">.gitmodules</span> submodule<span class="selector-class">.Submod</span><span class="selector-class">.url</span> https:<span class="comment">//github.com/username/ABC.git</span></span><br><span class="line">git config <span class="attr">--file</span>=<span class="selector-class">.gitmodules</span> submodule<span class="selector-class">.Submod</span><span class="selector-class">.branch</span> Development</span><br><span class="line">git submodule sync</span><br><span class="line">git submodule update <span class="attr">--init</span> <span class="attr">--recursive</span> <span class="attr">--remote</span></span><br></pre></td></tr></table></figure>
+
+<p>参考链接：<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/913701/changing-remote-repository-for-a-git-submodule">http://stackoverflow.com/questions/913701/changing-remote-repository-for-a-git-submodule</a></p>
+<h2 id="显示磁盘使用空间"><a href="#显示磁盘使用空间" class="headerlink" title="显示磁盘使用空间"></a>显示磁盘使用空间</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">du</span> -sh *</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2014 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-keyboard"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">139k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:27</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/xwal" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"xwal/xwal.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkxNzQ4MDMxMA==","category":"Comment","category_id":"DIC_kwDOAQq6ds4CSrDW","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<div id="hexo-adsense-hidden" style="display:none"><div hexo-adsense="ads-content"><!--REMOVE ADSENSE SCRIPT, THIS PLUGIN ALREADY OPTIMIZED THE ADSENSE JAVASCRIPT-->
+<!---->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6178635866936443"
+     data-ad-slot="4097715968"></ins>
+<!--script>
+     
+</script--></div></div><style>[hexo-adsense=ads-content]{display:block;background:#fff url(//i.imgur.com/mBbv90p.png) no-repeat top right;color:#303030;min-width:250px;text-align:center;margin-left:auto;margin-right:auto}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFydGljbGUtYWRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQkFDRSxRQUFBLE1BQ0EsV0FBQSxLQUFBLCtCQUFBLFVBQUEsSUFBQSxNQUNBLE1BQUEsUUFHQSxVQUFBLE1BQ0EsV0FBQSxPQUNBLFlBQUEsS0FDQSxhQUFBIiwiZmlsZSI6ImFydGljbGUtYWRzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIipbaGV4by1hZHNlbnNlPVwiYWRzLWNvbnRlbnRcIl0ge1xuICBkaXNwbGF5OiBibG9jaztcbiAgYmFja2dyb3VuZDogI2ZmZiB1cmwoLy9pLmltZ3VyLmNvbS9tQmJ2OTBwLnBuZykgbm8tcmVwZWF0IHRvcCByaWdodDtcbiAgY29sb3I6ICMzMDMwMzA7XG4gIC8qbWluLWhlaWdodDogMThweDtcbiAgbWluLXdpZHRoOiA4MXB4OyovXG4gIG1pbi13aWR0aDogMjUwcHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbiJdfQ== */
+</style><script>const isBrowser=new Function("try {return this===window;}catch(e){ return false;}"),hexoAdsenseConfig=JSON.parse(document.getElementById("hexo-adsense-config").textContent);function insertAfter(e,t){if(t&&e){let n=t.parentNode;n.lastChild==t?n.appendChild(e):n.insertBefore(e,t.nextSibling)}else console.error("cannot insert element")}function replaceWith(e,t){if(t.parentNode)t.parentNode.replaceChild(e,t);else{console.log(t,"parent null"),document.createElement("div").appendChild(t)}}let createElementFromHTML=function(e){if(e instanceof HTMLElement)return e;var t=document.createElement("div");return t.innerHTML=e.trim(),t.firstChild};function ranumb(e,t){return Math.floor(Math.random()*(t-e+1)+e)}function newMethod(){const e=document.getElementById("hexo-adsense-hidden");let t=e.querySelectorAll('[hexo-adsense="ads-content"]'),n=document.querySelectorAll("article");if(n.length>0&&t.length>0){let o;if(1==n.length){console.log("webpage is post");let l=n.item(0);const r=l.querySelectorAll("*[hexo-adsense-fill]");if(r.length>0)for(let e=0;e<r.length;e++){const n=r[e];void 0!==t[e]&&n.appendChild(t[e])}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("h1,h2,h3,h4,h5,h6,pre");if(e.length>0){let n=Array.apply(null,{length:e.length}).map(Number.call,Number);for(let l=0;l<t.length;l++){o=t[l];const r=shuffleArr2(n).next().value;if("number"==typeof r){const t=e.item(r);insertAfter(createElementFromHTML(o),t)}}}}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("br,hr");if(e.length>0){const n=shuffleArr2(Array.apply(null,{length:e.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=n.next().value;if("number"==typeof r){const t=e.item(r);if(["blockquote","img","a","pre","code","em","strong","i","u"].includes(t.parentNode.tagName.toLowerCase())){l--;continue}replaceWith(createElementFromHTML(o),t)}}}}}else{console.log("webpage is not post"),n.length||(n=document.querySelectorAll('[class*="recent-post-item"]'));const e=shuffleArr2(Array.apply(null,{length:n.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=e.next().value;if("number"==typeof r){n.item(r).appendChild(createElementFromHTML(o))}}}adsensePush()}}function shuffleArr(e){for(var t,n=e.length,o=0;n--;)o=Math.floor(Math.random()*(n+1)),t=e[n],e[n]=e[o],e[o]=t;return e}function*shuffleArr2(e){for(var t=e.length;t--;)yield e.splice(Math.floor(Math.random()*(t+1)),1)[0]}function adsensePush(){for(let e=0;e<document.querySelectorAll('[hexo-adsense="ads-content"]').length;e++)(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:hexoAdsenseConfig.pub})}isBrowser()?(window.__tcfapi=(e,t,n)=>{"checkConsent"===e&&n(!0),"addEventListener"===e&&n({eventStatus:"tcloaded",gdprApplies:!1},!0)},"function"==typeof document.addEventListener?document.addEventListener("DOMContentLoaded",newMethod):"function"==typeof window.attachEvent?window.attachEvent("onload",newMethod):window.onload=newMethod):module.exports={replaceWith:replaceWith,insertAfter:insertAfter};</script></body>
+</html>

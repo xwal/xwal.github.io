@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <meta name="google-site-verification" content="yGwNBR-9-6B60StDh4ueJp0Io9gjnzwX0IiXkPL4Pqc">
+  <meta name="msvalidate.01" content="562E828CD9FA60A6D3CDFE1BD31D3FF3">
+  <meta name="baidu-site-verification" content="iYaX85B5Bg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chaosky.tech","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简介Alcatraz 是一个帮你管理 Xcode 插件、模版以及颜色配置的工具。 官网：http:&#x2F;&#x2F;alcatraz.io GitHub：https:&#x2F;&#x2F;github.com&#x2F;alcatraz&#x2F;Alcatraz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Alcatraz：Xcode 插件管理">
+<meta property="og:url" content="https://chaosky.tech/2016/04/05/Alcatraz/index.html">
+<meta property="og:site_name" content="Alex Lin&#39;s Notes">
+<meta property="og:description" content="简介Alcatraz 是一个帮你管理 Xcode 插件、模版以及颜色配置的工具。 官网：http:&#x2F;&#x2F;alcatraz.io GitHub：https:&#x2F;&#x2F;github.com&#x2F;alcatraz&#x2F;Alcatraz">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://camo.githubusercontent.com/f22645bb84f9ddbdcca5cf9850eb7dc8f66f1ea3/68747470733a2f2f7261772e6769746875622e636f6d2f4d656c6c6f6e674c61752f414d4d6574686f6432496d706c656d656e742f6d61737465722f53637265656e73686f74732f757361676553637265656e73686f742e676966">
+<meta property="og:image" content="https://github.com/citrusbyte/Auto-Importer-for-Xcode/raw/master/demo.gif">
+<meta property="og:image" content="https://camo.githubusercontent.com/758d8d2c87f7ec1bb3b6882d6500fe4cf5252759/68747470733a2f2f7261772e6769746875622e636f6d2f7472617669736a6566666572792f436c616e67466f726d61742d58636f64652f6d61737465722f524541444d452f636c616e67666f726d61742d78636f64652d64656d6f2e676966">
+<meta property="og:image" content="https://github.com/kattrali/cocoadocs-xcode-plugin/raw/master/menu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/EnjoySR/ESJsonFormat-Xcode/master/ScreenShot/ScreenShot2.gif">
+<meta property="og:image" content="https://github.com/FuzzyAutocomplete/FuzzyAutocompletePlugin/raw/master/demo.gif">
+<meta property="og:image" content="https://github.com/kimsungwhee/KSHObjcUML/raw/master/ScreenShot.png">
+<meta property="og:image" content="https://camo.githubusercontent.com/c354bf04524df86daeabe7a6d2b9926fac790f85/68747470733a2f2f7261772e6769746875622e636f6d2f6b7375746865722f4b53496d6167654e616d65642d58636f64652f6d61737465722f73637265656e73686f742e676966">
+<meta property="og:image" content="https://github.com/rickytan/RTImageAssets/raw/master/ScreenCap/usage.gif">
+<meta property="og:image" content="https://github.com/rickytan/RTImageAssets/raw/master/ScreenCap/iconset-gen.gif">
+<meta property="og:image" content="https://camo.githubusercontent.com/d4ab3ba45af70951557adbf17a9d0deab47e519f/68747470733a2f2f646c2e64726f70626f7875736572636f6e74656e742e636f6d2f752f31323734383230312f534358636f6465537769746368457870616e6465722f534358636f6465537769746368457870616e646572312e676966">
+<meta property="og:image" content="https://camo.githubusercontent.com/ca5518c9872e15b8a95b9d8c5f44bc331977d710/68747470733a2f2f7261772e6769746875622e636f6d2f6f6e65766361742f5656446f63756d656e7465722d58636f64652f6d61737465722f53637265656e53686f742e676966">
+<meta property="og:image" content="https://camo.githubusercontent.com/b8bc5293afe5e8f1ccb307710a38ed58923883e7/68747470733a2f2f7261772e6769746875622e636f6d2f7175657374626561742f4c696e2f6d61737465722f73637265656e73686f742e676966">
+<meta property="og:image" content="https://camo.githubusercontent.com/7973c0e352b1f91e3efe5b3550cff5df97f4589a/687474703a2f2f7166692e73682f58416c69676e2f696d616765732f657175616c2e676966">
+<meta property="og:image" content="https://github.com/trawor/XToDo/raw/master/screenshots/1.png">
+<meta property="og:image" content="https://github.com/fortinmike/XcodeBoost/raw/master/Images/highlighting.gif">
+<meta property="og:image" content="https://github.com/holtwick/HOStringSense-for-Xcode/raw/master/StringDemoAnimation.gif">
+<meta property="og:image" content="https://github.com/markohlebar/Peckham/raw/master/Misc/Peckham.gif">
+<meta property="og:image" content="https://github.com/neonichu/BBUDebuggerTuckAway/raw/master/plugin.gif">
+<meta property="og:image" content="https://github.com/johnno1962/injectionforxcode/raw/master/documentation/images/injected.gif">
+<meta property="og:image" content="https://camo.githubusercontent.com/ad17370a5e5ecf1e5196146405f57126eb649390/68747470733a2f2f7261772e6769746875622e636f6d2f62616e673539302f4a535061746368582f6d61737465722f5265736f757263652f53637265656e73686f742e676966">
+<meta property="og:image" content="https://camo.githubusercontent.com/75d5f8f86f8e9173d0e5d2e7a3515150f771ec76/68747470733a2f2f7261772e6769746875622e636f6d2f4d656c6c6f6e674c61752f414d4c6f63616c697a6564537472696e674275696c6465722d58636f64652d506c7567696e2f6d61737465722f53637265656e73686f74732f73637265656e73686f742e676966">
+<meta property="og:image" content="https://raw.githubusercontent.com/mac-cain13/R.swift/master/Documentation/Images/DemoUseImage.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/Forkong/FKRealGroup/master/ScreenShots/fkrealgroup_1.jpg">
+<meta property="og:image" content="https://camo.githubusercontent.com/29d976d6d5991902d307b5afafa82dd8a7525eb9/687474703a2f2f6d727065616b2e636e2f696d616765732f66735f6865616465722e676966">
+<meta property="article:published_time" content="2016-04-05T16:13:24.000Z">
+<meta property="article:modified_time" content="2016-04-05T16:13:24.000Z">
+<meta property="article:author" content="Alex Lin">
+<meta property="article:tag" content="Tools">
+<meta property="article:tag" content="Xcode 插件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/f22645bb84f9ddbdcca5cf9850eb7dc8f66f1ea3/68747470733a2f2f7261772e6769746875622e636f6d2f4d656c6c6f6e674c61752f414d4d6574686f6432496d706c656d656e742f6d61737465722f53637265656e73686f74732f757361676553637265656e73686f742e676966">
+
+
+<link rel="canonical" href="https://chaosky.tech/2016/04/05/Alcatraz/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://chaosky.tech/2016/04/05/Alcatraz/","path":"2016/04/05/Alcatraz/","title":"Alcatraz：Xcode 插件管理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Alcatraz：Xcode 插件管理 | Alex Lin's Notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?QJ33ASIjWB"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.7.0/mermaid.min.js","integrity":"sha256-4+IKDqhZ/sXjc8Wtl2/MsxI4e0s1KpEVdbEP7V/Lz8U="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/addtoany.js" defer></script>
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<script id="hexo-adsense-config" type="application/json">{"enable":true,"article_ads":["source/ads/in_article.html"],"pub":"ca-pub-6178635866936443","adblock":true,"https":true,"field":"site","type":"javascript","exclude":["*.min.html","exclude/**/*"],"development":false,"args":{"_":[],"g":true},"debug":false,"safe":false,"silent":false,"env":"development","version":"7.3.0","cmd":"d","init":true,"adsense":{"enable":true,"pub":"ca-pub-6178635866936443","article_ads":["source/ads/in_article.html"],"field":"site","https":true,"adblock":true,"exclude":["*.min.html","exclude/**/*"]}}</script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178635866936443" crossorigin="anonymous"></script><link rel="alternate" href="/atom.xml" title="Alex Lin's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex Lin's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Strategy, Execution, Communication.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">100</span></a></li><li class="menu-item menu-item-作坊"><a href="/workspace/" rel="section"><i class="fa fa-cubes fa-fw"></i>作坊</a></li><li class="menu-item menu-item-技能"><a href="/skillmap/" rel="section"><i class="fa fa-atom fa-fw"></i>技能</a></li><li class="menu-item menu-item-摘录"><a href="/quotes/" rel="section"><i class="fa fa-quote-left fa-fw"></i>摘录</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-dragon fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD"><span class="nav-number">4.</span> <span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E8%B7%AF%E5%BE%84"><span class="nav-number">5.</span> <span class="nav-text">插件路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xcode-6-x-%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">Xcode 6.x 安装插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="nav-number">7.</span> <span class="nav-text">常用插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85"><span class="nav-number">8.</span> <span class="nav-text">手动安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0-Xcode-%E6%8F%92%E4%BB%B6%E7%9A%84-UUIDs"><span class="nav-number">9.</span> <span class="nav-text">更新 Xcode 插件的 UUIDs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-1"><span class="nav-number">9.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-1"><span class="nav-number">9.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Lin"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Alex Lin</p>
+  <div class="site-description" itemprop="description">Hi, I'm an iOS engineer, focusing on mobile software development.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xwal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xwal" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaosky.me@gmail.com" title="E-Mail → mailto:chaosky.me@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://x.com/cyberxwa" title="Twitter → https:&#x2F;&#x2F;x.com&#x2F;cyberxwa" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/chaosky" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;chaosky" rel="noopener me" target="_blank"><i class="fab fa-telegram fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/04/05/Alcatraz/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Alcatraz：Xcode 插件管理 | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Alcatraz：Xcode 插件管理<a href="https://github.com/xwal/xwal.github.io/edit/source/source/_posts/2016-04-05-Alcatraz.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-04-05 16:13:24" itemprop="dateCreated datePublished" datetime="2016-04-05T16:13:24+00:00">2016-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>814</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Alcatraz 是一个帮你管理 Xcode 插件、模版以及颜色配置的工具。</p>
+<p>官网：<a target="_blank" rel="noopener" href="http://alcatraz.io/">http://alcatraz.io</a></p>
+<p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/alcatraz/Alcatraz">https://github.com/alcatraz/Alcatraz</a></p>
+<span id="more"></span>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在终端中执行如下命令：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/supermarin/</span>Alcatraz<span class="regexp">/deploy/</span>Scripts/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<p>Alcatraz 只支持 Xcode 7+。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>从<code>Window</code>菜单中选择<code>Package Manager</code>，即可启动插件列表页面。安装完插件或者模板后，需要重启Xcode。</p>
+<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><p>删除Alcatraz：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~<span class="regexp">/Library/</span>Application\ Support<span class="regexp">/Developer/</span>Shared<span class="regexp">/Xcode/</span>Plug-ins/Alcatraz.xcplugin</span><br></pre></td></tr></table></figure>
+
+<p>删除所有缓存数据：</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~<span class="regexp">/Library/</span>Application\ Support/Alcatraz</span><br></pre></td></tr></table></figure>
+
+<h2 id="插件路径"><a href="#插件路径" class="headerlink" title="插件路径"></a>插件路径</h2><p>Xcode 所有的插件都安装在目录：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~<span class="regexp">/Library/</span>Application\ Support<span class="regexp">/Developer/</span>Shared<span class="regexp">/Xcode/</span>Plug-ins/</span><br></pre></td></tr></table></figure>
+
+<p>你也可以手工切换到这个目录来删除插件。</p>
+<h2 id="Xcode-6-x-安装插件"><a href="#Xcode-6-x-安装插件" class="headerlink" title="Xcode 6.x 安装插件"></a>Xcode 6.x 安装插件</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -<span class="type">name</span> <span class="keyword">Info</span>.plist -maxdepth <span class="number">3</span> | xargs -I&#123;&#125; defaults <span class="keyword">write</span> &#123;&#125; DVTPlugInCompatibilityUUIDs -<span class="keyword">array</span>-<span class="keyword">add</span> `defaults <span class="keyword">read</span> /Applications/Xcode.app/Contents/<span class="keyword">Info</span> DVTPlugInCompatibilityUUID`</span><br><span class="line"></span><br><span class="line">sudo xcode-<span class="keyword">select</span> <span class="comment">--reset</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><ul>
+<li><p><strong>AMMethod2Implement</strong>：可以自动的将.h或者.m .mm里边需要写入的方法自动填充进来。可以选择要导入的方法，然后按 Ctrl+A 或者 Edit &gt; AMMethod2Implement &gt; Implement Method.就会自动填充方法。也可以自行设置快捷键。</p>
+<p><img src="https://camo.githubusercontent.com/f22645bb84f9ddbdcca5cf9850eb7dc8f66f1ea3/68747470733a2f2f7261772e6769746875622e636f6d2f4d656c6c6f6e674c61752f414d4d6574686f6432496d706c656d656e742f6d61737465722f53637265656e73686f74732f757361676553637265656e73686f742e676966"></p>
+</li>
+<li><p><strong>Auto-Importer</strong>：快速导入头文件，快捷键：<code>⌘ + ctrl + H</code></p>
+<p><img src="https://github.com/citrusbyte/Auto-Importer-for-Xcode/raw/master/demo.gif"></p>
+</li>
+<li><p><strong>ClangFormat</strong>：自动调整代码风格</p>
+<p><img src="https://camo.githubusercontent.com/758d8d2c87f7ec1bb3b6882d6500fe4cf5252759/68747470733a2f2f7261772e6769746875622e636f6d2f7472617669736a6566666572792f436c616e67466f726d61742d58636f64652f6d61737465722f524541444d452f636c616e67666f726d61742d78636f64652d64656d6f2e676966"></p>
+</li>
+<li><p><strong>CocoaPods</strong>：在Xcode通过pods安装各种objective-c第三方库，省去以前还要手动去跑pods命令行的麻烦；此外，还支持通过cocoaDocs来安装库文档。</p>
+<p><img src="https://github.com/kattrali/cocoadocs-xcode-plugin/raw/master/menu.png"></p>
+</li>
+<li><p><strong>ESJsonFormat</strong>：将JSON格式化输出为模型的属性</p>
+<p><img src="https://raw.githubusercontent.com/EnjoySR/ESJsonFormat-Xcode/master/ScreenShot/ScreenShot2.gif"></p>
+</li>
+<li><p><strong>FuzzyAutocomplete</strong>：代码自动补全</p>
+<p><img src="https://github.com/FuzzyAutocomplete/FuzzyAutocompletePlugin/raw/master/demo.gif"></p>
+</li>
+<li><p><strong>KSHObjcUML</strong>：类引用关系图的Xcode</p>
+<p><img src="https://github.com/kimsungwhee/KSHObjcUML/raw/master/ScreenShot.png"></p>
+</li>
+<li><p><strong>KSImageNamed</strong>：为项目中使用的UIImage的imageNamed提供文件名自动补全功能。</p>
+<p><img src="https://camo.githubusercontent.com/c354bf04524df86daeabe7a6d2b9926fac790f85/68747470733a2f2f7261772e6769746875622e636f6d2f6b7375746865722f4b53496d6167654e616d65642d58636f64652f6d61737465722f73637265656e73686f742e676966"></p>
+</li>
+<li><p><strong>OMColorSense</strong>：颜色显示</p>
+</li>
+<li><p><strong>RTImageAssets</strong>：根据@3x的图片资源自动生成对应的@2x和@1x图片；自动生成App Icons，需要提供1024x1024的大图</p>
+<p><img src="https://github.com/rickytan/RTImageAssets/raw/master/ScreenCap/usage.gif"></p>
+<p><img src="https://github.com/rickytan/RTImageAssets/raw/master/ScreenCap/iconset-gen.gif"></p>
+</li>
+<li><p><strong>SCXcodeSwitchExpander</strong>：自动在switch的case中填写枚举值</p>
+<p><img src="https://camo.githubusercontent.com/d4ab3ba45af70951557adbf17a9d0deab47e519f/68747470733a2f2f646c2e64726f70626f7875736572636f6e74656e742e636f6d2f752f31323734383230312f534358636f6465537769746368457870616e6465722f534358636f6465537769746368457870616e646572312e676966"></p>
+</li>
+<li><p><strong>VVDocumenter-Xcode</strong>：规范化的注释，输入三个斜线“&#x2F;&#x2F;&#x2F;”。</p>
+<p><img src="https://camo.githubusercontent.com/ca5518c9872e15b8a95b9d8c5f44bc331977d710/68747470733a2f2f7261772e6769746875622e636f6d2f6f6e65766361742f5656446f63756d656e7465722d58636f64652f6d61737465722f53637265656e53686f742e676966"></p>
+</li>
+<li><p><strong>Lin</strong>：本地化字符串</p>
+<p><img src="https://camo.githubusercontent.com/b8bc5293afe5e8f1ccb307710a38ed58923883e7/68747470733a2f2f7261772e6769746875622e636f6d2f7175657374626561742f4c696e2f6d61737465722f73637265656e73686f742e676966"></p>
+</li>
+<li><p><strong>XAlign</strong>：对齐常规代码</p>
+<p><img src="https://camo.githubusercontent.com/7973c0e352b1f91e3efe5b3550cff5df97f4589a/687474703a2f2f7166692e73682f58416c69676e2f696d616765732f657175616c2e676966"></p>
+</li>
+<li><p><strong>XToDo</strong>：查找项目中所有带TODO、???、!!!等标记的地方，防止遗忘掉需要做的事情或者是代码中还存在bug的地方的插件</p>
+<p><img src="https://github.com/trawor/XToDo/raw/master/screenshots/1.png"></p>
+</li>
+<li><p><strong>XcodeBoost</strong>：包含多个辅助修改代码的小功能</p>
+<p><img src="https://github.com/fortinmike/XcodeBoost/raw/master/Images/highlighting.gif"></p>
+</li>
+<li><p><strong>HOStringSense</strong>：大段文本利器</p>
+<p><img src="https://github.com/holtwick/HOStringSense-for-Xcode/raw/master/StringDemoAnimation.gif"></p>
+</li>
+<li><p><strong>Peckham</strong>：自动补全，快捷键<code>⌘ + ctrl + P</code></p>
+<p><img src="https://github.com/markohlebar/Peckham/raw/master/Misc/Peckham.gif"></p>
+</li>
+<li><p><strong>BBUDebuggerTuckAway</strong>：自动隐藏控制台</p>
+<p><img src="https://github.com/neonichu/BBUDebuggerTuckAway/raw/master/plugin.gif"></p>
+</li>
+<li><p><strong>InjectionPlugin</strong>：不用重新编译运行项目，可以动态调试App</p>
+<p><img src="https://github.com/johnno1962/injectionforxcode/raw/master/documentation/images/injected.gif"></p>
+</li>
+<li><p><strong>JSPatchX</strong>：JSPatch XCode 代码自动补全插件。</p>
+<p><img src="https://camo.githubusercontent.com/ad17370a5e5ecf1e5196146405f57126eb649390/68747470733a2f2f7261772e6769746875622e636f6d2f62616e673539302f4a535061746368582f6d61737465722f5265736f757263652f53637265656e73686f742e676966"></p>
+</li>
+<li><p><strong>AMLocalizedStringBuilder</strong>：AMLocalizedStringBuilder 是可以帮助你将语言本地化文件Localizable.strings生成object-c的类AMLocalizedString的Xcode插件，这样可以直接使用R_String.am_&lt;#你的本地化字符串key#&gt;获取对应key的值，还可以随时点击Alt或Option按键查看当前字符串的值。<br><img src="https://camo.githubusercontent.com/75d5f8f86f8e9173d0e5d2e7a3515150f771ec76/68747470733a2f2f7261772e6769746875622e636f6d2f4d656c6c6f6e674c61752f414d4c6f63616c697a6564537472696e674275696c6465722d58636f64652d506c7567696e2f6d61737465722f53637265656e73686f74732f73637265656e73686f742e676966"></p>
+</li>
+<li><p><strong>R.swift</strong>：类似AMLocalizedStringBuilder，不过是swift版本的，功能也更丰富，不仅支持Localized strings映射，还支持其他资源的映射。<br>  <img src="https://raw.githubusercontent.com/mac-cain13/R.swift/master/Documentation/Images/DemoUseImage.gif"></p>
+</li>
+<li><p><strong>FKRealGroup</strong>：创建真实目录<br>  <img src="https://raw.githubusercontent.com/Forkong/FKRealGroup/master/ScreenShots/fkrealgroup_1.jpg"></p>
+</li>
+<li><p><strong>FastStub-Xcode</strong>：快速生成代码<br>  <img src="https://camo.githubusercontent.com/29d976d6d5991902d307b5afafa82dd8a7525eb9/687474703a2f2f6d727065616b2e636e2f696d616765732f66735f6865616465722e676966"></p>
+</li>
+<li><p><strong>SCXcodeMinimap</strong>：这个插件和Sublime Text中的那个看起来像。它能够显示一个编辑器的缩略图，轻松地查看、滚动代码。</p>
+</li>
+<li><p><strong>RevealPlugin</strong>：如果你使用Reveal的话，这个插件能快速启动Reveal。</p>
+</li>
+<li><p><strong>RealmPlugin</strong>：Realm的模型对象的模板文件。</p>
+</li>
+</ul>
+<h2 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h2><script src="https://gist.github.com/xwal/c0242961dda1650736d7b8780d11fc67.js"></script>
+
+<h2 id="更新-Xcode-插件的-UUIDs"><a href="#更新-Xcode-插件的-UUIDs" class="headerlink" title="更新 Xcode 插件的 UUIDs"></a>更新 Xcode 插件的 UUIDs</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem <span class="keyword">install</span> update_xcode_plugins</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>update_xcode_plugins</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/WeChatPay.png" alt="Alex Lin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/AliPay.png" alt="Alex Lin 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/eth.jpg" alt="Alex Lin ETH">
+        <span>ETH</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Alex Lin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://chaosky.tech/2016/04/05/Alcatraz/" title="Alcatraz：Xcode 插件管理">https://chaosky.tech/2016/04/05/Alcatraz/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tools/" rel="tag"><i class="fa fa-tag"></i> Tools</a>
+              <a href="/tags/Xcode-%E6%8F%92%E4%BB%B6/" rel="tag"><i class="fa fa-tag"></i> Xcode 插件</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/03/18/Bluetooth-Communication/" rel="prev" title="蓝牙通信">
+                  <i class="fa fa-angle-left"></i> 蓝牙通信
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/04/12/iOS-Project-List/" rel="next" title="iOS完整项目示例仓库">
+                  iOS完整项目示例仓库 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2014 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-keyboard"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">139k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:27</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/xwal" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"xwal/xwal.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkxNzQ4MDMxMA==","category":"Comment","category_id":"DIC_kwDOAQq6ds4CSrDW","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<div id="hexo-adsense-hidden" style="display:none"><div hexo-adsense="ads-content"><!--REMOVE ADSENSE SCRIPT, THIS PLUGIN ALREADY OPTIMIZED THE ADSENSE JAVASCRIPT-->
+<!---->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6178635866936443"
+     data-ad-slot="4097715968"></ins>
+<!--script>
+     
+</script--></div></div><style>[hexo-adsense=ads-content]{display:block;background:#fff url(//i.imgur.com/mBbv90p.png) no-repeat top right;color:#303030;min-width:250px;text-align:center;margin-left:auto;margin-right:auto}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFydGljbGUtYWRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQkFDRSxRQUFBLE1BQ0EsV0FBQSxLQUFBLCtCQUFBLFVBQUEsSUFBQSxNQUNBLE1BQUEsUUFHQSxVQUFBLE1BQ0EsV0FBQSxPQUNBLFlBQUEsS0FDQSxhQUFBIiwiZmlsZSI6ImFydGljbGUtYWRzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIipbaGV4by1hZHNlbnNlPVwiYWRzLWNvbnRlbnRcIl0ge1xuICBkaXNwbGF5OiBibG9jaztcbiAgYmFja2dyb3VuZDogI2ZmZiB1cmwoLy9pLmltZ3VyLmNvbS9tQmJ2OTBwLnBuZykgbm8tcmVwZWF0IHRvcCByaWdodDtcbiAgY29sb3I6ICMzMDMwMzA7XG4gIC8qbWluLWhlaWdodDogMThweDtcbiAgbWluLXdpZHRoOiA4MXB4OyovXG4gIG1pbi13aWR0aDogMjUwcHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbiJdfQ== */
+</style><script>const isBrowser=new Function("try {return this===window;}catch(e){ return false;}"),hexoAdsenseConfig=JSON.parse(document.getElementById("hexo-adsense-config").textContent);function insertAfter(e,t){if(t&&e){let n=t.parentNode;n.lastChild==t?n.appendChild(e):n.insertBefore(e,t.nextSibling)}else console.error("cannot insert element")}function replaceWith(e,t){if(t.parentNode)t.parentNode.replaceChild(e,t);else{console.log(t,"parent null"),document.createElement("div").appendChild(t)}}let createElementFromHTML=function(e){if(e instanceof HTMLElement)return e;var t=document.createElement("div");return t.innerHTML=e.trim(),t.firstChild};function ranumb(e,t){return Math.floor(Math.random()*(t-e+1)+e)}function newMethod(){const e=document.getElementById("hexo-adsense-hidden");let t=e.querySelectorAll('[hexo-adsense="ads-content"]'),n=document.querySelectorAll("article");if(n.length>0&&t.length>0){let o;if(1==n.length){console.log("webpage is post");let l=n.item(0);const r=l.querySelectorAll("*[hexo-adsense-fill]");if(r.length>0)for(let e=0;e<r.length;e++){const n=r[e];void 0!==t[e]&&n.appendChild(t[e])}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("h1,h2,h3,h4,h5,h6,pre");if(e.length>0){let n=Array.apply(null,{length:e.length}).map(Number.call,Number);for(let l=0;l<t.length;l++){o=t[l];const r=shuffleArr2(n).next().value;if("number"==typeof r){const t=e.item(r);insertAfter(createElementFromHTML(o),t)}}}}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("br,hr");if(e.length>0){const n=shuffleArr2(Array.apply(null,{length:e.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=n.next().value;if("number"==typeof r){const t=e.item(r);if(["blockquote","img","a","pre","code","em","strong","i","u"].includes(t.parentNode.tagName.toLowerCase())){l--;continue}replaceWith(createElementFromHTML(o),t)}}}}}else{console.log("webpage is not post"),n.length||(n=document.querySelectorAll('[class*="recent-post-item"]'));const e=shuffleArr2(Array.apply(null,{length:n.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=e.next().value;if("number"==typeof r){n.item(r).appendChild(createElementFromHTML(o))}}}adsensePush()}}function shuffleArr(e){for(var t,n=e.length,o=0;n--;)o=Math.floor(Math.random()*(n+1)),t=e[n],e[n]=e[o],e[o]=t;return e}function*shuffleArr2(e){for(var t=e.length;t--;)yield e.splice(Math.floor(Math.random()*(t+1)),1)[0]}function adsensePush(){for(let e=0;e<document.querySelectorAll('[hexo-adsense="ads-content"]').length;e++)(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:hexoAdsenseConfig.pub})}isBrowser()?(window.__tcfapi=(e,t,n)=>{"checkConsent"===e&&n(!0),"addEventListener"===e&&n({eventStatus:"tcloaded",gdprApplies:!1},!0)},"function"==typeof document.addEventListener?document.addEventListener("DOMContentLoaded",newMethod):"function"==typeof window.attachEvent?window.attachEvent("onload",newMethod):window.onload=newMethod):module.exports={replaceWith:replaceWith,insertAfter:insertAfter};</script></body>
+</html>

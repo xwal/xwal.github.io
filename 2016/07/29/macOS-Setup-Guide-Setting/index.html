@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <meta name="google-site-verification" content="yGwNBR-9-6B60StDh4ueJp0Io9gjnzwX0IiXkPL4Pqc">
+  <meta name="msvalidate.01" content="562E828CD9FA60A6D3CDFE1BD31D3FF3">
+  <meta name="baidu-site-verification" content="iYaX85B5Bg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chaosky.tech","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="工欲善其事，必先利其器。—— 设置篇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="macOS 开发配置手册——设置篇">
+<meta property="og:url" content="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/index.html">
+<meta property="og:site_name" content="Alex Lin&#39;s Notes">
+<meta property="og:description" content="工欲善其事，必先利其器。—— 设置篇">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160729_1.png">
+<meta property="og:image" content="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160729_2.png">
+<meta property="og:image" content="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160729_3.png">
+<meta property="og:image" content="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160729_4.png">
+<meta property="og:image" content="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160729_5.png">
+<meta property="og:image" content="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160803_1.png">
+<meta property="og:image" content="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160803_3.png">
+<meta property="og:image" content="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-1280800.png">
+<meta property="og:image" content="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/10/QQ20151025-0-2x.png">
+<meta property="og:image" content="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/10/QQ20151024-0-2x.png">
+<meta property="og:image" content="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/QQ20160123-0@2x.png">
+<meta property="article:published_time" content="2016-07-29T13:14:54.000Z">
+<meta property="article:modified_time" content="2016-07-29T13:14:54.000Z">
+<meta property="article:author" content="Alex Lin">
+<meta property="article:tag" content="Tools">
+<meta property="article:tag" content="Setup Guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160729_1.png">
+
+
+<link rel="canonical" href="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/","path":"2016/07/29/macOS-Setup-Guide-Setting/","title":"macOS 开发配置手册——设置篇"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>macOS 开发配置手册——设置篇 | Alex Lin's Notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?QJ33ASIjWB"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.7.0/mermaid.min.js","integrity":"sha256-4+IKDqhZ/sXjc8Wtl2/MsxI4e0s1KpEVdbEP7V/Lz8U="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/addtoany.js" defer></script>
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<script id="hexo-adsense-config" type="application/json">{"enable":true,"article_ads":["source/ads/in_article.html"],"pub":"ca-pub-6178635866936443","adblock":true,"https":true,"field":"site","type":"javascript","exclude":["*.min.html","exclude/**/*"],"development":false,"args":{"_":[],"g":true},"debug":false,"safe":false,"silent":false,"env":"development","version":"7.3.0","cmd":"d","init":true,"adsense":{"enable":true,"pub":"ca-pub-6178635866936443","article_ads":["source/ads/in_article.html"],"field":"site","https":true,"adblock":true,"exclude":["*.min.html","exclude/**/*"]}}</script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178635866936443" crossorigin="anonymous"></script><link rel="alternate" href="/atom.xml" title="Alex Lin's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex Lin's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Strategy, Execution, Communication.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">100</span></a></li><li class="menu-item menu-item-作坊"><a href="/workspace/" rel="section"><i class="fa fa-cubes fa-fw"></i>作坊</a></li><li class="menu-item menu-item-技能"><a href="/skillmap/" rel="section"><i class="fa fa-atom fa-fw"></i>技能</a></li><li class="menu-item menu-item-摘录"><a href="/quotes/" rel="section"><i class="fa fa-quote-left fa-fw"></i>摘录</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-dragon fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">系统设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E5%8A%9F%E8%83%BD%E9%94%AE-F1-F12-%E8%AE%BE%E7%BD%AE%E4%B8%BA%E6%A0%87%E5%87%86%E7%9A%84%E5%8A%9F%E8%83%BD%E9%94%AE"><span class="nav-number">1.1.</span> <span class="nav-text">将功能键(F1-F12)设置为标准的功能键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%A7%A6%E6%91%B8%E6%9D%BF"><span class="nav-number">1.2.</span> <span class="nav-text">设置触摸板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86Dock%E5%81%9C%E9%9D%A0%E5%9C%A8%E5%B1%8F%E5%B9%95%E5%B7%A6%E8%BE%B9"><span class="nav-number">1.3.</span> <span class="nav-text">将Dock停靠在屏幕左边</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E9%94%81%E5%AE%9A%E5%B1%8F%E5%B9%95"><span class="nav-number">1.4.</span> <span class="nav-text">快速锁定屏幕</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.5.</span> <span class="nav-text">系统常用快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E8%87%AA%E5%8A%A8%E7%BA%A0%E6%AD%A3%E6%8B%BC%E5%86%99"><span class="nav-number">1.6.</span> <span class="nav-text">关闭自动纠正拼写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tree%E5%91%BD%E4%BB%A4%E4%B8%AD%E6%96%87%E6%96%87%E4%BB%B6%E5%90%8D%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8"><span class="nav-number">1.7.</span> <span class="nav-text">tree命令中文文件名显示异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac-%E4%B8%AD%E6%BB%9A%E5%8A%A8%E6%88%AA%E5%B1%8F"><span class="nav-number">1.8.</span> <span class="nav-text">Mac 中滚动截屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-Solve-Missing-Fonts-in-Sketch-App"><span class="nav-number">1.9.</span> <span class="nav-text">How to Solve Missing Fonts in Sketch App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lost-permission-for-sudo-in-OSX-El-Captain"><span class="nav-number">1.10.</span> <span class="nav-text">Lost permission for sudo in OSX El Captain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%9B%9E%E5%85%81%E8%AE%B8%E4%BB%BB%E4%BD%95%E6%9D%A5%E6%BA%90%E9%80%89%E9%A1%B9"><span class="nav-number">1.11.</span> <span class="nav-text">找回允许任何来源选项</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Lin"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Alex Lin</p>
+  <div class="site-description" itemprop="description">Hi, I'm an iOS engineer, focusing on mobile software development.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xwal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xwal" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaosky.me@gmail.com" title="E-Mail → mailto:chaosky.me@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://x.com/cyberxwa" title="Twitter → https:&#x2F;&#x2F;x.com&#x2F;cyberxwa" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/chaosky" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;chaosky" rel="noopener me" target="_blank"><i class="fab fa-telegram fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="macOS 开发配置手册——设置篇 | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          macOS 开发配置手册——设置篇<a href="https://github.com/xwal/xwal.github.io/edit/source/source/_posts/2016-07-29-macOS-Setup-Guide-Setting.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-07-29 13:14:54" itemprop="dateCreated datePublished" datetime="2016-07-29T13:14:54+00:00">2016-07-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MacOS/" itemprop="url" rel="index"><span itemprop="name">MacOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>669</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>工欲善其事，必先利其器。—— 设置篇</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><h3 id="将功能键-F1-F12-设置为标准的功能键"><a href="#将功能键-F1-F12-设置为标准的功能键" class="headerlink" title="将功能键(F1-F12)设置为标准的功能键"></a>将功能键(F1-F12)设置为标准的功能键</h3><p>MacBook键盘最上面一排的功能键(F1-F12)默认是系统亮度和声音之类的快捷设置，当MacBook作为你的娱乐电脑时，这样的默认设置是非常方便的，但是对于将MacBook作为工作电脑而且需要频繁使用功能键(F1-F12)的人，最好将功能键(F1-F12)的行为设置为标准的功能键。</p>
+<p>打开【系统设置】，点击【键盘】，设置如下：<br><img src="/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160729_1.png" alt="Snip20160729_1"></p>
+<h3 id="设置触摸板"><a href="#设置触摸板" class="headerlink" title="设置触摸板"></a>设置触摸板</h3><p>打开【系统设置】，点击【触摸板】，根据需要设置，众享丝滑。<br><img src="/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160729_2.png" alt="Snip20160729_2"><br><img src="/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160729_3.png" alt="Snip20160729_3"><br><img src="/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160729_4.png" alt="Snip20160729_4"></p>
+<h3 id="将Dock停靠在屏幕左边"><a href="#将Dock停靠在屏幕左边" class="headerlink" title="将Dock停靠在屏幕左边"></a>将Dock停靠在屏幕左边</h3><p>MacBook的屏幕是一个长方形，如果你将Dock放在下面，那么屏幕的可用宽度就会减少，另外人眼阅读时的顺序是从左往右，因此Dock放在左边更适合将MacBook作为工作电脑的人。</p>
+<p>打开【系统设置】，点击【Dock】,</p>
+<ul>
+<li>将图标的Size调到合适大小</li>
+<li>关闭放大特效（即鼠标放到Dock上图标放大的效果，此效果干扰注意力）</li>
+<li>在【置于屏幕上的位置】一栏，选择【左边】</li>
+<li>勾选【将窗口最小化为应用程序图标】</li>
+</ul>
+<p><img src="/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160729_5.png" alt="Snip20160729_5"></p>
+<h3 id="快速锁定屏幕"><a href="#快速锁定屏幕" class="headerlink" title="快速锁定屏幕"></a>快速锁定屏幕</h3><p>打开【系统设置】，点击【桌面与屏幕保护程序】图标，选择【屏幕保护程序】标签页，点击右下角的【触发角..】，在弹出的界面中右下角选择【将显示器置入睡眠状态】，点击【好】确定。<br><img src="/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160803_1.png" alt="Snip20160803_1"><br><img src="/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-Snip20160803_3.png" alt="Snip20160803_3"></p>
+<h3 id="系统常用快捷键"><a href="#系统常用快捷键" class="headerlink" title="系统常用快捷键"></a>系统常用快捷键</h3><p>学习系统快捷键，适当使用快捷键将会提升你的工作效率。<br><img src="/2016/07/29/macOS-Setup-Guide-Setting/2016-08-03-1280800.png" alt="1280800"></p>
+<p>壁纸下载地址：<a target="_blank" rel="noopener" href="http://bbs.feng.com/read-htm-tid-4254274.html">http://bbs.feng.com/read-htm-tid-4254274.html</a><br>Mac 键盘快捷键 官方总览：<a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT201236">https://support.apple.com/zh-cn/HT201236</a></p>
+<h3 id="关闭自动纠正拼写"><a href="#关闭自动纠正拼写" class="headerlink" title="关闭自动纠正拼写"></a>关闭自动纠正拼写</h3><p>有些时候在文本输入框中输入文本时，会出现如下情况。一按空格键或者回车键会填写弹出框的文本，很烦人。</p>
+<p><img src="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/10/QQ20151025-0-2x.png"></p>
+<p>可以通过【关闭自动纠正拼写】解决</p>
+<p><img src="http://7vzrbk.com1.z0.glb.clouddn.com/ghost/content/images/2015/10/QQ20151024-0-2x.png"></p>
+<h3 id="tree命令中文文件名显示异常"><a href="#tree命令中文文件名显示异常" class="headerlink" title="tree命令中文文件名显示异常"></a>tree命令中文文件名显示异常</h3><p><img src="/2016/07/29/macOS-Setup-Guide-Setting/QQ20160123-0@2x.png"></p>
+<p>解决办法：追加<code>tree -N</code>参数</p>
+<h3 id="Mac-中滚动截屏"><a href="#Mac-中滚动截屏" class="headerlink" title="Mac 中滚动截屏"></a>Mac 中滚动截屏</h3><p>安装腾讯的snip</p>
+<p><a target="_blank" rel="noopener" href="http://www.snip.qq.com/">官方下载地址</a></p>
+<p><a target="_blank" rel="noopener" href="http://jingyan.baidu.com/article/fec4bce2458d03f2618d8b8e.html">详细设置教程</a></p>
+<h3 id="How-to-Solve-Missing-Fonts-in-Sketch-App"><a href="#How-to-Solve-Missing-Fonts-in-Sketch-App" class="headerlink" title="How to Solve Missing Fonts in Sketch App"></a>How to Solve Missing Fonts in Sketch App</h3><p>All you have to do is enter the following command in Terminal.</p>
+<p><code>$ curl https://raw.githubusercontent.com/qrpike/Web-Font-Load/master/install.sh | sh</code></p>
+<h3 id="Lost-permission-for-sudo-in-OSX-El-Captain"><a href="#Lost-permission-for-sudo-in-OSX-El-Captain" class="headerlink" title="Lost permission for sudo in OSX El Captain"></a>Lost permission for sudo in OSX El Captain</h3><p>The easiest way to restore both was starting <code>Script Editor</code> and then typing and running that script:</p>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> shell <span class="variable language_">script</span> <span class="string">&quot;/usr/sbin/chown root:wheel /&quot;</span> <span class="keyword">with</span> administrator privileges</span><br><span class="line"><span class="keyword">do</span> shell <span class="variable language_">script</span> <span class="string">&quot;/bin/chmod 755 /&quot;</span> <span class="keyword">with</span> administrator privileges</span><br></pre></td></tr></table></figure>
+
+<h3 id="找回允许任何来源选项"><a href="#找回允许任何来源选项" class="headerlink" title="找回允许任何来源选项"></a>找回允许任何来源选项</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo spctl <span class="comment">--master-disable</span></span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/WeChatPay.png" alt="Alex Lin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/AliPay.png" alt="Alex Lin 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/eth.jpg" alt="Alex Lin ETH">
+        <span>ETH</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Alex Lin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/" title="macOS 开发配置手册——设置篇">https://chaosky.tech/2016/07/29/macOS-Setup-Guide-Setting/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tools/" rel="tag"><i class="fa fa-tag"></i> Tools</a>
+              <a href="/tags/Setup-Guide/" rel="tag"><i class="fa fa-tag"></i> Setup Guide</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/07/29/macOS-Setup-Guide-Tools/" rel="prev" title="macOS 开发配置手册——工具篇">
+                  <i class="fa fa-angle-left"></i> macOS 开发配置手册——工具篇
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/08/05/Design-Inspiration/" rel="next" title="设计灵感 —— 寻找素材">
+                  设计灵感 —— 寻找素材 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2014 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-keyboard"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">139k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:27</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/xwal" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"xwal/xwal.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkxNzQ4MDMxMA==","category":"Comment","category_id":"DIC_kwDOAQq6ds4CSrDW","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<div id="hexo-adsense-hidden" style="display:none"><div hexo-adsense="ads-content"><!--REMOVE ADSENSE SCRIPT, THIS PLUGIN ALREADY OPTIMIZED THE ADSENSE JAVASCRIPT-->
+<!---->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6178635866936443"
+     data-ad-slot="4097715968"></ins>
+<!--script>
+     
+</script--></div></div><style>[hexo-adsense=ads-content]{display:block;background:#fff url(//i.imgur.com/mBbv90p.png) no-repeat top right;color:#303030;min-width:250px;text-align:center;margin-left:auto;margin-right:auto}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFydGljbGUtYWRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQkFDRSxRQUFBLE1BQ0EsV0FBQSxLQUFBLCtCQUFBLFVBQUEsSUFBQSxNQUNBLE1BQUEsUUFHQSxVQUFBLE1BQ0EsV0FBQSxPQUNBLFlBQUEsS0FDQSxhQUFBIiwiZmlsZSI6ImFydGljbGUtYWRzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIipbaGV4by1hZHNlbnNlPVwiYWRzLWNvbnRlbnRcIl0ge1xuICBkaXNwbGF5OiBibG9jaztcbiAgYmFja2dyb3VuZDogI2ZmZiB1cmwoLy9pLmltZ3VyLmNvbS9tQmJ2OTBwLnBuZykgbm8tcmVwZWF0IHRvcCByaWdodDtcbiAgY29sb3I6ICMzMDMwMzA7XG4gIC8qbWluLWhlaWdodDogMThweDtcbiAgbWluLXdpZHRoOiA4MXB4OyovXG4gIG1pbi13aWR0aDogMjUwcHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbiJdfQ== */
+</style><script>const isBrowser=new Function("try {return this===window;}catch(e){ return false;}"),hexoAdsenseConfig=JSON.parse(document.getElementById("hexo-adsense-config").textContent);function insertAfter(e,t){if(t&&e){let n=t.parentNode;n.lastChild==t?n.appendChild(e):n.insertBefore(e,t.nextSibling)}else console.error("cannot insert element")}function replaceWith(e,t){if(t.parentNode)t.parentNode.replaceChild(e,t);else{console.log(t,"parent null"),document.createElement("div").appendChild(t)}}let createElementFromHTML=function(e){if(e instanceof HTMLElement)return e;var t=document.createElement("div");return t.innerHTML=e.trim(),t.firstChild};function ranumb(e,t){return Math.floor(Math.random()*(t-e+1)+e)}function newMethod(){const e=document.getElementById("hexo-adsense-hidden");let t=e.querySelectorAll('[hexo-adsense="ads-content"]'),n=document.querySelectorAll("article");if(n.length>0&&t.length>0){let o;if(1==n.length){console.log("webpage is post");let l=n.item(0);const r=l.querySelectorAll("*[hexo-adsense-fill]");if(r.length>0)for(let e=0;e<r.length;e++){const n=r[e];void 0!==t[e]&&n.appendChild(t[e])}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("h1,h2,h3,h4,h5,h6,pre");if(e.length>0){let n=Array.apply(null,{length:e.length}).map(Number.call,Number);for(let l=0;l<t.length;l++){o=t[l];const r=shuffleArr2(n).next().value;if("number"==typeof r){const t=e.item(r);insertAfter(createElementFromHTML(o),t)}}}}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("br,hr");if(e.length>0){const n=shuffleArr2(Array.apply(null,{length:e.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=n.next().value;if("number"==typeof r){const t=e.item(r);if(["blockquote","img","a","pre","code","em","strong","i","u"].includes(t.parentNode.tagName.toLowerCase())){l--;continue}replaceWith(createElementFromHTML(o),t)}}}}}else{console.log("webpage is not post"),n.length||(n=document.querySelectorAll('[class*="recent-post-item"]'));const e=shuffleArr2(Array.apply(null,{length:n.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=e.next().value;if("number"==typeof r){n.item(r).appendChild(createElementFromHTML(o))}}}adsensePush()}}function shuffleArr(e){for(var t,n=e.length,o=0;n--;)o=Math.floor(Math.random()*(n+1)),t=e[n],e[n]=e[o],e[o]=t;return e}function*shuffleArr2(e){for(var t=e.length;t--;)yield e.splice(Math.floor(Math.random()*(t+1)),1)[0]}function adsensePush(){for(let e=0;e<document.querySelectorAll('[hexo-adsense="ads-content"]').length;e++)(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:hexoAdsenseConfig.pub})}isBrowser()?(window.__tcfapi=(e,t,n)=>{"checkConsent"===e&&n(!0),"addEventListener"===e&&n({eventStatus:"tcloaded",gdprApplies:!1},!0)},"function"==typeof document.addEventListener?document.addEventListener("DOMContentLoaded",newMethod):"function"==typeof window.attachEvent?window.attachEvent("onload",newMethod):window.onload=newMethod):module.exports={replaceWith:replaceWith,insertAfter:insertAfter};</script></body>
+</html>

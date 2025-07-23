@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <meta name="google-site-verification" content="yGwNBR-9-6B60StDh4ueJp0Io9gjnzwX0IiXkPL4Pqc">
+  <meta name="msvalidate.01" content="562E828CD9FA60A6D3CDFE1BD31D3FF3">
+  <meta name="baidu-site-verification" content="iYaX85B5Bg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chaosky.tech","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="转码技术URL转码（百分号转码）URL：只有字母和数字[0-9a-zA-Z]、一些特殊符号$-_.+!*&#39;(),[不包括双引号]、以及某些保留字，才可以不经过编码直接用于URL。 URL 编码实现1234&#x2F;&#x2F; 废弃接口- (NSString *)stringByAddingPercentEscapesUsingEncoding:(NSStringEncoding)encoding&#x2F;&#x2F; iO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 密码技术">
+<meta property="og:url" content="https://chaosky.tech/2016/06/13/iOS-Common-Crypto/index.html">
+<meta property="og:site_name" content="Alex Lin&#39;s Notes">
+<meta property="og:description" content="转码技术URL转码（百分号转码）URL：只有字母和数字[0-9a-zA-Z]、一些特殊符号$-_.+!*&#39;(),[不包括双引号]、以及某些保留字，才可以不经过编码直接用于URL。 URL 编码实现1234&#x2F;&#x2F; 废弃接口- (NSString *)stringByAddingPercentEscapesUsingEncoding:(NSStringEncoding)encoding&#x2F;&#x2F; iO">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/c/c4/Ecb_encryption.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/da/Hash_function.svg">
+<meta property="og:image" content="https://chaosky.tech/2016/06/13/iOS-Common-Crypto/2016-06-12-Snip20160612_1.png">
+<meta property="og:image" content="https://chaosky.tech/2016/06/13/iOS-Common-Crypto/2016-06-12-Snip20160612_2.png">
+<meta property="article:published_time" content="2016-06-13T12:27:03.000Z">
+<meta property="article:modified_time" content="2025-07-23T17:40:29.997Z">
+<meta property="article:author" content="Alex Lin">
+<meta property="article:tag" content="Cryptography">
+<meta property="article:tag" content="密码技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/c/c4/Ecb_encryption.png">
+
+
+<link rel="canonical" href="https://chaosky.tech/2016/06/13/iOS-Common-Crypto/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://chaosky.tech/2016/06/13/iOS-Common-Crypto/","path":"2016/06/13/iOS-Common-Crypto/","title":"iOS 密码技术"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>iOS 密码技术 | Alex Lin's Notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?QJ33ASIjWB"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.7.0/mermaid.min.js","integrity":"sha256-4+IKDqhZ/sXjc8Wtl2/MsxI4e0s1KpEVdbEP7V/Lz8U="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/addtoany.js" defer></script>
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<script id="hexo-adsense-config" type="application/json">{"enable":true,"article_ads":["source/ads/in_article.html"],"pub":"ca-pub-6178635866936443","adblock":true,"https":true,"field":"site","type":"javascript","exclude":["*.min.html","exclude/**/*"],"development":false,"args":{"_":[],"g":true},"debug":false,"safe":false,"silent":false,"env":"development","version":"7.3.0","cmd":"d","init":true,"adsense":{"enable":true,"pub":"ca-pub-6178635866936443","article_ads":["source/ads/in_article.html"],"field":"site","https":true,"adblock":true,"exclude":["*.min.html","exclude/**/*"]}}</script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178635866936443" crossorigin="anonymous"></script><link rel="alternate" href="/atom.xml" title="Alex Lin's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex Lin's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Strategy, Execution, Communication.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">100</span></a></li><li class="menu-item menu-item-作坊"><a href="/workspace/" rel="section"><i class="fa fa-cubes fa-fw"></i>作坊</a></li><li class="menu-item menu-item-技能"><a href="/skillmap/" rel="section"><i class="fa fa-atom fa-fw"></i>技能</a></li><li class="menu-item menu-item-摘录"><a href="/quotes/" rel="section"><i class="fa fa-quote-left fa-fw"></i>摘录</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-dragon fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E7%A0%81%E6%8A%80%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">转码技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#URL%E8%BD%AC%E7%A0%81%EF%BC%88%E7%99%BE%E5%88%86%E5%8F%B7%E8%BD%AC%E7%A0%81%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">URL转码（百分号转码）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#URL-%E7%BC%96%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">URL 编码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL-%E8%A7%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">URL 解码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">1.1.3.</span> <span class="nav-text">参考链接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Base64-%E8%BD%AC%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">Base64 转码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Base64%E7%B4%A2%E5%BC%95%E8%A1%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">Base64索引表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A%E7%BC%96%E7%A0%81%E3%80%8EMan%E3%80%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">例子：编码『Man』</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Base64-%E7%BC%96%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.3.</span> <span class="nav-text">Base64 编码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Base64-%E8%A7%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.4.</span> <span class="nav-text">Base64 解码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81%EF%BC%88%E5%85%B1%E4%BA%AB%E5%AF%86%E9%92%A5%E5%AF%86%E7%A0%81%EF%BC%89%E2%80%94%E2%80%94%E7%94%A8%E7%9B%B8%E5%90%8C%E7%9A%84%E5%AF%86%E9%92%A5%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86"><span class="nav-number">2.</span> <span class="nav-text">对称密码（共享密钥密码）——用相同的密钥进行加密和解密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E6%80%A7%E5%AF%86%E7%A0%81%E6%9C%AC%E2%80%94%E2%80%94%E7%BB%9D%E5%AF%B9%E4%B8%8D%E4%BC%9A%E8%A2%AB%E7%A0%B4%E8%AF%91%E7%9A%84%E5%AF%86%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">一次性密码本——绝对不会被破译的密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DES%EF%BC%88Data-Encryption-Standard%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">DES（Data Encryption Standard）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DES%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.1.</span> <span class="nav-text">DES加密实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DES%E8%A7%A3%E5%AF%86%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.2.</span> <span class="nav-text">DES解密实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5-2"><span class="nav-number">2.2.3.</span> <span class="nav-text">参考链接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3DES%EF%BC%88-Triple-Data-Encryption-Standard%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">3DES（ Triple Data Encryption Standard）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AES%EF%BC%88Advanced-Encryption-Standard%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">AES（Advanced Encryption Standard）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86-%E8%A7%A3%E5%AF%86%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.5.</span> <span class="nav-text">对称加密&#x2F;解密实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CCOperation%EF%BC%9A%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E6%93%8D%E4%BD%9C"><span class="nav-number">2.5.1.</span> <span class="nav-text">CCOperation：加密解密操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CCAlgorithm%EF%BC%9A%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">2.5.2.</span> <span class="nav-text">CCAlgorithm：加密算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CCOptions%EF%BC%9A%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9"><span class="nav-number">2.5.3.</span> <span class="nav-text">CCOptions：配置选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#key%E3%80%81keyLength%EF%BC%9A%E5%AF%86%E9%92%A5%E9%95%BF%E5%BA%A6"><span class="nav-number">2.5.4.</span> <span class="nav-text">key、keyLength：密钥长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iv%EF%BC%9A%E5%88%9D%E5%A7%8B%E5%8C%96%E5%90%91%E9%87%8F%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="nav-number">2.5.5.</span> <span class="nav-text">iv：初始化向量（可选）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dataIn%E3%80%81dataInLength%EF%BC%9A%E8%A6%81%E5%8A%A0%E5%AF%86%E6%88%96%E8%A7%A3%E5%AF%86%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">2.5.6.</span> <span class="nav-text">dataIn、dataInLength：要加密或解密的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dataOut%E3%80%81dataOutAvailable%EF%BC%9A%E5%8A%A0%E5%AF%86%E6%88%96%E8%A7%A3%E5%AF%86%E5%90%8E%E7%9A%84%E8%BE%93%E5%87%BA%E6%95%B0%E6%8D%AE"><span class="nav-number">2.5.7.</span> <span class="nav-text">dataOut、dataOutAvailable：加密或解密后的输出数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dataOutMoved"><span class="nav-number">2.5.8.</span> <span class="nav-text">dataOutMoved</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CCCryptorStatus%EF%BC%9A%E8%BF%94%E5%9B%9E%E5%8A%A0%E5%AF%86-%E8%A7%A3%E5%AF%86%E7%8A%B6%E6%80%81"><span class="nav-number">2.5.9.</span> <span class="nav-text">CCCryptorStatus：返回加密&#x2F;解密状态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E2%80%94%E2%80%94%E7%94%A8%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86%EF%BC%8C%E7%94%A8%E7%A7%81%E9%92%A5%E8%A7%A3%E5%AF%86"><span class="nav-number">3.</span> <span class="nav-text">公钥密码——用公钥加密，用私钥解密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RSA%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E5%91%BD%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">RSA密钥生成命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E5%90%91%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0%E2%80%94%E2%80%94%E8%8E%B7%E5%8F%96%E6%B6%88%E6%81%AF%E7%9A%84%E3%80%8E%E6%8C%87%E7%BA%B9%E3%80%8F"><span class="nav-number">4.</span> <span class="nav-text">单向散列函数——获取消息的『指纹』</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AF%E8%AF%AD"><span class="nav-number">4.1.</span> <span class="nav-text">术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">4.2.</span> <span class="nav-text">性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%BB%BB%E6%84%8F%E9%95%BF%E5%BA%A6%E7%9A%84%E6%B6%88%E6%81%AF%E8%AE%A1%E7%AE%97%E5%87%BA%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E7%9A%84%E6%95%A3%E5%88%97%E5%80%BC"><span class="nav-number">4.2.1.</span> <span class="nav-text">根据任意长度的消息计算出固定长度的散列值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%BD%E5%A4%9F%E5%BF%AB%E9%80%9F%E8%AE%A1%E7%AE%97%E5%87%BA%E6%95%A3%E5%88%97%E5%80%BC"><span class="nav-number">4.2.2.</span> <span class="nav-text">能够快速计算出散列值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%B8%8D%E5%90%8C%E6%95%A3%E5%88%97%E5%80%BC%E4%B9%9F%E4%B8%8D%E5%90%8C"><span class="nav-number">4.2.3.</span> <span class="nav-text">消息不同散列值也不同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B7%E5%A4%87%E5%8D%95%E5%90%91%E6%80%A7"><span class="nav-number">4.2.4.</span> <span class="nav-text">具备单向性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">4.3.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6%E6%98%AF%E5%90%A6%E8%A2%AB%E7%AF%A1%E6%94%B9"><span class="nav-number">4.3.1.</span> <span class="nav-text">检测软件是否被篡改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%8F%A3%E4%BB%A4%E7%9A%84%E5%8A%A0%E5%AF%86"><span class="nav-number">4.3.2.</span> <span class="nav-text">基于口令的加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81"><span class="nav-number">4.3.3.</span> <span class="nav-text">消息认证码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="nav-number">4.3.4.</span> <span class="nav-text">数字签名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-number">4.3.5.</span> <span class="nav-text">伪随机数生成器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E6%80%A7%E5%8F%A3%E4%BB%A4"><span class="nav-number">4.3.6.</span> <span class="nav-text">一次性口令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MD5"><span class="nav-number">4.4.</span> <span class="nav-text">MD5</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-1"><span class="nav-number">4.4.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MD5%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.4.2.</span> <span class="nav-text">MD5代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5-3"><span class="nav-number">4.4.3.</span> <span class="nav-text">参考链接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SHA%E5%AE%B6%E6%97%8F"><span class="nav-number">4.5.</span> <span class="nav-text">SHA家族</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SHA%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.5.1.</span> <span class="nav-text">SHA代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SHA-1"><span class="nav-number">4.5.1.1.</span> <span class="nav-text">SHA-1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SHA-224"><span class="nav-number">4.5.1.2.</span> <span class="nav-text">SHA-224</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SHA-256"><span class="nav-number">4.5.1.3.</span> <span class="nav-text">SHA-256</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SHA-384"><span class="nav-number">4.5.1.4.</span> <span class="nav-text">SHA-384</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SHA-512"><span class="nav-number">4.5.1.5.</span> <span class="nav-text">SHA-512</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5-4"><span class="nav-number">4.6.</span> <span class="nav-text">参考链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81-1"><span class="nav-number">5.</span> <span class="nav-text">消息认证码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">5.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HMAC%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">5.2.</span> <span class="nav-text">HMAC的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HMAC%E5%AE%9E%E7%8E%B0"><span class="nav-number">5.3.</span> <span class="nav-text">HMAC实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5-5"><span class="nav-number">5.4.</span> <span class="nav-text">参考链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-Derivation%EF%BC%88%E5%AF%86%E9%92%A5%E5%AF%BC%E5%87%BA%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">Key Derivation（密钥导出）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PBKDF2%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">6.1.</span> <span class="nav-text">PBKDF2函数的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PBKDF%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">6.1.1.</span> <span class="nav-text">PBKDF代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90"><span class="nav-number">7.</span> <span class="nav-text">随机数生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Symmetric-Key-Wrap"><span class="nav-number">8.</span> <span class="nav-text">Symmetric Key Wrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93"><span class="nav-number">9.</span> <span class="nav-text">第三方库</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Lin"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Alex Lin</p>
+  <div class="site-description" itemprop="description">Hi, I'm an iOS engineer, focusing on mobile software development.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xwal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xwal" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaosky.me@gmail.com" title="E-Mail → mailto:chaosky.me@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://x.com/cyberxwa" title="Twitter → https:&#x2F;&#x2F;x.com&#x2F;cyberxwa" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/chaosky" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;chaosky" rel="noopener me" target="_blank"><i class="fab fa-telegram fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/06/13/iOS-Common-Crypto/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="iOS 密码技术 | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iOS 密码技术<a href="https://github.com/xwal/xwal.github.io/edit/source/source/_posts/2016-06-13-iOS-Common-Crypto.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-06-13 12:27:03" itemprop="dateCreated datePublished" datetime="2016-06-13T12:27:03+00:00">2016-06-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-23 17:40:29" itemprop="dateModified" datetime="2025-07-23T17:40:29+00:00">2025-07-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>22 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="转码技术"><a href="#转码技术" class="headerlink" title="转码技术"></a>转码技术</h2><h3 id="URL转码（百分号转码）"><a href="#URL转码（百分号转码）" class="headerlink" title="URL转码（百分号转码）"></a>URL转码（百分号转码）</h3><p>URL：只有字母和数字[0-9a-zA-Z]、一些特殊符号<code>$-_.+!*&#39;(),[不包括双引号]</code>、以及某些保留字，才可以不经过编码直接用于URL。</p>
+<h4 id="URL-编码实现"><a href="#URL-编码实现" class="headerlink" title="URL 编码实现"></a>URL 编码实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 废弃接口</span><br><span class="line">- (NSString *)stringByAddingPercentEscapesUsingEncoding:(NSStringEncoding)encoding</span><br><span class="line">// iOS 7 之后</span><br><span class="line">- (NSString *)stringByAddingPercentEncodingWithAllowedCharacters:(NSCharacterSet *)allowedCharacters</span><br></pre></td></tr></table></figure>
+
+<h4 id="URL-解码实现"><a href="#URL-解码实现" class="headerlink" title="URL 解码实现"></a>URL 解码实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 废弃接口</span><br><span class="line">- (NSString *)stringByReplacingPercentEscapesUsingEncoding:(NSStringEncoding)encoding</span><br><span class="line">// iOS 7 之后</span><br><span class="line">@property(readonly, copy) NSString *stringByRemovingPercentEncoding</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/tags/html_ref_urlencode.html">http://www.w3school.com.cn/tags/html_ref_urlencode.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%99%BE%E5%88%86%E5%8F%B7%E7%BC%96%E7%A0%81">维基百科</a></li>
+<li><a target="_blank" rel="noopener" href="http://tool.oschina.net/encode?type=4">在线工具</a></li>
+</ul>
+<span id="more"></span>
+
+<h3 id="Base64-转码"><a href="#Base64-转码" class="headerlink" title="Base64 转码"></a>Base64 转码</h3><p>Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。它可用来作为电子邮件的传输编码。在Base64中的可打印字符包括字母A-Z、a-z、数字0-9，这样共有62个字符，此外两个可打印符号在不同的系统中而不同。</p>
+<h4 id="Base64索引表"><a href="#Base64索引表" class="headerlink" title="Base64索引表"></a>Base64索引表</h4><p>数值	字符	 	数值	字符	 	数值	字符	 	数值	字符<br>0	A	16	Q	32	g	48	w<br>1	B	17	R	33	h	49	x<br>2	C	18	S	34	i	50	y<br>3	D	19	T	35	j	51	z<br>4	E	20	U	36	k	52	0<br>5	F	21	V	37	l	53	1<br>6	G	22	W	38	m	54	2<br>7	H	23	X	39	n	55	3<br>8	I	24	Y	40	o	56	4<br>9	J	25	Z	41	p	57	5<br>10	K	26	a	42	q	58	6<br>11	L	27	b	43	r	59	7<br>12	M	28	c	44	s	60	8<br>13	N	29	d	45	t	61	9<br>14	O	30	e	46	u	62	+<br>15	P	31	f	47	v	63	&#x2F;</p>
+<h4 id="例子：编码『Man』"><a href="#例子：编码『Man』" class="headerlink" title="例子：编码『Man』"></a>例子：编码『Man』</h4><p>文本：Man</p>
+<p>ASCII编码：77 97 110</p>
+<p>二进制位：01001101 01100001 01101110</p>
+<p>索引：19 22 5 46</p>
+<p>Base64编码：TWFu</p>
+<p>如果要编码的字节数不能被3整除，最后会多出1个或2个字节，那么可以使用下面的方法进行处理：先使用0字节值在末尾补足，使其能够被3整除，然后再进行base64的编码。在编码后的base64文本后加上一个或两个’&#x3D;’号，代表补足的字节数。也就是说，当最后剩余一个八位字节（一个byte）时，最后一个6位的base64字节块有四位是0值，最后附加上两个等号；如果最后剩余两个八位字节（2个byte）时，最后一个6位的base字节块有两位是0值，最后附加一个等号。</p>
+<h4 id="Base64-编码实现"><a href="#Base64-编码实现" class="headerlink" title="Base64 编码实现"></a>Base64 编码实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (NSData *)base64EncodedDataWithOptions:(NSDataBase64EncodingOptions)options</span><br><span class="line">- (NSString *)base64EncodedStringWithOptions:(NSDataBase64EncodingOptions)options</span><br></pre></td></tr></table></figure>
+
+<h4 id="Base64-解码实现"><a href="#Base64-解码实现" class="headerlink" title="Base64 解码实现"></a>Base64 解码实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)initWithBase64EncodedData:(NSData *)base64Data options:(NSDataBase64DecodingOptions)options</span><br><span class="line">- (instancetype)initWithBase64EncodedString:(NSString *)base64String options:(NSDataBase64DecodingOptions)options</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考链接-1"><a href="#参考链接-1" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/Base64">维基百科</a></li>
+<li><a target="_blank" rel="noopener" href="http://tool.oschina.net/encrypt?type=3">http://tool.oschina.net/encrypt?type=3</a></li>
+</ul>
+<h2 id="对称密码（共享密钥密码）——用相同的密钥进行加密和解密"><a href="#对称密码（共享密钥密码）——用相同的密钥进行加密和解密" class="headerlink" title="对称密码（共享密钥密码）——用相同的密钥进行加密和解密"></a>对称密码（共享密钥密码）——用相同的密钥进行加密和解密</h2><h3 id="一次性密码本——绝对不会被破译的密码"><a href="#一次性密码本——绝对不会被破译的密码" class="headerlink" title="一次性密码本——绝对不会被破译的密码"></a>一次性密码本——绝对不会被破译的密码</h3><p>一次性密码本是一种非常简单的密码，它的原理是『将明文与一串随机的比特序列进行XOR运算』。</p>
+<p>为什么一次性密码本是绝对无法破译的呢？我们假设对一次性密码本的密文尝试进行暴力破解，那么总有一天我们会尝试到和加密时相同的密钥，<strong>但是我们无法判断它是否是正确的明文</strong>。</p>
+<p>一次性密码本是<strong>无条件安全的，在理论上是无法破译的。</strong></p>
+<h3 id="DES（Data-Encryption-Standard）"><a href="#DES（Data-Encryption-Standard）" class="headerlink" title="DES（Data Encryption Standard）"></a>DES（Data Encryption Standard）</h3><p>DES是一种将64比特的明文加密成64比特的密文的对称密码算法，他的密钥长度是56比特。尽管从规格上来说，DES的密钥长度是64比特，但由于每隔7比特会设置一个用于错误检测的比特，因此实质上器密钥长度是56比特。</p>
+<p><strong>PS：现在DES已经能够被暴力破解。</strong></p>
+<h4 id="DES加密实现"><a href="#DES加密实现" class="headerlink" title="DES加密实现"></a>DES加密实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> *  DES加密</span><br><span class="line"> *</span><br><span class="line"> *  @param data 加密的二进制数据</span><br><span class="line"> *  @param key  加密的密钥，长度为8字节</span><br><span class="line"> *  @param iv   初始化向量，每次加密时都会随机产生一个不同的比特序列来作为初始化向量</span><br><span class="line"> *</span><br><span class="line"> *  @return 加密后的二进制数据</span><br><span class="line"> */</span><br><span class="line">NSData * desEncrypt(NSData * data, NSData * key, NSData * iv)</span><br><span class="line">&#123;</span><br><span class="line">	// 密码长度为8字节  </span><br><span class="line">    if ([key length] != 8) &#123;</span><br><span class="line">        @throw [NSException exceptionWithName:@&quot;DES Encrypt&quot;</span><br><span class="line">                                       reason:@&quot;Length of key is wrong. Length of iv should be 8(64bits)&quot;</span><br><span class="line">                                     userInfo:nil];</span><br><span class="line">    &#125;</span><br><span class="line">    // 加密后的数据长度为数据长度+DES block size</span><br><span class="line">    size_t bufferSize = [data length] + kCCBlockSizeDES;</span><br><span class="line">    void * buffer = malloc(bufferSize);</span><br><span class="line">    size_t encryptedSize = 0;</span><br><span class="line">    // DES加密</span><br><span class="line">    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,</span><br><span class="line">                                          kCCAlgorithmDES,</span><br><span class="line">                                          kCCOptionPKCS7Padding,</span><br><span class="line">                                          [key bytes], kCCKeySizeDES,</span><br><span class="line">                                          [iv bytes],</span><br><span class="line">                                          [data bytes],</span><br><span class="line">                                          [data length],</span><br><span class="line">                                          buffer, bufferSize,</span><br><span class="line">                                          &amp;encryptedSize);</span><br><span class="line">  	// 判断加密是否成功</span><br><span class="line">    if (cryptStatus == kCCSuccess) &#123;</span><br><span class="line">        NSData * encryptedData = [NSData dataWithBytes:buffer length:encryptedSize];</span><br><span class="line">        free(buffer);</span><br><span class="line">        return encryptedData;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        free(buffer);</span><br><span class="line">        @throw [NSException exceptionWithName:@&quot;DES Encrypt&quot;</span><br><span class="line">                                       reason:@&quot;Encrypt Error!&quot;</span><br><span class="line">                                     userInfo:nil];</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="DES解密实现"><a href="#DES解密实现" class="headerlink" title="DES解密实现"></a>DES解密实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> *  DES 解密</span><br><span class="line"> *</span><br><span class="line"> *  @param data 解密的二进制数据</span><br><span class="line"> *  @param key  解密的密钥，长度8字节</span><br><span class="line"> *  @param iv   初始化向量</span><br><span class="line"> *</span><br><span class="line"> *  @return 解密后的数据</span><br><span class="line"> */</span><br><span class="line">NSData *desDecrypt(NSData * data, NSData * key, NSData * iv)</span><br><span class="line">&#123;</span><br><span class="line">    if ([key length] != 8) &#123;</span><br><span class="line">        @throw [NSException exceptionWithName:@&quot;DES Encrypt&quot;</span><br><span class="line">                                       reason:@&quot;Length of key is wrong. Length of iv should be 8(64bits)&quot;</span><br><span class="line">                                     userInfo:nil];</span><br><span class="line">    &#125;</span><br><span class="line">    // 加密后的数据长度为数据长度+DES block size</span><br><span class="line">    size_t bufferSize = [data length] + kCCBlockSizeDES;</span><br><span class="line">    void * buffer = malloc(bufferSize);</span><br><span class="line">    size_t decryptedSize = 0;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt,</span><br><span class="line">                                          kCCAlgorithmDES,</span><br><span class="line">                                          kCCOptionPKCS7Padding,</span><br><span class="line">                                          [key bytes], kCCKeySizeDES,</span><br><span class="line">                                          [iv bytes],</span><br><span class="line">                                          [data bytes],</span><br><span class="line">                                          [data length],</span><br><span class="line">                                          buffer, bufferSize,</span><br><span class="line">                                          &amp;decryptedSize);</span><br><span class="line">    if (cryptStatus == kCCSuccess) &#123;</span><br><span class="line">        NSData * decryptedData = [NSData dataWithBytes:buffer length:decryptedSize];</span><br><span class="line">        free(buffer);</span><br><span class="line">        return decryptedData;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        free(buffer);</span><br><span class="line">        @throw [NSException exceptionWithName:@&quot;DES Decrypt&quot;</span><br><span class="line">                                       reason:@&quot;Decrypt Error!&quot;</span><br><span class="line">                                     userInfo:nil];</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考链接-2"><a href="#参考链接-2" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%A8%99%E6%BA%96">https://zh.wikipedia.org/wiki/資料加密標準</a></li>
+</ul>
+<h3 id="3DES（-Triple-Data-Encryption-Standard）"><a href="#3DES（-Triple-Data-Encryption-Standard）" class="headerlink" title="3DES（ Triple Data Encryption Standard）"></a>3DES（ Triple Data Encryption Standard）</h3><p>** 三重DES（triple-DES）** 是为了增加DES的强度，将DES重复3次所得到的一种密码算法，通常缩写为<strong>3DES</strong>。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%B8%89%E9%87%8D%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%BC%94%E7%AE%97%E6%B3%95">https://zh.wikipedia.org/wiki/三重資料加密演算法</a></li>
+</ul>
+<h3 id="AES（Advanced-Encryption-Standard）"><a href="#AES（Advanced-Encryption-Standard）" class="headerlink" title="AES（Advanced Encryption Standard）"></a>AES（Advanced Encryption Standard）</h3><p>高级加密标准（英语：Advanced Encryption Standard，缩写：AES），在密码学中又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES，已经被多方分析且广为全世界所使用。经过五年的甄选流程，高级加密标准由美国国家标准与技术研究院（NIST）于2001年11月26日发布于FIPS PUB 197，并在2002年5月26日成为有效的标准。2006年，高级加密标准已然成为对称密钥加密中最流行的算法之一。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86">https://zh.wikipedia.org/wiki/高级加密标准</a></li>
+</ul>
+<h3 id="对称加密-解密实现"><a href="#对称加密-解密实现" class="headerlink" title="对称加密&#x2F;解密实现"></a>对称加密&#x2F;解密实现</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CCCryptorStatus CCCrypt(</span><br><span class="line">    CCOperation op,         /* kCCEncrypt, etc. */</span><br><span class="line">    CCAlgorithm alg,        /* kCCAlgorithmAES128, etc. */</span><br><span class="line">    CCOptions options,      /* kCCOptionPKCS7Padding, etc. */</span><br><span class="line">    const void *key,</span><br><span class="line">    size_t keyLength,</span><br><span class="line">    const void *iv,         /* optional initialization vector */</span><br><span class="line">    const void *dataIn,     /* optional per op and alg */</span><br><span class="line">    size_t dataInLength,</span><br><span class="line">    void *dataOut,          /* data RETURNED here */</span><br><span class="line">    size_t dataOutAvailable,</span><br><span class="line">    size_t *dataOutMoved)</span><br></pre></td></tr></table></figure>
+
+<h4 id="CCOperation：加密解密操作"><a href="#CCOperation：加密解密操作" class="headerlink" title="CCOperation：加密解密操作"></a>CCOperation：加密解密操作</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/*!</span><br><span class="line">    @enum       CCOperation</span><br><span class="line">    @abstract   密码操作类型.</span><br><span class="line"></span><br><span class="line">    @constant   kCCEncrypt  对称加密.</span><br><span class="line">    @constant   kCCDecrypt  对称解密.</span><br><span class="line">*/</span><br><span class="line">enum &#123;</span><br><span class="line">    kCCEncrypt = 0,</span><br><span class="line">    kCCDecrypt,     </span><br><span class="line">&#125;;</span><br><span class="line">typedef uint32_t CCOperation;</span><br></pre></td></tr></table></figure>
+
+<h4 id="CCAlgorithm：加密算法"><a href="#CCAlgorithm：加密算法" class="headerlink" title="CCAlgorithm：加密算法"></a>CCAlgorithm：加密算法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">/*!</span><br><span class="line">    @enum       CCAlgorithm</span><br><span class="line">    @abstract   Encryption algorithms implemented by this module.</span><br><span class="line"></span><br><span class="line">    @constant   kCCAlgorithmAES128  Advanced Encryption Standard, 128-bit block</span><br><span class="line">                                    This is kept for historical reasons.  It&#x27;s</span><br><span class="line">                                    preferred now to use kCCAlgorithmAES since</span><br><span class="line">                                    128-bit blocks are part of the standard.</span><br><span class="line">    @constant   kCCAlgorithmAES     Advanced Encryption Standard, 128-bit block</span><br><span class="line">    @constant   kCCAlgorithmDES     Data Encryption Standard</span><br><span class="line">    @constant   kCCAlgorithm3DES    Triple-DES, three key, EDE configuration</span><br><span class="line">    @constant   kCCAlgorithmCAST    CAST</span><br><span class="line"> 	@constant   kCCAlgorithmRC4     RC4 stream cipher</span><br><span class="line"> 	@constant   kCCAlgorithmBlowfish    Blowfish block cipher</span><br><span class="line">*/</span><br><span class="line">enum &#123;</span><br><span class="line">    kCCAlgorithmAES128 = 0,</span><br><span class="line">    kCCAlgorithmAES = 0,</span><br><span class="line">    kCCAlgorithmDES,</span><br><span class="line">    kCCAlgorithm3DES,       </span><br><span class="line">    kCCAlgorithmCAST,       </span><br><span class="line">    kCCAlgorithmRC4,</span><br><span class="line">    kCCAlgorithmRC2,   </span><br><span class="line">    kCCAlgorithmBlowfish    </span><br><span class="line">&#125;;</span><br><span class="line">typedef uint32_t CCAlgorithm;</span><br></pre></td></tr></table></figure>
+
+<h4 id="CCOptions：配置选项"><a href="#CCOptions：配置选项" class="headerlink" title="CCOptions：配置选项"></a>CCOptions：配置选项</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment">    <span class="doctag">@enum</span>       CCOptions</span></span><br><span class="line"><span class="comment">    <span class="doctag">@abstract</span>   Options flags, passed to CCCryptorCreate().</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    <span class="doctag">@constant</span>   kCCOptionPKCS7Padding   Perform PKCS7 padding.</span></span><br><span class="line"><span class="comment">    <span class="doctag">@constant</span>   kCCOptionECBMode        Electronic Code Book Mode.</span></span><br><span class="line"><span class="comment">                                        Default is CBC.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> </span>&#123;</span><br><span class="line">    <span class="comment">/* options for block ciphers */</span></span><br><span class="line">    kCCOptionPKCS7Padding   = <span class="number">0x0001</span>,</span><br><span class="line">    kCCOptionECBMode        = <span class="number">0x0002</span></span><br><span class="line">    <span class="comment">/* stream ciphers currently have no options */</span></span><br><span class="line">&#125;;</span><br><span class="line">typedef uint32_t CCOptions;</span><br></pre></td></tr></table></figure>
+
+<p>PKCS：Public Key Cryptography Standards，公钥加密标准</p>
+<p>PKCS7：密码消息语法标准（Cryptographic Message Syntax Standard）</p>
+<p>ECB：电子密码本（Electronic codebook，ECB）模式。需要加密的消息按照块密码的块大小被分为数个块，并对每个块进行独立加密。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Ecb_encryption.png"></p>
+<p>CBC：在CBC模式中，每个平文块先与前一个密文块进行异或后，再进行加密。在这种方法中，每个密文块都依赖于它前面的所有平文块。同时，为了保证每条消息的唯一性，在第一个块中需要使用初始化向量。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png"></p>
+<h4 id="key、keyLength：密钥长度"><a href="#key、keyLength：密钥长度" class="headerlink" title="key、keyLength：密钥长度"></a>key、keyLength：密钥长度</h4><p>密钥长度必须为指定的长度。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">enum &#123;</span><br><span class="line">    kCCKeySizeAES128          = 16,</span><br><span class="line">    kCCKeySizeAES192          = 24,</span><br><span class="line">    kCCKeySizeAES256          = 32,</span><br><span class="line">    kCCKeySizeDES             = 8,</span><br><span class="line">    kCCKeySize3DES            = 24,</span><br><span class="line">    kCCKeySizeMinCAST         = 5,</span><br><span class="line">    kCCKeySizeMaxCAST         = 16,</span><br><span class="line">    kCCKeySizeMinRC4          = 1,</span><br><span class="line">    kCCKeySizeMaxRC4          = 512,</span><br><span class="line">    kCCKeySizeMinRC2          = 1,</span><br><span class="line">    kCCKeySizeMaxRC2          = 128,</span><br><span class="line">    kCCKeySizeMinBlowfish     = 8,</span><br><span class="line">    kCCKeySizeMaxBlowfish     = 56,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="iv：初始化向量（可选）"><a href="#iv：初始化向量（可选）" class="headerlink" title="iv：初始化向量（可选）"></a>iv：初始化向量（可选）</h4><p>初始化向量（IV，Initialization Vector）是许多工作模式中用于随机化加密的一块数据，因此可以由相同的明文，相同的密钥产生不同的密文，而无需重新产生密钥，避免了通常相当复杂的这一过程。</p>
+<p><strong>用于CBC模式</strong>。如果存在，必须和选择算法的block size一样长。</p>
+<p>如果使用ECB模式或者使用流式密码算法将自动忽略。</p>
+<p><code>Byte iv[] = &#123;0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF&#125;;</code></p>
+<h4 id="dataIn、dataInLength：要加密或解密的数据"><a href="#dataIn、dataInLength：要加密或解密的数据" class="headerlink" title="dataIn、dataInLength：要加密或解密的数据"></a>dataIn、dataInLength：要加密或解密的数据</h4><h4 id="dataOut、dataOutAvailable：加密或解密后的输出数据"><a href="#dataOut、dataOutAvailable：加密或解密后的输出数据" class="headerlink" title="dataOut、dataOutAvailable：加密或解密后的输出数据"></a>dataOut、dataOutAvailable：加密或解密后的输出数据</h4><p>创建对应算法需要的输出数据字节大小。输出数据的bufferSize足够大，大约要加密数据的长度+kCCBlockSize长度。</p>
+<p>示例如下，DES加密解密需要的内存块大小。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">size_t bufferSize = [data length] + kCCBlockSizeDES;</span><br><span class="line">void *buffer = malloc(bufferSize);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/*!</span><br><span class="line">    @enum           Block sizes</span><br><span class="line"></span><br><span class="line">    @discussion     Block sizes, in bytes, for supported algorithms.</span><br><span class="line"></span><br><span class="line">    @constant kCCBlockSizeAES128    AES block size (currently, only 128-bit</span><br><span class="line">                                    blocks are supported).</span><br><span class="line">    @constant kCCBlockSizeDES       DES block size.</span><br><span class="line">    @constant kCCBlockSize3DES      Triple DES block size.</span><br><span class="line">    @constant kCCBlockSizeCAST      CAST block size.</span><br><span class="line">*/</span><br><span class="line">enum &#123;</span><br><span class="line">    /* AES */</span><br><span class="line">    kCCBlockSizeAES128        = 16,</span><br><span class="line">    /* DES */</span><br><span class="line">    kCCBlockSizeDES           = 8,</span><br><span class="line">    /* 3DES */</span><br><span class="line">    kCCBlockSize3DES          = 8,</span><br><span class="line">    /* CAST */</span><br><span class="line">    kCCBlockSizeCAST          = 8,</span><br><span class="line">    kCCBlockSizeRC2           = 8,</span><br><span class="line">    kCCBlockSizeBlowfish      = 8,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="dataOutMoved"><a href="#dataOutMoved" class="headerlink" title="dataOutMoved"></a>dataOutMoved</h4><p>成功时，返回写入到dataOut内存块中字节数。</p>
+<p>kCCBufferTooSmall时，返回需要提供不足的内存空间大小。</p>
+<h4 id="CCCryptorStatus：返回加密-解密状态"><a href="#CCCryptorStatus：返回加密-解密状态" class="headerlink" title="CCCryptorStatus：返回加密&#x2F;解密状态"></a>CCCryptorStatus：返回加密&#x2F;解密状态</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">enum &#123;</span><br><span class="line">    kCCSuccess          = 0,</span><br><span class="line">    kCCParamError       = -4300,</span><br><span class="line">    kCCBufferTooSmall   = -4301,</span><br><span class="line">    kCCMemoryFailure    = -4302,</span><br><span class="line">    kCCAlignmentError   = -4303,</span><br><span class="line">    kCCDecodeError      = -4304,</span><br><span class="line">    kCCUnimplemented    = -4305,</span><br><span class="line">    kCCOverflow         = -4306,</span><br><span class="line">    kCCRNGFailure       = -4307,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="公钥密码——用公钥加密，用私钥解密"><a href="#公钥密码——用公钥加密，用私钥解密" class="headerlink" title="公钥密码——用公钥加密，用私钥解密"></a>公钥密码——用公钥加密，用私钥解密</h2><p>公钥密码（public-key cryptography）中，密钥分为加密密钥和解密密钥两种，发送者用加密密钥对消息进行加密，接收者用解密密钥对密文进行解密。</p>
+<p>仔细思考一下加密密钥和解密密钥的区别，我们可以发现：</p>
+<ul>
+<li>发送者只需要加密密钥</li>
+<li>接收者只需要解密密钥</li>
+<li>解密密钥不可以被窃听者获取</li>
+<li>加密密钥被窃听者获取也没问题</li>
+</ul>
+<p>公钥密码中，加密密钥一般是公开的。正是由于加密密钥可以任意公开，因此该密钥被称为<strong>公钥（public key）</strong>。当然，我们也没有必要将公钥公开给全世界所有的人，但至少我们需要将公钥发送给需要使用公钥进行加密的通信对象（也就是给自己发送密文的发送者）。</p>
+<p>相对地，解密密钥是绝对不能公开的，这个密钥只能由你自己来使用，一次成为<strong>私钥（private key）</strong>。私钥不可以被别人知道，也不可以将它发送给别人，甚至也不能发送给自己的通信对象。</p>
+<p>公钥和私钥是一一对应的，一对公钥和私钥统称为<strong>密钥对（key pair）</strong>，由公钥进行加密的密文，必须使用与该公钥配对的私钥才能够解密。密钥对中的两个密钥之间具有非常密切的关系——数学上的关系——因此公钥和私钥是不能分别单独生成的。</p>
+<p>公钥密码的使用者需要生成一个包括公钥和私钥的密钥对，其中公钥会发送给别人，而私钥则仅供自己使用。</p>
+<p>常见的公钥加密算法有：RSA、ElGamal、背包算法、Rabin（RSA的特例）、迪菲－赫尔曼密钥交换协议中的公钥加密算法、椭圆曲线加密算法（英语：Elliptic Curve Cryptography, ECC）。使用最广泛的是RSA算法（由发明者Rivest、Shmir和Adleman姓氏首字母缩写而来）是著名的公开金钥加密算法，ElGamal是另一种常用的非对称加密算法。</p>
+<p><strong>RSA加密算法</strong>是一种<strong>非对称加密算法</strong>。在公开密钥加密和电子商业中RSA被广泛使用。</p>
+<h3 id="RSA密钥生成命令"><a href="#RSA密钥生成命令" class="headerlink" title="RSA密钥生成命令"></a>RSA密钥生成命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 生成RSA私钥</span><br><span class="line">$ openssl genrsa -out rsa_private_key.pem 1024</span><br><span class="line">// 生成RSA公钥</span><br><span class="line">$ openssl rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem</span><br><span class="line">// 将RSA私钥转换成PKCS8格式</span><br><span class="line">openssl pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt</span><br></pre></td></tr></table></figure>
+
+<h2 id="单向散列函数——获取消息的『指纹』"><a href="#单向散列函数——获取消息的『指纹』" class="headerlink" title="单向散列函数——获取消息的『指纹』"></a>单向散列函数——获取消息的『指纹』</h2><p>散列函数（或散列算法，又称哈希函数，英语：Hash Function）是一种从任何一种数据中创建小的数字“指纹”的方法。散列函数把消息或数据压缩成摘要，使得数据量变小，将数据的格式固定下来。该函数将数据打乱混合，重新创建一个叫做散列值（hash values，hash codes，hash sums，或hashes）的指纹。散列值通常用来代表一个短的随机字母和数字组成的字符串。好的散列函数在输入域中很少出现散列冲突。在散列表和数据处理中，不抑制冲突来区别数据，会使得数据库记录更难找到。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Hash_function.svg" alt="散列函数的工作原理"></p>
+<p>单向散列函数，就是把任意长的输入消息串变化成固定长的输出串且由输出串难以得到输入串的一种函数。这个输出串称为该消息的散列值。</p>
+<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><p><strong>单向散列函数</strong>：也称为<strong>消息摘要函数</strong>（message digest function），<strong>哈希函数</strong>或者<strong>杂凑函数</strong>。</p>
+<p>输入单向散列函数的<strong>消息</strong>也称为<strong>原像</strong>（pre-image）。</p>
+<p>单向散列函数输出的<strong>散列值</strong>也称为<strong>消息摘要</strong>（message digest）或者<strong>指纹</strong>（fingerprint）。</p>
+<p>完整性也称为一致性。</p>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ul>
+<li><h4 id="根据任意长度的消息计算出固定长度的散列值"><a href="#根据任意长度的消息计算出固定长度的散列值" class="headerlink" title="根据任意长度的消息计算出固定长度的散列值"></a>根据任意长度的消息计算出固定长度的散列值</h4><p>首先，单向散列函数的输入必须能够使任意长度的消息。其次，无论输入多长的消息，单向散列函数必须都能够生成长度很短的散列值，散列值的长度最好是短且固定的。</p>
+</li>
+<li><h4 id="能够快速计算出散列值"><a href="#能够快速计算出散列值" class="headerlink" title="能够快速计算出散列值"></a>能够快速计算出散列值</h4></li>
+<li><h4 id="消息不同散列值也不同"><a href="#消息不同散列值也不同" class="headerlink" title="消息不同散列值也不同"></a>消息不同散列值也不同</h4><p>当给定某条消息的散列值时，单向散列函数必须确保<strong>要找到和该条消息具备相同散列值的另外一条消息是非常困难的</strong>。这一性质称为『<strong>弱抗碰撞性</strong>』。单向散列函数都必须具备弱抗碰撞性。</p>
+<p>和弱抗碰撞性相对的，还有强抗碰撞性，所谓强抗碰撞性，是指<strong>要找到散列值相同的两条不同的消息是非常困难的</strong>。在这里，散列值可以是任意值。</p>
+</li>
+<li><h4 id="具备单向性"><a href="#具备单向性" class="headerlink" title="具备单向性"></a>具备单向性</h4><p>单向散列函数必须具备单向性，单向性指的是无法通过散列值反算出消息的性质。</p>
+</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li><h4 id="检测软件是否被篡改"><a href="#检测软件是否被篡改" class="headerlink" title="检测软件是否被篡改"></a>检测软件是否被篡改</h4></li>
+<li><h4 id="基于口令的加密"><a href="#基于口令的加密" class="headerlink" title="基于口令的加密"></a>基于口令的加密</h4><p>单向散列函数也被用于基于口令的加密（Password Based Encryption, PBE）</p>
+<p>PBE的原理是将口令和盐（salt，通过伪随机数生成器产生的随机值）混合后计算其散列值，然后将这个散列值用作加密的密钥。</p>
+</li>
+<li><h4 id="消息认证码"><a href="#消息认证码" class="headerlink" title="消息认证码"></a>消息认证码</h4><p>消息认证码是将『发送者和接收者之间的共享密钥』和『消息』进行混合后计算出的散列值。使用消息认证码可以检测并防止通信过程中的错误、篡改以及伪装。</p>
+</li>
+<li><h4 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h4><p>数字签名是现实社会中的签名（sign）和盖章这样的行为在数字世界中实现。数字签名的处理过程非常耗时，一次一般不会对整个消息内容直接施加数字签名，而是先通过单向散列函数计算出消息的散列值，然后再对这个散列值施加数字签名。</p>
+</li>
+<li><h4 id="伪随机数生成器"><a href="#伪随机数生成器" class="headerlink" title="伪随机数生成器"></a>伪随机数生成器</h4><p>密码技术中所使用的随机数需要具备『事实上不可能根据过去的随机数列预测未来的随机数列』这样的性质。为了保证不可预测性，可以利用单向散列函数的单向性。</p>
+</li>
+<li><h4 id="一次性口令"><a href="#一次性口令" class="headerlink" title="一次性口令"></a>一次性口令</h4><p>一次性口令经常被用于服务器对客户端的合法性认证。在这种方式中，通过使用单向散列函数可以保证口令只在通信链路上传送一次，因此即使窃听者窃取了口令，也无法使用。</p>
+</li>
+</ul>
+<h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p>MD5消息摘要算法（英语：MD5 Message-Digest Algorithm），一种被广泛使用的密码散列函数，可以产生出一个128位（16字节）的散列值（hash value），用于确保信息传输完整一致。</p>
+<p><strong>PS：已发现碰撞。</strong></p>
+<h4 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h4><p>MD5已经广泛使用在为文件传输提供一定的可靠性方面。例如，服务器预先提供一个MD5校验和，用户下载完文件以后，用MD5算法计算下载文件的MD5校验和，然后通过检查这两个校验和是否一致，就能判断下载的文件是否出错。</p>
+<p>MD5亦有应用于部分网上赌场以保证赌博的公平性，原理是系统先在玩家下注前已生成该局的结果，将该结果的字符串配合一组随机字符串利用MD5 加密，将该加密字符串于玩家下注前便显示给玩家，再在结果开出后将未加密的字符串显示给玩家，玩家便可利用MD5工具加密验证该字符串是否吻合。</p>
+<p>例子: 在玩家下注骰宝前，赌场便先决定该局结果，假设生成的随机结果为4、5、 6大，赌场便会先利用MD5 加密“4, 5, 6”此字符串并于玩家下注前告诉玩家；由于赌场是无法预计玩家会下什么注，所以便能确保赌场不能作弊；当玩家下注完毕后，赌场便告诉玩家该原始字符串，即“4, 5, 6”，玩家便可利用MD5工具加密该字符串是否与下注前的加密字符串吻合。</p>
+<p>该字符串一般会加上一组随机字符串 (Random string)，以防止玩家利用碰撞 (Collision) 解密字符串，但如使用超级电脑利用碰撞亦有可能从加上随机字符串的加密字符串中获取游戏结果。随机字符串的长度与碰撞的次数成正比关系，一般网上赌场使用的随机字符串是长于20字，有些网上赌场的随机字符串更长达500字，以增加解密难度。</p>
+<h4 id="MD5代码实现"><a href="#MD5代码实现" class="headerlink" title="MD5代码实现"></a>MD5代码实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*** MD5 ***/</span><br><span class="line">#define CC_MD5_DIGEST_LENGTH    16          /* digest length in bytes */</span><br><span class="line">#define CC_MD5_BLOCK_BYTES      64          /* block size in bytes */</span><br><span class="line">unsigned char *CC_MD5(const void *data, CC_LONG len, unsigned char *md)</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考链接-3"><a href="#参考链接-3" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/MD5">https://zh.wikipedia.org/wiki/MD5</a></li>
+</ul>
+<h3 id="SHA家族"><a href="#SHA家族" class="headerlink" title="SHA家族"></a>SHA家族</h3><p><strong>安全散列算法</strong>（英语：Secure Hash Algorithm，缩写为SHA）是一个密码散列函数家族，是FIPS所认证的五种安全散列算法。能计算出一个数字消息所对应到的，长度固定的字符串（又称消息摘要）的算法。且若输入的消息不同，它们对应到不同字符串的概率很高。这些算法之所以称作“安全”是基于以下两点（根据官方标准的描述）：</p>
+<ul>
+<li>由消息摘要反推原输入消息，从计算理论上来说是很困难的。</li>
+<li>想要找到两组不同的消息对应到相同的消息摘要，从计算理论上来说也是很困难的。任何对输入消息的变动，都有很高的概率导致其产生的消息摘要迥异。</li>
+</ul>
+<p>SHA家族的五个算法，分别是SHA-1、SHA-224、SHA-256、SHA-384，和SHA-512，由美国国家安全局（NSA）所设计，并由美国国家标准与技术研究院（NIST）发布；是美国的政府标准。后四者有时并称为SHA-2。SHA-1在许多安全协议中广为使用，包括TLS和SSL、PGP、SSH、S&#x2F;MIME和IPsec，曾被视为是MD5（更早之前被广为使用的散列函数）的后继者。但SHA-1的安全性如今被密码学家严重质疑；虽然至今尚未出现对SHA-2有效的攻击，它的算法跟SHA-1基本上仍然相似；因此有些人开始发展其他替代的散列算法。缘于最近[何时？]对SHA-1的种种攻击发表，“美国国家标准与技术研究院（NIST）开始设法经由公开竞争管道（类似高级加密标准AES的发展经过），发展一个或多个新的散列算法。”</p>
+<p><img src="/2016/06/13/iOS-Common-Crypto/2016-06-12-Snip20160612_1.png"></p>
+<p><img src="/2016/06/13/iOS-Common-Crypto/2016-06-12-Snip20160612_2.png"></p>
+<h4 id="SHA代码实现"><a href="#SHA代码实现" class="headerlink" title="SHA代码实现"></a>SHA代码实现</h4><h5 id="SHA-1"><a href="#SHA-1" class="headerlink" title="SHA-1"></a>SHA-1</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*** SHA1 ***/</span><br><span class="line">#define CC_SHA1_DIGEST_LENGTH   20          /* digest length in bytes */</span><br><span class="line">#define CC_SHA1_BLOCK_BYTES     64          /* block size in bytes */</span><br><span class="line">unsigned char *CC_SHA1(const void *data, CC_LONG len, unsigned char *md)</span><br></pre></td></tr></table></figure>
+
+<h5 id="SHA-224"><a href="#SHA-224" class="headerlink" title="SHA-224"></a>SHA-224</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*** SHA224 ***/</span><br><span class="line">#define CC_SHA224_DIGEST_LENGTH     28          /* digest length in bytes */</span><br><span class="line">#define CC_SHA224_BLOCK_BYTES       64          /* block size in bytes */</span><br><span class="line">unsigned char *CC_SHA224(const void *data, CC_LONG len, unsigned char *md)</span><br></pre></td></tr></table></figure>
+
+<h5 id="SHA-256"><a href="#SHA-256" class="headerlink" title="SHA-256"></a>SHA-256</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*** SHA256 ***/</span><br><span class="line">#define CC_SHA256_DIGEST_LENGTH     32          /* digest length in bytes */</span><br><span class="line">#define CC_SHA256_BLOCK_BYTES       64          /* block size in bytes */</span><br><span class="line">unsigned char *CC_SHA256(const void *data, CC_LONG len, unsigned char *md)</span><br></pre></td></tr></table></figure>
+
+<h5 id="SHA-384"><a href="#SHA-384" class="headerlink" title="SHA-384"></a>SHA-384</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*** SHA384 ***/</span><br><span class="line">#define CC_SHA384_DIGEST_LENGTH     48          /* digest length in bytes */</span><br><span class="line">#define CC_SHA384_BLOCK_BYTES      128          /* block size in bytes */</span><br><span class="line">unsigned char *CC_SHA384(const void *data, CC_LONG len, unsigned char *md)</span><br></pre></td></tr></table></figure>
+
+<h5 id="SHA-512"><a href="#SHA-512" class="headerlink" title="SHA-512"></a>SHA-512</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*** SHA512 ***/</span><br><span class="line">#define CC_SHA512_DIGEST_LENGTH     64          /* digest length in bytes */</span><br><span class="line">#define CC_SHA512_BLOCK_BYTES      128          /* block size in bytes */</span><br><span class="line">unsigned char *CC_SHA512(const void *data, CC_LONG len, unsigned char *md)</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考链接-4"><a href="#参考链接-4" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B8">https://zh.wikipedia.org/wiki/散列函數</a></li>
+<li><a target="_blank" rel="noopener" href="http://tool.oschina.net/encrypt?type=2">在线工具</a></li>
+</ul>
+<h2 id="消息认证码-1"><a href="#消息认证码-1" class="headerlink" title="消息认证码"></a>消息认证码</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><strong>消息认证码</strong>（message authentication code）是一种确认完整性并进行认证的技术，简称『<strong>MAC</strong>』。</p>
+<p>消息认证码的输入包括任意长度的消息和一个发送者与接收者之间<strong>共享的密钥</strong>，他可以输出固定长度的数据，这个数据称为<strong>MAC值</strong>。</p>
+<p>使用SHA-1、MD5之类的单向散列函数可以实现消息认证码，其中一种实现方法称为<strong>HMAC</strong>。</p>
+<p><strong>密钥散列消息认证码</strong>（英语：Keyed-hash message authentication code，缩写为HMAC），又称散列消息认证码（Hash-based message authentication code），是一种通过特别计算方式之后产生的消息认证码（MAC），使用密码散列函数，同时结合一个加密密钥。它可以用来保证数据的完整性，同时可以用来作某个消息的身份验证。</p>
+<h3 id="HMAC的应用"><a href="#HMAC的应用" class="headerlink" title="HMAC的应用"></a>HMAC的应用</h3><p>hmac主要应用在身份验证中，它的使用方法是这样的：<br>(1) 客户端发出登录请求（假设是浏览器的GET请求）<br>(2) 服务器返回一个随机值，并在会话中记录这个随机值<br>(3) 客户端将该随机值作为密钥，用户密码进行hmac运算，然后提交给服务器<br>(4) 服务器读取用户数据库中的用户密码和步骤2中发送的随机值做与客户端一样的hmac运算，然后与用户发送的结果比较，如果结果一致则验证用户合法。</p>
+<p>在这个过程中，可能遭到安全攻击的是服务器发送的随机值和用户发送的hmac结果，而对于截获了这两个值的黑客而言这两个值是没有意义的，绝无获取用户密码的可能性，随机值的引入使hmac只在当前会话中有效，大大增强了安全性和实用性。</p>
+<h3 id="HMAC实现"><a href="#HMAC实现" class="headerlink" title="HMAC实现"></a>HMAC实现</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void CCHmac(</span><br><span class="line">    CCHmacAlgorithm algorithm,  /* kCCHmacSHA1, kCCHmacMD5 */</span><br><span class="line">    const void *key,</span><br><span class="line">    size_t keyLength,           /* length of key in bytes */</span><br><span class="line">    const void *data,</span><br><span class="line">    size_t dataLength,          /* length of data in bytes */</span><br><span class="line">    void *macOut)               /* MAC written here */</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考链接-5"><a href="#参考链接-5" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%87%91%E9%91%B0%E9%9B%9C%E6%B9%8A%E8%A8%8A%E6%81%AF%E9%91%91%E5%88%A5%E7%A2%BC">密钥散列消息认证码——维基百科</a></li>
+</ul>
+<h2 id="Key-Derivation（密钥导出）"><a href="#Key-Derivation（密钥导出）" class="headerlink" title="Key Derivation（密钥导出）"></a>Key Derivation（密钥导出）</h2><p>PBKDF2(Password-Based Key Derivation Function)是一个用来导出密钥的函数，常用于生成加密的密码。</p>
+<p>它的基本原理是通过一个伪随机函数（例如HMAC函数），把明文和一个盐值作为输入参数，然后重复进行运算，并最终产生密钥。</p>
+<p>如果重复的次数足够大，破解的成本就会变得很高。而盐值的添加也会增加“彩虹表”攻击的难度。</p>
+<h3 id="PBKDF2函数的定义"><a href="#PBKDF2函数的定义" class="headerlink" title="PBKDF2函数的定义"></a>PBKDF2函数的定义</h3><p>DK &#x3D; PBKDF2(PRF, Password, Salt, c, dkLen)<br>PRF是一个伪随机函数，例如HASH_HMAC函数，它会输出长度为hLen的结果。<br>Password是用来生成密钥的原文密码。<br>Salt是一个加密用的盐值。<br>c是进行重复计算的次数。<br>dkLen是期望得到的密钥的长度。<br>DK是最后产生的密钥。</p>
+<h4 id="PBKDF代码实现"><a href="#PBKDF代码实现" class="headerlink" title="PBKDF代码实现"></a>PBKDF代码实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int CCKeyDerivationPBKDF( CCPBKDFAlgorithm algorithm, const char *password, size_t passwordLen,</span><br><span class="line">                      const uint8_t *salt, size_t saltLen,</span><br><span class="line">                      CCPseudoRandomAlgorithm prf, uint rounds,</span><br><span class="line">                      uint8_t *derivedKey, size_t derivedKeyLen)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="随机数生成"><a href="#随机数生成" class="headerlink" title="随机数生成"></a>随机数生成</h2><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CCRNGStatus CCRandomGenerateBytes(<span class="keyword">void</span> *bytes, size_t <span class="built_in">count</span>)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Symmetric-Key-Wrap"><a href="#Symmetric-Key-Wrap" class="headerlink" title="Symmetric Key Wrap"></a>Symmetric Key Wrap</h2><p>Wrap a symmetric key with a Key Encryption Key (KEK).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int  </span><br><span class="line">CCSymmetricKeyWrap( CCWrappingAlgorithm algorithm,</span><br><span class="line">                   const uint8_t *iv, const size_t ivLen,</span><br><span class="line">                   const uint8_t *kek, size_t kekLen,</span><br><span class="line">                   const uint8_t *rawKey, size_t rawKeyLen,</span><br><span class="line">                   uint8_t  *wrappedKey, size_t *wrappedKeyLen)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/kelp404/CocoaSecurity">https://github.com/kelp404/CocoaSecurity</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/WeChatPay.png" alt="Alex Lin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/AliPay.png" alt="Alex Lin 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/eth.jpg" alt="Alex Lin ETH">
+        <span>ETH</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Alex Lin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://chaosky.tech/2016/06/13/iOS-Common-Crypto/" title="iOS 密码技术">https://chaosky.tech/2016/06/13/iOS-Common-Crypto/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Cryptography/" rel="tag"><i class="fa fa-tag"></i> Cryptography</a>
+              <a href="/tags/%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF/" rel="tag"><i class="fa fa-tag"></i> 密码技术</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/05/28/Linux-RaspberryPi/" rel="prev" title="Linux RaspberryPi">
+                  <i class="fa fa-angle-left"></i> Linux RaspberryPi
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/06/24/AppStore-Review-Guidelines/" rel="next" title="App Store 审核指南——2016.6">
+                  App Store 审核指南——2016.6 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2014 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-keyboard"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">139k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:27</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/xwal" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"xwal/xwal.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkxNzQ4MDMxMA==","category":"Comment","category_id":"DIC_kwDOAQq6ds4CSrDW","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<div id="hexo-adsense-hidden" style="display:none"><div hexo-adsense="ads-content"><!--REMOVE ADSENSE SCRIPT, THIS PLUGIN ALREADY OPTIMIZED THE ADSENSE JAVASCRIPT-->
+<!---->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6178635866936443"
+     data-ad-slot="4097715968"></ins>
+<!--script>
+     
+</script--></div></div><style>[hexo-adsense=ads-content]{display:block;background:#fff url(//i.imgur.com/mBbv90p.png) no-repeat top right;color:#303030;min-width:250px;text-align:center;margin-left:auto;margin-right:auto}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFydGljbGUtYWRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQkFDRSxRQUFBLE1BQ0EsV0FBQSxLQUFBLCtCQUFBLFVBQUEsSUFBQSxNQUNBLE1BQUEsUUFHQSxVQUFBLE1BQ0EsV0FBQSxPQUNBLFlBQUEsS0FDQSxhQUFBIiwiZmlsZSI6ImFydGljbGUtYWRzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIipbaGV4by1hZHNlbnNlPVwiYWRzLWNvbnRlbnRcIl0ge1xuICBkaXNwbGF5OiBibG9jaztcbiAgYmFja2dyb3VuZDogI2ZmZiB1cmwoLy9pLmltZ3VyLmNvbS9tQmJ2OTBwLnBuZykgbm8tcmVwZWF0IHRvcCByaWdodDtcbiAgY29sb3I6ICMzMDMwMzA7XG4gIC8qbWluLWhlaWdodDogMThweDtcbiAgbWluLXdpZHRoOiA4MXB4OyovXG4gIG1pbi13aWR0aDogMjUwcHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbiJdfQ== */
+</style><script>const isBrowser=new Function("try {return this===window;}catch(e){ return false;}"),hexoAdsenseConfig=JSON.parse(document.getElementById("hexo-adsense-config").textContent);function insertAfter(e,t){if(t&&e){let n=t.parentNode;n.lastChild==t?n.appendChild(e):n.insertBefore(e,t.nextSibling)}else console.error("cannot insert element")}function replaceWith(e,t){if(t.parentNode)t.parentNode.replaceChild(e,t);else{console.log(t,"parent null"),document.createElement("div").appendChild(t)}}let createElementFromHTML=function(e){if(e instanceof HTMLElement)return e;var t=document.createElement("div");return t.innerHTML=e.trim(),t.firstChild};function ranumb(e,t){return Math.floor(Math.random()*(t-e+1)+e)}function newMethod(){const e=document.getElementById("hexo-adsense-hidden");let t=e.querySelectorAll('[hexo-adsense="ads-content"]'),n=document.querySelectorAll("article");if(n.length>0&&t.length>0){let o;if(1==n.length){console.log("webpage is post");let l=n.item(0);const r=l.querySelectorAll("*[hexo-adsense-fill]");if(r.length>0)for(let e=0;e<r.length;e++){const n=r[e];void 0!==t[e]&&n.appendChild(t[e])}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("h1,h2,h3,h4,h5,h6,pre");if(e.length>0){let n=Array.apply(null,{length:e.length}).map(Number.call,Number);for(let l=0;l<t.length;l++){o=t[l];const r=shuffleArr2(n).next().value;if("number"==typeof r){const t=e.item(r);insertAfter(createElementFromHTML(o),t)}}}}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("br,hr");if(e.length>0){const n=shuffleArr2(Array.apply(null,{length:e.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=n.next().value;if("number"==typeof r){const t=e.item(r);if(["blockquote","img","a","pre","code","em","strong","i","u"].includes(t.parentNode.tagName.toLowerCase())){l--;continue}replaceWith(createElementFromHTML(o),t)}}}}}else{console.log("webpage is not post"),n.length||(n=document.querySelectorAll('[class*="recent-post-item"]'));const e=shuffleArr2(Array.apply(null,{length:n.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=e.next().value;if("number"==typeof r){n.item(r).appendChild(createElementFromHTML(o))}}}adsensePush()}}function shuffleArr(e){for(var t,n=e.length,o=0;n--;)o=Math.floor(Math.random()*(n+1)),t=e[n],e[n]=e[o],e[o]=t;return e}function*shuffleArr2(e){for(var t=e.length;t--;)yield e.splice(Math.floor(Math.random()*(t+1)),1)[0]}function adsensePush(){for(let e=0;e<document.querySelectorAll('[hexo-adsense="ads-content"]').length;e++)(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:hexoAdsenseConfig.pub})}isBrowser()?(window.__tcfapi=(e,t,n)=>{"checkConsent"===e&&n(!0),"addEventListener"===e&&n({eventStatus:"tcloaded",gdprApplies:!1},!0)},"function"==typeof document.addEventListener?document.addEventListener("DOMContentLoaded",newMethod):"function"==typeof window.attachEvent?window.attachEvent("onload",newMethod):window.onload=newMethod):module.exports={replaceWith:replaceWith,insertAfter:insertAfter};</script></body>
+</html>

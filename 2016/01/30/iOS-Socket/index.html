@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <meta name="google-site-verification" content="yGwNBR-9-6B60StDh4ueJp0Io9gjnzwX0IiXkPL4Pqc">
+  <meta name="msvalidate.01" content="562E828CD9FA60A6D3CDFE1BD31D3FF3">
+  <meta name="baidu-site-verification" content="iYaX85B5Bg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chaosky.tech","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="iOS网络编程层次结构iOS网络编程层次结构分为三层，从上往下依次为：  Cocoa层：NSURL，Bonjour，Game Kit，WebKit Core Foundation层：基于 C 的 CFNetwork 和 CFNetServices OS层：基于 C 的 BSD Socket  Cocoa层：是最上层的基于 Objective-C 的 API，比如 URL访问，NSStream，Bo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS Socket">
+<meta property="og:url" content="https://chaosky.tech/2016/01/30/iOS-Socket/index.html">
+<meta property="og:site_name" content="Alex Lin&#39;s Notes">
+<meta property="og:description" content="iOS网络编程层次结构iOS网络编程层次结构分为三层，从上往下依次为：  Cocoa层：NSURL，Bonjour，Game Kit，WebKit Core Foundation层：基于 C 的 CFNetwork 和 CFNetServices OS层：基于 C 的 BSD Socket  Cocoa层：是最上层的基于 Objective-C 的 API，比如 URL访问，NSStream，Bo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosky.tech/2016/01/30/iOS-Socket/Socket%E5%B1%82%E6%AC%A1.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/01/30/iOS-Socket/5269612b25e6df1b3ee5ab8352b2c3b6.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/01/30/iOS-Socket/543019bab569d5cce5143f7a0c25b872.png">
+<meta property="og:image" content="https://chaosky.tech/2016/01/30/iOS-Socket/cbb39ed0e10f4a9e8cdeaeb38ebc3695.png">
+<meta property="og:image" content="https://chaosky.tech/2016/01/30/iOS-Socket/cd6d1690d3d6eefd300987e590c1483f.jpg">
+<meta property="article:published_time" content="2016-01-30T11:41:39.000Z">
+<meta property="article:modified_time" content="2016-01-30T11:41:39.000Z">
+<meta property="article:author" content="Alex Lin">
+<meta property="article:tag" content="Socket">
+<meta property="article:tag" content="TCP&#x2F;IP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosky.tech/2016/01/30/iOS-Socket/Socket%E5%B1%82%E6%AC%A1.jpg">
+
+
+<link rel="canonical" href="https://chaosky.tech/2016/01/30/iOS-Socket/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://chaosky.tech/2016/01/30/iOS-Socket/","path":"2016/01/30/iOS-Socket/","title":"iOS Socket"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>iOS Socket | Alex Lin's Notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?QJ33ASIjWB"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.7.0/mermaid.min.js","integrity":"sha256-4+IKDqhZ/sXjc8Wtl2/MsxI4e0s1KpEVdbEP7V/Lz8U="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/addtoany.js" defer></script>
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<script id="hexo-adsense-config" type="application/json">{"enable":true,"article_ads":["source/ads/in_article.html"],"pub":"ca-pub-6178635866936443","adblock":true,"https":true,"field":"site","type":"javascript","exclude":["*.min.html","exclude/**/*"],"development":false,"args":{"_":[],"g":true},"debug":false,"safe":false,"silent":false,"env":"development","version":"7.3.0","cmd":"d","init":true,"adsense":{"enable":true,"pub":"ca-pub-6178635866936443","article_ads":["source/ads/in_article.html"],"field":"site","https":true,"adblock":true,"exclude":["*.min.html","exclude/**/*"]}}</script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178635866936443" crossorigin="anonymous"></script><link rel="alternate" href="/atom.xml" title="Alex Lin's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex Lin's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Strategy, Execution, Communication.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">100</span></a></li><li class="menu-item menu-item-作坊"><a href="/workspace/" rel="section"><i class="fa fa-cubes fa-fw"></i>作坊</a></li><li class="menu-item menu-item-技能"><a href="/skillmap/" rel="section"><i class="fa fa-atom fa-fw"></i>技能</a></li><li class="menu-item menu-item-摘录"><a href="/quotes/" rel="section"><i class="fa fa-quote-left fa-fw"></i>摘录</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-dragon fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">iOS网络编程层次结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Socket"><span class="nav-number">2.</span> <span class="nav-text">Socket</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.1.</span> <span class="nav-text">TCP和UDP的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84Socket%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">常用的Socket类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-C-S%E6%9E%B6%E6%9E%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="nav-number">2.2.1.</span> <span class="nav-text">TCP C&#x2F;S架构程序设计基本框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">TCP 三次握手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">TCP 四次挥手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.1.3.1.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-number">2.2.1.3.2.</span> <span class="nav-text">服务端实现代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="nav-number">2.2.1.3.3.</span> <span class="nav-text">客户端代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP-C-S%E6%9E%B6%E6%9E%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="nav-number">2.2.1.4.</span> <span class="nav-text">UDP C&#x2F;S架构程序设计基本框架</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.2.2.</span> <span class="nav-text">字节顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.3.</span> <span class="nav-text">地址转换方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#in-addr-t-inet-addr-const-char"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">in_addr_t inet_addr(const char *)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#char-inet-ntoa-struct-in-addr"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">char *inet_ntoa(struct in_addr)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#int-inet-aton-const-char-struct-in-addr"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">int inet_aton(const char *, struct in_addr *)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%9C%B0%E5%9D%80"><span class="nav-number">2.2.4.</span> <span class="nav-text">获取地址</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8getsockname%E8%8E%B7%E5%BE%97%E6%9C%AC%E5%9C%B0ip%E5%92%8Cport"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">用getsockname获得本地ip和port</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8getpeername%E8%8E%B7%E5%BE%97%E5%AF%B9%E7%AB%AFip%E5%92%8Cport"><span class="nav-number">2.2.4.2.</span> <span class="nav-text">用getpeername获得对端ip和port</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%9C%AC%E5%9C%B0IP%E5%9C%B0%E5%9D%80"><span class="nav-number">2.2.5.</span> <span class="nav-text">获取本地IP地址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">第三方库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Lin"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Alex Lin</p>
+  <div class="site-description" itemprop="description">Hi, I'm an iOS engineer, focusing on mobile software development.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xwal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xwal" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaosky.me@gmail.com" title="E-Mail → mailto:chaosky.me@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://x.com/cyberxwa" title="Twitter → https:&#x2F;&#x2F;x.com&#x2F;cyberxwa" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/chaosky" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;chaosky" rel="noopener me" target="_blank"><i class="fab fa-telegram fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/01/30/iOS-Socket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="iOS Socket | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iOS Socket<a href="https://github.com/xwal/xwal.github.io/edit/source/source/_posts/2016-01-30-iOS-Socket.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-01-30 11:41:39" itemprop="dateCreated datePublished" datetime="2016-01-30T11:41:39+00:00">2016-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="iOS网络编程层次结构"><a href="#iOS网络编程层次结构" class="headerlink" title="iOS网络编程层次结构"></a>iOS网络编程层次结构</h1><p>iOS网络编程层次结构分为三层，从上往下依次为：</p>
+<ul>
+<li>Cocoa层：NSURL，Bonjour，Game Kit，WebKit</li>
+<li>Core Foundation层：基于 C 的 CFNetwork 和 CFNetServices</li>
+<li>OS层：基于 C 的 BSD Socket</li>
+</ul>
+<p>Cocoa层：是最上层的基于 Objective-C 的 API，比如 URL访问，NSStream，Bonjour，GameKit等，这是大多数情况下我们常用的 API。Cocoa 层是基于 Core Foundation 实现的。</p>
+<p>Core Foundation层：因为直接使用 socket 需要更多的编程工作，所以苹果对 OS 层的 socket 进行简单的封装以简化编程任务。该层提供了 CFNetwork 和 CFNetServices，其中 CFNetwork 又是基于 CFStream 和 CFSocket。</p>
+<p>OS层：最底层的 BSD Socket 提供了对网络编程最大程度的控制，但是编程工作也是最多的。因此，苹果建议我们使用 Core Foundation 及以上层的 API 进行编程。</p>
+<p>本文将介绍如何在 iOS 系统下使用最底层的 Socket 进行编程。</p>
+<span id="more"></span>
+
+<h1 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h1><p>Socket是应用层与TCP&#x2F;IP协议族通信的中间软件抽象层，它是一组接口。</p>
+<p><img src="/2016/01/30/iOS-Socket/Socket%E5%B1%82%E6%AC%A1.jpg"></p>
+<h2 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h2><p>TCP：面向连接、传输可靠(保证数据正确性,保证数据顺序)、用于传输大量数据(流模式)、速度慢，建立连接需要开销较多(时间，系统资源)。</p>
+<p>UDP：面向非连接、传输不可靠、用于传输少量数据(数据包模式)、速度快。</p>
+<p>关于TCP是一种流模式的协议，UDP是一种数据包模式的协议，这里要说明一下，TCP是面向连接的，也就是说，在连接持续的过程中，Socket中收到的数据都是由同一台主机发出的（劫持什么的不考虑），因此，知道保证数据是有序的到达就行了，至于每次读取多少数据自己看着办。</p>
+<p>而UDP是无连接的协议，也就是说，只要知道接收端的IP和端口，且网络是可达的，任何主机都可以向接收端发送数据。这时候，如果一次能读取超过一个报文的数据，则会乱套。比如，主机A向发送了报文P1，主机B发送了报文P2，如果能够读取超过一个报文的数据，那么就会将P1和P2的数据合并在了一起，这样的数据是没有意义的。</p>
+<h2 id="常用的Socket类型"><a href="#常用的Socket类型" class="headerlink" title="常用的Socket类型"></a>常用的Socket类型</h2><p>有两种：流式Socket（SOCK_STREAM）和数据报式Socket（SOCK_DGRAM）。流式是一种面向连接的Socket，针对于面向连接的TCP服务应用；数据报式Socket是一种无连接的Socket，对应于无连接的UDP服务应用。</p>
+<h3 id="TCP-C-S架构程序设计基本框架"><a href="#TCP-C-S架构程序设计基本框架" class="headerlink" title="TCP C&#x2F;S架构程序设计基本框架"></a>TCP C&#x2F;S架构程序设计基本框架</h3><p><img src="/2016/01/30/iOS-Socket/5269612b25e6df1b3ee5ab8352b2c3b6.jpg"></p>
+<h4 id="TCP-三次握手"><a href="#TCP-三次握手" class="headerlink" title="TCP 三次握手"></a>TCP 三次握手</h4><p><img src="/2016/01/30/iOS-Socket/543019bab569d5cce5143f7a0c25b872.png"></p>
+<p>最形象理解：</p>
+<blockquote>
+<p>「你瞅啥？」</p>
+<p>「瞅你咋地？」</p>
+<p>「来咱俩唠唠。」</p>
+<p>然后就唠上了。</p>
+</blockquote>
+<h4 id="TCP-四次挥手"><a href="#TCP-四次挥手" class="headerlink" title="TCP 四次挥手"></a>TCP 四次挥手</h4><p><img src="/2016/01/30/iOS-Socket/cbb39ed0e10f4a9e8cdeaeb38ebc3695.png"></p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><h5 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h5><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ifaddrs.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h5 id="服务端实现代码"><a href="#服务端实现代码" class="headerlink" title="服务端实现代码"></a>服务端实现代码</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="type">void</span>)socketServer</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> err;</span><br><span class="line">    <span class="comment">// 1. 创建socket套接字</span></span><br><span class="line">    <span class="comment">// 原型：int socket(int domain, int type, int protocol);</span></span><br><span class="line">    <span class="comment">// domain：协议族 type：socket类型 protocol：协议</span></span><br><span class="line">    <span class="type">int</span> fd = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);</span><br><span class="line">    <span class="type">BOOL</span> success = (fd != <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> (success) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;Socket 创建成功&quot;</span>);</span><br><span class="line">        <span class="comment">// 地址结构体</span></span><br><span class="line">        <span class="keyword">struct</span> sockaddr_in addr;</span><br><span class="line">        <span class="comment">// 内存清空</span></span><br><span class="line">        memset(&amp;addr, <span class="number">0</span>, <span class="keyword">sizeof</span>(addr));</span><br><span class="line">        <span class="comment">// 内存大小</span></span><br><span class="line">        addr.sin_len=<span class="keyword">sizeof</span>(addr);</span><br><span class="line">        <span class="comment">// 地址族，在socket编程中只能是AF_INET</span></span><br><span class="line">        addr.sin_family=AF_INET;</span><br><span class="line">        <span class="comment">// 端口号</span></span><br><span class="line">        addr.sin_port=htons(<span class="number">1024</span>);</span><br><span class="line">        <span class="comment">// 按照网络字节顺序存储IP地址</span></span><br><span class="line">        addr.sin_addr.s_addr=INADDR_ANY;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 建立地址和套接字的联系（绑定）</span></span><br><span class="line">        <span class="comment">// 原型：bind(sockid, local addr, addrlen)</span></span><br><span class="line">        err=bind(fd, (<span class="keyword">const</span> <span class="keyword">struct</span> sockaddr *)&amp;addr, <span class="keyword">sizeof</span>(addr));</span><br><span class="line">        success=(err==<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 服务器端侦听客户端的请求</span></span><br><span class="line">    <span class="keyword">if</span> (success) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;绑定成功&quot;</span>);</span><br><span class="line">        <span class="comment">// listen( Sockid ,quenlen) quenlen 并发队列</span></span><br><span class="line">        err=listen(fd, <span class="number">5</span>);<span class="comment">//开始监听</span></span><br><span class="line">        success=(err==<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (success) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;监听成功&quot;</span>);</span><br><span class="line">        <span class="comment">// 4. 一直阻塞等到客户端的连接</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">struct</span> sockaddr_in peeraddr;</span><br><span class="line">            <span class="type">int</span> peerfd;</span><br><span class="line">            socklen_t addrLen;</span><br><span class="line">            addrLen = <span class="keyword">sizeof</span>(peeraddr);</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;等待客户端的连接请求&quot;</span>);</span><br><span class="line">            <span class="comment">// 5. 服务器端等待从编号为Sockid的Socket上接收客户端连接请求</span></span><br><span class="line">            <span class="comment">// 原型：newsockid=accept(Sockid，Clientaddr, paddrlen)</span></span><br><span class="line">            peerfd = accept(fd, (<span class="keyword">struct</span> sockaddr *)&amp;peeraddr, &amp;addrLen);</span><br><span class="line">            success=(peerfd!=<span class="number">-1</span>);</span><br><span class="line">            <span class="comment">// 接收客户端请求成功</span></span><br><span class="line">            <span class="keyword">if</span> (success) &#123;</span><br><span class="line">                <span class="built_in">NSLog</span>(<span class="string">@&quot;接收客户端请求成功，客户端地址：%s, 端口号：%d&quot;</span>,inet_ntoa(peeraddr.sin_addr), ntohs(peeraddr.sin_port));</span><br><span class="line">                send(peerfd, <span class="string">&quot;欢迎进入Socket聊天室&quot;</span>, <span class="number">1024</span>, <span class="number">0</span>);</span><br><span class="line">                <span class="comment">// 6. 创建新线程接收客户端发送的消息</span></span><br><span class="line">                [<span class="built_in">NSThread</span> detachNewThreadSelector:<span class="keyword">@selector</span>(reciveMessage:) toTarget:<span class="keyword">self</span> withObject:@(peerfd)];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="type">void</span>)reciveMessage:(<span class="type">id</span>) peerfd</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> fd = [peerfd intValue];</span><br><span class="line">    <span class="type">char</span> buf[<span class="number">1024</span>];</span><br><span class="line">    ssize_t bufLen;</span><br><span class="line">    size_t len=<span class="keyword">sizeof</span>(buf);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 循环阻塞接收客户端发送的消息</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        bufLen = recv(fd, buf, len, <span class="number">0</span>);</span><br><span class="line">        <span class="comment">// 当返回值小于等于零时，表示socket异常或者socket关闭，退出循环阻塞接收消息</span></span><br><span class="line">        <span class="keyword">if</span> (bufLen &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 接收到的信息</span></span><br><span class="line">        <span class="built_in">NSString</span>* msg = [<span class="built_in">NSString</span> stringWithCString:buf encoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;来自客户端，消息内容：%@&quot;</span>, msg);</span><br><span class="line">        memset(buf, <span class="number">0</span>, <span class="keyword">sizeof</span>(buf));</span><br><span class="line">    &#125; <span class="keyword">while</span> (<span class="literal">true</span>);</span><br><span class="line">    <span class="comment">// 7. 关闭</span></span><br><span class="line">    close(fd);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="客户端代码"><a href="#客户端代码" class="headerlink" title="客户端代码"></a>客户端代码</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="type">void</span>)createSocketClient</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> err;</span><br><span class="line">    <span class="comment">// 创建socket套接字</span></span><br><span class="line">    <span class="type">int</span> fd =socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">    <span class="type">BOOL</span> success=(fd!=<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">struct</span> sockaddr_in addr;</span><br><span class="line">    <span class="keyword">if</span> (success) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;Socket创建成功&quot;</span>);</span><br><span class="line">        memset(&amp;addr, <span class="number">0</span>, <span class="keyword">sizeof</span>(addr));</span><br><span class="line">        addr.sin_len = <span class="keyword">sizeof</span>(addr);</span><br><span class="line">        addr.sin_family = AF_INET;</span><br><span class="line">        addr.sin_addr.s_addr = INADDR_ANY;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 建立地址和套接字的联系</span></span><br><span class="line">        err = bind(fd, (<span class="keyword">const</span> <span class="keyword">struct</span> sockaddr *)&amp;addr, <span class="keyword">sizeof</span>(addr));</span><br><span class="line">        success = (err==<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (success) &#123;</span><br><span class="line">        <span class="keyword">struct</span> sockaddr_in serveraddr;</span><br><span class="line">        memset(&amp;serveraddr, <span class="number">0</span>, <span class="keyword">sizeof</span>(serveraddr));</span><br><span class="line">        serveraddr.sin_len=<span class="keyword">sizeof</span>(serveraddr);</span><br><span class="line">        serveraddr.sin_family=AF_INET;</span><br><span class="line">        <span class="comment">// 服务器端口</span></span><br><span class="line">        serveraddr.sin_port=htons(<span class="number">1024</span>);</span><br><span class="line">        <span class="comment">// 服务器的地址</span></span><br><span class="line">        serveraddr.sin_addr.s_addr=inet_addr(<span class="string">&quot;192.168.2.5&quot;</span>);</span><br><span class="line">        socklen_t addrLen;</span><br><span class="line">        addrLen =<span class="keyword">sizeof</span>(serveraddr);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;连接服务器中...&quot;</span>);</span><br><span class="line">        err=connect(fd, (<span class="keyword">struct</span> sockaddr *)&amp;serveraddr, addrLen);</span><br><span class="line">        success=(err==<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (success) &#123;</span><br><span class="line">            <span class="comment">// getsockname 是对tcp连接而言。套接字socket必须是已连接套接字描述符。</span></span><br><span class="line">            err =getsockname(fd, (<span class="keyword">struct</span> sockaddr *)&amp;addr, &amp;addrLen);</span><br><span class="line">            success=(err==<span class="number">0</span>);</span><br><span class="line">            <span class="keyword">if</span> (success) &#123;</span><br><span class="line">                <span class="built_in">NSLog</span>(<span class="string">@&quot;连接服务器成功，本地地址：%s，端口：%d&quot;</span>,inet_ntoa(addr.sin_addr),ntohs(addr.sin_port));</span><br><span class="line">                [<span class="built_in">NSThread</span> detachNewThreadSelector:<span class="keyword">@selector</span>(reciveMessage:) toTarget:<span class="keyword">self</span> withObject:@(fd)];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;connect failed&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="type">void</span>)reciveMessage:(<span class="type">id</span>) peerfd</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> fd = [peerfd intValue];</span><br><span class="line">    <span class="type">char</span> buf[<span class="number">1024</span>];</span><br><span class="line">    ssize_t bufLen;</span><br><span class="line">    size_t len=<span class="keyword">sizeof</span>(buf);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 循环阻塞接收消息</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        bufLen = recv(fd, buf, len, <span class="number">0</span>);</span><br><span class="line">        <span class="comment">// 当返回值小于等于零时，表示socket异常或者socket关闭，退出循环阻塞接收消息</span></span><br><span class="line">        <span class="keyword">if</span> (bufLen &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 接收到的信息</span></span><br><span class="line">        <span class="built_in">NSString</span>* msg = [<span class="built_in">NSString</span> stringWithCString:buf encoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line"></span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;来自服务端，消息内容：%@&quot;</span>, msg);</span><br><span class="line">    &#125; <span class="keyword">while</span> (<span class="literal">true</span>);</span><br><span class="line">    <span class="comment">// 7. 关闭</span></span><br><span class="line">    close(fd);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="UDP-C-S架构程序设计基本框架"><a href="#UDP-C-S架构程序设计基本框架" class="headerlink" title="UDP C&#x2F;S架构程序设计基本框架"></a>UDP C&#x2F;S架构程序设计基本框架</h4><p><img src="/2016/01/30/iOS-Socket/cd6d1690d3d6eefd300987e590c1483f.jpg"></p>
+<h3 id="字节顺序"><a href="#字节顺序" class="headerlink" title="字节顺序"></a>字节顺序</h3><p>计算机数据表示存在两种字节顺序：NBO与HBO</p>
+<p>网络字节顺序NBO（Network Byte Order）：</p>
+<blockquote>
+<p>  按从高到低的顺序存储，在网络上使用统一的网络字节顺序，可以避免兼容性问题。</p>
+</blockquote>
+<p>主机字节顺序（HBO，Host Byte Order）：</p>
+<blockquote>
+<p>不同的机器HBO不相同，与CPU设计有关，数据的顺序是由cpu决定的，而与操作系统无关。</p>
+<p>不同的CPU有不同的字节顺序类型，这些字节顺序类型指的是整数在内存中保存的顺序，即主机字节顺序。常见的有两种：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>英文名</th>
+<th>中文名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>big-endian</td>
+<td>大尾顺序</td>
+<td>地址的低位存储值的高位</td>
+</tr>
+<tr>
+<td>2</td>
+<td>little-endian</td>
+<td>小尾顺序</td>
+<td>地址的低位存储值的低位</td>
+</tr>
+</tbody></table>
+<p>如 Intelx86结构下,short型数0x1234表示为34 12, int型数0x12345678表示为78 56 34 12如IBM power PC结构下,short型数0x1234表示为12 34, int型数0x12345678表示为12   34 56 78</p>
+</blockquote>
+<p>网络字节顺序与本地字节顺序之间的转换函数：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">htonl</span><span class="params">()</span></span>--<span class="string">&quot;Host to Network Long&quot;</span></span><br><span class="line"><span class="function"><span class="title">ntohl</span><span class="params">()</span></span>--<span class="string">&quot;Network to Host Long&quot;</span></span><br><span class="line"><span class="function"><span class="title">htons</span><span class="params">()</span></span>--<span class="string">&quot;Host to Network Short&quot;</span></span><br><span class="line"><span class="function"><span class="title">ntohs</span><span class="params">()</span></span>--<span class="string">&quot;Network to Host Short&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="地址转换方法"><a href="#地址转换方法" class="headerlink" title="地址转换方法"></a>地址转换方法</h3><h4 id="in-addr-t-inet-addr-const-char"><a href="#in-addr-t-inet-addr-const-char" class="headerlink" title="in_addr_t inet_addr(const char *)"></a>in_addr_t inet_addr(const char *)</h4><p>将一个点间隔地址转换成一个in_addr</p>
+<h4 id="char-inet-ntoa-struct-in-addr"><a href="#char-inet-ntoa-struct-in-addr" class="headerlink" title="char *inet_ntoa(struct in_addr)"></a>char *inet_ntoa(struct in_addr)</h4><p>将网络地址转换成“.”点隔的字符串格式。</p>
+<h4 id="int-inet-aton-const-char-struct-in-addr"><a href="#int-inet-aton-const-char-struct-in-addr" class="headerlink" title="int inet_aton(const char *, struct in_addr *)"></a>int inet_aton(const char *, struct in_addr *)</h4><p>将一个字符串IP地址转换为一个32位的网络序列IP地址。</p>
+<h3 id="获取地址"><a href="#获取地址" class="headerlink" title="获取地址"></a>获取地址</h3><h4 id="用getsockname获得本地ip和port"><a href="#用getsockname获得本地ip和port" class="headerlink" title="用getsockname获得本地ip和port"></a>用getsockname获得本地ip和port</h4><h4 id="用getpeername获得对端ip和port"><a href="#用getpeername获得对端ip和port" class="headerlink" title="用getpeername获得对端ip和port"></a>用getpeername获得对端ip和port</h4><p>套接字socket必须是已连接套接字描述符。</p>
+<h3 id="获取本地IP地址"><a href="#获取本地IP地址" class="headerlink" title="获取本地IP地址"></a>获取本地IP地址</h3><p>参考stackoverflow链接：<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/7072989/iphone-ipad-osx-how-to-get-my-ip-address-programmatically">http://stackoverflow.com/questions/7072989/iphone-ipad-osx-how-to-get-my-ip-address-programmatically</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入头文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ifaddrs.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现代码</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)getIPAddress &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSString</span> *address = <span class="string">@&quot;error&quot;</span>;</span><br><span class="line">    <span class="keyword">struct</span> ifaddrs *interfaces = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">struct</span> ifaddrs *temp_addr = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">int</span> success = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// retrieve the current interfaces - returns 0 on success</span></span><br><span class="line">    success = getifaddrs(&amp;interfaces);</span><br><span class="line">    <span class="keyword">if</span> (success == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// Loop through linked list of interfaces</span></span><br><span class="line">        temp_addr = interfaces;</span><br><span class="line">        <span class="keyword">while</span>(temp_addr != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(temp_addr-&gt;ifa_addr-&gt;sa_family == AF_INET) &#123;</span><br><span class="line">                <span class="comment">// Check if interface is en0 which is the wifi connection on the iPhone</span></span><br><span class="line">                <span class="keyword">if</span>([[<span class="built_in">NSString</span> stringWithUTF8String:temp_addr-&gt;ifa_name] isEqualToString:<span class="string">@&quot;en0&quot;</span>]) &#123;</span><br><span class="line">                    <span class="comment">// Get NSString from C String</span></span><br><span class="line">                    address = [<span class="built_in">NSString</span> stringWithUTF8String:inet_ntoa(((<span class="keyword">struct</span> sockaddr_in *)temp_addr-&gt;ifa_addr)-&gt;sin_addr)];</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            temp_addr = temp_addr-&gt;ifa_next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Free memory</span></span><br><span class="line">    freeifaddrs(interfaces);</span><br><span class="line">    <span class="keyword">return</span> address;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h1><p>CocoaAsyncSocket：<a target="_blank" rel="noopener" href="https://github.com/robbiehanson/CocoaAsyncSocket">https://github.com/robbiehanson/CocoaAsyncSocket</a></p>
+<p>CocoaAsyncSocket provides easy-to-use and powerful asynchronous socket libraries for Mac and iOS. The classes are described below.</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><a target="_blank" rel="noopener" href="http://www.coderyi.com/archives/429">http://www.coderyi.com/archives/429</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/kesalin/archive/2013/04/13/cocoa_socket.html">http://www.cnblogs.com/kesalin/archive/2013/04/13/cocoa_socket.html</a></li>
+<li><a target="_blank" rel="noopener" href="http://my.oschina.net/joanfen/blog/287238">http://my.oschina.net/joanfen/blog/287238</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/WeChatPay.png" alt="Alex Lin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/AliPay.png" alt="Alex Lin 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/eth.jpg" alt="Alex Lin ETH">
+        <span>ETH</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Alex Lin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://chaosky.tech/2016/01/30/iOS-Socket/" title="iOS Socket">https://chaosky.tech/2016/01/30/iOS-Socket/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Socket/" rel="tag"><i class="fa fa-tag"></i> Socket</a>
+              <a href="/tags/TCP-IP/" rel="tag"><i class="fa fa-tag"></i> TCP/IP</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/01/21/iOS-Payment/" rel="prev" title="iOS 支付">
+                  <i class="fa fa-angle-left"></i> iOS 支付
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/02/18/UIScrollView-AutoLayout/" rel="next" title="UIScrollView的子视图实现AutoLayout布局">
+                  UIScrollView的子视图实现AutoLayout布局 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2014 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-keyboard"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">139k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:27</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/xwal" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"xwal/xwal.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkxNzQ4MDMxMA==","category":"Comment","category_id":"DIC_kwDOAQq6ds4CSrDW","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<div id="hexo-adsense-hidden" style="display:none"><div hexo-adsense="ads-content"><!--REMOVE ADSENSE SCRIPT, THIS PLUGIN ALREADY OPTIMIZED THE ADSENSE JAVASCRIPT-->
+<!---->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6178635866936443"
+     data-ad-slot="4097715968"></ins>
+<!--script>
+     
+</script--></div></div><style>[hexo-adsense=ads-content]{display:block;background:#fff url(//i.imgur.com/mBbv90p.png) no-repeat top right;color:#303030;min-width:250px;text-align:center;margin-left:auto;margin-right:auto}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFydGljbGUtYWRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQkFDRSxRQUFBLE1BQ0EsV0FBQSxLQUFBLCtCQUFBLFVBQUEsSUFBQSxNQUNBLE1BQUEsUUFHQSxVQUFBLE1BQ0EsV0FBQSxPQUNBLFlBQUEsS0FDQSxhQUFBIiwiZmlsZSI6ImFydGljbGUtYWRzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIipbaGV4by1hZHNlbnNlPVwiYWRzLWNvbnRlbnRcIl0ge1xuICBkaXNwbGF5OiBibG9jaztcbiAgYmFja2dyb3VuZDogI2ZmZiB1cmwoLy9pLmltZ3VyLmNvbS9tQmJ2OTBwLnBuZykgbm8tcmVwZWF0IHRvcCByaWdodDtcbiAgY29sb3I6ICMzMDMwMzA7XG4gIC8qbWluLWhlaWdodDogMThweDtcbiAgbWluLXdpZHRoOiA4MXB4OyovXG4gIG1pbi13aWR0aDogMjUwcHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbiJdfQ== */
+</style><script>const isBrowser=new Function("try {return this===window;}catch(e){ return false;}"),hexoAdsenseConfig=JSON.parse(document.getElementById("hexo-adsense-config").textContent);function insertAfter(e,t){if(t&&e){let n=t.parentNode;n.lastChild==t?n.appendChild(e):n.insertBefore(e,t.nextSibling)}else console.error("cannot insert element")}function replaceWith(e,t){if(t.parentNode)t.parentNode.replaceChild(e,t);else{console.log(t,"parent null"),document.createElement("div").appendChild(t)}}let createElementFromHTML=function(e){if(e instanceof HTMLElement)return e;var t=document.createElement("div");return t.innerHTML=e.trim(),t.firstChild};function ranumb(e,t){return Math.floor(Math.random()*(t-e+1)+e)}function newMethod(){const e=document.getElementById("hexo-adsense-hidden");let t=e.querySelectorAll('[hexo-adsense="ads-content"]'),n=document.querySelectorAll("article");if(n.length>0&&t.length>0){let o;if(1==n.length){console.log("webpage is post");let l=n.item(0);const r=l.querySelectorAll("*[hexo-adsense-fill]");if(r.length>0)for(let e=0;e<r.length;e++){const n=r[e];void 0!==t[e]&&n.appendChild(t[e])}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("h1,h2,h3,h4,h5,h6,pre");if(e.length>0){let n=Array.apply(null,{length:e.length}).map(Number.call,Number);for(let l=0;l<t.length;l++){o=t[l];const r=shuffleArr2(n).next().value;if("number"==typeof r){const t=e.item(r);insertAfter(createElementFromHTML(o),t)}}}}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("br,hr");if(e.length>0){const n=shuffleArr2(Array.apply(null,{length:e.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=n.next().value;if("number"==typeof r){const t=e.item(r);if(["blockquote","img","a","pre","code","em","strong","i","u"].includes(t.parentNode.tagName.toLowerCase())){l--;continue}replaceWith(createElementFromHTML(o),t)}}}}}else{console.log("webpage is not post"),n.length||(n=document.querySelectorAll('[class*="recent-post-item"]'));const e=shuffleArr2(Array.apply(null,{length:n.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=e.next().value;if("number"==typeof r){n.item(r).appendChild(createElementFromHTML(o))}}}adsensePush()}}function shuffleArr(e){for(var t,n=e.length,o=0;n--;)o=Math.floor(Math.random()*(n+1)),t=e[n],e[n]=e[o],e[o]=t;return e}function*shuffleArr2(e){for(var t=e.length;t--;)yield e.splice(Math.floor(Math.random()*(t+1)),1)[0]}function adsensePush(){for(let e=0;e<document.querySelectorAll('[hexo-adsense="ads-content"]').length;e++)(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:hexoAdsenseConfig.pub})}isBrowser()?(window.__tcfapi=(e,t,n)=>{"checkConsent"===e&&n(!0),"addEventListener"===e&&n({eventStatus:"tcloaded",gdprApplies:!1},!0)},"function"==typeof document.addEventListener?document.addEventListener("DOMContentLoaded",newMethod):"function"==typeof window.attachEvent?window.attachEvent("onload",newMethod):window.onload=newMethod):module.exports={replaceWith:replaceWith,insertAfter:insertAfter};</script></body>
+</html>

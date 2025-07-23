@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <meta name="google-site-verification" content="yGwNBR-9-6B60StDh4ueJp0Io9gjnzwX0IiXkPL4Pqc">
+  <meta name="msvalidate.01" content="562E828CD9FA60A6D3CDFE1BD31D3FF3">
+  <meta name="baidu-site-verification" content="iYaX85B5Bg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chaosky.tech","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="提交应用之前的检查列表为了帮助你的应用能够尽可能顺利的过审，请查看下面列出来的可能降低审核速度或者被拒绝的常见失误。本清单无法代替审核条款，但你需要确保你已经达到了清单的要求作为良好的开始。 确保你已经：  测试你的应用程序，保证它不会发生崩溃和错误  确保你的应用程序的信息和应用内容保持完整和准确  保证联系人信息始终有效，审核团队可以及时联系到你  提供一个有效的测试帐号以及登录信息，并提供测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="App Store 审核指南——2016.6">
+<meta property="og:url" content="https://chaosky.tech/2016/06/24/AppStore-Review-Guidelines/index.html">
+<meta property="og:site_name" content="Alex Lin&#39;s Notes">
+<meta property="og:description" content="提交应用之前的检查列表为了帮助你的应用能够尽可能顺利的过审，请查看下面列出来的可能降低审核速度或者被拒绝的常见失误。本清单无法代替审核条款，但你需要确保你已经达到了清单的要求作为良好的开始。 确保你已经：  测试你的应用程序，保证它不会发生崩溃和错误  确保你的应用程序的信息和应用内容保持完整和准确  保证联系人信息始终有效，审核团队可以及时联系到你  提供一个有效的测试帐号以及登录信息，并提供测">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-06-24T15:15:57.000Z">
+<meta property="article:modified_time" content="2025-07-23T17:40:30.000Z">
+<meta property="article:author" content="Alex Lin">
+<meta property="article:tag" content="Guidelines">
+<meta property="article:tag" content="审核指南">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://chaosky.tech/2016/06/24/AppStore-Review-Guidelines/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://chaosky.tech/2016/06/24/AppStore-Review-Guidelines/","path":"2016/06/24/AppStore-Review-Guidelines/","title":"App Store 审核指南——2016.6"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>App Store 审核指南——2016.6 | Alex Lin's Notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?QJ33ASIjWB"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.7.0/mermaid.min.js","integrity":"sha256-4+IKDqhZ/sXjc8Wtl2/MsxI4e0s1KpEVdbEP7V/Lz8U="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/addtoany.js" defer></script>
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<script id="hexo-adsense-config" type="application/json">{"enable":true,"article_ads":["source/ads/in_article.html"],"pub":"ca-pub-6178635866936443","adblock":true,"https":true,"field":"site","type":"javascript","exclude":["*.min.html","exclude/**/*"],"development":false,"args":{"_":[],"g":true},"debug":false,"safe":false,"silent":false,"env":"development","version":"7.3.0","cmd":"d","init":true,"adsense":{"enable":true,"pub":"ca-pub-6178635866936443","article_ads":["source/ads/in_article.html"],"field":"site","https":true,"adblock":true,"exclude":["*.min.html","exclude/**/*"]}}</script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178635866936443" crossorigin="anonymous"></script><link rel="alternate" href="/atom.xml" title="Alex Lin's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex Lin's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Strategy, Execution, Communication.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">100</span></a></li><li class="menu-item menu-item-作坊"><a href="/workspace/" rel="section"><i class="fa fa-cubes fa-fw"></i>作坊</a></li><li class="menu-item menu-item-技能"><a href="/skillmap/" rel="section"><i class="fa fa-atom fa-fw"></i>技能</a></li><li class="menu-item menu-item-摘录"><a href="/quotes/" rel="section"><i class="fa fa-quote-left fa-fw"></i>摘录</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-dragon fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E5%BA%94%E7%94%A8%E4%B9%8B%E5%89%8D%E7%9A%84%E6%A3%80%E6%9F%A5%E5%88%97%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">提交应用之前的检查列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8"><span class="nav-number">2.</span> <span class="nav-text">安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1%E4%B8%8D%E5%BD%93%E5%86%85%E5%AE%B9"><span class="nav-number">2.1.</span> <span class="nav-text">1.1不当内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E7%94%A8%E6%88%B7%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 用户生成的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%84%BF%E7%AB%A5%E5%88%86%E7%B1%BB"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 儿童分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E4%BA%BA%E8%BA%AB%E4%BC%A4%E5%AE%B3"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 人身伤害</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E5%BC%80%E5%8F%91%E8%80%85%E4%BF%A1%E6%81%AF"><span class="nav-number">2.5.</span> <span class="nav-text">1.5 开发者信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD"><span class="nav-number">3.</span> <span class="nav-text">性能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 应用程序的完整性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Beta%E7%89%88%E6%B5%8B%E8%AF%95"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 Beta版测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%BA%94%E7%94%A8%E5%86%85%E5%AE%B9%E7%9A%84%E5%87%86%E7%A1%AE%E6%80%A7"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 应用内容的准确性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E7%A1%AC%E4%BB%B6%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 硬件兼容性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E8%BD%AF%E4%BB%B6%E8%A6%81%E6%B1%82"><span class="nav-number">3.5.</span> <span class="nav-text">2.5 软件要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1"><span class="nav-number">4.</span> <span class="nav-text">业务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E4%BB%98%E6%AC%BE"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 付款</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%85%B6%E4%BB%96%E5%95%86%E4%B8%9A%E6%A8%A1%E5%BC%8F%E9%97%AE%E9%A2%98"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 其他商业模式问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1"><span class="nav-number">5.</span> <span class="nav-text">设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%A8%A1%E4%BB%BF%E8%80%85"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 模仿者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E6%9C%80%E5%B0%91%E5%8A%9F%E8%83%BD"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 最少功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E5%9E%83%E5%9C%BE%E5%BA%94%E7%94%A8"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 垃圾应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E6%89%A9%E5%B1%95"><span class="nav-number">5.4.</span> <span class="nav-text">4.4 扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-%E8%8B%B9%E6%9E%9C%E7%BD%91%E7%AB%99%E5%92%8C%E6%9C%8D%E5%8A%A1"><span class="nav-number">5.5.</span> <span class="nav-text">4.5 苹果网站和服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%95%E5%BE%8B"><span class="nav-number">6.</span> <span class="nav-text">法律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E9%9A%90%E7%A7%81"><span class="nav-number">6.1.</span> <span class="nav-text">5.1 隐私</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83"><span class="nav-number">6.2.</span> <span class="nav-text">5.2 知识产权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E6%B8%B8%E6%88%8F%EF%BC%8C%E8%B5%8C%E5%8D%9A%EF%BC%8C%E5%BD%A9%E7%A5%A8"><span class="nav-number">6.3.</span> <span class="nav-text">5.3 游戏，赌博，彩票</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">7.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Lin"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Alex Lin</p>
+  <div class="site-description" itemprop="description">Hi, I'm an iOS engineer, focusing on mobile software development.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xwal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xwal" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaosky.me@gmail.com" title="E-Mail → mailto:chaosky.me@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://x.com/cyberxwa" title="Twitter → https:&#x2F;&#x2F;x.com&#x2F;cyberxwa" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/chaosky" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;chaosky" rel="noopener me" target="_blank"><i class="fab fa-telegram fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/06/24/AppStore-Review-Guidelines/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="App Store 审核指南——2016.6 | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          App Store 审核指南——2016.6<a href="https://github.com/xwal/xwal.github.io/edit/source/source/_posts/2016-06-24-AppStore-Review-Guidelines.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-06-24 15:15:57" itemprop="dateCreated datePublished" datetime="2016-06-24T15:15:57+00:00">2016-06-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-23 17:40:30" itemprop="dateModified" datetime="2025-07-23T17:40:30+00:00">2025-07-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>11k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>41 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="提交应用之前的检查列表"><a href="#提交应用之前的检查列表" class="headerlink" title="提交应用之前的检查列表"></a>提交应用之前的检查列表</h2><p>为了帮助你的应用能够尽可能顺利的过审，请查看下面列出来的可能降低审核速度或者被拒绝的常见失误。本清单无法代替审核条款，但你需要确保你已经达到了清单的要求作为良好的开始。</p>
+<p><strong>确保你已经：</strong></p>
+<ul>
+<li><p>测试你的应用程序，保证它不会发生崩溃和错误</p>
+</li>
+<li><p>确保你的应用程序的信息和应用内容保持完整和准确</p>
+</li>
+<li><p>保证联系人信息始终有效，审核团队可以及时联系到你</p>
+</li>
+<li><p>提供一个有效的测试帐号以及登录信息，并提供测试功能必要的的硬件和资源（例如，一个测试用的二维码）</p>
+</li>
+<li><p>保证后台服务在审核期间运行正常</p>
+</li>
+<li><p>如果应用的某些功能和应用内付费隐藏较深，需提供详细的描述文档和支持文档。如果因为地域的原因我们无法正常使用该功能，请提供该功能的描述视频链接。</p>
+</li>
+<li><p>请检查你的应用程序是否符合其他规范，包括（注意文中部分内容也有对应的条款和说明，请注意查看）</p>
+<p>开发指南<br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007072">应用程序编程指南（App Programming Guide）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/mac/documentation/General/Conceptual/ExtensibilityPG/">应用扩展编程指南（App Extension Programming Guide）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/icloud/documentation/data-storage/index.html">iOS数据存储条款（iOS Data Storage Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672">Mac OS X文件系统文档（Mac OS X File System Documentation）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/safari/documentation/Tools/Conceptual/SafariExtensionGuide/Introduction/Introduction.html">Safari扩展开发指南（Safari Extensions Development Guide）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/ios/iTunesConnectGuide/">iTunes Connect开发指南（iTunes Connect Developer Guide）</a></p>
+<p>设计指南<br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/">iOS人机交互界面条款（iOS Human Interface Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/">Mac OS人机交互界面条款（Mac OS Human Interface Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/tvos/human-interface-guidelines/">tvOS人机交互界面条款（tvOS Human Interface Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/watch/human-interface-guidelines/">watchOS人机交互界面条款（watchOS Human Interface Guidelines）</a></p>
+<p>品牌营销指南<br><a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/marketing/guidelines/">App Store市场营销条款（App Store Marketing Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/apple-pay/Apple-Pay-Identity-Guidelines.pdf">苹果支付身份条款（Apple Pay Identity Guidelines）</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/wallet/Add-to-Apple-Wallet-Guidelines.pdf">加入苹果支付许可条款（Add to Apple Wallet Guidelines）</a><br><a target="_blank" rel="noopener" href="http://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html">使用Apple商标和版权的条款（Guidelines for Using Apple Trademarks and Copyrights）</a></p>
+</li>
+</ul>
+<span id="more"></span>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><p>当用户从App Store安装应用的时候，他们需要确认这样的操作是安全的。所以应用程序不能包含令人不快或者冒犯性的内容，而且使用中不会造成身心伤害。我们列出了常见的几种缺陷，如果你的应用准备冒犯用户或者与用户发生冲突，App Store不是你的应用应该上架的地方。</p>
+<h3 id="1-1不当内容"><a href="#1-1不当内容" class="headerlink" title="1.1不当内容"></a>1.1不当内容</h3><p>应用程序不应该包括攻击性，敏感，令人不悦，侮辱或者品味低下的内容。例如：</p>
+<p>1.1.1 诽谤或者人格侮辱的内容，包括引用或者评论宗教、种族、性取向、性别或者其他目标群体的内容，特别是该应用对特定的人群造成了伤害（只有专业的政治讽刺作家和幽默大师才不会受到此限制）。</p>
+<p>1.1.2 对人或动物被杀害、致残、折磨、虐待的逼真的描述或者具有暴力倾向的内容。如果是游戏，那么其中的敌人不能只针对特定的种族、文化、政府、公司以及任何其他实体。</p>
+<p>1.1.3 鼓励人们非法或者轻率使用武器和危险品的内容，或者方便人们购买枪支的内容。</p>
+<p>1.1.4 公开的性爱或色情的内容。根据韦氏词典（Webster’s Dictionary）的定义，这些内容特指“明确的描述或展示性器官，或者目的在于激发人们的性欲，而不是展示美学或者渲染气氛”。</p>
+<p>1.1.5 煽动宗教仇恨或者对宗教文献的误导性和不准确的引用。</p>
+<p>1.1.6 提供虚假信息和虚假功能，包括提供不正确的设备信息，提供恶作剧的功能例如虚假的位置跟踪工具。即便是明确指出该应用程序是出于娱乐性的目的也不会无视该条款。发送匿名虚假诈骗信息或者拨打恶意电话的应用会被直接拒绝。</p>
+<h3 id="1-2-用户生成的内容"><a href="#1-2-用户生成的内容" class="headerlink" title="1.2 用户生成的内容"></a>1.2 用户生成的内容</h3><p>为了防止非法滥用用户生成的内容，从而给用户提供虚假信息、盗取用户的知识产权，社交应用以及应用当中包含用户生成的信息的应用必须包括下述功能：</p>
+<ul>
+<li>过滤不良内容</li>
+<li>提供举报机制</li>
+<li>后台服务可以提供阻止骚扰用户的行为</li>
+<li>提供官方联系方式，让用户可以快速联系到开发商</li>
+</ul>
+<p>如果应用在使用用户生成的内容或者提供服务的时候，主要目的是发布色情内容，人肉搜索、侮辱用户，人身威胁、恐吓用户，这种应用不应该放在应用商店，而且苹果可能会不通知开发商并直接下架。如果你的应用使用用户生成的信息来提供网络服务，并且网页上包含了一些限制级的内容，需要默认隐藏并且提供明显的NSFW（不适合工作场所）标识，用户主动点击才会显示。</p>
+<h3 id="1-3-儿童分类"><a href="#1-3-儿童分类" class="headerlink" title="1.3 儿童分类"></a>1.3 儿童分类</h3><p>儿童分类是人们找到适合儿童的应用的良好方式。如果你希望你的应用上架到这个类别当中，你需要关注并且在设计应用的时候需要照顾到儿童的良好体验。这些应用程序不可以包括指向其他应用的链接，付费入口以及其他可能会吸引儿童的不适合的内容，除非提供给家长监控和开启的能力。请记住，一旦客户期望你的应用程序遵循儿童类别的要求，那么它需要进行不断的修改从而满足后续版本的儿童类别的条款更新。即便是你打算取消发布在儿童类别当中也一样需要遵守这些条款。点此了解家长监控的更多内容。</p>
+<p>儿童类别的应用不允许包括基于用户行为的广告（也就是这种广告会根据用户行为而决定展示什么样的内容）。如果包含了广告，这些广告必须也适合儿童。与此同时，你也需要特别留意世界各地有关在线收集儿童数据的相关法律法规。请务必查看本条款的隐私条款来了解更多的相关信息。</p>
+<h3 id="1-4-人身伤害"><a href="#1-4-人身伤害" class="headerlink" title="1.4 人身伤害"></a>1.4 人身伤害</h3><p>如果你的应用程序可能会危害到人身安全，我们可能会拒绝掉它。这类情况包括：</p>
+<p>1.4.1 如果你的应用属于医疗范畴，那我们将会对这个应用提供用于医疗诊断的信息的准确性进行更加严格的审查。如果你的医疗应用已经获得了相关监管部门的批准，你需要随同你的应用一并提供指向相关批准文档的链接用于审核</p>
+<p>1.4.2 药物剂量计算器必须来自药物生产企业、医院、高校、健康保险公司以及其他具有合法资质的实体。或者你的计算方法已经获得了FDA或其他国际上的同行的认可。考虑到潜在的人身伤害的危险，我们需要确保你的应用会长期获得更新和支持</p>
+<p>1.4.3 应用程序不允许鼓励人们非法摄入过量的酒精或药物，或者鼓励未成年人消费药物、酒精和烟草。与此同时，严禁销售大麻等毒品。</p>
+<p>1.4.4 应用程序只能显示执法机构提供的酒后驾驶检查站，而且不允许鼓励人们进行危险的行为，包括酒驾、超速。</p>
+<p>1.4.5 应用程序禁止强迫人们采用违背苹果硬件的安全文档的方式，包括冒着设备损坏或者造成人身伤害的危险使用他们的设备。例如，应用程序不应该鼓励人们将设备塞到床垫下面或枕头下面充电。</p>
+<h3 id="1-5-开发者信息"><a href="#1-5-开发者信息" class="headerlink" title="1.5 开发者信息"></a>1.5 开发者信息</h3><p>用户需要了解当他们遇到问题的时候该如何与您联系。确保你提供的链接当中包含了使用户找到你的非常方便的方法。如果联系人信息不准确或者过期，这不仅令用户失望，在有些国家和地区这也属于违法行为。与此同时，确保支付许可包含发行商的有效联系信息，并且这些信息采用分配给发行商的来自权威机构的合法的根证书进行签名。</p>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><h3 id="2-1-应用程序的完整性"><a href="#2-1-应用程序的完整性" class="headerlink" title="2.1 应用程序的完整性"></a>2.1 应用程序的完整性</h3><p>提审版本的应用必须是最终版本，并且包含了所有应用内容以及所有有效链接。应用在提交的时候需要清除掉所有占位符、无效地址和临时内容。确保你的应用在提交审核之前经过充分测试并且没有BUG，如果你的应用需要登陆，需要包含一个合法的账户而且对应的后台服务也是正常有效的。如果你的应用包含应用内付费，确保他们是完整的，最新的，并且审核人员可以很容易找到。如果不可以，需要提供明确的解释为何不行。请不要把应用程序审核当作软件测试服务，如果你的应用不完整或者存在明显的技术缺陷，它将直接被拒绝。</p>
+<h3 id="2-2-Beta版测试"><a href="#2-2-Beta版测试" class="headerlink" title="2.2 Beta版测试"></a>2.2 Beta版测试</h3><p>您的应用程序的测试版本不应该上架到应用商店，请使用Testflight来代替。如果你的应用提交到Testflight Beta，那么这个应用已经准备好对外发布，并且符合应用审核条款。请注意，Testflight版本的应用不允许从测试人员当中获取任何利益，包括来自众筹的资金。你应该对测试人员提供明确的更新说明。请通过Testflight Beta测试说明了解更多信息。</p>
+<h3 id="2-3-应用内容的准确性"><a href="#2-3-应用内容的准确性" class="headerlink" title="2.3 应用内容的准确性"></a>2.3 应用内容的准确性</h3><p>客户在下载你的应用的时候需要明确了解你的应用是什么，所以请确保你的应用描述、截图、预览视频始终是最新版本，并且能够准确反映你的应用。</p>
+<p>2.3.1 不要在你的应用当中包含任何隐藏和没有相关说明文档的功能。你的应用程序的功能必须让用户和审核人员了解清楚。如果这样的行为过分或者反复出现，你可能会被苹果从开发者身份当中除名。我们努力确保App Store是一个令人信赖的生态系统，并且期望每一个开发者也能够遵守这种要求。如果你没有信誉，我们不想和你合作。</p>
+<p>2.3.2 如果你的应用程序包含了应用内付费功能，请确保你的应用程序的描述、截图和预览视频能够明确表明哪些功能、关卡、订阅内容等需要额外购买。</p>
+<p>2.3.3 你的截图必须符合你的应用程序的实际内容，而不是标题艺术，登陆界面和闪屏界面。</p>
+<p>2.3.4 你的预览视频是让用户能够快速了解你的应用是用来做什么的好方法。为了确保人们可以清楚的了解他们将会在你的应用当中获得什么内容，你的预览视频必须从应用程序本身的运行效果当中捕获。你可以添加旁白或者文本描述来帮助解释视频本身无法解释清楚的内容。</p>
+<p>2.3.5 你需要遵守App Store的类别定义，并且为你的应用选择最合适的类别。如果你选择的类别不符合你的应用，我们可能会帮助你改变应用类别。</p>
+<p>2.3.6 你必须诚实的回答iTunes Connect上面提供的年龄分级的问题，从而你的应用可以良好的使用家长控制功能。如果你的应用年龄分级不正确，用户可能会对你的应用程序的行为表示十分意外，这也可能导致某些国家和地区的监管部门对你的应用分级不正确的问题开展调查。</p>
+<p>2.3.7 你需要创建一个独一无二的应用名称，设计一套准确描述你的应用的关键词。不要尝试使用商标术语、流行的应用名称以及其他不相关的词语来包装你的应用。苹果可能随时修改不恰当的关键词。</p>
+<p>2.3.8 你的应用内容应该适合所有的用户，所以一定要确保你的应用图标、截图和预览视频能够准确的反映你的应用。即使你的应用程序年龄分级高于4+，你的图标、截图和预览视频也必须符合4+的年龄分级。例如你的应用是一个游戏，并且具有暴力内容，你必须选择一个不反映死亡、枪决的截图放到应用商店当中。记住确保你的应用内容，包括应用名称和图标（小图标、大图标、Apple Watch图标等）是一致的从而防止用户感到迷惑。</p>
+<p>2.3.9 开发商具有保证版权合法的责任，包括应用程序图标，截图，预览视频的版权。图标、截图和预览视频需要使用一个虚构的账户的信息，而不是一个真实的用户信息。</p>
+<h3 id="2-4-硬件兼容性"><a href="#2-4-硬件兼容性" class="headerlink" title="2.4 硬件兼容性"></a>2.4 硬件兼容性</h3><p>2.4.1 为了确保人们可以尽可能充分的体验你的应用，在可能的情况下iPhone应用也可以完美支持iPad。我们鼓励您建立通用的应用，使得用户可以在不同的设备上使用。</p>
+<p>2.4.2 你的应用需要高效的利用电量。应用程序不应该快速的消耗电池电量并且产生过多的热量，或者对用户的设备造成不必要的负担。</p>
+<p>2.4.3 你的Apple TV应用可以在只有Siri遥控器或者游戏手柄的时候可以正常运行，但我们不反对你通过更多的外围设备增强你的应用功能的做法。如果你需要一个游戏控制器，请确保在游戏当中对这个游戏控制器提供明确的教程，从而让用户知道如何使用这个控制器。</p>
+<p>2.4.4 应用程序不应该建议或者要求设备重新启动。</p>
+<p>2.4.5 通过Mac App Store发布的应用还需要遵守额外的要求：</p>
+<p>（i）它们必须适当的被沙盒化，而且遵守Mac OS文件系统文档。这些应用也必须通过对应的Mac OSAPI来修改其他应用的数据（例如书签、地址簿和日历）。</p>
+<p>（ii）必须使用Xcode对应用进行打包，不允许包含第三方的安装程序。它们必须是自我包含的、单一文件的安装包，而且不能在共享的位置安装代码和解压资源。</p>
+<p>（iii）在未经用户允许的情况下不允许自动启动或者开机启动，而且用户退出应用之后不允许在未经用户同意的情况下残留后台进程。应用不允许自动将图标放在Dock或者用户桌面。</p>
+<p>（iv）应用程序不允许私自下载和安装其他应用，驱动，额外的代码，以及添加应用功能或者明显改变与审核版本的应用不同的应用工作方式的资源文件。</p>
+<p>（v）应用程序不允许要求升级到root权限，或者使用setuid属性来升级权限。</p>
+<p>（vi）这些应用运行的时候不允许弹出要求许可证的窗口，或者其他的显示方式来反盗版（应用商店允许付费并视为购买了正版授权）。</p>
+<p>（vii）必须使用Mac App Store发布更新，其他方式不被允许。</p>
+<p>（viii）应用程序仅在在当前版本的系统就可以运行，不允许使用可选安装的技术或者废弃过时的技术（例如Java, Rosetta等）</p>
+<p>（ix）所有的本地化版本必须包含在同一个应用程序包下。</p>
+<h3 id="2-5-软件要求"><a href="#2-5-软件要求" class="headerlink" title="2.5 软件要求"></a>2.5 软件要求</h3><p>2.5.1 应用程序只能使用公共API，不允许使用私有API。</p>
+<p>2.5.2 应用程序bundle当中需要是自包含的，不允许读写它们设计的容器之外的数据，并且不得下载、安装或执行代码，包括其他iOS，watchOS，macOS和tvOS的应用。</p>
+<p>2.5.3 如果应用程序传播病毒、文件、计算机代码或者其他可能损坏操作系统和硬件的功能，包括消息推送和游戏中心，将被拒绝。如果这种行为十分恶劣而且反复出现，开发者可能会被苹果除名。</p>
+<p>2.5.4 多任务的应用只能在预期目的下运行后台服务，例如网络电话、音频播放、定位服务、任务计划、本地通知等。如果你的应用程序使用了定位服务，需要提供一个明确的提醒告诉用户这么做会加快电量消耗。</p>
+<p>2.5.5 我们会在IPv6网络上审核你的应用，所以如果你的应用程序无法使用IPv6协议，可能会被拒绝。</p>
+<p>2.5.6 应用程序如果浏览网络，必须使用WebKit框架和WebKit Javascript标准。</p>
+<p>2.5.7 使用蜂窝数据网络播放的视频如果超过10分钟，必须使用HTTP Live Streaming技术并且提供192kbps的码率选项。</p>
+<p>2.5.8 改动用户桌面&#x2F;home界面环境体验的应用，以及模拟多应用小工具使用体验的的应用将会被拒绝。</p>
+<p>2.5.9 应用程序如果修改了标准开关的功能，例如音量上下键和响铃开关，或者其他原生用户界面元素和行为将会被拒绝。</p>
+<p>2.5.10 应用程序在提交的时候不允许包含一个空的广告栏或者测试广告。</p>
+<h2 id="业务"><a href="#业务" class="headerlink" title="业务"></a>业务</h2><p>你的应用可以在App Store当中有多种方式赚钱。如果你的应用的商业模式不够明显，请在应用内容或者审核备注当中提供商业化描述。如果你的应用程序的行为我们无法理解，或者你的应用内付费入口不够明显，将会使得你的应用审核速度变慢甚至被拒绝。尽管定价权在你，但是如果你的应用或者应用内付费存在明显的敲竹杠的行为，我们也会拒绝发布这个应用或者这个应用内付费。我们会拒绝掉视图以不正常的高价格欺骗用户的昂贵的应用。</p>
+<p>如果我们发现你视图诱导用户给较高评价等操纵评价的行为，例如通过支付来诱导、过滤不良评价、通过水军刷虚假评价或者通过第三方的公司或团队代表您进行这类操作，我们会采取措施来维护App Store的环境，其中可能包括将你从开发人员当中除名。</p>
+<h3 id="3-1-付款"><a href="#3-1-付款" class="headerlink" title="3.1 付款"></a>3.1 付款</h3><p>3.1.1 应用内付费：如果你希望通过付费才可以解锁你的应用当中的一些功能（例如，订阅内容，游戏货币，游戏关卡，获取优质内容，解锁完整版本），你必须使用应用内付费（IAP）。应用程序不允许包括按钮、链接或者其他调用方式和行为指导用户采用非IAP的方式付费。通过IAP购买的游戏内的虚拟货币或积分必须只能在这个应用内才可以消费，不能过期，你应该确保你的应用针对具有可恢复的应用内付费具有恢复应用内付费的购买状态的功能和机制。如果你的应用内付费的付费类型不正确，你的应用会被拒绝。应用不可以直接或间接使用应用内付费的内容和功能向其他用户赠送礼品。在Mac应用商店发布的APP需要使用其他机制或者包含一个插件而不是应用商店本身来完成这样的赠送功能。</p>
+<p>3.1.2 订阅：自动更新的订阅只能使用应用内付费来提供，并且只能用于期刊（例如报杂志），商业应用（例如企业、生产力、专业创作和云存储），媒体应用（例如视频，音频，语音和照片共享），以及其他批准的服务（例如约会计划、食谱管理和天气预报）。这些订阅必须持续不少于7天，而且从这款应用可以运行的用户的所有的设备当中都可以获取。你可能会提供跨应用程序的丁芸，但这些订阅内容不允许再扩展到第三方的应用或服务。</p>
+<p>3.1.3 基于内容的“阅读”应用：应用可以允许用户访问他们之前购买的内容或者订阅的内容（比如报纸、杂志、书籍、音频，音乐，视频，专业的数据库，网络电话，云存储以及其他被批准的服务例如管理学生成绩和课程表的教育应用）。应用程序提供商不允许指引用户采用IAP之外的付费机制付费。</p>
+<p>3.1.4 代码：应用不允许使用自己的机制来解锁应用内容和功能。包括许可证密钥，增强现实的标识，二维码等。在条件不允许的情况下（例如这个功能需要搭配特定的硬件才可以使用，比如天文应用程序在有望远镜的情况下可以扩展它的功能），这些应用可以不使用应用内付费来解锁这些功能。应用程序的功能如果搭配一个被批准的硬件来使用（例如一个玩具），可以只解锁基本的功能，并提供一个应用内付费解锁增值功能。您不允许要求用户购买一个不相关的产品或者参加一个市场营销活动来解锁应用的功能。</p>
+<p>3.1.5 应用之外的商品和服务：如果你的应用允许人们购买商品和服务，但这些商品和服务的消费和该应用无关，你必须使用非IAP的方式完成支付。例如Apple Pay，信用卡和借记卡支付入口。应用程序可以使用批准的虚拟货币进行交易（例如比特币，狗狗币），只要这些付费方式遵守这个应用发布的国家和地区的相关法律法规即可。</p>
+<p>3.1.6 ApplePay：使用Apple Pay的应用程序在出售商品或服务之前，必须提供所有商品和服务的信息给用户。必须正确的使用Apple Pay的品牌和用户界面元素，符合Apple Pay身份识别条款和人机交互界面条款（Apple Pay Identity Guidelines and Human Interface Guidelines）。使用Apple Pay提供定期付款必须提供下述信息：</p>
+<p>定期的时间长度以及明确指出在取消之前定期付款将一直持续<br>每个周期提供什么样的功能和服务<br>实际收费的账单<br>取消定期付款的方式</p>
+<h3 id="3-2-其他商业模式问题"><a href="#3-2-其他商业模式问题" class="headerlink" title="3.2 其他商业模式问题"></a>3.2 其他商业模式问题</h3><p>下面的列表并不全面，而且拟提交的应用可能会触犯我们以后更新的最新政策。但是这里面也提供了一些额外的你应该和不应该做的内容：</p>
+<p>3.2.1 可接受的方式<br>（i）你的应用可以展示给用户你开发的其他应用，但你的应用程序不能仅仅是提供其他应用程序的目录应用</p>
+<p>（ii）展示或者建议其他的第三方应用的集合，并且这些应用被设计为在特定领域才发挥作用（例如健康管理，航空服务，交通服务），你的应用程序需要提供强大的编辑能力，使得它看起来不像是一个单独的商店页面。</p>
+<p>（iii）当租约过期的时候禁止用户访问特定的需要批准出租的内容（例如电影、电视节目、音乐和书籍）。但是其他的物品和服务不能过期。</p>
+<p>（iv）支付许可可以用于付款或者收费，转移优惠券和票据（例如电影票，优惠券和VIP凭证）。其他用途可能会导致应用被拒绝或者撤销支付许可证书。</p>
+<p>（v）保险类应用必须是免费的，符合发布地区的相关法律法规，且不能使用应用内付费。</p>
+<p>3.2.2 不可接受的方式<br> （i）展示第三方应用的界面、扩展、插件看起来和App Store很像，或者作为一般的兴趣集合。</p>
+<p>（ii）苹果的硬件和系统内置的功能需要付费才可以解锁，例如通知推送，照相机，陀螺仪。包括苹果服务，例如苹果音乐的访问能力和iCloud存储的访问能力。</p>
+<p>（iii）人为的增加广告的展示量和点击量，包括应用程序被设计为主要展示广告的应用。</p>
+<p>（iv）在应用内为慈善机构募捐资金。这类应用在应用商店必须免费而且必须使用其他方式募捐资金，例如通过短信，网页内支付。</p>
+<p>（v）通过某种方式人为限制应用的使用人群，例如通过位置或者载体来限制。</p>
+<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>苹果的客户十分喜欢那些简洁、精致、创新和易于使用的应用，这正是我们希望在应用商店当中看到的。尽管是你在创造出伟大的设计，但下面的这些标准都是通过应用商店审核的最低标准。</p>
+<h3 id="4-1-模仿者"><a href="#4-1-模仿者" class="headerlink" title="4.1 模仿者"></a>4.1 模仿者</h3><p>拿出你自己的创意，我们知道你具有创意，所以请将你的创意实现出来。不要简单照搬应用商店当中的流行应用，或者仅仅对这个应用的名称和UI进行简单的修改并将其作为自己的应用。除了冒着侵犯他人知识产权的风险外，应用商店也难以搜索到正确的应用，并且这也使得你的同行受到不公正的待遇。</p>
+<h3 id="4-2-最少功能"><a href="#4-2-最少功能" class="headerlink" title="4.2 最少功能"></a>4.2 最少功能</h3><p>你的应用在除了仅仅包装一个网站页面之外还要包含其他的功能和内容。如果你的应用程序不是特别有用、独特、或者看起来像是一个应用程序，那么它不应该在应用商店上架。如果你的应用没有提供持久的娱乐价值，或者仅限于让人们感觉毛骨悚然，这个应用可能会被拒。如果应用仅仅是一首歌曲或者一部电影，它应该被提交到iTunes Store。如果应用仅仅是一本书或者一本游戏指南，那它应该被提交到iBooks商店。</p>
+<p>4.2.1 应用程序应该按照它的预期目的来调用API和开发框架。并且在应用描述当中明确指出这种融合方式。例如，HomeKit框架应该提供家庭自动化服务，HealthKit应该是基于健康和健身的目的并且集成在健康类应用程序当中。</p>
+<p>4.2.2 除了目录用于提供专门的类别之外。应用程序的主要功能不应该是提供营销材料，广告，网络剪辑，内容聚合或者链接集合。</p>
+<p>4.2.3 你的应用程序应该不依赖其他应用或功能就可以正常工作。</p>
+<p>4.2.4 Apple Watch应用如果看起来像是一个表盘会令用户困惑，因为用户期望Apple Watch具有丰富的功能，例如刷卡，消息提醒和第三方服务。如果你的应用程序使用独特的方式展示时间是具有创造性的（例如对于冲浪爱好者展示潮汐的时间），但是如果你的应用看起来特别像传统的手表的表盘，我们会拒绝它。</p>
+<p>4.2.5 如果应用的主要功能是访问iCloud以及iCloud的文件管理器，你需要提供额外的附加功能来使你的应用批准上架。</p>
+<h3 id="4-3-垃圾应用"><a href="#4-3-垃圾应用" class="headerlink" title="4.3 垃圾应用"></a>4.3 垃圾应用</h3><p>不要为同一个应用程序创建多个Bundle ID。如果你的应用程序有多个版本，例如针对特定的国家和地区的版本，体育队伍，大学等，考虑提交一个版本的应用但是使用应用内付费来作区分。此外还要避免将你的应用放到已经饱和的分类下。App Store当中已经有了足够多的手电、放屁、打嗝、和某种不好的词语的应用。如果想要往App Store投放垃圾应用可能会导致你的开发者资格被撤销。</p>
+<h3 id="4-4-扩展"><a href="#4-4-扩展" class="headerlink" title="4.4 扩展"></a>4.4 扩展</h3><p>应用程序扩展必须符合应用程序扩展开发指南（App Extension Programming Guide）或Safari扩展开发指南（Safari Extensions Development Guide），并且如果可能应该包括额外的功能，例如帮助界面，设置界面等。扩展应用的界面不应该包括市场营销内容，广告和应用内付费。</p>
+<p>4.4.1 键盘扩展有一些额外的规则，他们必须：</p>
+<p>提供键盘输入功能（比如键入字符）<br>提供切换输入法的方式<br>在无网络的情况下仍然可以正常使用<br>根据应用扩展开发指南（App Extension Programming Guide）的要求提供数字和符号输入键盘<br>如果键盘输入是这个应用的主要功能，那它的主要类别是工具（Utilities）<br>只基于增强iOS设备输入功能的目的收集用户信息</p>
+<p>4.4.2 Safari扩展必须可以在当前OS X系统上的Safari浏览器上正常运行，它们不能干扰到系统和Safari UI元素，并且绝不能包含恶意或者误导用户的代码。违反此规则会被从开发者当中除名。</p>
+<h3 id="4-5-苹果网站和服务"><a href="#4-5-苹果网站和服务" class="headerlink" title="4.5 苹果网站和服务"></a>4.5 苹果网站和服务</h3><p>4.5.1 应用可以订阅一些苹果提供的RSS源，例如iTunes Store RSS源。但是不能收集从苹果网站上获得的任何信息（包括apple.com，iTunes Store，App Store，iTunes Connect，开发人员门户网站等），或者创建一个基于这些信息的排名。</p>
+<p>4.5.2 苹果音乐API可以允许用户在使用你的应用的时候访问他们的订阅内容。用户必须主动使用播放、暂停和跳过按钮来访问播放列表，不允许应用擅自访问和播放。此外你的应用不允许要求用户必须付费或者间接赚钱才可以访问苹果音乐服务（例如应用内付费，观看广告，获取用户信息等）。</p>
+<p>4.5.3 不要使用苹果服务去发送垃圾信息，钓鱼，发送垃圾邮件。包括游戏中心，推送消息等。不要尝试反向追踪，扫描，嗅探，或者非法获取玩家ID，别名和其他来自Game Center的信息，否则你会被从开发者当中除名。</p>
+<p>4.5.4 推送通知不得作为应用必选项才能使用这个应用，不能用于广告，促销和直销的目的，或者发送敏感和机密信息。</p>
+<p>4.5.5 只能使用Game Center规定的方式访问Game Center玩家ID等信息，但不能展示在APP当中或者分发给第三方厂商。</p>
+<h2 id="法律"><a href="#法律" class="headerlink" title="法律"></a>法律</h2><p>应用程序必须遵守当地的所有法律法规才可以正常使用（如果你不确认需要遵守哪些法律法规，请咨询律师）。我们了解这些事情十分复杂，但是保证遵守当地一切适用的法规是你应尽的义务，不仅仅是遵守我们的条款。当然，如果应用程序拉帮结派、煽动和蛊惑人们犯罪的这种鲁莽行为会直接导致应用被拒。</p>
+<h3 id="5-1-隐私"><a href="#5-1-隐私" class="headerlink" title="5.1 隐私"></a>5.1 隐私</h3><p>保护隐私是苹果生态系统当中的重中之重。你应该谨慎小心的使用收集到的个人信息，以确保你遵守适用的法律条款和苹果开发人员计划许可协议（Apple Developer Program License Agreement）。更不用说这些都是用户对你的的期望。更具体地说：</p>
+<p>5.1.1 数据收集和存储<br>（i）收集用户数据的应用必须具有隐私政策并且安全的取得用户的同意。这包括但不限于应用程序如果使用了HealthKit和其他医疗、健康技术的应用、HomeKit，键盘扩展，Apple Pay，并且包括登陆、访问设备上的用户数据（例如地理位置，通讯录，日历等）。</p>
+<p>（ii）如果你的应用程序不包括明显需要使用用户账户的功能，那么请让用户不登陆的情况下就可以正常使用。应用程序不能要求用户输入用户个人信息来使用其中的功能，但核心功能必要或者法律要求的情况下除外。</p>
+<p>（iii）开发人员如果使用应用窃取用户密码和其他隐私数据会从开发人员当中除名。</p>
+<p>5.1.2 数据的使用和分享<br>（i）你在向用户提供明确的如何使用用户数据的说明文档并取得用户明确的许可之前，你的应用不能使用或者转移用户的数据。</p>
+<p>（ii）如果不是基于提升用户体验，提升软硬件性能或者符合苹果开发者计划许可协议（Apple Developer Program License Agreement）的广告推广目的，不允许使用或者向第三方厂商告知用户数据。</p>
+<p>（iii）从HomeKit API当中获得的数据不允许应用在广告投放和数据挖掘的目的。</p>
+<p>（iv）使用苹果支付并且通过苹果支付获取用户数据的应用，在使用或向第三方厂商告知的时候只能基于促进或改善商品和服务的交付的目的。</p>
+<p>5.1.3 卫生与健康研究<br>健康、健身和医疗数据十分敏感，所以这类应用程序需要遵守额外的规则以保护客户的隐私安全：</p>
+<p>（i）如果目的是打广告或者用户数据挖掘（用于提升健康管理，或者用于获得了批准的科研目的除外），那么应用不得使用或者向第三方披露用户的健康、健身和医疗数据。这些数据来自但不限于HealthKit API，运动和健身功能，或者其他有关健康的学科的研究课题。</p>
+<p>（ii）应用不能向HealthKit以及其他医疗研究和健康管理应用当中写入虚假数据，而且不能够在iCloud上存储健康数据。</p>
+<p>（iii）致力于人类健康相关的学科研究必须在参与者的同意之下才可以进行，或者对于未成年人，他们的父母和监护人的同意之下才可以进行。相关许可条款必须包括（a）性质、宗旨和研究时长；（b）研究程序，风险和参与人的利害关系；（c）数据的保密性和管理方法，包括与第三方共享的任何数据；（d）参与者如果有疑问需要知道的联络方式；（e）参与者如何撤出的机制。</p>
+<p>（iv）如果应用进行健康相关的研究必须具有独立的伦理审查委员会的许可。此类批准必须按照要求提供。</p>
+<p>5.1.4 儿童<br>基于很多因素，在使用来自儿童的数据的时候务必保持谨慎。我们希望您在使用这些数据之前能够仔细了解相关要求和国际适用的法律条款，例如儿童在线隐私保护法（Children‘s online privacy protection act，COPPA）。</p>
+<p>应用程序只能基于提供必要的功能和非年龄相关的娱乐价值的目的下，而且在遵守相关法律的前提下才可以请求获取孩子的生日和父母的联系方式。</p>
+<p>此外，儿童类应用如果需要采集、传输、分享儿童的信息（包括姓名、地址、电子邮件、位置、照片、视频、图画、聊天功能、其他个人数据和与上述任何信息一起使用的永久的标识符），必须提供隐私条款，而且必须符合所有适用于儿童的隐私政策。为了明确起见，如果这类应用需要家长监控，通常这两种情况所需要提供的隐私条款会有所不同。点此了解详细信息。</p>
+<p>5.1.5 位置服务<br>使用位置服务的应用程序必须提供和位置服务直接相关的功能。使用基于位置的API不允许用于提供紧急服务，或者实现自动控制车辆、飞行器以及其他设备（小型的设备例如小型无人机和玩具例外），远程控制汽车警报系统等。在收集、传输和使用用户的位置数据之前，请确保你已经取得了用户的同意。如果应用程序使用了后台定位服务，务必在应用当中阐明其目的。参考人机交互界面条款（Human Interface Guidelines）了解最佳的做法。</p>
+<h3 id="5-2-知识产权"><a href="#5-2-知识产权" class="headerlink" title="5.2 知识产权"></a>5.2 知识产权</h3><p>确保你的应用只包括你创建的内容，或者在使用他人的内容的时候具有合法的许可协议。如果你在许可协议规定的方式之外使用这些内容可能会被苹果下架你的应用。当然，这也意味着其他盗用你的内容的应用也可能会被下架。如果你认为你的知识产权已经被侵犯，请填写这个表单发起诉讼申请。知识产权相关法规在每个国家和地区有所不同，但你的应用必须避免以下最基本的错误：</p>
+<p>5.2.1 一般而言：不要使用受保护的第三方内容，如商标、版权作品，或者在你的应用当中使用未经专利许可的创意。不要包含误导、虚假，山寨的描述，名称和应用内容在你的应用当中。</p>
+<p>5.2.2 第三方网站&#x2F;服务：如果你的应用使用、访问、展示和商业化第三方的服务，请保证你已经获得了相应的授权许可。并且许可文件必须根据要求在审核前一并提供。</p>
+<p>5.2.3 音频和视频下载：应用程序不能对非法分享、保存、转换或者来自第三方源的数据的非法使用提供方便（第三方来源包括Apple Music, YouTube, SoundCloud, Vimeo等），除非具有相应的合法授权协议。如果应用提供了音视频文件，可能这些文件也会违反知识产权，所以你的应用在提供这些文件和服务的访问能力之前务必具有合法授权协议并且必须按照要求在审核前提供。</p>
+<p>5.2.4 苹果广告代言：不要明示或暗示苹果公司是你的应用的供应商，或者苹果为你的应用的功能和质量代言。如果你的应用被授予“编辑选择奖”，苹果会自动加上这个徽章。</p>
+<p>5.2.5 苹果产品：禁止创建一个应用看起来与苹果已有的产品，用户界面（如Finder），应用（如App Store, iTunes Store或Messages），广告主题相似，并且不允许拼错苹果产品名称（如Iphone, iTunz）。iTunes音乐的预览不允许在取得对应的授权许可之前直接使用。例如作为拼图应用的背景音乐，游戏背景音乐等。如果你的应用展示了Activity圆圈，不允许修改圆圈的显示方式以及它们代表的数据。人机界面交互条款当中对如何使用Activity圆圈有更多的信息。</p>
+<h3 id="5-3-游戏，赌博，彩票"><a href="#5-3-游戏，赌博，彩票" class="headerlink" title="5.3 游戏，赌博，彩票"></a>5.3 游戏，赌博，彩票</h3><p>赌博、游戏和彩票功能可能是最难以管理也是苹果应用商店当中最普遍的促销方式。只有当你完全明白相关法律风险并且已经准备好足够的时间应对监管部门的审查的时候才可以考虑使用。不过有些事情需要牢记：</p>
+<p>5.3.1 抽奖和竞猜必须由应用开发商赞助</p>
+<p>5.3.2 用于抽奖和竞猜的官方规则必须在应用当中予以提供，并且明确表明苹果公司不是赞助商或者以任何形式参与该活动。</p>
+<p>5.3.3 应用不允许使用应用内付费购买信用点或者虚拟货币，并把它们与实际的货币结合使用，也不允许在应用当中购买彩票，抽奖券，和进行资金转移。</p>
+<p>5.3.4 提供需要使用真实货币进行游戏的应用（例如体育博彩、扑克赌博、赌场游戏和赛马竞猜等）或者提供彩票，必须具有当地相关监管部门的合法的授权许可。而且发行的地区仅限于许可协议规定的地点，并且在应用商店当中必须是免费的。非法赌博的工具，包括计牌客不允许上架到App Store当中。彩票App必须具有下列要素：报酬，中奖几率和奖金。</p>
+<p>After<br>提交应用之后<br>一旦你将应用程序和元数据提交到iTunes Connect当中，并且进入审核流程，这里有一些事情你需要牢记：</p>
+<p>时间：应用审核团队会尽快审核你的应用，我们也一直努力加快审核速度。可以在此了解更多有关App审核的信息。</p>
+<p>状态更新：你的应用的当前状态会在iTunes Connect当中直接反映。所以你可以在上面留意你的应用状态。</p>
+<p>加急审核申请：如果你们对时间非常敏感，你们可以点此申请加急审核。请务必当你在真正需要它的情况下才进行加急审核，因为你也需要尊重你的同行。如果我们发现你在滥用这个系统，我们可能会拒绝你的加急申请。</p>
+<p>发布日期：如果你的发布日期设为未来的某个时候，你的应用在到达那个时间点之前不会发布到应用商店上面，即便是已经通过了审核。请记住，你的应用在所有选定的应用商店上架可能需要长达24小时的时间。</p>
+<p>被拒：我们的目标是严格遵守这些准则，但人无完人，如果你的应用程序被拒绝并且你对此表示疑问或者希望提供更多的信息，请使用解决方案中心来和应用审核团队直接沟通。这可能对你的应用尽快上架有帮助，而且这也可能帮助我们完善应用程序审核流程或者让我们发现审核政策当中表述不清的地方。如果你仍然对结果有异议，请点此提出上诉。</p>
+<blockquote>
+<p>Apple:We’re excited to see what you come up with next!<br>——我们很期待看到你们未来发布的产品！</p>
+</blockquote>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzIwNDAxNjIzNg==&mid=2650120083&idx=1&sn=73d9419687c25fece39eb5ac817d144d&scene=1&srcid=0616Vn6NAmGEqGYmXICtrXVY#rd">中文翻译来源</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">官方App Store Review Guidelines</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/WeChatPay.png" alt="Alex Lin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/AliPay.png" alt="Alex Lin 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/eth.jpg" alt="Alex Lin ETH">
+        <span>ETH</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Alex Lin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://chaosky.tech/2016/06/24/AppStore-Review-Guidelines/" title="App Store 审核指南——2016.6">https://chaosky.tech/2016/06/24/AppStore-Review-Guidelines/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Guidelines/" rel="tag"><i class="fa fa-tag"></i> Guidelines</a>
+              <a href="/tags/%E5%AE%A1%E6%A0%B8%E6%8C%87%E5%8D%97/" rel="tag"><i class="fa fa-tag"></i> 审核指南</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/06/13/iOS-Common-Crypto/" rel="prev" title="iOS 密码技术">
+                  <i class="fa fa-angle-left"></i> iOS 密码技术
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/06/30/Design-Pattern/" rel="next" title="设计模式 （Design Pattern）">
+                  设计模式 （Design Pattern） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2014 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-keyboard"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">139k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:27</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/xwal" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"xwal/xwal.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkxNzQ4MDMxMA==","category":"Comment","category_id":"DIC_kwDOAQq6ds4CSrDW","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<div id="hexo-adsense-hidden" style="display:none"><div hexo-adsense="ads-content"><!--REMOVE ADSENSE SCRIPT, THIS PLUGIN ALREADY OPTIMIZED THE ADSENSE JAVASCRIPT-->
+<!---->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6178635866936443"
+     data-ad-slot="4097715968"></ins>
+<!--script>
+     
+</script--></div></div><style>[hexo-adsense=ads-content]{display:block;background:#fff url(//i.imgur.com/mBbv90p.png) no-repeat top right;color:#303030;min-width:250px;text-align:center;margin-left:auto;margin-right:auto}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFydGljbGUtYWRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQkFDRSxRQUFBLE1BQ0EsV0FBQSxLQUFBLCtCQUFBLFVBQUEsSUFBQSxNQUNBLE1BQUEsUUFHQSxVQUFBLE1BQ0EsV0FBQSxPQUNBLFlBQUEsS0FDQSxhQUFBIiwiZmlsZSI6ImFydGljbGUtYWRzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIipbaGV4by1hZHNlbnNlPVwiYWRzLWNvbnRlbnRcIl0ge1xuICBkaXNwbGF5OiBibG9jaztcbiAgYmFja2dyb3VuZDogI2ZmZiB1cmwoLy9pLmltZ3VyLmNvbS9tQmJ2OTBwLnBuZykgbm8tcmVwZWF0IHRvcCByaWdodDtcbiAgY29sb3I6ICMzMDMwMzA7XG4gIC8qbWluLWhlaWdodDogMThweDtcbiAgbWluLXdpZHRoOiA4MXB4OyovXG4gIG1pbi13aWR0aDogMjUwcHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbiJdfQ== */
+</style><script>const isBrowser=new Function("try {return this===window;}catch(e){ return false;}"),hexoAdsenseConfig=JSON.parse(document.getElementById("hexo-adsense-config").textContent);function insertAfter(e,t){if(t&&e){let n=t.parentNode;n.lastChild==t?n.appendChild(e):n.insertBefore(e,t.nextSibling)}else console.error("cannot insert element")}function replaceWith(e,t){if(t.parentNode)t.parentNode.replaceChild(e,t);else{console.log(t,"parent null"),document.createElement("div").appendChild(t)}}let createElementFromHTML=function(e){if(e instanceof HTMLElement)return e;var t=document.createElement("div");return t.innerHTML=e.trim(),t.firstChild};function ranumb(e,t){return Math.floor(Math.random()*(t-e+1)+e)}function newMethod(){const e=document.getElementById("hexo-adsense-hidden");let t=e.querySelectorAll('[hexo-adsense="ads-content"]'),n=document.querySelectorAll("article");if(n.length>0&&t.length>0){let o;if(1==n.length){console.log("webpage is post");let l=n.item(0);const r=l.querySelectorAll("*[hexo-adsense-fill]");if(r.length>0)for(let e=0;e<r.length;e++){const n=r[e];void 0!==t[e]&&n.appendChild(t[e])}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("h1,h2,h3,h4,h5,h6,pre");if(e.length>0){let n=Array.apply(null,{length:e.length}).map(Number.call,Number);for(let l=0;l<t.length;l++){o=t[l];const r=shuffleArr2(n).next().value;if("number"==typeof r){const t=e.item(r);insertAfter(createElementFromHTML(o),t)}}}}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("br,hr");if(e.length>0){const n=shuffleArr2(Array.apply(null,{length:e.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=n.next().value;if("number"==typeof r){const t=e.item(r);if(["blockquote","img","a","pre","code","em","strong","i","u"].includes(t.parentNode.tagName.toLowerCase())){l--;continue}replaceWith(createElementFromHTML(o),t)}}}}}else{console.log("webpage is not post"),n.length||(n=document.querySelectorAll('[class*="recent-post-item"]'));const e=shuffleArr2(Array.apply(null,{length:n.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=e.next().value;if("number"==typeof r){n.item(r).appendChild(createElementFromHTML(o))}}}adsensePush()}}function shuffleArr(e){for(var t,n=e.length,o=0;n--;)o=Math.floor(Math.random()*(n+1)),t=e[n],e[n]=e[o],e[o]=t;return e}function*shuffleArr2(e){for(var t=e.length;t--;)yield e.splice(Math.floor(Math.random()*(t+1)),1)[0]}function adsensePush(){for(let e=0;e<document.querySelectorAll('[hexo-adsense="ads-content"]').length;e++)(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:hexoAdsenseConfig.pub})}isBrowser()?(window.__tcfapi=(e,t,n)=>{"checkConsent"===e&&n(!0),"addEventListener"===e&&n({eventStatus:"tcloaded",gdprApplies:!1},!0)},"function"==typeof document.addEventListener?document.addEventListener("DOMContentLoaded",newMethod):"function"==typeof window.attachEvent?window.attachEvent("onload",newMethod):window.onload=newMethod):module.exports={replaceWith:replaceWith,insertAfter:insertAfter};</script></body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <meta name="google-site-verification" content="yGwNBR-9-6B60StDh4ueJp0Io9gjnzwX0IiXkPL4Pqc">
+  <meta name="msvalidate.01" content="562E828CD9FA60A6D3CDFE1BD31D3FF3">
+  <meta name="baidu-site-verification" content="iYaX85B5Bg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chaosky.tech","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="默克尔树默克尔树结构用很小的成本就能有效验证数据集的完整性。 什么是Merkle树？默克尔树是一种树状结构，树上的每个节点都由一个值表示，这个值是一些加密哈希函数的结果。哈希函数是单向的，从一个输入产生一个输出很容易，但从一个输出确定一个输入在计算上是不可行的。默克尔树有3种类型的节点，如下所示：  叶子节点 - 叶子节点位于树的最底部，它们的值是原始数据根据指定的哈希函数进行哈希的结果。一棵树上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="默克尔树（Merkle Tree）">
+<meta property="og:url" content="https://chaosky.tech/2022/11/09/merkle-tree/index.html">
+<meta property="og:site_name" content="Alex Lin&#39;s Notes">
+<meta property="og:description" content="默克尔树默克尔树结构用很小的成本就能有效验证数据集的完整性。 什么是Merkle树？默克尔树是一种树状结构，树上的每个节点都由一个值表示，这个值是一些加密哈希函数的结果。哈希函数是单向的，从一个输入产生一个输出很容易，但从一个输出确定一个输入在计算上是不可行的。默克尔树有3种类型的节点，如下所示：  叶子节点 - 叶子节点位于树的最底部，它们的值是原始数据根据指定的哈希函数进行哈希的结果。一棵树上">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosky.tech/2022/11/09/merkle-tree/2880.webp">
+<meta property="og:image" content="https://chaosky.tech/2022/11/09/merkle-tree/43616375-15330c32-9671-11e8-9057-6e61c312c856.png">
+<meta property="og:image" content="https://chaosky.tech/2022/11/09/merkle-tree/43616387-27ec860a-9671-11e8-9f3f-0b871a6581a6.png">
+<meta property="og:image" content="https://chaosky.tech/2022/11/09/merkle-tree/43616398-33e20584-9671-11e8-9f62-9f48ce412898.png">
+<meta property="og:image" content="https://chaosky.tech/2022/11/09/merkle-tree/43616417-46d3293e-9671-11e8-81c3-8cdf7f8ddd77.png">
+<meta property="og:image" content="https://chaosky.tech/2022/11/09/merkle-tree/merkle-por.png">
+<meta property="article:published_time" content="2022-11-09T16:09:47.000Z">
+<meta property="article:modified_time" content="2022-11-09T16:09:47.000Z">
+<meta property="article:author" content="Alex Lin">
+<meta property="article:tag" content="exchange">
+<meta property="article:tag" content="cryptography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosky.tech/2022/11/09/merkle-tree/2880.webp">
+
+
+<link rel="canonical" href="https://chaosky.tech/2022/11/09/merkle-tree/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://chaosky.tech/2022/11/09/merkle-tree/","path":"2022/11/09/merkle-tree/","title":"默克尔树（Merkle Tree）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>默克尔树（Merkle Tree） | Alex Lin's Notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?QJ33ASIjWB"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.7.0/mermaid.min.js","integrity":"sha256-4+IKDqhZ/sXjc8Wtl2/MsxI4e0s1KpEVdbEP7V/Lz8U="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/addtoany.js" defer></script>
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<script id="hexo-adsense-config" type="application/json">{"enable":true,"article_ads":["source/ads/in_article.html"],"pub":"ca-pub-6178635866936443","adblock":true,"https":true,"field":"site","type":"javascript","exclude":["*.min.html","exclude/**/*"],"development":false,"args":{"_":[],"g":true},"debug":false,"safe":false,"silent":false,"env":"development","version":"7.3.0","cmd":"d","init":true,"adsense":{"enable":true,"pub":"ca-pub-6178635866936443","article_ads":["source/ads/in_article.html"],"field":"site","https":true,"adblock":true,"exclude":["*.min.html","exclude/**/*"]}}</script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178635866936443" crossorigin="anonymous"></script><link rel="alternate" href="/atom.xml" title="Alex Lin's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex Lin's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Strategy, Execution, Communication.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">100</span></a></li><li class="menu-item menu-item-作坊"><a href="/workspace/" rel="section"><i class="fa fa-cubes fa-fw"></i>作坊</a></li><li class="menu-item menu-item-技能"><a href="/skillmap/" rel="section"><i class="fa fa-atom fa-fw"></i>技能</a></li><li class="menu-item menu-item-摘录"><a href="/quotes/" rel="section"><i class="fa fa-quote-left fa-fw"></i>摘录</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-dragon fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%98%E5%85%8B%E5%B0%94%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">默克尔树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFMerkle%E6%A0%91%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Merkle树？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Merkle-%E6%A0%91%E5%AE%9E%E7%8E%B0%EF%BC%88JavaScript%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">Merkle 树实现（JavaScript）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.1.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E6%A0%91"><span class="nav-number">1.3.</span> <span class="nav-text">构建树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E8%AF%81%E6%98%8E%E5%92%8C%E9%AA%8C%E8%AF%81"><span class="nav-number">1.4.</span> <span class="nav-text">生成证明和验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5%E6%83%85%E5%86%B5"><span class="nav-number">1.5.</span> <span class="nav-text">验证失败情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NFT-%E7%99%BD%E5%90%8D%E5%8D%95"><span class="nav-number">2.1.</span> <span class="nav-text">NFT 白名单</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.1.1.</span> <span class="nav-text">后端实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.1.2.</span> <span class="nav-text">前端实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%88%E7%BA%A6%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.1.3.</span> <span class="nav-text">合约实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E9%87%91%E8%AF%81%E6%98%8E%EF%BC%88Proof-of-Reserves%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">准备金证明（Proof of Reserves）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%81%E6%98%8E%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.1.</span> <span class="nav-text">证明机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%80-%E5%85%AC%E5%B8%83%E5%B9%B3%E5%8F%B0%E8%B5%84%E4%BA%A7"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">步骤一 公布平台资产</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C-%E7%94%9F%E6%88%90%E7%94%A8%E6%88%B7%E8%8A%82%E7%82%B9%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">步骤二 生成用户节点数据</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%89-%E7%94%A8%E6%88%B7%E9%AA%8C%E8%AF%81%E8%B5%84%E4%BA%A7"><span class="nav-number">2.2.2.</span> <span class="nav-text">步骤三 用户验证资产</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E9%AA%8C%E8%AF%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.2.3.</span> <span class="nav-text">用户验证示例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%89%93%E5%BC%80%E5%B9%B3%E5%8F%B0-App%EF%BC%8C%E8%8E%B7%E5%8F%96%E8%87%AA%E5%B7%B1%E7%9A%84%E7%94%A8%E6%88%B7ID-UID-%E3%80%81%E9%9A%8F%E6%9C%BA%E6%95%B0-Nonce-%E3%80%81%E4%BD%99%E9%A2%9D-Amount-%E3%80%82"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">用户打开平台 App，获取自己的用户ID(UID)、随机数(Nonce)、余额(Amount)。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2-str-UID-str-Nonce-str-Amount"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">计算字符串&#x3D; str(UID) + str(Nonce) + str(Amount)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97hash%E5%80%BC"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">计算hash值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8Merkle-Tree%E4%B8%AD%E6%9F%A5%E6%89%BE%E7%94%A8%E6%88%B7HASH"><span class="nav-number">2.2.3.4.</span> <span class="nav-text">在Merkle Tree中查找用户HASH</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B9%B3%E5%8F%B0"><span class="nav-number">2.2.4.</span> <span class="nav-text">相关平台</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Lin"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Alex Lin</p>
+  <div class="site-description" itemprop="description">Hi, I'm an iOS engineer, focusing on mobile software development.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xwal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xwal" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaosky.me@gmail.com" title="E-Mail → mailto:chaosky.me@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://x.com/cyberxwa" title="Twitter → https:&#x2F;&#x2F;x.com&#x2F;cyberxwa" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/chaosky" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;chaosky" rel="noopener me" target="_blank"><i class="fab fa-telegram fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2022/11/09/merkle-tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="默克尔树（Merkle Tree） | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          默克尔树（Merkle Tree）<a href="https://github.com/xwal/xwal.github.io/edit/source/source/_posts/2022-11-09-merkle-tree.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-09 16:09:47" itemprop="dateCreated datePublished" datetime="2022-11-09T16:09:47+00:00">2022-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web3/" itemprop="url" rel="index"><span itemprop="name">Web3</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="默克尔树"><a href="#默克尔树" class="headerlink" title="默克尔树"></a>默克尔树</h2><p>默克尔树结构用很小的成本就能有效验证数据集的完整性。</p>
+<h3 id="什么是Merkle树？"><a href="#什么是Merkle树？" class="headerlink" title="什么是Merkle树？"></a>什么是Merkle树？</h3><p>默克尔树是一种树状结构，树上的每个节点都由一个值表示，这个值是一些加密哈希函数的结果。哈希函数是单向的，从一个输入产生一个输出很容易，但从一个输出确定一个输入在计算上是不可行的。默克尔树有3种类型的节点，如下所示：</p>
+<ul>
+<li><p>叶子节点 - 叶子节点位于树的最底部，它们的值是原始数据根据指定的哈希函数进行哈希的结果。一棵树上有多少个叶子节点，就有多少个需要哈希的原始数据。例如，如果有7个数据需要被哈希，就会有7个叶子节点。</p>
+</li>
+<li><p>父节点 - 父节点可以位于树的不同层次，这取决于整个树的大小，父节点总是位于叶节点之上。父节点的值是由它下面的节点的哈希值决定的，通常从左到右开始。由于不同的输入总是会产生不同的哈希值，不考虑哈希值的碰撞，节点哈希值的连接顺序很重要。值得一提的是，根据树的大小，父节点可以Hash其他父节点。</p>
+</li>
+<li><p>根节点 - 根节点位于树的顶端，由位于它下面的两个父节点的哈希值连接而成，同样从左到右开始。任何默克尔树上都只有一个根节点，根节点拥有根哈希值。</p>
+</li>
+</ul>
+<p><img src="/2022/11/09/merkle-tree/2880.webp" alt="默克尔树结构"></p>
+<span id="more"></span>
+
+<p>Visualization of Merkle Tree</p>
+<p><img src="/2022/11/09/merkle-tree/43616375-15330c32-9671-11e8-9057-6e61c312c856.png" alt="Merkle Tree"></p>
+<p>Visualization of Merkle Tree Proof</p>
+<p><img src="/2022/11/09/merkle-tree/43616387-27ec860a-9671-11e8-9f3f-0b871a6581a6.png" alt="Merkle Tree Proof"></p>
+<p>Visualization of Invalid Merkle Tree Proofs</p>
+<p><img src="/2022/11/09/merkle-tree/43616398-33e20584-9671-11e8-9f62-9f48ce412898.png" alt="Merkle Tree Proof"></p>
+<p>Visualization of Bitcoin Merkle Tree</p>
+<p><img src="/2022/11/09/merkle-tree/43616417-46d3293e-9671-11e8-81c3-8cdf7f8ddd77.png" alt="Merkle Tree Proof"></p>
+<h3 id="Merkle-树实现（JavaScript）"><a href="#Merkle-树实现（JavaScript）" class="headerlink" title="Merkle 树实现（JavaScript）"></a>Merkle 树实现（JavaScript）</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>官方库地址：<a target="_blank" rel="noopener" href="https://github.com/merkletreejs/merkletreejs">https://github.com/merkletreejs/merkletreejs</a></p>
+<p>安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install merkletreejs</span><br></pre></td></tr></table></figure>
+
+<h3 id="构建树"><a href="#构建树" class="headerlink" title="构建树"></a>构建树</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">MerkleTree</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;merkletreejs&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">SHA256</span> = <span class="built_in">require</span>(<span class="string">&#x27;crypto-js/sha256&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> leaves = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>].<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> <span class="title class_">SHA256</span>(x))</span><br><span class="line"><span class="keyword">const</span> tree = <span class="keyword">new</span> <span class="title class_">MerkleTree</span>(leaves, <span class="title class_">SHA256</span>)</span><br><span class="line"><span class="keyword">const</span> root = tree.<span class="title function_">getRoot</span>().<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(tree.<span class="title function_">toString</span>())</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(root)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>衍生出我们的叶子节点。在一棵树上位于叶子节点正上方的每个父节点，最多只能Hash两个叶子节点。如果叶子节点的数量不均匀，父节点将处理一个叶子节点。每个叶子节点应该是某种形式的Hash数据，我们这里使用sha256来哈希所有数据。</li>
+<li>对所有数据进行了哈希后，从而获得了我们的叶子节点 leaves，现在就可以创建Merkle树对象。我们使用merkletreejs库，通过调用new MerkleTree()函数，将叶子节点作为第一个参数，哈希算法作为第二个参数。</li>
+<li>现在已经得出了一个完整的Merkle树，可以通过调用Merkle树对象的getRoot()方法来获得根哈希值。记住，Merkle树的根哈希值是树上根节点正下方的两个前面的父节点的哈希值。</li>
+</ol>
+<p>Merkle树的巧妙之处在于，它不需要任何关于原始数据块的知识来验证一个节点是否属于我们的树。如果我们试图验证一个叶子节点属于我们的树，只需要知道直接相邻的叶子节点哈希值(如果有的话)，以及叶子节点正上方相邻的父节点哈希值就可以了。这个信息被称为proof。</p>
+<h3 id="生成证明和验证"><a href="#生成证明和验证" class="headerlink" title="生成证明和验证"></a>生成证明和验证</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> leaf = <span class="title class_">SHA256</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> proof = tree.<span class="title function_">getProof</span>(leaf)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(tree.<span class="title function_">verify</span>(proof, leaf, root)) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> verified = <span class="title class_">MerkleTree</span>.<span class="title function_">verify</span>(proof, leaf, root, <span class="title class_">SHA256</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(verified)</span><br></pre></td></tr></table></figure>
+
+<p>现在我们有了Merkle树对象和它的根哈希值，我们准备开始考虑如何提供Merkle证明。</p>
+<ol>
+<li>被验证方提供数据 <code>a</code> ，验证方收到数据后，使用 SHA256 进行哈希，并使用Merkle Tree对象上的getProof()方法检索证明。</li>
+<li>被验证方获取 <code>proof</code>、<code>leaf</code> 和 <code>root</code>后就可以通过 MerkleTree 的方法验证。</li>
+</ol>
+<h3 id="验证失败情况"><a href="#验证失败情况" class="headerlink" title="验证失败情况"></a>验证失败情况</h3><p>如果一个无效数据试图使用有效或无效的证明来调用这个函数，生成的目标叶子节点将根本不存在于我们的Merkle树上，验证将失败。</p>
+<ol>
+<li>当使用无效数据生成 proof 时，在我们的 Merkle 树无法获取到 proof。</li>
+<li>当使用无效的数据，提供其他有效数据生成proof时，也无法通过验证。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> badLeaves = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;x&#x27;</span>, <span class="string">&#x27;c&#x27;</span>].<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> <span class="title class_">SHA256</span>(x))</span><br><span class="line"><span class="keyword">const</span> badTree = <span class="keyword">new</span> <span class="title class_">MerkleTree</span>(badLeaves, <span class="title class_">SHA256</span>)</span><br><span class="line"><span class="keyword">const</span> badLeaf = <span class="title class_">SHA256</span>(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> badProof = badTree.<span class="title function_">getProof</span>(badLeaf)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(badTree.<span class="title function_">verify</span>(badProof, badLeaf, root)) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="NFT-白名单"><a href="#NFT-白名单" class="headerlink" title="NFT 白名单"></a>NFT 白名单</h3><h4 id="后端实现"><a href="#后端实现" class="headerlink" title="后端实现"></a>后端实现</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">MerkleTree</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;merkletreejs&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> keccak256 = <span class="built_in">require</span>(<span class="string">&#x27;keccak256&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> whitelist = [</span><br><span class="line">    <span class="string">&#x27;0x7a68Ab63Ba083916a1e4875588b61676F52Bd08b&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0x9e1D367A900bc7103e3f2f2af9B71ae9d29a3e58&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0x5191c9832B5bf6512F7216eE24cc0Ba44558993F&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0xdd9c4E0B11c319E980c00773296fc1bA6e3D3d23&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0xC4282694CE35e1b2DD7823BBF3693cfe1E99c398&#x27;</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span> leaves = whitelist.<span class="title function_">map</span>(<span class="function"><span class="params">addr</span> =&gt;</span> <span class="title function_">keccak256</span>(addr))</span><br><span class="line"><span class="keyword">const</span> tree = <span class="keyword">new</span> <span class="title class_">MerkleTree</span>(leaves, keccak256)</span><br><span class="line"><span class="keyword">const</span> root = tree.<span class="title function_">getHexRoot</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(tree.<span class="title function_">toString</span>())</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(root)</span><br></pre></td></tr></table></figure>
+<p>发行方通过收集白名单用户地址，生成 root 哈希根。</p>
+<h4 id="前端实现"><a href="#前端实现" class="headerlink" title="前端实现"></a>前端实现</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> leaf = <span class="title function_">keccak256</span>(<span class="string">&#x27;0x7a68Ab63Ba083916a1e4875588b61676F52Bd08b&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> proof = tree.<span class="title function_">getProof</span>(leaf)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(tree.<span class="title function_">getHexProof</span>(leaf))</span><br><span class="line"><span class="keyword">const</span> verified = <span class="title class_">MerkleTree</span>.<span class="title function_">verify</span>(proof, leaf, root, keccak256)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(verified)</span><br></pre></td></tr></table></figure>
+
+<p>前端用户连接上钱包后，通过 API 将钱包地址发往后端，并返回指定的证明 proof。注意钱包地址的大小写。<br>前端通过 MerkleTree.verify 就可以验证。</p>
+<h4 id="合约实现"><a href="#合约实现" class="headerlink" title="合约实现"></a>合约实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;@openzeppelin/contracts/utils/cryptography/MerkleProof.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract Merkle &#123;</span><br><span class="line">    bytes32 public merkleRoot = 0x2800cfa9f59cf71c57b9f8b5641b745583ef2161b84fba14d823ac3449549976;</span><br><span class="line">    </span><br><span class="line">    mapping(address =&gt; bool) public whitelistClaimed;</span><br><span class="line"></span><br><span class="line">    function whitelistMint(bytes32[] calldata _merkleProof) public &#123;</span><br><span class="line">        require(!whitelistClaimed[msg.sender], &quot;Address has already claimed.&quot;);</span><br><span class="line">        bytes32 leaf = keccak256(abi.encodePacked(msg.sender));</span><br><span class="line">        require(MerkleProof.verify(_merkleProof, merkleRoot, leaf), &quot;Invalid proof.&quot;);</span><br><span class="line">        whitelistClaimed[msg.sender] = true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="准备金证明（Proof-of-Reserves）"><a href="#准备金证明（Proof-of-Reserves）" class="headerlink" title="准备金证明（Proof of Reserves）"></a>准备金证明（Proof of Reserves）</h3><h4 id="证明机制"><a href="#证明机制" class="headerlink" title="证明机制"></a>证明机制</h4><p>以下步骤针对单一资产，多资产生成多份证明机制即可。</p>
+<h5 id="步骤一-公布平台资产"><a href="#步骤一-公布平台资产" class="headerlink" title="步骤一 公布平台资产"></a>步骤一 公布平台资产</h5><p>平台公布资产的持币地址，证明其拥有的资产储备总额数量。</p>
+<h5 id="步骤二-生成用户节点数据"><a href="#步骤二-生成用户节点数据" class="headerlink" title="步骤二 生成用户节点数据"></a>步骤二 生成用户节点数据</h5><p>平台根据用户的资产数据，通过如下步骤生成用户结点数据：</p>
+<ul>
+<li>每个用户具有 <code>userid,amount</code></li>
+<li>通过算法为每个用户生成 <code>userid,amount,nonce,hashid</code><br>hash函数为</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">hash_func</span>(<span class="params">userid, nonce, amount</span>):</span><br><span class="line">    inputstr = userid + <span class="built_in">str</span>(nonce) + <span class="built_in">str</span>(amount)</span><br><span class="line">    hashstr  = hashlib.sha256(inputstr.encode(<span class="string">&quot;utf-8&quot;</span>))</span><br><span class="line">    hashid   = hashstr.hexdigest()[<span class="number">0</span>:HASHLEN * <span class="number">2</span>]</span><br><span class="line">    <span class="keyword">return</span> hashid</span><br></pre></td></tr></table></figure>
+<p>系统根据展示需求，可以选取部分hash值截断展示（本函数中，<code>HASHLEN=8</code>）。</p>
+<ul>
+<li>通过算法根据用户节点生成平衡的Merkle树，非平衡的结点进行零资产结点填充。<br>以BTC资产为例，图中数量单位为聪，资产Merkle树类似的结构如下：<br><img src="/2022/11/09/merkle-tree/merkle-por.png" alt="merkle"></li>
+</ul>
+<h4 id="步骤三-用户验证资产"><a href="#步骤三-用户验证资产" class="headerlink" title="步骤三 用户验证资产"></a>步骤三 用户验证资产</h4><ul>
+<li>用户可以下载平台完整的平衡Merkle树数据。</li>
+<li>首先验证平台公布的持币地址资产是否大于等于Merkle资产树的根结点数字资产数量，如果大于等于，则证明平台拥有大于等于100%的用户储备金。</li>
+<li>用户可以根据app端展示的nonce等相关数据，按照上述描述的hash函数，自行计算hashID，然后在平衡Merkle树中自行搜索查找叶子结点，证明用户资产在平台公布的储备数字资产中。</li>
+<li>用户可以公布上述过程与数据。</li>
+</ul>
+<p>所有用户都可以采用上述流程进行验证。</p>
+<ul>
+<li>所有用户都能确认自己的资产数目在平台公布的储备资产数据中。</li>
+<li>没有任何用户提出资产数据被重复验证或者伪造。</li>
+<li>在上述两点满足的情况下，通过上述步骤即可证明平台拥有100%储备数字资产。</li>
+</ul>
+<h4 id="用户验证示例"><a href="#用户验证示例" class="headerlink" title="用户验证示例"></a>用户验证示例</h4><p>如果用户在平台中，有一定数量的BTC，那么用户可以验证自己的BTC百分百资产证明。</p>
+<h5 id="用户打开平台-App，获取自己的用户ID-UID-、随机数-Nonce-、余额-Amount-。"><a href="#用户打开平台-App，获取自己的用户ID-UID-、随机数-Nonce-、余额-Amount-。" class="headerlink" title="用户打开平台 App，获取自己的用户ID(UID)、随机数(Nonce)、余额(Amount)。"></a>用户打开平台 App，获取自己的用户ID(UID)、随机数(Nonce)、余额(Amount)。</h5><ul>
+<li>UID: 1563256765354 &#x3D;&#x3D;&gt; 1563256765354</li>
+<li>Nonce: 19039 &#x3D;&#x3D;&gt; 19039</li>
+<li>Amount: 0.13991643 &#x3D;&#x3D;&gt; 13991643</li>
+</ul>
+<p><strong>注意：BTC币种的平台精度是10^8 &#x3D; 100000000，所以计算 0.13991643 * 10^8 &#x3D; 13991643</strong></p>
+<h5 id="计算字符串-str-UID-str-Nonce-str-Amount"><a href="#计算字符串-str-UID-str-Nonce-str-Amount" class="headerlink" title="计算字符串&#x3D; str(UID) + str(Nonce) + str(Amount)"></a>计算字符串&#x3D; str(UID) + str(Nonce) + str(Amount)</h5><p>字符串 &#x3D; “1563256765354” + “13974” + “13991643”<br>       &#x3D; “15632567653541903913991643”</p>
+<h5 id="计算hash值"><a href="#计算hash值" class="headerlink" title="计算hash值"></a>计算hash值</h5><p>hash计算采用SHA256算法。</p>
+<p>SHA256(“15632567653541903913991643”) &#x3D; 90d404dfaad97c23c2df3f1234d774dc88626825c4badc38b906e74df16e56b8</p>
+<p>取前16个字符，故用户HASH &#x3D; 90d404dfaad97c23</p>
+<p><strong>注意：结果不区分大小写（90d404dfaad97c23 和 90D404DFAAD97C23 是一样的）</strong></p>
+<h5 id="在Merkle-Tree中查找用户HASH"><a href="#在Merkle-Tree中查找用户HASH" class="headerlink" title="在Merkle Tree中查找用户HASH"></a>在Merkle Tree中查找用户HASH</h5><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Level,Number,Amount,Hash</span><br><span class="line"><span class="number">0</span>,<span class="number">0</span>,<span class="number">1.91752000</span>,eba80bc<span class="number">08c79d106</span></span><br><span class="line"><span class="number">0</span>,<span class="number">1</span>,<span class="number">47.94822258</span>,ee350eea6f8cb492</span><br><span class="line"><span class="number">0</span>,<span class="number">2</span>,<span class="number">0.00054241</span>,<span class="number">0d</span>0a4c548f50dc0f</span><br><span class="line"><span class="number">0</span>,<span class="number">3</span>,<span class="number">0.00152490</span>,<span class="number">802</span>f09fc<span class="number">23f90418</span></span><br><span class="line"><span class="number">0</span>,<span class="number">4</span>,<span class="number">0.11042455</span>,<span class="number">30</span>a1681b474a98cb</span><br><span class="line"><span class="number">0</span>,<span class="number">5</span>,<span class="number">0.10482076</span>,add3d0d3fc1f86b5</span><br><span class="line"><span class="number">0</span>,<span class="number">6</span>,<span class="number">0.00558000</span>,<span class="number">1</span>f1a4a83c896a74a</span><br><span class="line"><span class="number">0</span>,<span class="number">7</span>,<span class="number">0.19614663</span>,<span class="number">0d</span>122b896db2a3d2</span><br><span class="line"><span class="number">0</span>,<span class="number">8</span>,<span class="number">0.95972872</span>,<span class="number">1</span>aa46995b<span class="number">911a072</span></span><br><span class="line"><span class="number">0</span>,<span class="number">9</span>,<span class="number">0.00066497</span>,<span class="number">924</span>c84586d6ca305</span><br><span class="line"><span class="number">0</span>,<span class="number">10</span>,<span class="number">0.05185066</span>,<span class="number">31</span>b6e65f5fb3eaee</span><br><span class="line"><span class="number">0,11,283</span>.<span class="number">97299139</span>,<span class="number">5</span>a1b487021bb9eab</span><br><span class="line"><span class="number">0</span>,<span class="number">12</span>,<span class="number">0.00000239</span>,f2333a1e<span class="number">42a586d3</span></span><br><span class="line"><span class="number">0</span>,<span class="number">13</span>,<span class="number">0.00000024</span>,<span class="number">69</span>ed031686af93da</span><br><span class="line"><span class="number">0</span>,<span class="number">14</span>,<span class="number">0.00834000</span>,<span class="number">6d</span>3f2e89b0125a0d</span><br><span class="line"><span class="number">0</span>,<span class="number">15</span>,<span class="number">1.24884468</span>,<span class="number">29</span>b4a398123cb0e7</span><br><span class="line">## 在这里 ##</span><br><span class="line"><span class="number">0</span>,<span class="number">16</span>,<span class="number">0.13991643</span>,<span class="number">90d</span>404dfaad97c23</span><br><span class="line"><span class="number">0</span>,<span class="number">17</span>,<span class="number">0.13252314</span>,acdb92f515bef17e</span><br><span class="line"><span class="number">0</span>,<span class="number">18</span>,<span class="number">4.00350239</span>,cf36f3061133fc62</span><br><span class="line"><span class="number">0</span>,<span class="number">19</span>,<span class="number">0.12932834</span>,<span class="number">54</span>ee2ba25591eb90</span><br><span class="line"><span class="number">0</span>,<span class="number">20</span>,<span class="number">0.06461708</span>,cca2b<span class="number">192d0d63302</span></span><br><span class="line"><span class="number">0</span>,<span class="number">21</span>,<span class="number">0.00227000</span>,<span class="number">02759</span>e<span class="number">7972e79550</span></span><br><span class="line"><span class="number">0</span>,<span class="number">22</span>,<span class="number">0.03963867</span>,bf68c<span class="number">210400a3312</span></span><br><span class="line"><span class="number">0</span>,<span class="number">23</span>,<span class="number">0.03366789</span>,<span class="number">7</span>f0bf2b94f03898e</span><br><span class="line"><span class="number">0,24,177</span>.<span class="number">03102948</span>,<span class="number">6551016</span>b5dcf36e7</span><br><span class="line"><span class="number">0</span>,<span class="number">25</span>,<span class="number">0.00000481</span>,<span class="number">36</span>c32980082316db</span><br><span class="line"><span class="number">0</span>,<span class="number">26</span>,<span class="number">0.00000789</span>,ec59240a<span class="number">475879f7</span></span><br><span class="line"><span class="number">0</span>,<span class="number">27</span>,<span class="number">1.19111166</span>,<span class="number">77</span>aa7b9<span class="number">23c1b3138</span></span><br><span class="line"><span class="number">0</span>,<span class="number">28</span>,<span class="number">0.04801322</span>,bcbe16ad<span class="number">3790c0c6</span></span><br><span class="line"><span class="number">0</span>,<span class="number">29</span>,<span class="number">0.21463450</span>,<span class="number">5d</span>67e5c769ac58b6</span><br><span class="line"><span class="number">0</span>,<span class="number">30</span>,<span class="number">35.29639568</span>,<span class="number">44535d</span>f<span class="number">6e4664445</span></span><br><span class="line"><span class="number">0</span>,<span class="number">31</span>,<span class="number">1.02122205</span>,a410e18cb5e066de</span><br><span class="line"><span class="number">0</span>,<span class="number">32</span>,<span class="number">0.51984214</span>,bd600e3baca65f92</span><br><span class="line"><span class="number">0</span>,<span class="number">33</span>,<span class="number">0.00000883</span>,<span class="number">2802427</span>b<span class="number">1d68b499</span></span><br><span class="line"><span class="number">0</span>,<span class="number">34</span>,<span class="number">0.04932213</span>,<span class="number">51</span>cc039b07c6cc81</span><br><span class="line"><span class="number">0</span>,<span class="number">35</span>,<span class="number">0.00573294</span>,<span class="number">73</span>a7c5ae<span class="number">8f741815</span></span><br><span class="line"><span class="number">0</span>,<span class="number">36</span>,<span class="number">10.13089000</span>,<span class="number">9543948400</span>babc5c</span><br><span class="line">。。。</span><br><span class="line">。。。</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<p>在Merkle Tree中找到该用户(90d404dfaad97c23)</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">0</span>,<span class="number">16</span>,<span class="number">0</span>.<span class="number">13991643</span>,<span class="number">90</span>d404dfaad97c23          </span><br></pre></td></tr></table></figure>
+<p>位于Merkle树叶子层，位置为16，余额为0.13991643</p>
+<p>证毕。</p>
+<h4 id="相关平台"><a href="#相关平台" class="headerlink" title="相关平台"></a>相关平台</h4><ol>
+<li><a target="_blank" rel="noopener" href="https://www.kraken.com/zh-cn/proof-of-reserves">Kraken 做出了解释</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@asteacherluo/%E4%BA%A4%E6%98%93%E6%89%80%E7%9A%84%E6%A2%85%E5%85%8B%E5%B0%94%E6%A0%91%E5%82%A8%E5%A4%87%E8%AF%81%E6%98%8E%E6%98%AF%E4%BB%80%E4%B9%88-%E4%BA%A4%E6%98%93%E6%89%80%E7%9A%84%E6%A2%85%E5%85%8B%E5%B0%94%E6%A0%91%E5%82%A8%E5%A4%87%E8%AF%81%E6%98%8E%E6%98%AF%E4%BB%80%E4%B9%88-%E4%BA%A4%E6%98%93%E6%89%80%E7%9A%84%E6%A2%85%E5%85%8B%E5%B0%94%E6%A0%91%E5%82%A8%E5%A4%87%E8%AF%81%E6%98%8E%E6%98%AF%E4%BB%80%E4%B9%88-64b1a41fd6b7">CEX的梅克尔树储备证明是什么？</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/WeChatPay.png" alt="Alex Lin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/AliPay.png" alt="Alex Lin 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/eth.jpg" alt="Alex Lin ETH">
+        <span>ETH</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Alex Lin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://chaosky.tech/2022/11/09/merkle-tree/" title="默克尔树（Merkle Tree）">https://chaosky.tech/2022/11/09/merkle-tree/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/exchange/" rel="tag"><i class="fa fa-tag"></i> exchange</a>
+              <a href="/tags/cryptography/" rel="tag"><i class="fa fa-tag"></i> cryptography</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/03/8-Vault/" rel="prev" title="8. Vault">
+                  <i class="fa fa-angle-left"></i> 8. Vault
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/13/9-King/" rel="next" title="9. King">
+                  9. King <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2014 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-keyboard"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">139k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:27</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/xwal" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"xwal/xwal.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkxNzQ4MDMxMA==","category":"Comment","category_id":"DIC_kwDOAQq6ds4CSrDW","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<div id="hexo-adsense-hidden" style="display:none"><div hexo-adsense="ads-content"><!--REMOVE ADSENSE SCRIPT, THIS PLUGIN ALREADY OPTIMIZED THE ADSENSE JAVASCRIPT-->
+<!---->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6178635866936443"
+     data-ad-slot="4097715968"></ins>
+<!--script>
+     
+</script--></div></div><style>[hexo-adsense=ads-content]{display:block;background:#fff url(//i.imgur.com/mBbv90p.png) no-repeat top right;color:#303030;min-width:250px;text-align:center;margin-left:auto;margin-right:auto}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFydGljbGUtYWRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQkFDRSxRQUFBLE1BQ0EsV0FBQSxLQUFBLCtCQUFBLFVBQUEsSUFBQSxNQUNBLE1BQUEsUUFHQSxVQUFBLE1BQ0EsV0FBQSxPQUNBLFlBQUEsS0FDQSxhQUFBIiwiZmlsZSI6ImFydGljbGUtYWRzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIipbaGV4by1hZHNlbnNlPVwiYWRzLWNvbnRlbnRcIl0ge1xuICBkaXNwbGF5OiBibG9jaztcbiAgYmFja2dyb3VuZDogI2ZmZiB1cmwoLy9pLmltZ3VyLmNvbS9tQmJ2OTBwLnBuZykgbm8tcmVwZWF0IHRvcCByaWdodDtcbiAgY29sb3I6ICMzMDMwMzA7XG4gIC8qbWluLWhlaWdodDogMThweDtcbiAgbWluLXdpZHRoOiA4MXB4OyovXG4gIG1pbi13aWR0aDogMjUwcHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbiJdfQ== */
+</style><script>const isBrowser=new Function("try {return this===window;}catch(e){ return false;}"),hexoAdsenseConfig=JSON.parse(document.getElementById("hexo-adsense-config").textContent);function insertAfter(e,t){if(t&&e){let n=t.parentNode;n.lastChild==t?n.appendChild(e):n.insertBefore(e,t.nextSibling)}else console.error("cannot insert element")}function replaceWith(e,t){if(t.parentNode)t.parentNode.replaceChild(e,t);else{console.log(t,"parent null"),document.createElement("div").appendChild(t)}}let createElementFromHTML=function(e){if(e instanceof HTMLElement)return e;var t=document.createElement("div");return t.innerHTML=e.trim(),t.firstChild};function ranumb(e,t){return Math.floor(Math.random()*(t-e+1)+e)}function newMethod(){const e=document.getElementById("hexo-adsense-hidden");let t=e.querySelectorAll('[hexo-adsense="ads-content"]'),n=document.querySelectorAll("article");if(n.length>0&&t.length>0){let o;if(1==n.length){console.log("webpage is post");let l=n.item(0);const r=l.querySelectorAll("*[hexo-adsense-fill]");if(r.length>0)for(let e=0;e<r.length;e++){const n=r[e];void 0!==t[e]&&n.appendChild(t[e])}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("h1,h2,h3,h4,h5,h6,pre");if(e.length>0){let n=Array.apply(null,{length:e.length}).map(Number.call,Number);for(let l=0;l<t.length;l++){o=t[l];const r=shuffleArr2(n).next().value;if("number"==typeof r){const t=e.item(r);insertAfter(createElementFromHTML(o),t)}}}}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("br,hr");if(e.length>0){const n=shuffleArr2(Array.apply(null,{length:e.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=n.next().value;if("number"==typeof r){const t=e.item(r);if(["blockquote","img","a","pre","code","em","strong","i","u"].includes(t.parentNode.tagName.toLowerCase())){l--;continue}replaceWith(createElementFromHTML(o),t)}}}}}else{console.log("webpage is not post"),n.length||(n=document.querySelectorAll('[class*="recent-post-item"]'));const e=shuffleArr2(Array.apply(null,{length:n.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=e.next().value;if("number"==typeof r){n.item(r).appendChild(createElementFromHTML(o))}}}adsensePush()}}function shuffleArr(e){for(var t,n=e.length,o=0;n--;)o=Math.floor(Math.random()*(n+1)),t=e[n],e[n]=e[o],e[o]=t;return e}function*shuffleArr2(e){for(var t=e.length;t--;)yield e.splice(Math.floor(Math.random()*(t+1)),1)[0]}function adsensePush(){for(let e=0;e<document.querySelectorAll('[hexo-adsense="ads-content"]').length;e++)(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:hexoAdsenseConfig.pub})}isBrowser()?(window.__tcfapi=(e,t,n)=>{"checkConsent"===e&&n(!0),"addEventListener"===e&&n({eventStatus:"tcloaded",gdprApplies:!1},!0)},"function"==typeof document.addEventListener?document.addEventListener("DOMContentLoaded",newMethod):"function"==typeof window.attachEvent?window.attachEvent("onload",newMethod):window.onload=newMethod):module.exports={replaceWith:replaceWith,insertAfter:insertAfter};</script></body>
+</html>

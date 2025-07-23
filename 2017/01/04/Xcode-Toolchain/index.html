@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <meta name="google-site-verification" content="yGwNBR-9-6B60StDh4ueJp0Io9gjnzwX0IiXkPL4Pqc">
+  <meta name="msvalidate.01" content="562E828CD9FA60A6D3CDFE1BD31D3FF3">
+  <meta name="baidu-site-verification" content="iYaX85B5Bg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chaosky.tech","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="写在前面的话虽然我们来自不同背景、有不同观点，经历不同；虽然我们做事动机不同，信念、偏见和意见使我们彼此分离，有一件事我们是在一起的： 不管好坏，我们都必须使用 Xcode。 Xcode 不仅仅只是一个应用程序，在 GUI 之下是一个应用程序和命令行工具的结合，它们与开发人员的工作流程一样是编辑器的核心。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xcode 工具链">
+<meta property="og:url" content="https://chaosky.tech/2017/01/04/Xcode-Toolchain/index.html">
+<meta property="og:site_name" content="Alex Lin&#39;s Notes">
+<meta property="og:description" content="写在前面的话虽然我们来自不同背景、有不同观点，经历不同；虽然我们做事动机不同，信念、偏见和意见使我们彼此分离，有一件事我们是在一起的： 不管好坏，我们都必须使用 Xcode。 Xcode 不仅仅只是一个应用程序，在 GUI 之下是一个应用程序和命令行工具的结合，它们与开发人员的工作流程一样是编辑器的核心。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosky.tech/2017/01/04/Xcode-Toolchain/2017-03-07-intro-fastlane-tree.png">
+<meta property="article:published_time" content="2017-01-04T16:54:40.000Z">
+<meta property="article:modified_time" content="2017-01-04T16:54:40.000Z">
+<meta property="article:author" content="Alex Lin">
+<meta property="article:tag" content="Xcode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosky.tech/2017/01/04/Xcode-Toolchain/2017-03-07-intro-fastlane-tree.png">
+
+
+<link rel="canonical" href="https://chaosky.tech/2017/01/04/Xcode-Toolchain/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://chaosky.tech/2017/01/04/Xcode-Toolchain/","path":"2017/01/04/Xcode-Toolchain/","title":"Xcode 工具链"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Xcode 工具链 | Alex Lin's Notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?QJ33ASIjWB"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.7.0/mermaid.min.js","integrity":"sha256-4+IKDqhZ/sXjc8Wtl2/MsxI4e0s1KpEVdbEP7V/Lz8U="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/addtoany.js" defer></script>
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<script id="hexo-adsense-config" type="application/json">{"enable":true,"article_ads":["source/ads/in_article.html"],"pub":"ca-pub-6178635866936443","adblock":true,"https":true,"field":"site","type":"javascript","exclude":["*.min.html","exclude/**/*"],"development":false,"args":{"_":[],"g":true},"debug":false,"safe":false,"silent":false,"env":"development","version":"7.3.0","cmd":"d","init":true,"adsense":{"enable":true,"pub":"ca-pub-6178635866936443","article_ads":["source/ads/in_article.html"],"field":"site","https":true,"adblock":true,"exclude":["*.min.html","exclude/**/*"]}}</script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178635866936443" crossorigin="anonymous"></script><link rel="alternate" href="/atom.xml" title="Alex Lin's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex Lin's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Strategy, Execution, Communication.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">100</span></a></li><li class="menu-item menu-item-作坊"><a href="/workspace/" rel="section"><i class="fa fa-cubes fa-fw"></i>作坊</a></li><li class="menu-item menu-item-技能"><a href="/skillmap/" rel="section"><i class="fa fa-atom fa-fw"></i>技能</a></li><li class="menu-item menu-item-摘录"><a href="/quotes/" rel="section"><i class="fa fa-quote-left fa-fw"></i>摘录</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-dragon fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%E7%9A%84%E8%AF%9D"><span class="nav-number">1.</span> <span class="nav-text">写在前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xcode-Tools"><span class="nav-number">2.</span> <span class="nav-text">Xcode Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xcode-select"><span class="nav-number">2.1.</span> <span class="nav-text">xcode-select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xcrun"><span class="nav-number">2.2.</span> <span class="nav-text">xcrun</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xcodebuild"><span class="nav-number">2.3.</span> <span class="nav-text">xcodebuild</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#genstrings"><span class="nav-number">2.4.</span> <span class="nav-text">genstrings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ibtool"><span class="nav-number">2.5.</span> <span class="nav-text">ibtool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iprofiler"><span class="nav-number">2.6.</span> <span class="nav-text">iprofiler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xed"><span class="nav-number">2.7.</span> <span class="nav-text">xed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#agvtool"><span class="nav-number">2.8.</span> <span class="nav-text">agvtool</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">其他工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91-%E6%B1%87%E7%BC%96"><span class="nav-number">3.1.</span> <span class="nav-text">编译 &amp; 汇编</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">3.2.</span> <span class="nav-text">处理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%93"><span class="nav-number">3.3.</span> <span class="nav-text">库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC"><span class="nav-number">3.4.</span> <span class="nav-text">脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8C%85"><span class="nav-number">3.5.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%A1%A3"><span class="nav-number">3.6.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-Data"><span class="nav-number">3.7.</span> <span class="nav-text">Core Data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7"><span class="nav-number">4.</span> <span class="nav-text">第三方工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#appledoc"><span class="nav-number">4.1.</span> <span class="nav-text">appledoc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xctool"><span class="nav-number">4.2.</span> <span class="nav-text">xctool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OCLint"><span class="nav-number">4.3.</span> <span class="nav-text">OCLint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xcpretty"><span class="nav-number">4.4.</span> <span class="nav-text">xcpretty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nomad"><span class="nav-number">4.5.</span> <span class="nav-text">Nomad</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cupertino"><span class="nav-number">4.5.1.</span> <span class="nav-text">Cupertino</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Shenzhen"><span class="nav-number">4.5.2.</span> <span class="nav-text">Shenzhen</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Houston"><span class="nav-number">4.5.3.</span> <span class="nav-text">Houston</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Venice"><span class="nav-number">4.5.4.</span> <span class="nav-text">Venice</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dubai"><span class="nav-number">4.5.5.</span> <span class="nav-text">Dubai</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fastlane"><span class="nav-number">4.6.</span> <span class="nav-text">Fastlane</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">4.6.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">4.6.2.</span> <span class="nav-text">目录结构</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Lin"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Alex Lin</p>
+  <div class="site-description" itemprop="description">Hi, I'm an iOS engineer, focusing on mobile software development.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xwal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xwal" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaosky.me@gmail.com" title="E-Mail → mailto:chaosky.me@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://x.com/cyberxwa" title="Twitter → https:&#x2F;&#x2F;x.com&#x2F;cyberxwa" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/chaosky" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;chaosky" rel="noopener me" target="_blank"><i class="fab fa-telegram fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2017/01/04/Xcode-Toolchain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Xcode 工具链 | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Xcode 工具链<a href="https://github.com/xwal/xwal.github.io/edit/source/source/_posts/2017-01-04-Xcode-Toolchain.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-01-04 16:54:40" itemprop="dateCreated datePublished" datetime="2017-01-04T16:54:40+00:00">2017-01-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>15 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>虽然我们来自不同背景、有不同观点，经历不同；虽然我们做事动机不同，信念、偏见和意见使我们彼此分离，有一件事我们是在一起的：</p>
+<p><strong>不管好坏，我们都必须使用 Xcode。</strong></p>
+<p>Xcode 不仅仅只是一个应用程序，在 GUI 之下是一个应用程序和命令行工具的结合，它们与开发人员的工作流程一样是编辑器的核心。</p>
+<span id="more"></span>
+
+<h2 id="Xcode-Tools"><a href="#Xcode-Tools" class="headerlink" title="Xcode Tools"></a>Xcode Tools</h2><h3 id="xcode-select"><a href="#xcode-select" class="headerlink" title="xcode-select"></a>xcode-select</h3><p>每个人与 Xcode 的旅程从一个选择开始。<code>xcode-select</code>提供了这个选择，尽管是一个永恒的问题：『蛋糕或死亡？』</p>
+<p>从 Mavericks 开始，在 Mac 上的开发者从执行一条命令开始：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xcode-<span class="keyword">select</span> <span class="comment">--install</span></span><br></pre></td></tr></table></figure>
+
+<p>将安装命令行工具，编译 Objective-C 代码必备的。</p>
+<h3 id="xcrun"><a href="#xcrun" class="headerlink" title="xcrun"></a>xcrun</h3><p><code>xcrun</code> 是 Xcode 基本的命令行工具。使用它可以调用其他工具。</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>xcrun xcodebuild</span><br></pre></td></tr></table></figure>
+
+<p>除运行命令之外，<code>xcrun</code> 可以查找文件和显示 SDK 的路径：</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">$ xcrun</span> <span class="literal">--</span><span class="comment">find clang</span></span><br><span class="line"><span class="comment">$ xcrun</span> <span class="literal">--</span><span class="comment">sdk iphoneos</span> <span class="literal">--</span><span class="comment">find pngcrush</span></span><br><span class="line"><span class="comment">$ xcrun</span> <span class="literal">--</span><span class="comment">sdk macosx</span> <span class="literal">--</span><span class="comment">show</span><span class="literal">-</span><span class="comment">sdk</span><span class="literal">-</span><span class="comment">path</span></span><br></pre></td></tr></table></figure>
+
+<p>因为 <code>xcrun</code> 的执行是基于当前的 Xcode 版本环境（通过 <code>xcode-select</code>设置），所以在系统中能存在多个版本的 Xcode 工具链是非常容易的。</p>
+<p>在脚本和其他外部工具中使用 <code>xcrun</code> 能确保在不同环境中保证一致性。比如，Xcode 附带了代码分发工具 Git。通过调用 <code>$ xcrun git</code> 而不是 <code>$ git</code>，构建系统可以保证运行正确。</p>
+<h3 id="xcodebuild"><a href="#xcodebuild" class="headerlink" title="xcodebuild"></a>xcodebuild</h3><p>第二个最重要的 Xcode 工具是 <code>xcodebuild</code>，顾名思义，构建 Xcode project 和 workspace。</p>
+<p>不用传递任何构建参数，<code>xcodebuild</code> 默认为 Xcode.app 最近使用的 scheme 和 配置：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>xcodebuild</span><br></pre></td></tr></table></figure>
+
+<p>然而，任何 scheme、targets、配置、目标设备、SDK和导出数据位置都可以配置：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>xcodebuild -workspace <span class="title class_">NSHipster</span>.xcworkspace -scheme <span class="string">&quot;NSHipster&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>有六个可以依次调用的构建操作：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>build</td>
+<td>在构建根路径(SYMROOT)构建target。默认构建操作。</td>
+</tr>
+<tr>
+<td>analyze</td>
+<td>在构建根路径(SYMROOT)构建和分析target或者scheme。需要指定 scheme。</td>
+</tr>
+<tr>
+<td>archive</td>
+<td>在构建根路径（SYMROOT）打包 scheme。需要指定 scheme。</td>
+</tr>
+<tr>
+<td>test</td>
+<td>在构建根路径（SYMROOT）测试 scheme。需要指定 scheme和可选指定目标设备。</td>
+</tr>
+<tr>
+<td>installsrc</td>
+<td>拷贝工程源到源根路径（SRCROOT）。</td>
+</tr>
+<tr>
+<td>install</td>
+<td>构建target、安装到target在目标设备根路径（DSTROOT）的安装目录</td>
+</tr>
+<tr>
+<td>clean</td>
+<td>从构建根路径（SYMROOT）移除构建的产品和中间文件</td>
+</tr>
+</tbody></table>
+<h3 id="genstrings"><a href="#genstrings" class="headerlink" title="genstrings"></a>genstrings</h3><p><code>genstrings</code> 工具从指定的C或者Objective-C源文件生成 <code>.strings</code> 文件。在不同的 <code>locale</code> 本地化应用程序使用 <code>.strings</code> 文件。在苹果的 <code>Cocoa Core Competencies</code> 中的 [Internationalization](<a target="_blank" rel="noopener" href="https://developer.apple.com/library/mac/documentation/general/conceptual/devpedia-cocoacore/-">https://developer.apple.com/library/mac/documentation/general/conceptual/devpedia-cocoacore/-</a> Internationalization.html) 有相关的描述。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ genstrings -<span class="keyword">a</span> /path/<span class="built_in">to</span>/source/<span class="built_in">files</span><span class="comment">/*.m</span></span><br></pre></td></tr></table></figure>
+
+<p>每次在源文件中使用 <code>NSLocalizedString</code>，<code>genstrings</code> 将会追加 <code>key</code> 和 <code>comment</code> 到目标文件中。然后由开发人员为每个目标 locale 创建文件的副本， 并将该文件翻译。</p>
+<p>fr.lproj&#x2F;Localizable.strings</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/* No comment provided by engineer. */</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;Username&quot;</span>=<span class="string">&quot;nom d&#x27;utilisateur&quot;</span>;</span><br><span class="line"></span><br><span class="line">/* &#123;<span class="keyword">User</span> <span class="title">First</span> Name&#125;&#x27;s Profile */</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;%@&#x27;s Profile&quot;</span>=<span class="string">&quot;profil de %1$@&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ibtool"><a href="#ibtool" class="headerlink" title="ibtool"></a>ibtool</h3><p>正如 <code>genstrings</code> 作用于源代码，而 <code>ibtool</code> 作用于 <code>XIB</code> 文件。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ibtool --<span class="keyword">generate</span>-strings-file Localizable<span class="variable">.strings</span> en<span class="variable">.lpoj</span>/Interface<span class="variable">.xib</span></span><br></pre></td></tr></table></figure>
+
+<p>本地化是它的主要功能，<code>ibtool</code> 还拥有对 <code>Interface Builder</code> 文档有效的其他几个功能。</p>
+<ul>
+<li><code>--convert</code>： 更改所有对类名的引用</li>
+<li><code>--upgrade</code>： 将文档升级到最新版</li>
+<li><code>--enable-auto-layout</code>：启用自动布局</li>
+<li><code>--update-frames</code>：更新框架</li>
+<li><code>--update-constraints</code>：更新约束</li>
+</ul>
+<h3 id="iprofiler"><a href="#iprofiler" class="headerlink" title="iprofiler"></a>iprofiler</h3><p><code>iprofiler</code> 测量应用程序的性能，而不启动 <code>Instruments.app</code>：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>iprofiler -allocations -leaks -T <span class="number">15</span>s -o perf -a NSHipster</span><br></pre></td></tr></table></figure>
+
+<p>上面的命令将附加到 NSHipster 程序，运行15秒，分析内存分配和泄露，然后将结果写入perf文件。之后输出结果可以通过 Instruments.app 读取和显示。</p>
+<h3 id="xed"><a href="#xed" class="headerlink" title="xed"></a>xed</h3><p>这个命令可以简单地打开 Xcode。</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>xed NSHipster.xcworkspace</span><br></pre></td></tr></table></figure>
+
+<p>通过传递 <code>-w</code> 参数，<code>xed</code> 将等待直到所有打开的窗口关闭。对于脚本化用户交互非常有用，例如提示用户编辑文件并继续一旦完成。</p>
+<h3 id="agvtool"><a href="#agvtool" class="headerlink" title="agvtool"></a>agvtool</h3><p><code>agvtool</code> 用于读取和写入 Xcode工程 Info.plist 中的版本号。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ agvtool what-<span class="built_in">version</span></span><br></pre></td></tr></table></figure>
+
+<p>返回当前版本</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>agvtool <span class="keyword">next</span>-version</span><br></pre></td></tr></table></figure>
+
+<p>累加 <code>CURRENT_PROJECT_VERSION</code> 和 <code>DYLIB_CURRENT_VERSION</code>。传递 <code>-all</code> 选项将更新 <code>Info.plist</code> 中的 <code>CFBundleVersion</code>。</p>
+<h2 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具"></a>其他工具</h2><p>除了上述的 Xcode 工具以外，还有一些其他用 <code>xcrun</code> 调用的程序：</p>
+<h3 id="编译-汇编"><a href="#编译-汇编" class="headerlink" title="编译 &amp; 汇编"></a>编译 &amp; 汇编</h3><ul>
+<li><strong>clang</strong>: 编译 C、C++、Objective-C和 Objective-C 源文件。</li>
+<li><strong>lldb</strong>: 调试C、C++、Objective-C 和 Objective-C 程序</li>
+<li><strong>nasm</strong>: 汇编文件</li>
+<li><strong>ndisasm</strong>: 反汇编文件</li>
+<li><strong>symbols</strong>: 显示一个文件或者进程的符号信息。</li>
+<li><strong>strip</strong>: 删除或修改符号表附加到汇编器和链接编辑器的输出。</li>
+<li><strong>atos</strong>: 将数字内存地址转换为二进制映像或进程的符号。</li>
+</ul>
+<h3 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h3><ul>
+<li><strong>unifdef</strong>: 从代码中移除条件宏 <code>#ifdef</code>。</li>
+<li><strong>ifnames</strong>: 在 C++ 文件中找出所有条件。</li>
+</ul>
+<h3 id="库"><a href="#库" class="headerlink" title="库"></a>库</h3><ul>
+<li><strong>ld</strong>: 将目标文件和库合并成一个文件。</li>
+<li><strong>otool</strong>: 显示目标文件或库的指定部分。</li>
+<li><strong>ar</strong>: 创建和维护库文档。</li>
+<li><strong>libtool</strong>: 使用链接器 <code>ld</code> 创建库。</li>
+<li><strong>ranlib</strong>: 更新归档库的目录。</li>
+<li><strong>mksdk</strong>: 创建和更新 SDK。</li>
+<li><strong>lorder</strong>: 列出目标文件的依赖。</li>
+</ul>
+<h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><ul>
+<li><strong>sdef</strong>: 脚本定义提取器</li>
+<li><strong>sdp</strong>: 脚本定义处理器</li>
+<li><strong>desdp</strong>: 脚本定义生成器</li>
+<li><strong>amlint</strong>: 检查 Automator 对问题的操作</li>
+</ul>
+<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><ul>
+<li><strong>installer</strong>: 安装 OS X 包。</li>
+<li><strong>pkgutil</strong>: 读取和操纵 OS X 包。</li>
+<li><strong>lsbom</strong>: 列出 bom（Bill of Mterials）内容。</li>
+</ul>
+<h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><ul>
+<li><strong>headerdoc</strong>: 处理头文档。</li>
+<li><strong>gatherheaderdoc</strong>: 编译和链接 <code>headerdoc</code> 输出。</li>
+<li><strong>headerdoc2html</strong>: 从 <code>headerdoc</code> 输出生成 HTML。</li>
+<li><strong>hdxml2manxml</strong>: 从 <code>headerdoc</code> XML 输出翻译成被 <code>xml2man</code> 使用的文件。</li>
+<li><strong>xml2man</strong>: 将 <code>Man Page Generation Language（MPGL）</code> XML文件转换为手册页。</li>
+</ul>
+<h3 id="Core-Data"><a href="#Core-Data" class="headerlink" title="Core Data"></a>Core Data</h3><ul>
+<li><strong>momc</strong>: 编译 <code>Managed Object Model(.mom)</code>文件</li>
+<li><strong>mapc</strong>: 编译 <code>Core Data Mapping Model(.xcmappingmodel)</code>文件</li>
+</ul>
+<h2 id="第三方工具"><a href="#第三方工具" class="headerlink" title="第三方工具"></a>第三方工具</h2><h3 id="appledoc"><a href="#appledoc" class="headerlink" title="appledoc"></a>appledoc</h3><p>Cocoa 开发人员认为 Objective-C 的冗长有助于自注释代码。在 <code>longMethodNamesWithNamedParameters:</code> 和 明确的参数类型。Objective-C 方法不会留下太多的想象力。</p>
+<p>但是即使自注释代码也可以通过文档来改进，只用少量的努力就能够对他人产生显著的益处。</p>
+<p>在 Objective-C 中，选择的文档工具是 <code>appledoc</code>。使用 <code>javadoc</code> 类似的语法，<code>appledoc</code> 能够从 .h文件生成 HTML 和 Xcode 兼容的 .docset 文档，看起来几乎和苹果官方文档完全相同。</p>
+<p>Objective-C 文档由任何 <code>@interface</code> 或 <code>@protocol</code> 之前的 <code>/** */</code> 注释块（注意额外的初始星号）以及任何方法或 <code>@property</code> 声明指定。文档还可能包含系统字段的标签，如参数或返回值：</p>
+<ul>
+<li><strong>@param [param] [Description]</strong>: 描述应传递什么值或此参数</li>
+<li><strong>@return [Description]</strong>: 描述方法的返回值</li>
+<li><strong>@see [selector]</strong>: 提供 『参见』相关项目的参考</li>
+<li><strong>@discussion [Discussion]</strong>: 提供额外的背景资料</li>
+<li><strong>@warning [Description]</strong>: 调用异常或潜在的危险行为</li>
+</ul>
+<p><code>appledoc</code> 可以通过以下命令安装：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span><span class="keyword">install </span>appledoc</span><br></pre></td></tr></table></figure>
+
+<p>要生成文档，需要在 Xcode 工程的根目录下执行 <code>appledoc</code> 命令，传递元数据比如工程名和公司名：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ appledoc <span class="params">--project-name</span> CFHipsterRef <span class="params">--project-company</span> <span class="string">&quot;NSHipster&quot;</span> <span class="params">--company-id</span> com.nshipster <span class="params">--output</span> ~<span class="string">/Documents</span> .</span><br></pre></td></tr></table></figure>
+
+<p>从目标目录中找到的头文件中生成并安装一个Xcode .docset文件。</p>
+<p>通过传递 <code>--help</code> 参数可以找到其他配置选项（包括HTML输出）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">appledoc --<span class="built_in">help</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="xctool"><a href="#xctool" class="headerlink" title="xctool"></a>xctool</h3><p>它可以直接替代 xcodebuild，也就是 Xcode.app 自己所依赖的底层工具。</p>
+<p>我们自己作为苹果硬件和软件的消费者，都清楚设计的重要性怎么强调都不为过。在这个方面，xctool 做得非常漂亮。构建过程的每一步都经过清晰的组织，使用 ANSI 彩色字符和一系列 Unicode 装饰字符，使得表现的方式既容易理解又具有视觉吸引力，同时 xctool 的美丽不仅仅体现了表面：构建过程同样支持以其他工具可读取的格式进行输出：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>xctool -reporter <span class="symbol">plain:</span>output.txt build</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>pretty</strong>: (默认) 一个文字化的输出器，使用 ANSI 颜色和 unicode 符号来进行美化输出。</li>
+<li><strong>plain</strong>: 类似 pretty, 不过没有颜色和 Unicode。</li>
+<li><strong>phabricator</strong>: 把构建&#x2F;测试的结果输出为 JSON 数组，它可以被 Phabricator 的代码评审工具读取。</li>
+<li><strong>junit</strong>: 把测试结果输出成和 JUnit&#x2F;xUnit 兼容的 XML 文件。</li>
+<li><strong>json-stream</strong>: 一个由构建&#x2F;测试事件组成的 JSON 字典流，每行一个（示例输出）。</li>
+<li><strong>json-compilation-database</strong>: 输出构建事件的 JSON Compilation Database ，它可以用于基于 Clang Tooling 的工具，例如 OCLint.</li>
+</ul>
+<p>xctool 相对于 xcodebuild 另一个主要的进步是，xctool 可以和 Xcode.app 一样执行应用测试（xcodebuild 不能区分项目 scheme 中哪些是测试使用的 target，更不用说在模拟器中执行测试了）。</p>
+<p>仅仅因为这一个原因，xctool 就深刻地影响了 Objective-C 社区中新兴的持续集成测试的规范。</p>
+<p>通过以下命令安装 <code>xctool</code>：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span><span class="keyword">install </span>xctool</span><br></pre></td></tr></table></figure>
+
+<h3 id="OCLint"><a href="#OCLint" class="headerlink" title="OCLint"></a>OCLint</h3><p>OCLint 是一个静态代码分析工具，可以检查 Objective-C（也支持 C 和 C++）代码中常见的问题，例如空的 if&#x2F;else&#x2F;try&#x2F;catch&#x2F;finally 语句，未使用的本地变量和参数，大量复杂的没有注释的(NCSS)，具有圈复杂度或者 NPath 复杂度的代码，冗余的代码，代码“异味”，以及其他的不好的代码实践。</p>
+<p>安装 OCLint 最好的方式是通过 Homebrew Cask:</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>cask <span class="keyword">install </span>oclint</span><br></pre></td></tr></table></figure>
+
+<p>还记得 <code>xctool</code> 的 <code>json-compilation-database</code> 输出选项吗？它的输出可以直接 被 <code>OCLint</code> 读取，供它进行魔法一般的静态分析。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ xctool -workspace NSHipster.xcworkspace -scheme &quot;NSHipster&quot; -reporter <span class="type">json</span>-compilation-<span class="keyword">database</span> build &gt; compile_commands.json</span><br><span class="line"></span><br><span class="line">$ oclint-<span class="type">json</span>-compilation-<span class="keyword">database</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="xcpretty"><a href="#xcpretty" class="headerlink" title="xcpretty"></a>xcpretty</h3><p><code>xcpretty</code> 类似于 <code>xctool</code>，改进了 <code>xcodebuild</code> 的构建输出，但是 <code>xcpretty</code> 不是尝试替换 <code>xcodebuild</code>，而是扩展并改进它。</p>
+<p>实际上，xcpretty 通过获取 xcodebuild 的管道输出而不是直接调用，充分体现了 Unix的可组合性理念：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xcodebuild [flags] <span class="string">| xcpretty -c</span></span><br></pre></td></tr></table></figure>
+
+<p>这种方法的一个主要好处是它真的很快——事实上，在某些情况下，xcpretty 实际上比直接调用 xcodebuild 快一点，因为它节省了打印到控制台的时间。</p>
+<p>与 xctool 的另一个共性是报告器功能，其具有格式化输出到JUnit风格的XML、HTML或上述OCTool 兼容的 json编译数据库格式。</p>
+<p>xcpretty 通过 RubyGems 安装：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem <span class="keyword">install</span> xcpretty</span><br></pre></td></tr></table></figure>
+
+<h3 id="Nomad"><a href="#Nomad" class="headerlink" title="Nomad"></a>Nomad</h3><p><code>Nomad</code> 是用于 iOS 和 OS X 开发的世界级命令行实用程序的集合。它自动化常见的管理任务，以便开发人员可以专注于构建和传输软件。</p>
+<p>每个工具可以单独安装，也可以一起安装：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem install nomad-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Cupertino"><a href="#Cupertino" class="headerlink" title="Cupertino"></a>Cupertino</h4><p>应用程序 Provisioning 流程普遍被苹果开发人员厌恶。</p>
+<p>除了整个过程是一个从开始到完成的噩梦，许多操作需要通过 Web 界面进行交互。不仅需要大量的额外点击，但使得它非常不自动化。</p>
+<p><code>Cupertino</code> 提供一个命令行工具管理设备、provisioning proﬁle、app ID 和证书。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$ ios devices:list</span><br><span class="line"></span><br><span class="line">+------------------------------+---------------------------------------+</span><br><span class="line"></span><br><span class="line">|<span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Listing 2 devices. You can register 98 additional devices.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|</span><br><span class="line"></span><br><span class="line">+---------------------------+------------------------------------------+</span><br><span class="line"></span><br><span class="line">|<span class="string"> Device Name</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> Device Identifier</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|</span><br><span class="line"></span><br><span class="line">+---------------------------+------------------------------------------+</span><br><span class="line"></span><br><span class="line">|<span class="string"> Johnny Appleseed iPad</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> 0123456789012345678901234567890123abcdef </span>|</span><br><span class="line"></span><br><span class="line">|<span class="string"> Johnny Appleseed iPhone</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> abcdef0123456789012345678901234567890123 </span>|</span><br><span class="line"></span><br><span class="line">+---------------------------+------------------------------------------+</span><br><span class="line"></span><br><span class="line">$ ios devices:add <span class="string">&quot;iPad 1&quot;</span>=abc123</span><br><span class="line"></span><br><span class="line">$ ios devices:add <span class="string">&quot;iPad 2&quot;</span>=def456 <span class="string">&quot;iPad 3&quot;</span>=ghi789 ...</span><br></pre></td></tr></table></figure>
+
+<p>通过以下命令单独安装：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem <span class="keyword">install</span> cupertino</span><br></pre></td></tr></table></figure>
+
+<h4 id="Shenzhen"><a href="#Shenzhen" class="headerlink" title="Shenzhen"></a>Shenzhen</h4><p>Web 开发人员在 iOS 上的对应部分是能够在几秒钟内持续部署代码，而不是等待几天 Capertino 批准（有时拒绝！）更新。</p>
+<p>幸运的是，一个围绕着开发和企业分发的新兴产业已经兴起。第三方服务像 HockeyApp、DeployGate 和 TestFlight 提供给开发者更容易的范式注册测试用户和发送最新构建给QA。</p>
+<p><code>Shenzhen</code> 是进一步自动化此过程的工具，通过构建 .ipa文件，然后发布到 FTP&#x2F;SFTP服务器、S3 存储或者其他任何上述第三方服务。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> /path/to/iOS Project/</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ipa build</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ipa distribute:sftp --host HOST -u USER -p PASSWORD -P FTP_PATH</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Houston"><a href="#Houston" class="headerlink" title="Houston"></a>Houston</h4><p><code>Houston</code> 是一个简单的工具发送苹果推送通知。传递凭据、构造消息并将其发送到设备。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apn <span class="keyword">push</span> <span class="string">&quot;&lt;token&gt;&quot;</span> -c <span class="regexp">/path/</span>to/apple_push_notification.pem -m <span class="string">&quot;Hello from the command line!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个工具对测试远程推送非常有用——尤其是在新应用中实现该功能。</p>
+<h4 id="Venice"><a href="#Venice" class="headerlink" title="Venice"></a>Venice</h4><p>不管怎样应用内购买已经成为app开发者最有利的商业模式。有了这么多，对某人的生活而言确保这些购买的有效性是首要的。</p>
+<p><code>Venice</code> 是一个命令行程序，用于验证 Apple 应用内购买收据，并检索与收据数据相关的信息。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">$ iap verify /path/to/receipt</span><br><span class="line">+-----------------------------+-------------------------------+</span><br><span class="line"></span><br><span class="line">|<span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Receipt</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|</span><br><span class="line"></span><br><span class="line">+-----------------------------+-------------------------------+</span><br><span class="line"></span><br><span class="line">|<span class="string"> app_item_id</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|</span><br><span class="line"></span><br><span class="line">|<span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> bid</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> com.foo.bar</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|</span><br><span class="line"></span><br><span class="line">|<span class="string"> bvrs</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> 20120427</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|</span><br><span class="line">|<span class="string"> original_purchase_date</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> Sun, 01 Jan 2013 12:00:00 GMT </span>|</span><br><span class="line"></span><br><span class="line">|<span class="string"> original_transaction_id</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> 1000000000000001</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|</span><br><span class="line"></span><br><span class="line">|<span class="string"> product_id</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> com.example.product</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|</span><br><span class="line"></span><br><span class="line">|<span class="string"> purchase_date</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> Sun, 01 Jan 2013 12:00:00 GMT </span>|</span><br><span class="line"></span><br><span class="line">|<span class="string"> quantity</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|</span><br><span class="line"></span><br><span class="line">|<span class="string"> transaction_id</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|<span class="string"> 1000000000000001</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span>|</span><br><span class="line"></span><br><span class="line">|<span class="string"> version_external_identifier </span>|</span><br><span class="line"></span><br><span class="line">|<span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">+-----------------------------+-------------------------------+</span></span><br></pre></td></tr></table></figure>
+
+<p>像 <code>Houston</code>、<code>Venice</code>有一个客户端库组件，允许它部署在 Rails或 Sinatra应用程序上。验证服务器上的收据允许保留他们自己的过去购买记录，这对于最新的指标和历史分析是有用的。因此，任何人关于IAP需要认真对待是推荐的做法。</p>
+<h4 id="Dubai"><a href="#Dubai" class="headerlink" title="Dubai"></a>Dubai</h4><p>Passbook 管理登机牌、电影票、零售优惠券和会员卡。使用 PassKit API，开发人员可以注册 Web 服务自动更新 Passbook的内容，例如登机牌上的登机口更改或会员卡添加积分。</p>
+<p><code>Dubai</code>可以很容易地从脚本或命令行生成 .pkpass 文件，允许快速迭代你的 pass 的设计和内容，或者在空中生成一次性的。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pk <span class="keyword">generate</span> Example<span class="variable">.pass</span> -T boarding-pass</span><br></pre></td></tr></table></figure>
+
+<p>一旦生成了通行证，它可以用 <code>Dubai</code> 创建本地 HTTP 服务，允许通行证在 iOS 模拟器中实时预览：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">pk serve Example.pass -c /path/to/certificate.p12</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">open http://localhost:4567/pass.pkpass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Fastlane"><a href="#Fastlane" class="headerlink" title="Fastlane"></a>Fastlane</h3><p>fastlane 是一套自动化打包的工具集，用 Ruby 写的，用于 iOS 和 Android 的自动化打包和发布等工具。gym 是其中的打包命令。</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://fastlane.tools/">https://fastlane.tools</a></p>
+<p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/fastlane/fastlane">https://github.com/fastlane/fastlane</a></p>
+<p>fastlane 包含了我们日常编码之后要上线时候进行操作的所有命令。</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deliver:</span> 上传屏幕截图、二进制程序数据和应用程序到AppStore</span><br><span class="line"><span class="symbol">snapshot:</span> 自动截取你的程序在每个设备上的图片</span><br><span class="line"><span class="symbol">frameit:</span> 应用截屏外添加设备框架</span><br><span class="line"><span class="symbol">pem:</span> 可以自动化地生成和更新应用推送通知描述文件</span><br><span class="line"><span class="symbol">sigh:</span> 生成下载开发商店的配置文件</span><br><span class="line"><span class="symbol">produce:</span> 利用命令行在 iTunes Connect 创建一个新的 iOS app</span><br><span class="line"><span class="symbol">cert:</span> 自动创建 iOS 证书</span><br><span class="line"><span class="symbol">pilot:</span> 最好的在终端管理测试和建立的文件</span><br><span class="line"><span class="symbol">boarding:</span> 很容易的方式邀请beta测试</span><br><span class="line"><span class="symbol">gym:</span> 建立新的发布的版本，打包</span><br><span class="line"><span class="symbol">match:</span> 使用git同步你成员间的开发者证书和文件配置</span><br><span class="line"><span class="symbol">scan:</span> 在iOS 和Mac app 上执行测试用例</span><br></pre></td></tr></table></figure>
+
+<p>一个完整的发布过程可以用 fastlane描述成下面这样：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">lane <span class="symbol">:appstore</span> <span class="keyword">do</span></span><br><span class="line">	increment_build_number</span><br><span class="line">	cocoapods</span><br><span class="line">	xctool</span><br><span class="line">	snapshot</span><br><span class="line">	sigh</span><br><span class="line">	deliver</span><br><span class="line">	frameit</span><br><span class="line">	sh <span class="string">&quot;./customScript.sh&quot;</span></span><br><span class="line">	<span class="title class_">Slack</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>提高版本号</li>
+<li>cocoapods 进行相关pod配置</li>
+<li>xctool 进行编译</li>
+<li>snapshot 自动生成截图</li>
+<li>sigh 处理 provision profile 相关的事情</li>
+<li>deliver 上传截图</li>
+<li>frameit 将应用截图快速的放入对应的设备尺寸中</li>
+<li>执行一些自动化的脚本</li>
+<li>把结果发送到 slack</li>
+</ol>
+<p>这是一个完成的自动化的过程。不过实际发布过程中，截图那部分笔者所在公司还是自己手动上传了，fastlane基本还是用来自动化打包。</p>
+<p><img src="/2017/01/04/Xcode-Toolchain/2017-03-07-intro-fastlane-tree.png" alt="intro-fastlane-tree"><br>安装fastlane</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem <span class="keyword">install</span> fastlane</span><br></pre></td></tr></table></figure>
+
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>在项目根目录下，初始化Fastlane:</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>fastlane init</span><br></pre></td></tr></table></figure>
+
+<p>初始化的过程中会要求填写一些项目信息比如 Apple ID, fastlane 会自动检测当前目录中项目的App Name和App Identifier。如果检测的不对，选择 n 自行输入。同时会在项目中生成一个fastlane的文件夹。</p>
+<h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">fastlane</span><br><span class="line">├── Appfile</span><br><span class="line">├── Deliverfile</span><br><span class="line">├── Fastfile</span><br><span class="line">├── metadata</span><br><span class="line">│   ├── app_icon<span class="selector-class">.jpg</span></span><br><span class="line">│   ├── copyright<span class="selector-class">.txt</span></span><br><span class="line">│   ├── primary_category<span class="selector-class">.txt</span></span><br><span class="line">│   ├── primary_first_sub_category<span class="selector-class">.txt</span></span><br><span class="line">│   ├── primary_second_sub_category<span class="selector-class">.txt</span></span><br><span class="line">│   ├── review_information</span><br><span class="line">│   │   ├── demo_password<span class="selector-class">.txt</span></span><br><span class="line">│   │   ├── demo_user<span class="selector-class">.txt</span></span><br><span class="line">│   │   ├── email_address<span class="selector-class">.txt</span></span><br><span class="line">│   │   ├── first_name<span class="selector-class">.txt</span></span><br><span class="line">│   │   ├── last_name<span class="selector-class">.txt</span></span><br><span class="line">│   │   ├── notes<span class="selector-class">.txt</span></span><br><span class="line">│   │   └── phone_number<span class="selector-class">.txt</span></span><br><span class="line">│   ├── secondary_category<span class="selector-class">.txt</span></span><br><span class="line">│   ├── secondary_first_sub_category<span class="selector-class">.txt</span></span><br><span class="line">│   ├── secondary_second_sub_category<span class="selector-class">.txt</span></span><br><span class="line">│   └── zh-Hans</span><br><span class="line">│       ├── description<span class="selector-class">.txt</span></span><br><span class="line">│       ├── keywords<span class="selector-class">.txt</span></span><br><span class="line">│       ├── marketing_url<span class="selector-class">.txt</span></span><br><span class="line">│       ├── name<span class="selector-class">.txt</span></span><br><span class="line">│       ├── privacy_url<span class="selector-class">.txt</span></span><br><span class="line">│       ├── release_notes<span class="selector-class">.txt</span></span><br><span class="line">│       └── support_url<span class="selector-class">.txt</span></span><br><span class="line">└── screenshots</span><br><span class="line">    ├── README<span class="selector-class">.txt</span></span><br><span class="line">    └── zh-Hans</span><br><span class="line">        ├── <span class="number">1</span>_iphone6Plus_1.<span class="number">6</span>+ Screenshot <span class="number">0</span> iPhone<span class="selector-class">.png</span></span><br><span class="line">        ├── <span class="number">2</span>_iphone6Plus_2.<span class="number">6</span>+ Screenshot <span class="number">1</span> iPhone<span class="selector-class">.png</span></span><br><span class="line">        ├── <span class="number">3</span>_iphone6Plus_3.<span class="number">6</span>+ Screenshot <span class="number">4</span> iPhone<span class="selector-class">.png</span></span><br><span class="line">        ├── <span class="number">4</span>_iphone6Plus_4.<span class="number">6</span>+ Screenshot <span class="number">2</span> iPhone<span class="selector-class">.png</span></span><br><span class="line">        └── <span class="number">5</span>_iphone6Plus_5.<span class="number">6</span>+ Screenshot <span class="number">3</span> iPhone.png</span><br></pre></td></tr></table></figure>
+
+
+<p>上面这些文件中，最重要的两个文件就是Appfile和Fastfile。</p>
+<p>Appfile 里面存放了App的基本信息包括app_identifier、apple_id、team_id。如果在init的时候你输入了正确的appId账号和密码会在这里生成正确的team_id信息。如果没有team，这里就不会显示。</p>
+<p>Fastfile是最重要的一个文件，在这个文件里面可以编写和定制我们打包脚本的一个文件，所有自定义的功能都写在这里。</p>
+<p>如果在init的时候选择了在iTunes Connect创建App，那么fastlane会调用produce进行初始化，如果现在还不想创建，也可以之后再运行produce init进行这个流程。如果不执行produce的流程，deliver的流程不会被执行，当然之后也可以deliver init运行完全一样的流程。</p>
+<p>在iTunes Connect 中成功创建App之后，fastlane的文件夹里面就有Deliverfile文件了。</p>
+<p>Deliverfile文件里面主要是deliver的配置文件和Deliverfile的一些帮助。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/WeChatPay.png" alt="Alex Lin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/AliPay.png" alt="Alex Lin 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/eth.jpg" alt="Alex Lin ETH">
+        <span>ETH</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Alex Lin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://chaosky.tech/2017/01/04/Xcode-Toolchain/" title="Xcode 工具链">https://chaosky.tech/2017/01/04/Xcode-Toolchain/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Xcode/" rel="tag"><i class="fa fa-tag"></i> Xcode</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/12/30/iOS-vs-Android/" rel="prev" title="iOS vs Android">
+                  <i class="fa fa-angle-left"></i> iOS vs Android
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/02/22/Team-Mode-Development-Process/" rel="next" title="软件团队模式和开发流程">
+                  软件团队模式和开发流程 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2014 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-keyboard"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">139k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:27</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/xwal" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"xwal/xwal.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkxNzQ4MDMxMA==","category":"Comment","category_id":"DIC_kwDOAQq6ds4CSrDW","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<div id="hexo-adsense-hidden" style="display:none"><div hexo-adsense="ads-content"><!--REMOVE ADSENSE SCRIPT, THIS PLUGIN ALREADY OPTIMIZED THE ADSENSE JAVASCRIPT-->
+<!---->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6178635866936443"
+     data-ad-slot="4097715968"></ins>
+<!--script>
+     
+</script--></div></div><style>[hexo-adsense=ads-content]{display:block;background:#fff url(//i.imgur.com/mBbv90p.png) no-repeat top right;color:#303030;min-width:250px;text-align:center;margin-left:auto;margin-right:auto}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFydGljbGUtYWRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQkFDRSxRQUFBLE1BQ0EsV0FBQSxLQUFBLCtCQUFBLFVBQUEsSUFBQSxNQUNBLE1BQUEsUUFHQSxVQUFBLE1BQ0EsV0FBQSxPQUNBLFlBQUEsS0FDQSxhQUFBIiwiZmlsZSI6ImFydGljbGUtYWRzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIipbaGV4by1hZHNlbnNlPVwiYWRzLWNvbnRlbnRcIl0ge1xuICBkaXNwbGF5OiBibG9jaztcbiAgYmFja2dyb3VuZDogI2ZmZiB1cmwoLy9pLmltZ3VyLmNvbS9tQmJ2OTBwLnBuZykgbm8tcmVwZWF0IHRvcCByaWdodDtcbiAgY29sb3I6ICMzMDMwMzA7XG4gIC8qbWluLWhlaWdodDogMThweDtcbiAgbWluLXdpZHRoOiA4MXB4OyovXG4gIG1pbi13aWR0aDogMjUwcHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbiJdfQ== */
+</style><script>const isBrowser=new Function("try {return this===window;}catch(e){ return false;}"),hexoAdsenseConfig=JSON.parse(document.getElementById("hexo-adsense-config").textContent);function insertAfter(e,t){if(t&&e){let n=t.parentNode;n.lastChild==t?n.appendChild(e):n.insertBefore(e,t.nextSibling)}else console.error("cannot insert element")}function replaceWith(e,t){if(t.parentNode)t.parentNode.replaceChild(e,t);else{console.log(t,"parent null"),document.createElement("div").appendChild(t)}}let createElementFromHTML=function(e){if(e instanceof HTMLElement)return e;var t=document.createElement("div");return t.innerHTML=e.trim(),t.firstChild};function ranumb(e,t){return Math.floor(Math.random()*(t-e+1)+e)}function newMethod(){const e=document.getElementById("hexo-adsense-hidden");let t=e.querySelectorAll('[hexo-adsense="ads-content"]'),n=document.querySelectorAll("article");if(n.length>0&&t.length>0){let o;if(1==n.length){console.log("webpage is post");let l=n.item(0);const r=l.querySelectorAll("*[hexo-adsense-fill]");if(r.length>0)for(let e=0;e<r.length;e++){const n=r[e];void 0!==t[e]&&n.appendChild(t[e])}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("h1,h2,h3,h4,h5,h6,pre");if(e.length>0){let n=Array.apply(null,{length:e.length}).map(Number.call,Number);for(let l=0;l<t.length;l++){o=t[l];const r=shuffleArr2(n).next().value;if("number"==typeof r){const t=e.item(r);insertAfter(createElementFromHTML(o),t)}}}}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("br,hr");if(e.length>0){const n=shuffleArr2(Array.apply(null,{length:e.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=n.next().value;if("number"==typeof r){const t=e.item(r);if(["blockquote","img","a","pre","code","em","strong","i","u"].includes(t.parentNode.tagName.toLowerCase())){l--;continue}replaceWith(createElementFromHTML(o),t)}}}}}else{console.log("webpage is not post"),n.length||(n=document.querySelectorAll('[class*="recent-post-item"]'));const e=shuffleArr2(Array.apply(null,{length:n.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=e.next().value;if("number"==typeof r){n.item(r).appendChild(createElementFromHTML(o))}}}adsensePush()}}function shuffleArr(e){for(var t,n=e.length,o=0;n--;)o=Math.floor(Math.random()*(n+1)),t=e[n],e[n]=e[o],e[o]=t;return e}function*shuffleArr2(e){for(var t=e.length;t--;)yield e.splice(Math.floor(Math.random()*(t+1)),1)[0]}function adsensePush(){for(let e=0;e<document.querySelectorAll('[hexo-adsense="ads-content"]').length;e++)(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:hexoAdsenseConfig.pub})}isBrowser()?(window.__tcfapi=(e,t,n)=>{"checkConsent"===e&&n(!0),"addEventListener"===e&&n({eventStatus:"tcloaded",gdprApplies:!1},!0)},"function"==typeof document.addEventListener?document.addEventListener("DOMContentLoaded",newMethod):"function"==typeof window.attachEvent?window.attachEvent("onload",newMethod):window.onload=newMethod):module.exports={replaceWith:replaceWith,insertAfter:insertAfter};</script></body>
+</html>

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <meta name="google-site-verification" content="yGwNBR-9-6B60StDh4ueJp0Io9gjnzwX0IiXkPL4Pqc">
+  <meta name="msvalidate.01" content="562E828CD9FA60A6D3CDFE1BD31D3FF3">
+  <meta name="baidu-site-verification" content="iYaX85B5Bg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chaosky.tech","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Reveal是分析、调试iOS应用UI的利器。 Reveal能够在运行时调试和修改iOS应用程序。它能连接到应用程序，并允许开发者编辑各种用户界面参数，这反过来会立即反应在程序的UI上。就像用FireBug调试HTML页面一样，在不需要重写代码、重新构建和重新部署应用程序的情况下就能够调试和修改iOS用户界面。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Reveal调试和分析iOS应用UI">
+<meta property="og:url" content="https://chaosky.tech/2016/07/27/Reveal/index.html">
+<meta property="og:site_name" content="Alex Lin&#39;s Notes">
+<meta property="og:description" content="Reveal是分析、调试iOS应用UI的利器。 Reveal能够在运行时调试和修改iOS应用程序。它能连接到应用程序，并允许开发者编辑各种用户界面参数，这反过来会立即反应在程序的UI上。就像用FireBug调试HTML页面一样，在不需要重写代码、重新构建和重新部署应用程序的情况下就能够调试和修改iOS用户界面。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/show-reveal-library-in-finder.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/drag-in-reveal-framework.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/add-resource-to-project.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/remove-framework-from-project.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/add-linker-flags.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/add_framework_search_paths.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/reveal-app-chooser.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/show-reveal-library-in-finder.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/drag-in-reveal-dylib.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/add-resource-to-project-no-targets.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/copy-library-bundle-resources.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/add-run-script-phase.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/reveal-app-chooser.jpg">
+<meta property="og:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/reveal_show.png">
+<meta property="article:published_time" content="2016-07-27T13:38:54.000Z">
+<meta property="article:modified_time" content="2016-07-27T13:38:54.000Z">
+<meta property="article:author" content="Alex Lin">
+<meta property="article:tag" content="Tools">
+<meta property="article:tag" content="Reveal">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosky.tech/2016/07/27/Reveal/reveal/show-reveal-library-in-finder.jpg">
+
+
+<link rel="canonical" href="https://chaosky.tech/2016/07/27/Reveal/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://chaosky.tech/2016/07/27/Reveal/","path":"2016/07/27/Reveal/","title":"使用Reveal调试和分析iOS应用UI"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用Reveal调试和分析iOS应用UI | Alex Lin's Notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?QJ33ASIjWB"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.7.0/mermaid.min.js","integrity":"sha256-4+IKDqhZ/sXjc8Wtl2/MsxI4e0s1KpEVdbEP7V/Lz8U="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/addtoany.js" defer></script>
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<script id="hexo-adsense-config" type="application/json">{"enable":true,"article_ads":["source/ads/in_article.html"],"pub":"ca-pub-6178635866936443","adblock":true,"https":true,"field":"site","type":"javascript","exclude":["*.min.html","exclude/**/*"],"development":false,"args":{"_":[],"g":true},"debug":false,"safe":false,"silent":false,"env":"development","version":"7.3.0","cmd":"d","init":true,"adsense":{"enable":true,"pub":"ca-pub-6178635866936443","article_ads":["source/ads/in_article.html"],"field":"site","https":true,"adblock":true,"exclude":["*.min.html","exclude/**/*"]}}</script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178635866936443" crossorigin="anonymous"></script><link rel="alternate" href="/atom.xml" title="Alex Lin's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex Lin's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Strategy, Execution, Communication.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">100</span></a></li><li class="menu-item menu-item-作坊"><a href="/workspace/" rel="section"><i class="fa fa-cubes fa-fw"></i>作坊</a></li><li class="menu-item menu-item-技能"><a href="/skillmap/" rel="section"><i class="fa fa-atom fa-fw"></i>技能</a></li><li class="menu-item menu-item-摘录"><a href="/quotes/" rel="section"><i class="fa fa-quote-left fa-fw"></i>摘录</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-dragon fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Reveal"><span class="nav-number">1.</span> <span class="nav-text">安装Reveal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97"><span class="nav-number">2.</span> <span class="nav-text">集成指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E9%9B%86%E6%88%90%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">三种集成方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.2.</span> <span class="nav-text">静态连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD"><span class="nav-number">2.3.</span> <span class="nav-text">动态加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods"><span class="nav-number">2.4.</span> <span class="nav-text">CocoaPods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E6%82%A8%E7%9A%84Xcode%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%A7%BB%E9%99%A4Reveal"><span class="nav-number">3.</span> <span class="nav-text">从您的Xcode项目中移除Reveal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%BF%9E%E6%8E%A5-1"><span class="nav-number">3.1.</span> <span class="nav-text">静态连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.2.</span> <span class="nav-text">动态连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods-1"><span class="nav-number">3.3.</span> <span class="nav-text">CocoaPods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%95%88%E6%9E%9C"><span class="nav-number">4.</span> <span class="nav-text">显示效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E6%8F%90%E7%A4%BA"><span class="nav-number">5.</span> <span class="nav-text">重要提示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8Reveal%E8%B0%83%E8%AF%95%E5%85%B6%E5%AE%83%E5%BA%94%E7%94%A8%E7%95%8C%E9%9D%A2"><span class="nav-number">6.</span> <span class="nav-text">用Reveal调试其它应用界面</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Lin"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Alex Lin</p>
+  <div class="site-description" itemprop="description">Hi, I'm an iOS engineer, focusing on mobile software development.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xwal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xwal" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaosky.me@gmail.com" title="E-Mail → mailto:chaosky.me@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://x.com/cyberxwa" title="Twitter → https:&#x2F;&#x2F;x.com&#x2F;cyberxwa" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/chaosky" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;chaosky" rel="noopener me" target="_blank"><i class="fab fa-telegram fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chaosky.tech/2016/07/27/Reveal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Alex Lin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex Lin's Notes">
+      <meta itemprop="description" content="Hi, I'm an iOS engineer, focusing on mobile software development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用Reveal调试和分析iOS应用UI | Alex Lin's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Reveal调试和分析iOS应用UI<a href="https://github.com/xwal/xwal.github.io/edit/source/source/_posts/2016-07-27-Reveal.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-07-27 13:38:54" itemprop="dateCreated datePublished" datetime="2016-07-27T13:38:54+00:00">2016-07-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>11 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Reveal是分析、调试iOS应用UI的利器。</p>
+<p>Reveal能够在运行时调试和修改iOS应用程序。它能连接到应用程序，并允许开发者编辑各种用户界面参数，这反过来会立即反应在程序的UI上。就像用FireBug调试HTML页面一样，在不需要重写代码、重新构建和重新部署应用程序的情况下就能够调试和修改iOS用户界面。</p>
+<span id="more"></span>
+
+<h2 id="安装Reveal"><a href="#安装Reveal" class="headerlink" title="安装Reveal"></a>安装Reveal</h2><p>Reveal 下载地址：<a target="_blank" rel="noopener" href="http://revealapp.com/download/">http://revealapp.com/download/</a></p>
+<h2 id="集成指南"><a href="#集成指南" class="headerlink" title="集成指南"></a>集成指南</h2><p>集成Reveal无需添加任何代码，无需引入任何头文件。库将会在应用启动时自动加载，并在您的应用内部启动必要的Reveal服务。</p>
+<h3 id="三种集成方式"><a href="#三种集成方式" class="headerlink" title="三种集成方式"></a>三种集成方式</h3><h3 id="静态连接"><a href="#静态连接" class="headerlink" title="静态连接"></a>静态连接</h3><p>将Reveal的静态库文件连接入应用，是最简单快捷地启用Reveal检视的方式。</p>
+<blockquote>
+<p>警告: 不要将Reveal库文件随着正式应用一起发布。 下面的步骤将会展示如何通过构建配置，而把Reveal静态库文件，仅连接到调试构建的流程中。</p>
+</blockquote>
+<ol>
+<li><p>在Xcode中打开您的iOS工程。</p>
+</li>
+<li><p>启动Reveal并选择<strong>Help → Show Reveal Library in Finder</strong>，这将会打开Finder窗口，并显示一个名为<strong>iOS-Libraries</strong>的文件夹。</p>
+<p><img src="/2016/07/27/Reveal/reveal/show-reveal-library-in-finder.jpg"></p>
+</li>
+<li><p>将 <strong>Reveal.framework</strong> 文件拖入Xcode中的Project Navigator面板。</p>
+<p><img src="/2016/07/27/Reveal/reveal/drag-in-reveal-framework.jpg"></p>
+</li>
+<li><p>在下图所显示的<strong>Add to targets</strong>对话框中，选择所有您希望与Reveal集成的target。可选步骤：选中<strong>Copy items if needed</strong>，将会把 <strong>Reveal.framework</strong> 拷贝到工程中——如果您这么做了， 请记住，当更新Reveal至新版本时，也依照上述步骤再次更新此库文件。</p>
+<p><img src="/2016/07/27/Reveal/reveal/add-resource-to-project.jpg"></p>
+</li>
+<li><p>点击Finish。</p>
+<p><img src="/2016/07/27/Reveal/reveal/remove-framework-from-project.jpg"></p>
+</li>
+<li><p>选择Build Settings标签，在Other Linker Flags的Debug配置项中加入如下配置。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-ObjC -lz -framework Reveal</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2016/07/27/Reveal/reveal/add-linker-flags.jpg"></p>
+</li>
+<li><p>如果您使用的是Xcode 7, 请确认 Reveal.framework 所在的目录在您的工程配置项 “<strong>Framework Search Paths</strong>” 中。具体的内容看起来会像这样。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FRAMEWORK_SEARCH_PATHS = <span class="variable">$(inherited)</span> <span class="string">&quot;<span class="variable">$(SYSTEM_APPS_DIR)</span>/Reveal.app/Contents/SharedSupport/iOS-Libraries&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2016/07/27/Reveal/reveal/add_framework_search_paths.jpg"></p>
+</li>
+<li><p>在Xcode中，构建并运行您的应用。如果应用运行于真实设备之上，请确保此设备与正在运行Reveal的Mac机器，处于同一Wi-Fi网络中。</p>
+<p>如果一切正常运行，请切换到Reveal应用，此时您的应用应会出现在应用选择器的下拉列表当中。选中您的应用，确认可以看到此时正在模拟器（或设备）中运行的应用界面截图。</p>
+<p><img src="/2016/07/27/Reveal/reveal/reveal-app-chooser.jpg"></p>
+</li>
+</ol>
+<h3 id="动态加载"><a href="#动态加载" class="headerlink" title="动态加载"></a>动态加载</h3><p>动态加载允许iOS应用在运行时，可以按需地加载第三方库。采用这种方式，库文件无需连接入应用的可执行文件，而是被加入到了应用Bundle中去，从而在运行时能按需加载。这种方式使得开发者可以在个人应用中，完全自由地控制Reveal库的加载，以及其服务的启动与停止。</p>
+<p>将Reveal加入您的Xcode工程，使得您团队中的其他成员无需任何额外的配置，就可以使用Reveal。</p>
+<blockquote>
+<p>警告: 永远不要将包含Reveal动态库文件的应用正式发布。Apple不允许将含有动态加载库文件的iOS应用发布到Apple商店中。</p>
+</blockquote>
+<ol>
+<li><p>在Xcode中打开您的iOS工程。</p>
+</li>
+<li><p>启动Reveal并选择<strong>Help → Show Reveal Library in Finder</strong>，这将会打开Finder窗口，并显示一个名为iOS-Libraries的文件夹。</p>
+<p><img src="/2016/07/27/Reveal/reveal/show-reveal-library-in-finder.jpg"></p>
+</li>
+<li><p>将 <strong>libReveal.dylib</strong> 文件拖入Xcode中的Project Navigator面板。</p>
+<p><img src="/2016/07/27/Reveal/reveal/drag-in-reveal-dylib.jpg"></p>
+</li>
+<li><p>在下图所显示的<strong>Add to targets</strong>对话框中，<strong>反选所有的target</strong>。这确保了Xcode不会在编译时连接动态库文件。可选步骤：选中<strong>Copy items if needed</strong>，将会把 <strong>libReveal.dylib</strong> 拷贝到工程中——如果您这么做了， 请记住，当更新Reveal至新版本时，也依照上述步骤再次更新此库文件。</p>
+<p><img src="/2016/07/27/Reveal/reveal/add-resource-to-project-no-targets.jpg"></p>
+</li>
+<li><p>点击Finish。</p>
+<p><img src="/2016/07/27/Reveal/reveal/copy-library-bundle-resources.jpg"></p>
+</li>
+<li><p>在<strong>Copy Bundle Resources</strong>配置区域中，加入<strong>libReveal.dylib</strong>。</p>
+</li>
+<li><p>在<strong>Link Binary With Libraries</strong>配置项中：</p>
+<ul>
+<li>​如果已有libReveal.dylib，请将其移除——不应在编译时连接dylib文件。</li>
+<li>如果下列系统框架与库文件还不存在，请将他们加入：<ul>
+<li>libz.tdb</li>
+<li>CFNetwork.framework</li>
+<li>QuartzCore.framework</li>
+<li>CoreGraphics.framework - Xcode一般默认会在工程中包含此框架文件。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>为了能在debugger之外，将库文件动态地载入设备上的应用，您需要在构建过程中加入对libReveal.dylib文件的code sign。</p>
+<p><img src="/2016/07/27/Reveal/reveal/add-run-script-phase.jpg"></p>
+<p>进入target的<strong>Build Phases</strong>标签页，选择<strong>Editor → Add Build Phase → Add Run Script</strong>菜单。在Run Script阶段中加入以下内容:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$&#123;CODE_SIGN_IDENTITY&#125;</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">     codesign -fs <span class="string">&quot;<span class="variable">$&#123;CODE_SIGN_IDENTITY&#125;</span>&quot;</span> <span class="string">&quot;<span class="variable">$&#123;BUILT_PRODUCTS_DIR&#125;</span>/<span class="variable">$&#123;FULL_PRODUCT_NAME&#125;</span>/libReveal.dylib&quot;</span></span><br><span class="line"> <span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将下面的代码加入到项目中合适的类文件中(例如您的<strong>UIApplicationDelegate</strong>)，适当修改使之满足您的需要：</p>
+<p><strong>Swift:</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: - Reveal</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">func</span> <span class="title function_">loadReveal</span>() &#123;</span><br><span class="line">     <span class="keyword">if</span> <span class="type">NSClassFromString</span>(<span class="string">&quot;IBARevealLoader&quot;</span>) <span class="operator">==</span> <span class="literal">nil</span> &#123;</span><br><span class="line">         <span class="keyword">let</span> revealLibName <span class="operator">=</span> <span class="string">&quot;libReveal&quot;</span> <span class="comment">// or &quot;libReveal-tvOS&quot; for tvOS targets</span></span><br><span class="line">         <span class="keyword">let</span> revealLibExtension <span class="operator">=</span> <span class="string">&quot;dylib&quot;</span></span><br><span class="line">         <span class="keyword">var</span> error: <span class="type">String</span>?</span><br><span class="line"></span><br><span class="line">         <span class="keyword">if</span> <span class="keyword">let</span> dylibPath <span class="operator">=</span> <span class="type">NSBundle</span>.mainBundle().pathForResource(revealLibName, ofType: revealLibExtension) &#123;</span><br><span class="line">             <span class="built_in">print</span>(<span class="string">&quot;Loading dynamic library <span class="subst">\(dylibPath)</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">             <span class="keyword">let</span> revealLib <span class="operator">=</span> dlopen(dylibPath, <span class="type">RTLD_NOW</span>)</span><br><span class="line">             <span class="keyword">if</span> revealLib <span class="operator">==</span> <span class="literal">nil</span> &#123;</span><br><span class="line">                 error <span class="operator">=</span> <span class="type">String</span>(UTF8String: dlerror())</span><br><span class="line">             &#125;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             error <span class="operator">=</span> <span class="string">&quot;File not found.&quot;</span></span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">if</span> error <span class="operator">!=</span> <span class="literal">nil</span> &#123;</span><br><span class="line">             <span class="keyword">let</span> alert <span class="operator">=</span> <span class="type">UIAlertController</span>(title: <span class="string">&quot;Reveal library could not be loaded&quot;</span>,</span><br><span class="line">                                         message: <span class="string">&quot;<span class="subst">\(revealLibName)</span>.<span class="subst">\(revealLibExtension)</span> failed to load with error: <span class="subst">\(error<span class="operator">!</span>)</span>&quot;</span>,</span><br><span class="line">                                  preferredStyle: .<span class="type">Alert</span>)</span><br><span class="line">             alert.addAction(<span class="type">UIAlertAction</span>(title: <span class="string">&quot;OK&quot;</span>, style: .<span class="type">Default</span>, handler: <span class="literal">nil</span>))</span><br><span class="line">             <span class="type">UIApplication</span>.sharedApplication().windows.first<span class="operator">?</span>.rootViewController<span class="operator">?</span>.presentViewController(alert, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Objective-C:</strong></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> mark - Reveal</span></span><br><span class="line"></span><br><span class="line"> - (<span class="type">void</span>)loadReveal</span><br><span class="line"> &#123;</span><br><span class="line">     <span class="keyword">if</span> (<span class="built_in">NSClassFromString</span>(<span class="string">@&quot;IBARevealLoader&quot;</span>) == <span class="literal">nil</span>)</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="built_in">NSString</span> *revealLibName = <span class="string">@&quot;libReveal&quot;</span>; <span class="comment">// or @&quot;libReveal-tvOS&quot; for tvOS targets</span></span><br><span class="line">         <span class="built_in">NSString</span> *revealLibExtension = <span class="string">@&quot;dylib&quot;</span>;</span><br><span class="line">         <span class="built_in">NSString</span> *error;</span><br><span class="line">         <span class="built_in">NSString</span> *dyLibPath = [[<span class="built_in">NSBundle</span> mainBundle] pathForResource:revealLibName ofType:revealLibExtension];</span><br><span class="line"></span><br><span class="line">         <span class="keyword">if</span> (dyLibPath != <span class="literal">nil</span>)</span><br><span class="line">         &#123;</span><br><span class="line">             <span class="built_in">NSLog</span>(<span class="string">@&quot;Loading dynamic library: %@&quot;</span>, dyLibPath);</span><br><span class="line">             <span class="type">void</span> *revealLib = dlopen([dyLibPath cStringUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>], RTLD_NOW);</span><br><span class="line"></span><br><span class="line">             <span class="keyword">if</span> (revealLib == <span class="literal">NULL</span>)</span><br><span class="line">             &#123;</span><br><span class="line">                 error = [<span class="built_in">NSString</span> stringWithUTF8String:dlerror()];</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">else</span></span><br><span class="line">         &#123;</span><br><span class="line">             error = <span class="string">@&quot;File not found.&quot;</span>;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">if</span> (error != <span class="literal">nil</span>)</span><br><span class="line">         &#123;</span><br><span class="line">             <span class="built_in">NSString</span> *message = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@&quot;%@.%@ failed to load with error: %@&quot;</span>, revealLibName, revealLibExtension, error];</span><br><span class="line">             <span class="built_in">UIAlertController</span> *alert = [<span class="built_in">UIAlertController</span> alertControllerWithTitle:<span class="string">@&quot;Reveal library could not be loaded&quot;</span></span><br><span class="line">                                                                            message:message</span><br><span class="line">                                                                     preferredStyle:<span class="built_in">UIAlertControllerStyleAlert</span>];</span><br><span class="line">             [alert addAction:[<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@&quot;OK&quot;</span> style:<span class="built_in">UIAlertActionStyleDefault</span> handler:<span class="literal">nil</span>]];</span><br><span class="line">             [[[[[<span class="built_in">UIApplication</span> sharedApplication] windows] firstObject] rootViewController] presentViewController:alert animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>警告: 不要在发布（release）构建中调用此方法，确保仅是在应用的调试（debug）构建中加载libReveal.dylib。</p>
+</blockquote>
+</li>
+<li><p>一个简单的集成方式是，在**-[UIApplicationDelegate applicationDidBecomeActive:]<strong>方法中调用上面声明的</strong>- (void)loadReveal**方法，以确保Reveal库尽早地被加载进来。<br><strong>Swift:</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. <span class="keyword">func</span> <span class="title function_">applicationDidBecomeActive</span>:(application: <span class="type">UIApplication</span>) &#123;</span><br><span class="line"> <span class="keyword">self</span>.loadReveal()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Objective-C:</strong></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="type">void</span>)applicationDidBecomeActive:(<span class="built_in">UIApplication</span> *)application</span><br><span class="line">&#123;</span><br><span class="line">[<span class="keyword">self</span> loadReveal];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>提示</strong>: 在<code>-[UIApplicationDelegate applicationDidBecomeActive:]</code>方法返回之前加载库的一个好处是，将会让Reveal服务在应用启动的同时也自动启动。</p>
+</blockquote>
+<p>如果您不希望如上述步骤自动启动Reveal服务，也可以以手动的方式来启动，例如通过一个Debug按钮。在应用启动后，自己调用loadReveal方法，然后再分发一个名为IBARevealRequestStart的NSNotification:<br><strong>Swift:</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func <span class="built_in">startReveal</span>() &#123;</span><br><span class="line">    NSNotificationCenter<span class="selector-class">.defaultCenter</span>()<span class="selector-class">.postNotificationName</span>(<span class="string">&quot;IBARevealRequestStart&quot;</span>, <span class="selector-tag">object</span>: nil)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Objective-C:</strong></p>
+<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="type">void</span>)startReveal</span><br><span class="line">&#123;</span><br><span class="line">    [[<span class="type">NSNotificationCenter</span> defaultCenter] postNotificationName:@<span class="string">&quot;IBARevealRequestStart&quot;</span> <span class="keyword">object</span>:<span class="keyword">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>在Xcode中，构建并运行您的应用。如果一切正常运行，请切换到Reveal应用，此时您的应用应会出现在应用选择器的下拉列表当中。选中您的应用，确认可以看到此时正在模拟器（或设备）中运行的应用界面截图。</p>
+<p><img src="/2016/07/27/Reveal/reveal/reveal-app-chooser.jpg"></p>
+</li>
+</ol>
+<h3 id="CocoaPods"><a href="#CocoaPods" class="headerlink" title="CocoaPods"></a>CocoaPods</h3><p>CocoaPods 是一款针对iOS与OSX项目的依赖管理系统。它大大简化了以往Xcode工程里，对第三方库的依赖管理与配置工作。</p>
+<p>CocoaPods提供了Podspec用于将Reveal集成入您的项目。</p>
+<blockquote>
+<p>警告: 不要将连接了Reveal库文件的应用用于正式发布。下面的指南描述了一种使用构建配置来使Reveal静态库文件仅在调试构建中连接的方式。</p>
+<p>此说明要求您在之前已经在项目中配置好了CocoaPods，若不然，请先行配置Cocoapods。</p>
+</blockquote>
+<ol>
+<li><p>将下面内容加入你的Podfile中：</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="string">&#x27;Reveal-iOS-SDK&#x27;</span>, :<span class="function"><span class="params">configurations</span> =&gt;</span> [<span class="string">&#x27;Debug&#x27;</span>]</span><br></pre></td></tr></table></figure></li>
+<li><p>在项目的根目录下执行 <strong>pod install</strong> 命令（如果之前已经在项目中使用了Cocoapods，请执行 <strong>pod update</strong> 命令）。</p>
+</li>
+</ol>
+<h2 id="从您的Xcode项目中移除Reveal"><a href="#从您的Xcode项目中移除Reveal" class="headerlink" title="从您的Xcode项目中移除Reveal"></a>从您的Xcode项目中移除Reveal</h2><p>根据您实际所选择的Reveal集成方式，请根据下述相关步骤来移除Reveal。</p>
+<p>一旦库文件成功的移除后，下面的内容将不再会在您的应用启动时出现在Xcode控制台:</p>
+<p>INFO: Reveal Server started (Protocol Version X).</p>
+<h3 id="静态连接-1"><a href="#静态连接-1" class="headerlink" title="静态连接"></a>静态连接</h3><ol>
+<li>打开您的Xcode工程。</li>
+<li>从 <strong>Project Navigator</strong> 中<strong>删除 Reveal.framework</strong> 的引用。</li>
+<li>在Xcode的 <strong>Project Navigator</strong>中选中您的工程，对于每一个集成了Reveal得target，请选择 <strong>Build Settings</strong> 标签页，将下面内容从 Debug 配置中的 Other <strong>Linked Flags</strong> 设置中移除：<ul>
+<li>-framework Reveal</li>
+<li>-ObjC and -lz (删除前请确认此配置内容仅是用于Reveal)。</li>
+</ul>
+</li>
+<li>搞定 - 运行应用，确认Reveal没有和应用连接上。</li>
+</ol>
+<h3 id="动态连接"><a href="#动态连接" class="headerlink" title="动态连接"></a>动态连接</h3><ol>
+<li>打开您的Xcode工程。</li>
+<li>从 Project Navigator 中<strong>删除 libReveal.dylib</strong> 的引用。</li>
+<li>在Xcode的 Project Navigator中选中您的工程，对于每一个集成了Reveal得target，选择 Build Phases 标签页，如果下列库文件仅供Reveal使用的话，请将它们从 Link Binary With Libraries 配置中移除：<ul>
+<li>libz.dylib</li>
+<li>CFNetwork.framework</li>
+<li>QuartzCore.framework</li>
+<li>CoreGraphics.framework</li>
+</ul>
+</li>
+<li>将自定义的codesign内容从 Build Phases 下的 Run Script 中删除。</li>
+<li>将 <code>loadReveal / startReveal</code> 方法从您的代码中删除。</li>
+<li>搞定 - 运行应用，确认Reveal没有和应用连接上。</li>
+</ol>
+<h3 id="CocoaPods-1"><a href="#CocoaPods-1" class="headerlink" title="CocoaPods"></a>CocoaPods</h3><ol>
+<li><p>在您的Podfile文件中删除下面这行内容：</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="string">&#x27;Reveal-iOS-SDK&#x27;</span>, :<span class="function"><span class="params">configurations</span> =&gt;</span> [<span class="string">&#x27;Debug&#x27;</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在项目的根目录下执行 pod update 命令。</p>
+</li>
+<li><p>如果您的 Podfile 中只有 Reveal-iOS-SDK 一个pod依赖，请根据此说明，将CocoaPods从项目中完全移除。</p>
+</li>
+<li><p>搞定 - 运行应用，确认Reveal没有和应用连接上。</p>
+</li>
+</ol>
+<h2 id="显示效果"><a href="#显示效果" class="headerlink" title="显示效果"></a>显示效果</h2><p><img src="/2016/07/27/Reveal/reveal/reveal_show.png"></p>
+<p>上图是Reveal的运行界面，其界面主要分成3部分：</p>
+<ul>
+<li><p>左边部分是整个界面的层级关系，在这里可以以树形级层的方式来查看整个界面元素。</p>
+</li>
+<li><p>中间部分是一个可视化的查看区域，用户可以在这里切换2D或3D的查看方式，这里看到的也是程序运行的实时界面。</p>
+</li>
+<li><p>右边部边是控件的详细参数查看区域，当我们选中某一个具体的控件时，右边就可以显示出该控件的具体的参数列表。我们除了可以查看这些参数值是否正确外，还可以尝试修改这些值。所有的修改都可以实时反应到中间的实时预览区域。</p>
+</li>
+</ul>
+<h2 id="重要提示"><a href="#重要提示" class="headerlink" title="重要提示"></a>重要提示</h2><ol>
+<li><strong>不要将连接了Reveal库文件的应用正式发布</strong>。 Reveal的检视机制，会将您应用的许多内部信息暴露出来，而这将很可能导致您的应用被Apple审查团队拒绝发布。Reveal的目的仅用于内部开发与应用调试。</li>
+<li><strong>当iOS应用进入后台后，Reveal服务将会自动停止</strong>。 当应用重新打开时，它又会自动启动。</li>
+<li><strong>Reveal支持基于iOS 7及更新版本而编译的应用</strong>。 构建配置中的iOS Deployment Target也必须是’iOS 7.0’或更新版本。 如果iOS版本太旧，您有可能会在构建应用过程中遇到连接错误。</li>
+<li><strong>Reveal使用Bonjour协议来连接运行时的iOS应用</strong>。 如果您的iOS应用是运行在真实的设备之上，那么此设备也需要处在同一个网络之内，以便电脑上的Reveal应用能够与之连接。如果您在连接应用时仍遇到问题，请先检查防火墙和代理设置，以确保它们没有阻碍通讯。</li>
+</ol>
+<h2 id="用Reveal调试其它应用界面"><a href="#用Reveal调试其它应用界面" class="headerlink" title="用Reveal调试其它应用界面"></a>用Reveal调试其它应用界面</h2><p>如果你的设备越狱了，那么还可以用Reveal来”调试“其它应用界面，什么时候会有这种奇怪的需求呢？——当我们想学习别人是如何实现界面效果的时候。iOS设备的目录**&#x2F;Library&#x2F;MobileSubstrate&#x2F;DynamicLibraries** 下存放着所有在系统启动时就需要加载的动态链接库，所以我们只需要将Reveal的动态链接库上传到该目录即可。</p>
+<p>对于越狱的设备，我们可以在安装OpenSSH之后，用scp来上传该文件。具体步骤如下：</p>
+<p>将libReveal.dylib 上传到 &#x2F;Library&#x2F;MobileSubstrate&#x2F;DynamicLibraries<br>如果libReveal.dylib没有执行权限，用chmod +x libReveal.dylib命令，给其增加执行权限<br>执行 killall SpringBoard 重启桌面</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/WeChatPay.png" alt="Alex Lin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/AliPay.png" alt="Alex Lin 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/eth.jpg" alt="Alex Lin ETH">
+        <span>ETH</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Alex Lin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://chaosky.tech/2016/07/27/Reveal/" title="使用Reveal调试和分析iOS应用UI">https://chaosky.tech/2016/07/27/Reveal/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tools/" rel="tag"><i class="fa fa-tag"></i> Tools</a>
+              <a href="/tags/Reveal/" rel="tag"><i class="fa fa-tag"></i> Reveal</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/07/23/macOS-setup-rtmp-server/" rel="prev" title="macOS 搭建 RTMP 直播服务器">
+                  <i class="fa fa-angle-left"></i> macOS 搭建 RTMP 直播服务器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/07/27/iOS-Security-Defense-Reveal/" rel="next" title="使用Reveal分析别人App的UI布局">
+                  使用Reveal分析别人App的UI布局 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2014 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-keyboard"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Lin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">139k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:27</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/xwal" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"xwal/xwal.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkxNzQ4MDMxMA==","category":"Comment","category_id":"DIC_kwDOAQq6ds4CSrDW","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<div id="hexo-adsense-hidden" style="display:none"><div hexo-adsense="ads-content"><!--REMOVE ADSENSE SCRIPT, THIS PLUGIN ALREADY OPTIMIZED THE ADSENSE JAVASCRIPT-->
+<!---->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6178635866936443"
+     data-ad-slot="4097715968"></ins>
+<!--script>
+     
+</script--></div></div><style>[hexo-adsense=ads-content]{display:block;background:#fff url(//i.imgur.com/mBbv90p.png) no-repeat top right;color:#303030;min-width:250px;text-align:center;margin-left:auto;margin-right:auto}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFydGljbGUtYWRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQkFDRSxRQUFBLE1BQ0EsV0FBQSxLQUFBLCtCQUFBLFVBQUEsSUFBQSxNQUNBLE1BQUEsUUFHQSxVQUFBLE1BQ0EsV0FBQSxPQUNBLFlBQUEsS0FDQSxhQUFBIiwiZmlsZSI6ImFydGljbGUtYWRzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIipbaGV4by1hZHNlbnNlPVwiYWRzLWNvbnRlbnRcIl0ge1xuICBkaXNwbGF5OiBibG9jaztcbiAgYmFja2dyb3VuZDogI2ZmZiB1cmwoLy9pLmltZ3VyLmNvbS9tQmJ2OTBwLnBuZykgbm8tcmVwZWF0IHRvcCByaWdodDtcbiAgY29sb3I6ICMzMDMwMzA7XG4gIC8qbWluLWhlaWdodDogMThweDtcbiAgbWluLXdpZHRoOiA4MXB4OyovXG4gIG1pbi13aWR0aDogMjUwcHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbiJdfQ== */
+</style><script>const isBrowser=new Function("try {return this===window;}catch(e){ return false;}"),hexoAdsenseConfig=JSON.parse(document.getElementById("hexo-adsense-config").textContent);function insertAfter(e,t){if(t&&e){let n=t.parentNode;n.lastChild==t?n.appendChild(e):n.insertBefore(e,t.nextSibling)}else console.error("cannot insert element")}function replaceWith(e,t){if(t.parentNode)t.parentNode.replaceChild(e,t);else{console.log(t,"parent null"),document.createElement("div").appendChild(t)}}let createElementFromHTML=function(e){if(e instanceof HTMLElement)return e;var t=document.createElement("div");return t.innerHTML=e.trim(),t.firstChild};function ranumb(e,t){return Math.floor(Math.random()*(t-e+1)+e)}function newMethod(){const e=document.getElementById("hexo-adsense-hidden");let t=e.querySelectorAll('[hexo-adsense="ads-content"]'),n=document.querySelectorAll("article");if(n.length>0&&t.length>0){let o;if(1==n.length){console.log("webpage is post");let l=n.item(0);const r=l.querySelectorAll("*[hexo-adsense-fill]");if(r.length>0)for(let e=0;e<r.length;e++){const n=r[e];void 0!==t[e]&&n.appendChild(t[e])}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("h1,h2,h3,h4,h5,h6,pre");if(e.length>0){let n=Array.apply(null,{length:e.length}).map(Number.call,Number);for(let l=0;l<t.length;l++){o=t[l];const r=shuffleArr2(n).next().value;if("number"==typeof r){const t=e.item(r);insertAfter(createElementFromHTML(o),t)}}}}if(t=e.querySelectorAll('[hexo-adsense="ads-content"]'),t.length>0){const e=l.querySelectorAll("br,hr");if(e.length>0){const n=shuffleArr2(Array.apply(null,{length:e.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=n.next().value;if("number"==typeof r){const t=e.item(r);if(["blockquote","img","a","pre","code","em","strong","i","u"].includes(t.parentNode.tagName.toLowerCase())){l--;continue}replaceWith(createElementFromHTML(o),t)}}}}}else{console.log("webpage is not post"),n.length||(n=document.querySelectorAll('[class*="recent-post-item"]'));const e=shuffleArr2(Array.apply(null,{length:n.length}).map(Number.call,Number));for(let l=0;l<t.length;l++){o=t[l];const r=e.next().value;if("number"==typeof r){n.item(r).appendChild(createElementFromHTML(o))}}}adsensePush()}}function shuffleArr(e){for(var t,n=e.length,o=0;n--;)o=Math.floor(Math.random()*(n+1)),t=e[n],e[n]=e[o],e[o]=t;return e}function*shuffleArr2(e){for(var t=e.length;t--;)yield e.splice(Math.floor(Math.random()*(t+1)),1)[0]}function adsensePush(){for(let e=0;e<document.querySelectorAll('[hexo-adsense="ads-content"]').length;e++)(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:hexoAdsenseConfig.pub})}isBrowser()?(window.__tcfapi=(e,t,n)=>{"checkConsent"===e&&n(!0),"addEventListener"===e&&n({eventStatus:"tcloaded",gdprApplies:!1},!0)},"function"==typeof document.addEventListener?document.addEventListener("DOMContentLoaded",newMethod):"function"==typeof window.attachEvent?window.attachEvent("onload",newMethod):window.onload=newMethod):module.exports={replaceWith:replaceWith,insertAfter:insertAfter};</script></body>
+</html>
